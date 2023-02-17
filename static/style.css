@@ -1,26 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
-body {
-	margin: 0;
-	background: #222;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;
-}
-
-.container {
-	width: 80%;
-	margin: 0 auto;
-}
-
-header {
-  background-color: #55d6aa;
-  overflow: auto;
-}
-
-header::after {
-  content: '';
-  display: table;
-  clear: both;
-}
 /*Start of all the nav stuff*/
 
 nav {
@@ -53,9 +31,12 @@ nav a {
   font-size: 15px;
 }
 
+
 nav a:hover {
-  color: #000;
+  color: #0e0e82a0;
 }
+
+/*
 
 nav a::before {
   content: '';
@@ -74,4 +55,44 @@ nav a:hover::before {
   width: 100%;
 }
 
+I'd like to come back to the animation at somepoint, but it's
+just too much effort ATM.
+*/
+
+
 /*End of all the nav stuff*/
+
+header {
+    background-color: #55d6aa;
+    overflow: auto;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+body {
+	margin: 0;
+	background: #222;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 800;
+}
+
+p{
+    font-size: 20px;
+    color: #ffff;
+    text-align: center;
+} 
+
+.home_page_search {
+    text-align: center;
+}
+
+
+
+
+
+
+
