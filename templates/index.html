@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--use the <link> class and not the <meta> (you are stupid) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" type="text/css">
+    <title>Hello World</title>
+    
+</head>
+<header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<body>
+    <!-- double curly brackets means using a variable that has been passed through from flask/python-->
+    <p1>Hello {{name}}</p1>
+    <form action="greet" method="post">
+        <br>
+        <input type="text" name="name_input">
+        <br>
+        <input type="submit" value="Greet" id="greet">
+    </form>
+    <script src="" async defer></script>
+</body>
+</html>
