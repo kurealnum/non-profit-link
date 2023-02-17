@@ -1,70 +1,77 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
-
 body {
-    margin: 0;
-    background: #222;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 800;
+	margin: 0;
+	background: #222;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 800;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
+	width: 80%;
+	margin: 0 auto;
 }
 
 header {
-    background: #55d6aa;
+  background-color: #55d6aa;
+  overflow: auto;
 }
 
 header::after {
-    content: '';
-    display: table;
-    clear: both;
+  content: '';
+  display: table;
+  clear: both;
 }
+/*Start of all the nav stuff*/
 
 nav {
-    text-align: center;
-    float: inline-end;
-}
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 2.5%;
+  }
 
 nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 nav li {
-    display: inline-block;
-    margin-left: 70px;
-    padding: 23px;
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding: 14px;
 
-    position: relative;
+  position: relative;
 }
 
 nav a {
-    color: #444;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
+  color: #1f1e1e;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
 }
 
 nav a:hover {
-    color: #000;
+  color: #000;
 }
 
 nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background-color: #444;
+  content: '';
+  display: inline-block;
+  height: 5px;
+  background-color: #444;
 
-    position: absolute;
-    top: 0;
-    width: 0%;
-
-    transition: all ease-in-out 250ms;
+  position: absolute;
+  top: 0;
+  width: 0;
+ 
+  transition: all ease-in-out 250ms;
 }
 
 nav a:hover::before {
-    width: 50%;
+  width: 100%;
 }
+
+/*End of all the nav stuff*/
