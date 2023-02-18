@@ -8,10 +8,11 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 def home():
     return render_template('index.html')
 
-#methods go in a list to let flask and jinja2 know what methods we'll be using on this certain page
-@app.route("/greet", methods=["POST", "GET"])
-def greet():
-    #name = getting the request form from the html
-    name = request.form['name_input']
-    #we then use index.html, and pass in name as name
-    return render_template('index.html', name = name)
+@app.route("/search_home_page", methods=["POST", "GET"])
+def search_home_page():
+    if request.method == "POST":
+        search = request.form.get("search_query")
+
+    return render_template('index.html', search_query=search)
+
+

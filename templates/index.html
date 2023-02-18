@@ -21,13 +21,14 @@
   </header>
 <body>
     <!-- double curly brackets means using a variable that has been passed through from flask/python-->
-    <p>Welcome to literally nothing lmao 
+    <p>Welcome to literally nothing lmao {{search_query}}
     </p>
-    <form class="home_page_search" action="search" method="post">
+    <!--i'm not doing the actual search function for a long time btw-->
+    <form class="home_page_search" action="search_home_page" method="POST">
         <br>
-        <input type="search" name="name_input">
+        <input type="search" name="search_query">
         <br>
-        <input type="submit" value="Greet" id="greet">
+        <input type="submit" value="Search" id="search_home_page">
     </form>
     <script src="" async defer></script>
 </body>
