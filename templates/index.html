@@ -24,11 +24,13 @@
     <p>Welcome to the website!
     </p>
     <!--i'm not doing the actual search function for a long time btw-->
-    <form class="home_page_search" action="search_home_page" method="POST">
-        <br>
-        <input type="search" name="search_query">
-        <br>
-        <input type="submit" value="Search" id="search_home_page">
-    </form>
+    <div class="wrap">
+      <form class="search" action="search_home_page" method="POST">
+          <br>
+          <input type="search" name="search_query" class="searchTerm" placeholder="Enter a search term">
+          <br>
+          <input type="submit" value="Search" id="search_home_page" class="searchButton">
+      </form>
+    </div>
 </body>
 </html>
