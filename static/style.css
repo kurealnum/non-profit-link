@@ -25,7 +25,7 @@ nav li {
 }
 
 nav a {
-  color: #1f1e1e;
+  color: var(--element-text-color);
   text-decoration: none;
   text-transform: uppercase;
   font-size: 15px;
@@ -63,7 +63,7 @@ just too much effort ATM.
 /*End of all the nav stuff*/
 
 header {
-    background-color: #55d6aa;
+    background-color: var(--primary-color);
     overflow: auto;
 }
 
@@ -77,41 +77,61 @@ body {
 	margin: 0;
 	background: #222;
 	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;
+	font-weight: 500;
 }
 
+
+/*width for text is 500 px*/
 p{
-    font-size: 20px;
-    color: #ffff;
+    font-size: 18px;
+    color: var(--general-text-color);
     text-align: center;
+    padding: 20px;
+    max-width: 500px;
+    position: static;
+    margin: 0 auto;
+    
 } 
+
+.main_text_body{
+  font-size: 18px;
+  color: var(--general-text-color);
+  text-align: center;
+  max-width: 500px;
+  position: static;
+  margin: 0 auto;
+  
+}
 
 .search {
   width: 100%;
+  padding-top: 25px;
   position: relative;
   display: flex;
 }
 
 .searchTerm {
   width: 100%;
-  border: 1px solid #55d6aa;
+  border: 2px solid var(--secondary-color);
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 30px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: #0f1112;
+  font-family: 'Work Sans', sans-serif;
 }
 
+/*not needed atm, but idk maybe i'll use it at somepoint*/
 .searchTerm:focus{
-  color: #00B4CC;
+  color: #0f1112;
 }
 
 .searchButton {
   width: 55px;
-  height: 20px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
+  height: 30px;
+  border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -121,11 +141,17 @@ p{
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
+  position: relative;
   width: 30%;
-  position: absolute;
-  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+:root {
+  --primary-color: #55d6aa;
+  --secondary-color: #00B4CC;
+  --element-text-color: #1f1e1e;
+  --general-text-color: #fff;
 }
 
 
