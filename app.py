@@ -5,7 +5,10 @@ from forms import search_home_page
 import sqlite3
 
 #connecting to the database
-conn = sqlite3.connect('database.db')
+conn = sqlite3.connect('database\database.db')
+
+with open('database\schema.sql') as f:
+    conn.executescript(f.read())   
 
 #some basic info to give flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -19,5 +22,14 @@ def home():
 def home_search():
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     return search_home_page()
+
+#just a test function, not planning on keeping it
+def insert_search(term):
+    conn.execute("INSERT INTO searches (search) VALUES (?)", (term,))
+    #gonna find a better way to commit the databse, because this could
+    #be slow on a larger scale
+    conn.commit()
+
+insert_search('Search')
 
 
