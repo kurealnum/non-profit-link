@@ -2,12 +2,12 @@
 /*Start of all the nav stuff*/
 
 nav {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 2.5%;
-  }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 2.5%;
+}
 
 nav ul {
   margin: 0;
@@ -63,8 +63,8 @@ just too much effort ATM.
 /*End of all the nav stuff*/
 
 header {
-    background-color: var(--primary-color);
-    overflow: auto;
+  background-color: var(--primary-color);
+  overflow: auto;
 }
 
 header::after {
@@ -74,33 +74,35 @@ header::after {
 }
 
 body {
-	margin: 0;
-	background: #222;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 500;
+  margin: 0;
+  background: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  height: 100%;
 }
 
 
 /*width for text is 500 px*/
-p{
-    font-size: 18px;
-    color: var(--general-text-color);
-    text-align: center;
-    padding: 20px;
-    max-width: 500px;
-    position: static;
-    margin: 0 auto;
-    
-} 
+p {
+  font-size: 18px;
+  color: var(--general-text-color);
+  text-align: center;
+  padding: 20px;
+  max-width: 500px;
+  position: static;
+  margin: 0 auto;
 
-.main_text_body{
+}
+
+.main_text_body {
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
   max-width: 500px;
   position: static;
   margin: 0 auto;
-  
+  padding-bottom: 20px;
+
 }
 
 .search {
@@ -123,7 +125,7 @@ p{
 }
 
 /*not needed atm, but idk maybe i'll use it at somepoint*/
-.searchTerm:focus{
+.searchTerm:focus {
   color: #0f1112;
 }
 
@@ -140,11 +142,47 @@ p{
 }
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
+.wrap {
   position: relative;
   width: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+table {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 2.5%;
+}
+
+footer {
+  font-size: 18px;
+  color: var(--general-text-color);
+  text-align: center;
+  padding: 20px;
+  max-width: 500px;
+  position: static;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+  overflow: auto;
+
+}
+
+footer li {
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+
+  position: relative;
+}
+
+footer a {
+  color: var(--element-text-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
 }
 
 :root {
@@ -153,12 +191,3 @@ p{
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
 }
-
-
-
-
-
-
-
-
-
