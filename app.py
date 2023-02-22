@@ -1,11 +1,15 @@
 #dont bother importing all of flask, just import it as you need it
 from flask import Flask, render_template, request
 from forms import search_home_page
+#loading env variables stuff, apparently you need the os module aswell
+import os
+from dotenv import load_dotenv
+load_dotenv()
 #db file is under .gitignore
 import sqlite3
 
 #connecting to the database
-conn = sqlite3.connect('database\database.db')
+conn = sqlite3.connect(os.getenv('DATABASEPATH'))
 
 with open('database\schema.sql') as f:
     conn.executescript(f.read())   

@@ -1,4 +1,3 @@
 Flask
-requests 
-wtforms
-flask_wtf
+sqlite3
+dotenv
