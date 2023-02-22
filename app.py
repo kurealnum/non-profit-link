@@ -1,18 +1,9 @@
 #dont bother importing all of flask, just import it as you need it
 from flask import Flask, render_template, request
 from forms import search_home_page
-#loading env variables stuff, apparently you need the os module aswell
-import os
-from dotenv import load_dotenv
-load_dotenv()
+
 #db file is under .gitignore
-import sqlite3
-
-#connecting to the database
-conn = sqlite3.connect(os.getenv('DATABASEPATH'))
-
-with open('database\schema.sql') as f:
-    conn.executescript(f.read())   
+import sqlite3 
 
 #some basic info to give flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -27,13 +18,5 @@ def home_search():
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     return search_home_page()
 
-#just a test function, not planning on keeping it
-def insert_search(term):
-    conn.execute("INSERT INTO searches (search) VALUES (?)", (term,))
-    #gonna find a better way to commit the databse, because this could
-    #be slow on a larger scale
-    conn.commit()
-
-insert_search('Search')
 
 
