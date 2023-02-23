@@ -1,4 +1,5 @@
 #dont bother importing all of flask, just import it as you need it
+#python -m flask run :D
 from flask import Flask, render_template, request
 from forms import search_home_page
 

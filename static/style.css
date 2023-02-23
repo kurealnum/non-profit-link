@@ -75,19 +75,25 @@ header::after {
 
 body {
   margin: 0;
+  padding: 0;
   background: #222;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   height: 100%;
 }
 
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 
 /*width for text is 500 px*/
 p {
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
-  padding: 20px;
+  padding: var(--standard-spacing);
   max-width: 500px;
   position: static;
   margin: 0 auto;
@@ -101,8 +107,7 @@ p {
   max-width: 500px;
   position: static;
   margin: 0 auto;
-  padding-bottom: 20px;
-
+  padding: 18px;
 }
 
 .search {
@@ -149,31 +154,26 @@ p {
   transform: translate(-50%, -50%);
 }
 
-table {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 2.5%;
+ul {
+  background-color: var(--primary-color);
+  text-align: center;
+  overflow: auto;
+  position: static;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 footer {
-  font-size: 18px;
-  color: var(--general-text-color);
-  text-align: center;
-  padding: 20px;
-  max-width: 500px;
-  position: static;
-  margin: 0 auto;
-  background-color: var(--primary-color);
-  overflow: auto;
-
+  display: flex;
+  justify-content: center;
 }
 
 footer li {
   display: inline-block;
   margin-left: 60px;
   margin-right: 60px;
+  padding: 14px;
 
   position: relative;
 }
@@ -190,4 +190,5 @@ footer a {
   --secondary-color: #00B4CC;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
+  --standard-spacing: 18px;
 }
