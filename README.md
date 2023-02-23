@@ -8,4 +8,6 @@ This is hard to explain through text, but I'll do my best. My mother often volun
 ### What database will you/are you using?
 SQLite, I'm lazy. I do have a database file, but I'm adding it to .gitignore. There will be multiple database files at somepoint, just fyi.
 
+### Why is there so many "Lorem ipsums"?
+I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
 

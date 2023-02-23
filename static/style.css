@@ -80,6 +80,7 @@ body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   height: 100%;
+  flex-direction: column;
 }
 
 html {
@@ -94,7 +95,7 @@ p {
   color: var(--general-text-color);
   text-align: center;
   padding: var(--standard-spacing);
-  max-width: 500px;
+  max-width: 700px;
   position: static;
   margin: 0 auto;
 
@@ -104,7 +105,7 @@ p {
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
-  max-width: 500px;
+  max-width: var(--standard-width);
   position: static;
   margin: 0 auto;
   padding: 18px;
@@ -112,7 +113,7 @@ p {
 
 .search {
   width: 100%;
-  padding-top: 25px;
+  padding-top: 2rem;
   position: relative;
   display: flex;
 }
@@ -146,39 +147,36 @@ p {
   font-size: 13px;
 }
 
-/*Resize the wrap to see the search bar change!*/
-.wrap {
+.search_bar_wrap {
   position: relative;
   width: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-ul {
-  background-color: var(--primary-color);
-  text-align: center;
-  overflow: auto;
-  position: static;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 footer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  overflow: auto;
+  position: static;
+  background-color: var(--primary-color);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 footer li {
   display: inline-block;
-  margin-left: 60px;
-  margin-right: 60px;
-  padding: 14px;
-
+  text-align: center;
+  padding: 0;
+  margin: 0;
   position: relative;
 }
 
 footer a {
+  padding: 1rem 4rem;
   color: var(--element-text-color);
   text-decoration: none;
   text-transform: uppercase;
@@ -190,5 +188,6 @@ footer a {
   --secondary-color: #00B4CC;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
-  --standard-spacing: 18px;
+  --standard-spacing: 1rem;
+  --standard-width: 700px;
 }
