@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
-/*Start of all the nav stuff*/
+/*---Start of nav---*/
 
 nav {
   position: relative;
@@ -60,7 +60,7 @@ just too much effort ATM.
 */
 
 
-/*End of all the nav stuff*/
+/*---End of nav---*/
 
 header {
   background-color: var(--primary-color);
@@ -80,7 +80,6 @@ body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   height: 100%;
-  flex-direction: column;
 }
 
 html {
@@ -90,15 +89,14 @@ html {
 }
 
 /*width for text is 500 px*/
-p {
+.introduction {
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
   padding: var(--standard-spacing);
-  max-width: 700px;
+  max-width: var(--standard-width);
   position: static;
-  margin: 0 auto;
-
+  margin: auto;
 }
 
 .main_text_body {
@@ -108,14 +106,15 @@ p {
   max-width: var(--standard-width);
   position: static;
   margin: 0 auto;
-  padding: 18px;
+  padding: var(--standard-spacing);
 }
 
 .search {
   width: 100%;
-  padding-top: 2rem;
-  position: relative;
+  padding-top: var(--standard-spacing);
+  position: static;
   display: flex;
+  padding: 0;
 }
 
 .searchTerm {
@@ -125,7 +124,6 @@ p {
   padding: 5px;
   height: 30px;
   border-radius: 5px 0 0 5px;
-  outline: none;
   color: #0f1112;
   font-family: 'Work Sans', sans-serif;
 }
@@ -148,10 +146,11 @@ p {
 }
 
 .search_bar_wrap {
-  position: relative;
+  position: static;
   width: 30%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  padding: 0;
 }
 
 footer {
@@ -176,7 +175,7 @@ footer li {
 }
 
 footer a {
-  padding: 1rem 4rem;
+  padding: var(--standard-spacing) 4rem;
   color: var(--element-text-color);
   text-decoration: none;
   text-transform: uppercase;
@@ -188,6 +187,6 @@ footer a {
   --secondary-color: #00B4CC;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
-  --standard-spacing: 1rem;
+  --standard-spacing: 28px;
   --standard-width: 700px;
 }
