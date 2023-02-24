@@ -1,4 +1,9 @@
-#TODO: nav, and fix the post/get request stuff
+'''
+TODO: login page, and show that you're logged in
+TODO: finish footer links
+TODO: actually put text and images on the home page
+TODO: mission statement page?
+'''
 
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
@@ -13,7 +18,7 @@ nav = Navigation(app)
 #nav bar stuff (not sure if this works for the footer as well)
 nav.Bar('top',[
     nav.Item('Home', 'home'),
-    nav.Item('About Us', 'aboutus'),
+    nav.Item('About Us', 'about_us'),
 ])
 
 @app.route("/")
@@ -27,7 +32,7 @@ def home_search():
     return search_home_page()
 
 @app.route("/about-us")
-def aboutus():
+def about_us():
     return render_template('aboutus.html')
 
 
