@@ -21,8 +21,9 @@ def return_time():
 
 
 def search_home_page():
-    if request.method == "POST":
-        search = request.form.get("search_query")
+    if request.method == "GET":
+        #USE request.ARGS for get requests, and requests.FORM for post requets
+        search = request.args.get("search_query")
         conn.execute("INSERT INTO searches (search, time) VALUES (?,?)", (search, return_time()))
         conn.commit()
 

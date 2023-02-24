@@ -12,10 +12,11 @@
 <header>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Stuff</a></li>
-        <li><a href="#">Stuff</a></li>
+        {% for item in nav.top %}
+        <li>
+          <a href="{{ item.url }}">{{ item.label }}</a>
+        </li>
+        {% endfor %}
       </ul>
     </nav>
 </header>
@@ -29,7 +30,7 @@
 
   <!--i'm not doing the actual search function for a long time btw-->
   <div class="search_bar_wrap">
-    <form class="search" action="search_home_page" method="POST">
+    <form class="search" action="search" method="GET">
       <br>
       <input type="search" name="search_query" class="searchTerm" placeholder="Enter a search term">
       <br>
