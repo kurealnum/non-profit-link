@@ -12,9 +12,9 @@ SQLite, I'm lazy. I do have a database file, but I'm adding it to .gitignore. Th
 I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
 
 # TODO LIST (I might forget to update this, just FYI)
-TODO: login page, and show that you're logged in
-TODO: finish footer links
-TODO: actually put text and images on the home page
-TODO: mission statement page?
-TODO: bunch of research on where i want to host this
+###### TODO: login page, and show that you're logged in
+###### TODO: finish footer links
+###### TODO: actually put text and images on the home page
+###### TODO: not making a mission statement page, making a technicals page (pages are created, not finished)
+###### TODO: bunch of research on where i want to host this
 

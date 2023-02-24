@@ -1,10 +1,3 @@
-'''
-TODO: login page, and show that you're logged in
-TODO: finish footer links
-TODO: actually put text and images on the home page
-TODO: mission statement page?
-'''
-
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
 from flask import Flask, render_template, request
@@ -19,6 +12,7 @@ nav = Navigation(app)
 nav.Bar('top',[
     nav.Item('Home', 'home'),
     nav.Item('About Us', 'about_us'),
+    nav.Item('Technicals', 'technicals')
 ])
 
 @app.route("/")
@@ -31,9 +25,13 @@ def home_search():
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     return search_home_page()
 
-@app.route("/about-us")
+@app.route("/about_us")
 def about_us():
     return render_template('aboutus.html')
+
+@app.route("/technicals")
+def technicals():
+    return render_template('technicals.html')
 
 
 
