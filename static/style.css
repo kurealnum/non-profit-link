@@ -20,7 +20,6 @@ nav li {
   margin-left: 60px;
   margin-right: 60px;
   padding: 14px;
-
   position: relative;
 }
 
@@ -31,9 +30,8 @@ nav a {
   font-size: 15px;
 }
 
-
 nav a:hover {
-  color: #0e0e82a0;
+  color: var(--highlight-color);
 }
 
 /*
@@ -59,8 +57,7 @@ I'd like to come back to the animation at somepoint, but it's
 just too much effort ATM.
 */
 
-
-/*---End of nav---*/
+/* Header */
 
 header {
   background-color: var(--primary-color);
@@ -88,7 +85,6 @@ html {
   height: 100%;
 }
 
-/*width for text is 500 px*/
 .introduction {
   font-size: 18px;
   color: var(--general-text-color);
@@ -109,6 +105,8 @@ html {
   padding: var(--standard-spacing);
 }
 
+/* Search bar */
+
 .search {
   width: 100%;
   padding-top: var(--standard-spacing);
@@ -128,7 +126,6 @@ html {
   font-family: 'Work Sans', sans-serif;
 }
 
-/*not needed atm, but idk maybe i'll use it at somepoint*/
 .searchTerm:focus {
   color: #0f1112;
 }
@@ -153,6 +150,8 @@ html {
   padding: 0;
 }
 
+/* Footer */
+
 footer {
   background-color: var(--primary-color);
   overflow: auto;
@@ -160,8 +159,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  
 }
 
 footer ul {
@@ -186,13 +183,19 @@ footer a {
   font-size: 15px;
 }
 
-
+footer a:hover {
+  color: var(--highlight-color);
+}
 
 :root {
+  /* colors */
   --primary-color: #55d6aa;
   --secondary-color: #00B4CC;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
+  --highlight-color: #0e0e82a0;
+
+    /* sizes/spacing */
   --standard-spacing: 28px;
   --standard-width: 700px;
 }
