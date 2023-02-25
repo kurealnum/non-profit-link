@@ -1,22 +1,52 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Title - Technicals</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script src="" async defer></script>
-    </body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--use the <link> class and not the <meta> (you are stupid) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Title - About Us</title>
+</head>
+
+<header>
+    <nav>
+      <ul>
+        {% for item in nav.top %}
+        <li>
+          <a href="{{ item.url }}">{{ item.label }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+</header>
+
+<body>
+  <!-- double curly brackets means using a variable that has been passed through from flask/python: {{search_query}}-->
+
+  <div class="main_text_body">
+      This will be the technicals page, 
+      where people can see information about stuff, maybe even stuff like graphs and quantities 
+  </div>
+</body>
+
+<footer>
+  <section class="footer_links">
+    <ul>
+      <li><a href="https://github.com/kurealnum" target="_blank">My Github <i class="fa fa-github" aria-hidden="true"></i></a></li>
+      <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">Your local Food Bank <i class="fa fa-cutlery" aria-hidden="true"></i></a></li>
+      <li><a href="https://github.com/kurealnum/FlaskWebApp/branches" target="_blank">Fork Me <i class="fa fa-github" aria-hidden="true"></i></a></li>
+      <!--might wanna get a better link if people wanna fork yk-->
+    </ul>
+  </section>
+
+  <section class="footer_text">
+    <p>DISCLAIMER: This website is solely intended for accepting and making donations. 
+      We do not facilitate or encourage any financial transactions or exchanges through 
+      this platform. Also, while I do use as many modern security features as I can, please
+      don't input sensitive information like your SSN.</p>
+  </section>
+</footer>
+
+
 </html>

@@ -8,12 +8,15 @@ This is hard to explain through text, but I'll do my best. My mother often volun
 ### What database will you/are you using?
 SQLite, I'm lazy. I do have a database file, but I'm adding it to .gitignore. There will be multiple database files at somepoint, just fyi.
 
-### Why is there so many "Lorem ipsums"?
+### Why are there so many "Lorem ipsums"?
 I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
+
+### What do you need help with?
+Find something to name the project. I'm bad with names. Also, CSS and colors. Feel free to get into the backend, but that stuff tends to be a lot easier for me.
 
 # TODO LIST (I might forget to update this, just FYI)
 ###### TODO: login page, and show that you're logged in
-###### TODO: finish footer links
+###### TODO: Footers: DONE
 ###### TODO: actually put text and images on the home page
 ###### TODO: not making a mission statement page, making a technicals page (pages are created, not finished)
 ###### TODO: bunch of research on where i want to host this
