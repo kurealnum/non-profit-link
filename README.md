@@ -17,4 +17,5 @@ I just want to simulate having to scroll down a page, just to make sure everythi
 ###### TODO: actually put text and images on the home page
 ###### TODO: not making a mission statement page, making a technicals page (pages are created, not finished)
 ###### TODO: bunch of research on where i want to host this
+###### Figure out PRG, and how to utilize it
 

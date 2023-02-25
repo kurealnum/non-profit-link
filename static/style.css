@@ -157,6 +157,7 @@ footer {
   overflow: auto;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -172,7 +173,6 @@ footer li {
   margin-left: 60px;
   margin-right: 60px;
   padding: 14px;
-
   position: relative;
 }
 
@@ -187,13 +187,17 @@ footer a:hover {
   color: var(--highlight-color);
 }
 
+.footer_text {
+  font-size: 11px;
+}
+
 :root {
   /* colors */
   --primary-color: #55d6aa;
   --secondary-color: #00B4CC;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
-  --highlight-color: #0e0e82a0;
+  --highlight-color: #4a4afd;
 
     /* sizes/spacing */
   --standard-spacing: 28px;
