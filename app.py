@@ -1,6 +1,6 @@
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from forms import search_home_page
 from flask_navigation import Navigation
 
@@ -20,9 +20,12 @@ def home():
     return render_template('index.html')
 
 #methods go in a list to let flask and jinja2 know what methods we'll be using on this certain page
-@app.route("/search", methods=["GET"])
+@app.route("/search", methods=["GET", "POST"])
 def home_search():
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
+    if request.method == "POST":
+        return search_home_page()
+    
     return search_home_page()
 
 @app.route("/about_us")

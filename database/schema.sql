@@ -1,4 +1,10 @@
 CREATE TABLE IF NOT EXISTS searches (
     search TEXT NOT NULL,
-    time TEXT
+    time_stamp DATETIME
+);
+
+CREATE TABLE IF NOT EXISTS orgs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL, 
+    zip INT NOT NULL
 );

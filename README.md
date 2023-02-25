@@ -20,5 +20,5 @@ Find something to name the project. I'm bad with names. Also, CSS and colors. Fe
 ###### TODO: actually put text and images on the home page
 ###### TODO: not making a mission statement page, making a technicals page (pages are created, not finished)
 ###### TODO: bunch of research on where i want to host this
-###### Figure out PRG, and how to utilize it
-
+###### Figure out PRG (post redirect get), and how to utilize it
+ 
