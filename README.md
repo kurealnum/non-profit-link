@@ -16,9 +16,10 @@ Find something to name the project. I'm bad with names. Also, CSS and colors. Fe
 
 # TODO LIST (I might forget to update this, just FYI)
 ###### TODO: login page, and show that you're logged in
-###### TODO: Footers: DONE
+###### TODO: Footers (DONE)
 ###### TODO: actually put text and images on the home page
 ###### TODO: not making a mission statement page, making a technicals page (pages are created, not finished)
 ###### TODO: bunch of research on where i want to host this
-###### Figure out PRG (post redirect get), and how to utilize it
+###### TODO: not gonna do a map for now, instead im have ui that can list off the information that would've been on the map
+###### TODO: Figure out PRG (DONE)
  

@@ -17,7 +17,7 @@ with open('database\schema.sql') as f:
 
 def search_home_page():
     if request.method == "GET":
-        #USE request.ARGS for get requests, and requests.FORM for post requets
+        #Use request.ARGS for get requests, and requests.FORM for post requets
         search = request.args.get("search_query")
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
