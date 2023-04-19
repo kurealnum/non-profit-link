@@ -23,7 +23,7 @@ SQLite, I'm lazy. I do of course have a database file, but I'm adding it to .git
 I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
 
 #### What do you need help with?
-See "How can I help?"
+See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
 
 # TODO LIST (I might forget to update this, just FYI)
 #### Login page + Register page + SSID's (Session ID's)
