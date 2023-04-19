@@ -16,11 +16,13 @@ load_dotenv('paths_and_vars.env')
 #db file is under .gitignore
 import sqlite3
 
+
 #connecting to the database
 conn = sqlite3.connect(os.getenv('DATA_BASE_PATH'), check_same_thread=False)
 
 with open('database\schema.sql') as f:
     conn.executescript(f.read())   
+
 
 #some basic info to give flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -29,15 +31,22 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 #nav bar stuff (not sure if this works for the footer as well)
-nav = Navigation(app)
-nav.Bar('top',[
-    nav.Item('Home', 'home'),
-    nav.Item('About Us', 'about_us'),
-    nav.Item('Technicals', 'technicals')
+nav_logged = Navigation(app)
+nav_logged.Bar('top',[
+    nav_logged.Item('Home', 'home'),
+    nav_logged.Item('About Us', 'about_us'),
+    nav_logged.Item('Technicals', 'technicals')
+])
+
+nav_unlogged = Navigation(app)
+nav_unlogged.Bar('top',[
+    nav_unlogged.Item('Login', 'login'),
+    nav_unlogged.Item('Register', 'register')
 ])
 #Start of Login/Register
 
 
+#TODO: the database isn't currently set up properly, I still need to modify the database and get the register page made
 @app.route("/login", methods=["GET", "POST"])
 def login():
     session.clear()
@@ -71,6 +80,47 @@ def login():
         return render_template("login.html")
 
 
+#TODO: the database isn't currently set up properly ^^
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation_password = request.form.get("confirmation")
+
+        # Ensure username was submitted
+        if not username:
+            return flash("Must provide username")
+
+        # Ensure password was submitted
+        elif not password:
+            return flash("Must provide password!")
+
+        #ensure confirmation password was submitted
+        elif not confirmation_password:
+            return flash("Must provide confirmation password")
+
+        #ensure username is original
+        for i in conn.execute("SELECT username FROM users"):
+            if str(i["username"]) == str(username):
+                return flash("Username is already in use")
+
+        #ensure password matches confirmation password
+        if confirmation_password != password:
+            return flash("Password doesn't match confirmation password")
+
+        # Put username into database
+        conn.execute("INSERT INTO users (username, hash) VALUES(?, ?)", request.form.get("username"), generate_password_hash(request.form.get("password")))
+
+        # Redirect user to home page
+        return redirect("/")
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("register.html")
+
+
 #End of Login/Register
 #Start of main routes/functions-------------------
 
@@ -80,10 +130,12 @@ def login():
 def home():
     return render_template('index.html')
 
+
 #methods go in a list to let flask and jinja2 know what methods we'll be using on this certain page
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def home_search():
+
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     if request.method == "GET":
         #Use request.ARGS for get requests, and requests.FORM for post requets
@@ -103,10 +155,12 @@ def home_search():
     
     return render_template('index.html', search_query=search)
 
+
 @app.route("/about_us")
 @login_required
 def about_us():
     return render_template('aboutus.html')
+
 
 @app.route("/technicals")
 @login_required

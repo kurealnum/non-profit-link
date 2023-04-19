@@ -6,18 +6,23 @@
   <!--use the <link> class and not the <meta> (you are stupid) -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Title - About Us</title>
+  <title>NAME HERE - {% block title %}{% endblock %}</title>
 </head>
 
 <header>
     <nav>
+      {% if session["user_id"] %}
       <ul>
-        {% for item in nav.top %}
-        <li>
-          <a href="{{ item.url }}">{{ item.label }}</a>
-        </li>
-        {% endfor %}
+        <li><a href="{{ url_for("home") }}">Home</a></li>
+        <li><a href="{{ url_for("about_us") }}">About Us</a></li>
+        <li><a href="{{ url_for("technicals") }}">Technicals</a></li>        
       </ul>
+      {% else %}
+      <ul>
+        <li><a href="{{ url_for("login") }}">Login</a></li>
+        <li><a href="{{ url_for("register") }}">Register</a></li>
+      </ul>
+      {% endif %}
     </nav>
 </header>
 
