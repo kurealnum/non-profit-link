@@ -1,3 +1,4 @@
 flask_main_env/
 __pycache__/
 *.db
+flask_session/
