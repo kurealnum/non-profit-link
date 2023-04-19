@@ -1,11 +1,15 @@
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
+from flask_session import Session
 from forms import search_home_page
 from flask_navigation import Navigation
 
 #some basic info to give flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 nav = Navigation(app)
 
 #nav bar stuff (not sure if this works for the footer as well)

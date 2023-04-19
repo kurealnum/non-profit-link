@@ -1,6 +1,8 @@
 # Flask Web App
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
+Layout/Design: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
+
 # How can I help?
 If you're interested in contributing, please do! I will take all the help I can get, but here's what I'm really confused on/really need right now:
 

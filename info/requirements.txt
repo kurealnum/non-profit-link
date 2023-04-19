@@ -2,3 +2,4 @@ Flask
 sqlite3
 dotenv
 Flask-Navigation
+flask-session
