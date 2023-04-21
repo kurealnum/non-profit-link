@@ -1,12 +1,12 @@
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
-from flask import Flask, render_template, request, session, redirect, flash, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_session import Session
-from flask_navigation import Navigation
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 
 from helpers import login_required
+
 
 #loading env variables stuff, apparently you need the os module aswell
 import os
@@ -15,7 +15,6 @@ load_dotenv('paths_and_vars.env')
 
 #db file is under .gitignore
 import sqlite3
-
 
 #connecting to the database
 conn = sqlite3.connect(os.getenv('DATA_BASE_PATH'), check_same_thread=False)
@@ -30,19 +29,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-#nav bar stuff (not sure if this works for the footer as well)
-nav_logged = Navigation(app)
-nav_logged.Bar('top',[
-    nav_logged.Item('Home', 'home'),
-    nav_logged.Item('About Us', 'about_us'),
-    nav_logged.Item('Technicals', 'technicals')
-])
 
-nav_unlogged = Navigation(app)
-nav_unlogged.Bar('top',[
-    nav_unlogged.Item('Login', 'login'),
-    nav_unlogged.Item('Register', 'register')
-])
 #Start of Login/Register
 
 
@@ -56,21 +43,25 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return flash("Must provide username")
+            print("No username")
+            return redirect("/login")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return flash("Must provide password")
+            print("No password")
+            return redirect("/login")
 
         # Query database for username
-        rows = conn.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+        rows = conn.execute("SELECT * FROM basic_users WHERE username = ?", (request.form.get("username"),))
+        rows = rows.fetchall()
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return flash("Invalid username and/or password")
+        if len(rows) < 1 or not check_password_hash(rows[0][2], request.form.get("password")):
+            print("Wrong username/password")
+            return redirect("/login")
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0][0]
 
         # Redirect user to home page
         return redirect("/")
@@ -91,27 +82,31 @@ def register():
 
         # Ensure username was submitted
         if not username:
-            return flash("Must provide username")
+            print("No username")
+            return redirect("/register")
 
         # Ensure password was submitted
         elif not password:
-            return flash("Must provide password!")
-
+            print("No password")
+            return redirect("/register")
         #ensure confirmation password was submitted
         elif not confirmation_password:
-            return flash("Must provide confirmation password")
+            print("No  conf. password")
+            return redirect("/register")
 
         #ensure username is original
-        for i in conn.execute("SELECT username FROM users"):
-            if str(i["username"]) == str(username):
-                return flash("Username is already in use")
+        if username in conn.execute("SELECT username FROM basic_users"):
+            print("Username is already in use")
+            return redirect("/register")
 
         #ensure password matches confirmation password
         if confirmation_password != password:
-            return flash("Password doesn't match confirmation password")
+            print("Password doesn't match confirmation password")
+            return redirect("/register")
 
         # Put username into database
-        conn.execute("INSERT INTO users (username, hash) VALUES(?, ?)", request.form.get("username"), generate_password_hash(request.form.get("password")))
+        conn.execute("INSERT INTO basic_users (username, password_hash) VALUES(?, ?)", (request.form.get("username"), generate_password_hash(request.form.get("password"))))
+        conn.commit()
 
         # Redirect user to home page
         return redirect("/")

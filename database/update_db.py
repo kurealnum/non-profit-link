@@ -1,4 +1,4 @@
-#DEFAULT COMMAND: python updoot_db.py database.db schema.sql
+#DEFAULT COMMAND: python update_db.py database.db schema.sql
 #(as long as you're in the database folder)
 
 #we're gonna use argv to be fancy and have a CLA
@@ -10,7 +10,7 @@ import sqlite3
 def main():
     
     if len(sys.argv) != 3:
-        print("Usage: python updoot_db.py PATH_TO_DB PATH_TO_SCHEMA\n(If the file is in the same dir, just provide the file name)")
+        print("Usage: python update_db.py PATH_TO_DB PATH_TO_SCHEMA\n(If the file is in the same dir, just provide the file name)")
         return
 
     #connecting to the database

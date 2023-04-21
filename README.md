@@ -1,7 +1,9 @@
 # Flask Web App
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
-Layout/Design; Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
+Layout/Design: Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
+
+Database design: Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Second Normal Form; 2NF (This may be deprecated, I'll likely forget about it). https://drawsql.app/teams/da-best-team-in-da-world/diagrams/main
 
 # How can I help?
 If you're interested in contributing, please do! I will take all the help I can get, but here's what I'm really confused on/really need right now:
@@ -11,6 +13,8 @@ If you're interested in contributing, please do! I will take all the help I can 
 -Documentation: I probably make enough comments myself for readability, but the README feels really light. 
 
 -Names/ideas: I need names for the project itself, and ideas for what I should do with this.
+
+-Database design: I have a decent grasp on this, but getting keys/normalization right is tricky
 
 # FAQ
 #### What am I going to do with this?
@@ -27,13 +31,15 @@ See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
 
 # TODO LIST (I might forget to update this, just FYI)
 #### Login page + Register page + SSID's (Session ID's)
--Reference most of this from CS50
+-Reference most of this from CS50 DONE
+
+-Finalize/fix DB files (for login/register at least) DONE
 
 -Required password length, required type of email
 
 -Use https://memegen.link for some apologies 
 
--Signup right now will just be for a user, but when we have 
+-Signup right now will just be for a user, but when I'm ready for "non-profit" users I'll add them too
 
 #### Finish search function 
 -Can take from CS50, but I'll have to tweak it a little bit 
