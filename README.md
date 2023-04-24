@@ -37,11 +37,11 @@ See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
 
 -Logout button DONE
 
--Add flask flashes 
+-Add flask flashes DONE
 
--Required password length, required type of email
+-Required password length, required type of email DONE (we don't require an email yet)
 
--Use https://memegen.link for some apologies 
+-Use https://memegen.link for some apologies (Not doing this, but it's an nice idea if you don't want to use flask flashing)
 
 -Signup right now will just be for a user, but when I'm ready for "non-profit" users I'll add them too
 

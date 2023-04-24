@@ -5,7 +5,7 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 
-from helpers import login_required
+from helpers import login_required, allowed_emails
 
 
 #loading env variables stuff, apparently you need the os module aswell
@@ -82,27 +82,33 @@ def register():
 
         # Ensure username was submitted
         if not username:
-            print("No username")
-            return redirect("/register")
+            flash("No username")
+            return render_template('register.html')
 
         # Ensure password was submitted
         elif not password:
-            print("No password")
-            return redirect("/register")
+            flash("No password")
+            return render_template('register.html')
+        
         #ensure confirmation password was submitted
         elif not confirmation_password:
-            print("No  conf. password")
-            return redirect("/register")
+            flash("No  conf. password")
+            return render_template('register.html')
 
         #ensure username is original
         if username in conn.execute("SELECT username FROM basic_users"):
-            print("Username is already in use")
-            return redirect("/register")
+            flash("Username is already in use")
+            return render_template('register.html')
 
         #ensure password matches confirmation password
         if confirmation_password != password:
-            print("Password doesn't match confirmation password")
-            return redirect("/register")
+            flash("Password doesn't match confirmation password")
+            return render_template('register.html')
+        
+        #ensure the password is longer than 8 characters
+        if len(password) < 8:
+            flash("Password needs to be longer than 8 characters")
+            return render_template('register.html')
 
         # Put username into database
         conn.execute("INSERT INTO basic_users (username, password_hash) VALUES(?, ?)", (request.form.get("username"), generate_password_hash(request.form.get("password"))))
