@@ -34,11 +34,19 @@ nav a:hover {
   color: var(--highlight-color);
 }
 
+/* Flask Flashes */
+
 .flashes {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 12px 20px 12px 20px;
+  margin: 1% 40% 1% 40%;
+  border-width: 2px;
+  border-color: #00B4CC;
+  background-color: #00B4CC;
+  border-style: solid;
 }
 
 /*
@@ -110,6 +118,27 @@ html {
   position: static;
   margin: 0 auto;
   padding: var(--standard-spacing);
+}
+
+/* Forms/Inputs/Buttons */
+
+.login_form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Work Sans', sans-serif;
+  padding: 12px 0px 12px 0px;
+  margin: auto;
+}
+
+.login {
+  font-family: 'Work Sans', sans-serif;
+  padding: 6px 12px 6px 12px;
+  margin: 0.5% 40% 0.5% 40%;
+  border-style: solid;
+  border-radius: 10px;
 }
 
 /* Search bar */
