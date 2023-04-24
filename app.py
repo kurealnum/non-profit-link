@@ -1,6 +1,6 @@
 #dont bother importing all of flask, just import it as you need it
 #python -m flask run :D
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
@@ -30,7 +30,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-#Start of Login/Register
+#Start of Login/Register-------------------
 
 
 #TODO: the database isn't currently set up properly, I still need to modify the database and get the register page made
@@ -43,13 +43,13 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            print("No username")
-            return redirect("/login")
+            flash("No username")
+            return render_template('login.html')
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            print("No password")
-            return redirect("/login")
+            flash("No password")
+            return render_template('login.html')
 
         # Query database for username
         rows = conn.execute("SELECT * FROM basic_users WHERE username = ?", (request.form.get("username"),))
@@ -57,8 +57,8 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) < 1 or not check_password_hash(rows[0][2], request.form.get("password")):
-            print("Wrong username/password")
-            return redirect("/login")
+            flash("Wrong username/password")
+            return render_template('login.html')
 
         # Remember which user has logged in
         session["user_id"] = rows[0][0]
@@ -114,9 +114,20 @@ def register():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
+    
+
+@app.route("/logout")
+def logout():
+    """Log user out"""
+
+    # Forget any user_id
+    session.clear()
+
+    # Redirect user to login form
+    return redirect(url_for("home"))
 
 
-#End of Login/Register
+#End of Login/Register functions-------------------
 #Start of main routes/functions-------------------
 
 

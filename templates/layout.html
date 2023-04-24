@@ -9,13 +9,14 @@
   <title>NAME HERE - {% block title %}{% endblock %}</title>
 </head>
 
-<header>
+  <header>
     <nav>
       {% if session["user_id"] %}
       <ul>
         <li><a href="{{ url_for("home") }}">Home</a></li>
         <li><a href="{{ url_for("about_us") }}">About Us</a></li>
-        <li><a href="{{ url_for("technicals") }}">Technicals</a></li>        
+        <li><a href="{{ url_for("technicals") }}">Technicals</a></li> 
+        <li><a href="{{ url_for("logout")}}">Logout</a></li>    
       </ul>
       {% else %}
       <ul>
@@ -24,7 +25,16 @@
       </ul>
       {% endif %}
     </nav>
-</header>
+  </header>
+
+  <!--flask flash code-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <li class=flashes>{{ message }}</li>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
 
 <body>
   <!-- double curly brackets means using a variable that has been passed through from flask/python: {{search_query}}-->
@@ -37,7 +47,7 @@
       <li><a href="https://github.com/kurealnum" target="_blank">My Github <i class="fa fa-github" aria-hidden="true"></i></a></li>
       <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">Your local Food Bank <i class="fa fa-cutlery" aria-hidden="true"></i></a></li>
       <li><a href="https://github.com/kurealnum/FlaskWebApp/branches" target="_blank">Fork Me <i class="fa fa-github" aria-hidden="true"></i></a></li>
-      <!--might wanna get a better link if people wanna fork yk-->
+      <!--might wanna get a better link if people wanna fork-->
     </ul>
   </section>
 

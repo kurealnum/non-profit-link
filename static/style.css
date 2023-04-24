@@ -34,6 +34,13 @@ nav a:hover {
   color: var(--highlight-color);
 }
 
+.flashes {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*
 
 nav a::before {

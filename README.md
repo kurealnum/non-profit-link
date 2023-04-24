@@ -33,7 +33,11 @@ See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
 #### Login page + Register page + SSID's (Session ID's)
 -Reference most of this from CS50 DONE
 
--Finalize/fix DB files (for login/register at least) DONE
+-Finalize/fix DB files (for login/register at least) DONE 
+
+-Logout button DONE
+
+-Add flask flashes 
 
 -Required password length, required type of email
 
