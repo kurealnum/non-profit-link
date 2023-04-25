@@ -5,7 +5,7 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 
-from helpers import login_required, allowed_emails
+from helpers import login_required, flash_render
 
 
 #loading env variables stuff, apparently you need the os module aswell
@@ -36,29 +36,32 @@ Session(app)
 #TODO: the database isn't currently set up properly, I still need to modify the database and get the register page made
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
+    #clear the session
     session.clear()
+
+    #variables 
+    username = request.form.get("username")
+    password = request.form.get("password")
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # Ensure username was submitted
-        if not request.form.get("username"):
-            flash("No username")
-            return render_template('login.html')
+        if not username:
+            return flash_render("No username", "login.html")
 
         # Ensure password was submitted
-        elif not request.form.get("password"):
-            flash("No password")
-            return render_template('login.html')
+        elif not password:
+            return flash_render("No password", "login.html")
 
         # Query database for username
-        rows = conn.execute("SELECT * FROM basic_users WHERE username = ?", (request.form.get("username"),))
+        rows = conn.execute("SELECT * FROM basic_users WHERE username = ?", (username,))
         rows = rows.fetchall()
 
         # Ensure username exists and password is correct
-        if len(rows) < 1 or not check_password_hash(rows[0][2], request.form.get("password")):
-            flash("Wrong username/password")
-            return render_template('login.html')
+        if len(rows) < 1 or not check_password_hash(rows[0][2], password):
+            flash_render("Wrong username/password", "login.html")
 
         # Remember which user has logged in
         session["user_id"] = rows[0][0]
@@ -82,36 +85,30 @@ def register():
 
         # Ensure username was submitted
         if not username:
-            flash("No username")
-            return render_template('register.html')
+            return flash_render("No username", "register.html")
 
         # Ensure password was submitted
         elif not password:
-            flash("No password")
-            return render_template('register.html')
+            return flash_render("No password", "register.html")
         
         #ensure confirmation password was submitted
         elif not confirmation_password:
-            flash("No  conf. password")
-            return render_template('register.html')
+            return flash_render("No conf. password", "register.html")
 
         #ensure username is original
         if username in conn.execute("SELECT username FROM basic_users"):
-            flash("Username is already in use")
-            return render_template('register.html')
+            return flash_render("Username is already in use", "register.html")
 
         #ensure password matches confirmation password
         if confirmation_password != password:
-            flash("Password doesn't match confirmation password")
-            return render_template('register.html')
+            return flash_render("Password doesn't match confirmation password", "register.html")
         
         #ensure the password is longer than 8 characters
         if len(password) < 8:
-            flash("Password needs to be longer than 8 characters")
-            return render_template('register.html')
+            return flash_render("Password needs to be 8 characters or longer", "register.html")
 
         # Put username into database
-        conn.execute("INSERT INTO basic_users (username, password_hash) VALUES(?, ?)", (request.form.get("username"), generate_password_hash(request.form.get("password"))))
+        conn.execute("INSERT INTO basic_users (username, password_hash) VALUES(?, ?)", (username, generate_password_hash(password)))
         conn.commit()
 
         # Redirect user to home page
