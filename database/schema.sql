@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS orgs (
     name TEXT NOT NULL, 
     zip INT NOT NULL,
     desc_ TEXT NOT NULL,
-    phone INT NOT NULL,
+    phone TEXT NOT NULL, /*interpret as an int, and remove the "-" and "()"*/
     email TEXT NOT NULL,
     address TEXT NOT NULL
 );

@@ -3,7 +3,7 @@ Written in Python, Jinja2, HTML, CSS, and SQLite3
 
 Layout/Design: Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
 
-Database design: Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Second Normal Form; 2NF (This may be deprecated, I'll likely forget about it). https://drawsql.app/teams/da-best-team-in-da-world/diagrams/main
+Database design: Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Third Normal Form (3NF); (This may be deprecated, I'll likely forget about it). https://drawsql.app/teams/da-best-team-in-da-world/diagrams/main
 
 # How can I help?
 If you're interested in contributing, please do! I will take all the help I can get, but here's what I'm really confused on/really need right now:
@@ -18,7 +18,7 @@ If you're interested in contributing, please do! I will take all the help I can 
 
 # FAQ
 #### What am I going to do with this?
-I will do my best to explain this, but no promises that it'll make sense. My mom frequently volunteers for local organizations such as food pantries and homeless shelters. Despite the assumption that these organizations always require more supplies, however in my own experience, I have observed that they often have an excess of some items but a shortage of others. The simple solution to this is just to share, but if there's not a platform to share/advertise these supplies on, that creates a problem since there is no communication between them, thus hindering them from sharing resources. To resolve this, I'd like to develop a web application with Flask that will enable these establishments to list what they have and what they need. There are a few other things that I want to do with this that I'll make note of over time, but for now, that's the main goal.
+I will do my best to explain this, but no promises that it'll make sense. My mom frequently volunteers for local organizations such as food pantries and homeless shelters. Despite the assumption that these organizations always require more supplies, that is fairly often incorrect. In my own experience, I have observed that they often have an excess of some items but a shortage of others. The simple solution to this is just to share, but if there's not a platform to share/advertise these supplies on, that creates a problem since there's normally no communication between them, thus hindering them from sharing resources. To resolve this, I'd like to develop a web application with Flask that will enable these establishments to list what they have and what they need. There are a few other things that I want to do with this that I'll make note of over time, but for now, that's the main goal.
 
 #### What database will you/are you using?
 SQLite, I'm lazy. I do of course have a database file, but I'm adding it to .gitignore. There might be multiple db files at somepoint.
@@ -27,7 +27,7 @@ SQLite, I'm lazy. I do of course have a database file, but I'm adding it to .git
 I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
 
 #### What do you need help with?
-See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
+See "[How can I help?](#how-can-i-help?)"
 
 # TODO LIST (I might forget to update this, just FYI)
 #### Login page + Register page + SSID's (Session ID's)
@@ -46,9 +46,9 @@ See "[How can I help?](https://github.com/kurealnum/FlaskWebApp#how-can-i-help)"
 -Signup right now will just be for a user, but when I'm ready for "non-profit" users I'll add them too
 
 #### Finish search function 
--Can take from CS50, but I'll have to tweak it a little bit 
+-Can take this from CS50, but I'll have to tweak it a little bit 
 
--Try and use a faster algorithm mayhaps?
+-Try and use a faster algorithm mayhaps? NOT NEEDED
 
 -Populate database with fake non-profits
 

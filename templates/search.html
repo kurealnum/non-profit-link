@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+
+<div class="search_bar_wrap">
+    <form class="search" action="search" method="POST">
+      <br>
+      <input type="search" name="search_query" class="searchTerm" placeholder="Search...">
+      <br>
+      <button type="submit" id="search_home_page" class="searchButton"><i class="fa fa-search"></i></button>
+    </form>
+</div>

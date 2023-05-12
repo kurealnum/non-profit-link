@@ -20,6 +20,10 @@ not used yet, but it will be. I may have forgotten that I don't yet require an e
 def allowed_emails(email):
     return email.rsplit('@', 1)[1].split('.',-1)[0]
 
+'''
+just a shortened version of flashing and then rendering a template; saves a few 
+lines of code
+'''
 def flash_render(msg, template):
     flash(msg)
     return render_template(template)

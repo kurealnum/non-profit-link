@@ -33,7 +33,6 @@ Session(app)
 #Start of Login/Register-------------------
 
 
-#TODO: the database isn't currently set up properly, I still need to modify the database and get the register page made
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -143,11 +142,11 @@ def home():
 #methods go in a list to let flask and jinja2 know what methods we'll be using on this certain page
 @app.route("/search", methods=["GET", "POST"])
 @login_required
-def home_search():
+def search():
 
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     if request.method == "GET":
-        #Use request.ARGS for get requests, and requests.FORM for post requets
+        #Use request.ARGS for get requests, and requests.FORM for post requests
         search = request.args.get("search_query")
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
