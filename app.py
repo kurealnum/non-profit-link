@@ -147,21 +147,20 @@ def search():
     #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     if request.method == "GET":
         #Use request.ARGS for get requests, and requests.FORM for post requests
-        search = request.args.get("search_query")
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-        conn.execute("INSERT INTO searches (search, time) VALUES (?,?)", (search, timestamp))
-        conn.commit()
+        pass
 
     if request.method == "POST":
+        #storing the search query (and the time)
         search = request.form.get("search_query")
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        conn.execute("INSERT INTO searches (search, time) VALUES (?,?)", (search, timestamp))
+        conn.execute("INSERT INTO searches (search, time_stamp) VALUES (?,?)", (search, timestamp))
         conn.commit()
+
+        #this should actually be the return for the JS method
         return redirect(url_for('home'))
     
-    return render_template('index.html', search_query=search)
+    return render_template('search.html')
 
 
 @app.route("/about_us")

@@ -1,0 +1,11 @@
+{% if items is not none %}
+
+    {% for item in items %}
+    <li>{{ item }}</li>
+    {% endfor %}
+
+{% else %}
+
+    <p></p>
+
+{% endif %}

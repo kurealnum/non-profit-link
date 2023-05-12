@@ -187,6 +187,11 @@ html {
 }
 
 /* Footer */
+@media (min-height: 100vh) {
+  footer {
+    position: sticky;
+  }
+}
 
 footer {
   background-color: var(--primary-color);
