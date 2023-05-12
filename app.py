@@ -157,8 +157,10 @@ def search():
         conn.execute("INSERT INTO searches (search, time_stamp) VALUES (?,?)", (search, timestamp))
         conn.commit()
 
+        org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
+
         #this should actually be the return for the JS method
-        return redirect(url_for('home'))
+        return render_template('searched.html', items=org_returns)
     
     return render_template('search.html')
 
