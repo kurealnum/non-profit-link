@@ -144,20 +144,24 @@ def home():
 @login_required
 def search():
 
-    #MAKE SURE TO RETURN THE FUNCTION THAT IS MADE IN FORMS!!!
     if request.method == "GET":
         #Use request.ARGS for get requests, and requests.FORM for post requests
         pass
 
-    if request.method == "POST":
+    elif request.method == "POST":
         #storing the search query (and the time)
-        search = request.form.get("search_query")
+        search = request.form["search"]
+        print(search)
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         conn.execute("INSERT INTO searches (search, time_stamp) VALUES (?,?)", (search, timestamp))
         conn.commit()
 
-        org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
+        if search == "":
+            org_returns = None
+
+        else:
+            org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
 
         #this should actually be the return for the JS method
         return render_template('searched.html', items=org_returns)

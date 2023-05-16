@@ -6,8 +6,6 @@
 
 {% block body %}
 
-<script src="{{url_for('static', filename='searchhelper.js')}}"></script>
-
 <div class="introduction">
   Search for a nonprofit by zipcode:
 </div>
@@ -15,10 +13,12 @@
 <div class="search_bar_wrap">
     <form class="search" action="/search" method="POST">
       <br>
-      <input type="search" name="search_query" id="search" class="searchTerm" placeholder="Search...">
+      <input type="text" name="search" id="search" class="searchTerm" placeholder="Search...">
     </form>
 </div>
 
 <ul id="search_return"></ul>
+
+<script src="{{url_for('static', filename='searchhelper.js')}}"></script>
 
 {% endblock %}
