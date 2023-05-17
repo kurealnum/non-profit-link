@@ -1,11 +1,20 @@
-{% if items is not none %}
+{% if items is false %}
+
+    <p class="search_text">Hm... we couldn't find anything</p>
+
+{% elif items is not none %}
 
     {% for item in items %}
-    <li>{{ item }}</li>
+    <div class="surrounding_box">
+        <div class="box">
+            <li>{{ item[1] }}</li>
+            <li>{{ item[2] }}</li>
+        </div>
+    </div>
     {% endfor %}
 
 {% else %}
 
-    <p></p>
+    <p class="search_text">Enter a search term!</p>
 
 {% endif %}

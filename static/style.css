@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
-/*---Start of nav---*/
 
+
+/*Nav Bar*/
 nav {
   position: relative;
   display: flex;
@@ -34,8 +35,8 @@ nav a:hover {
   color: var(--highlight-color);
 }
 
-/* Flask Flashes */
 
+/* Flask Flashes */
 .flashes {
   position: relative;
   display: flex;
@@ -49,8 +50,8 @@ nav a:hover {
   border-style: solid;
 }
 
-/*
 
+/*
 nav a::before {
   content: '';
   display: inline-block;
@@ -72,8 +73,8 @@ I'd like to come back to the animation at somepoint, but it's
 just too much effort ATM.
 */
 
-/* Header */
 
+/* Header */
 header {
   background-color: var(--primary-color);
   overflow: auto;
@@ -86,6 +87,9 @@ header::after {
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   background: #222;
@@ -100,14 +104,16 @@ html {
   height: 100%;
 }
 
-.introduction {
+.introduction, #search_return.search_return .search_text {
+  padding-left: 20%;
+  padding-right: 40%;
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
   padding: var(--standard-spacing);
   max-width: var(--standard-width);
   position: static;
-  margin: auto;
+  margin: 0 auto !important;
 }
 
 .main_text_body {
@@ -120,8 +126,8 @@ html {
   padding: var(--standard-spacing);
 }
 
-/* Forms/Inputs/Buttons */
 
+/* Forms/Inputs/Buttons */
 .login_form {
   position: relative;
   display: flex;
@@ -130,7 +136,7 @@ html {
   align-items: center;
   font-family: 'Work Sans', sans-serif;
   padding: 12px 0px 12px 0px;
-  margin: auto;
+  margin: 1% 0;
 }
 
 .login {
@@ -141,8 +147,8 @@ html {
   border-radius: 10px;
 }
 
-/* Search bar */
 
+/* Search bar */
 .search {
   width: 100%;
   padding-top: var(--standard-spacing);
@@ -154,16 +160,11 @@ html {
 .searchTerm {
   width: 100%;
   border: 2px solid var(--secondary-color);
-  border-right: none;
   padding: 5px;
   height: 30px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   color: #0f1112;
   font-family: 'Work Sans', sans-serif;
-}
-
-.searchTerm:focus {
-  color: #0f1112;
 }
 
 .searchButton {
@@ -172,28 +173,43 @@ html {
   border: 1px solid var(--secondary-color);
   background: var(--secondary-color);
   text-align: center;
-  color: #fff;
+  color: var(--general-text-color);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 13px;
 }
 
 .search_bar_wrap {
-  position: static;
   width: 30%;
   left: 50%;
-  margin: auto;
+  margin: 0 auto;
   padding: 0;
 }
 
-/* Footer */
-@media (min-height: 100vh) {
-  footer {
-    position: sticky;
-  }
+
+/* Search return field */ 
+.search_return {
+  position: static;
+  padding-left: 40%;
+  padding-right: 40%;
+  color: var(--general-text-color);
+  list-style-type: none;
+  text-align: center;
+  margin: auto 0; 
 }
 
+.box {
+  margin-bottom: var(--standard-spacing);
+  margin-top: var(--standard-spacing);
+  border-style: solid;
+  border-color: #00B4CC;
+  border-radius: 5px;
+}
+
+
+/* Footer */
 footer {
+  margin-top: auto;
   background-color: var(--primary-color);
   overflow: auto;
   position: relative;
@@ -232,10 +248,12 @@ footer a:hover {
   font-size: 11px;
 }
 
+
+/*Variables and whatnot */
 :root {
   /* colors */
   --primary-color: #55d6aa;
-  --secondary-color: #00B4CC;
+  --secondary-color: #9EEFE5;
   --element-text-color: #1f1e1e;
   --general-text-color: #fff;
   --highlight-color: #4a4afd;

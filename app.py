@@ -151,7 +151,6 @@ def search():
     elif request.method == "POST":
         #storing the search query (and the time)
         search = request.form["search"]
-        print(search)
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         conn.execute("INSERT INTO searches (search, time_stamp) VALUES (?,?)", (search, timestamp))
@@ -162,7 +161,9 @@ def search():
 
         else:
             org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
-
+            if org_returns.fetchone() is None:
+                org_returns = False
+                
         #this should actually be the return for the JS method
         return render_template('searched.html', items=org_returns)
     

@@ -11,3 +11,9 @@ let input = document.getElementById('search');
         let search_field_text = await search_field.text();
         document.getElementById('search_return').innerHTML = search_field_text;
     });
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+  }
+});
