@@ -11,5 +11,3 @@ let input = document.getElementById('search');
         let search_field_text = await search_field.text();
         document.getElementById('search_return').innerHTML = search_field_text;
     });
-
-//figure out why a 400 error is being thrown on each function call,

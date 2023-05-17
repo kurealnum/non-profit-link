@@ -29,36 +29,4 @@ I just want to simulate having to scroll down a page, just to make sure everythi
 #### What do you need help with?
 See "[How can I help?](#how-can-i-help?)"
 
-# TODO LIST (I might forget to update this, just FYI)
-#### Login page + Register page + SSID's (Session ID's)
--Reference most of this from CS50 DONE
 
--Finalize/fix DB files (for login/register at least) DONE 
-
--Logout button DONE
-
--Add flask flashes DONE
-
--Required password length, required type of email DONE (we don't require an email yet)
-
--Use https://memegen.link for some apologies (Not doing this, but it's an nice idea if you don't want to use flask flashing)
-
--Signup right now will just be for a user, but when I'm ready for "non-profit" users I'll add them too
-
-#### Finish search function 
--Can take this from CS50, but I'll have to tweak it a little bit 
-
--Try and use a faster algorithm mayhaps? NOT NEEDED
-
--Populate database with fake non-profits
-
--Database work; indexing, make sure it fits 3rd normal form
-
--This will of course require more HTML files, just a reminder to myself
-
-# Constant TODO's
-#### PRG (Post, request, get)
-#### Keep working on the front end, meaning CSS, and information on pages
-#### Find a nice place to host this when I'm done, or host it myself
-#### Keep circling back on CSS, making little tweaks until I like it
- 
