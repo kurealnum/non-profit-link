@@ -104,7 +104,7 @@ html {
   height: 100%;
 }
 
-.introduction, #search_return.search_return .search_text {
+.introduction, .search_return #search_text.search_text, .search_text {
   padding-left: 20%;
   padding-right: 40%;
   font-size: 18px;
@@ -115,6 +115,7 @@ html {
   position: static;
   margin: 0 auto !important;
 }
+
 
 .main_text_body {
   font-size: 18px;
