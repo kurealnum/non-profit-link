@@ -35,7 +35,6 @@ nav a:hover {
   color: var(--highlight-color);
 }
 
-
 /* Flask Flashes */
 .flashes {
   position: relative;
@@ -104,9 +103,7 @@ html {
   height: 100%;
 }
 
-.introduction, .search_return #search_text.search_text, .search_text {
-  padding-left: 20%;
-  padding-right: 40%;
+.introduction, .search_text {
   font-size: 18px;
   color: var(--general-text-color);
   text-align: center;
@@ -116,6 +113,9 @@ html {
   margin: 0 auto !important;
 }
 
+.search_text { 
+  padding: 0;
+}
 
 .main_text_body {
   font-size: 18px;
@@ -126,7 +126,6 @@ html {
   margin: 0 auto;
   padding: var(--standard-spacing);
 }
-
 
 /* Forms/Inputs/Buttons */
 .login_form {
@@ -185,18 +184,22 @@ html {
   left: 50%;
   margin: 0 auto;
   padding: 0;
+  padding-bottom: var(--standard-spacing);
 }
-
 
 /* Search return field */ 
 .search_return {
   position: static;
-  padding-left: 40%;
-  padding-right: 40%;
+  padding-left: 40px;
+  padding-right: 40px;
   color: var(--general-text-color);
   list-style-type: none;
   text-align: center;
-  margin: auto 0; 
+  margin: 0 auto; 
+}
+
+.surrounding_box {
+  padding: var(--standard-spacing);
 }
 
 .box {
@@ -205,6 +208,7 @@ html {
   border-style: solid;
   border-color: #00B4CC;
   border-radius: 5px;
+  margin: auto;
 }
 
 
@@ -249,7 +253,6 @@ footer a:hover {
   font-size: 11px;
 }
 
-
 /*Variables and whatnot */
 :root {
   /* colors */
@@ -260,6 +263,6 @@ footer a:hover {
   --highlight-color: #4a4afd;
 
     /* sizes/spacing */
-  --standard-spacing: 28px;
+  --standard-spacing: 20px;
   --standard-width: 700px;
 }

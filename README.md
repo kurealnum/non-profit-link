@@ -30,4 +30,8 @@ I just want to simulate having to scroll down a page, just to make sure everythi
 See "[How can I help?](#how-can-i-help?)"
 
 # TODO
-See TODO.txt!
+I use [Todoist](https://todoist.com/app/today) to mange all of my tasks. You need an account, and *I* need to invite you to the project. 
+
+Just send me your email to my discord (kureal#2398) or my email (oscar.gaske.cs@gmail.com). 
+
+I might take a bit longer to respond on my email, but I will!
