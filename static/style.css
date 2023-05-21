@@ -198,6 +198,8 @@ html {
   margin: 0 auto; 
 }
 
+/* singular item css (the words in the boxes, the boxes 
+that are rendered when the user searches)*/
 .surrounding_box {
   padding: var(--standard-spacing);
 }
@@ -211,6 +213,10 @@ html {
   margin: auto;
 }
 
+.search_return_words {
+  display: inline-block;
+  padding: var(--standard-spacing);
+}
 
 /* Footer */
 footer {

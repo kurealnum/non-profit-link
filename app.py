@@ -161,6 +161,7 @@ def search():
 
         else:
             org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
+            #theres no way to check the length of this object, so we instead check if fetchone() returns none 
             if org_returns.fetchone() is None:
                 org_returns = False
                 

@@ -7,8 +7,10 @@
     {% for item in items %}
     <div class="surrounding_box">
         <div class="box">
-            <li>{{ item[1] }}</li>
-            <li>{{ item[2] }}</li>
+            <li class="search_return_words">{{ item[1] }}</li>
+            <li class="search_return_words">{{ item[2] }}</li>
+            <li class="search_return_words">{{ item[0] }}</li>
+            <li class="search_return_words">{{ item[2] }}</li>
         </div>
     </div>
     {% endfor %}
