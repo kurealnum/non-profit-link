@@ -1,7 +1,7 @@
 # NPL (Non Profit Link)
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
-Layout/Design: Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
+Layout/Design: Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing. However, everything will ***eventually be on .drawio files***.
 
 Database design: Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Third Normal Form (3NF); (This may be deprecated, I'll likely forget about it). https://drawsql.app/teams/da-best-team-in-da-world/diagrams/main
 
