@@ -1,4 +1,4 @@
-# Flask Web App
+# NPL (Non Profit Link)
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
 Layout/Design: Read this if you're trying to understand the project: https://docs.google.com/drawings/d/1nvq48tW1w0B1AnsZFVPUc0GktWn2xSzwuHfUjbxIF3M/edit?usp=sharing
@@ -32,6 +32,6 @@ See "[How can I help?](#how-can-i-help?)"
 # TODO
 I use [Todoist](https://todoist.com/app/today) to mange all of my tasks. You need an account, and *I* need to invite you to the project. 
 
-Just send me your email to my discord (kureal#2398) or my email (oscar.gaske.cs@gmail.com). 
+Just send me the email that you registered with to my discord (kureal#2398) or my email (oscar.gaske.cs@gmail.com). 
 
 I might take a bit longer to respond on my email, but I will!
