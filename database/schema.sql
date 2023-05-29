@@ -8,14 +8,14 @@ CREATE TABLE IF NOT EXISTS basic_users (
 /* searches info */
 
 CREATE TABLE IF NOT EXISTS searches (
-    search_id PRIMARY KEY AUTOINCREMENT NOT NULL,
+    search_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER NOT NULL,
     search TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS searches_time (
-    search_id PRIMARY KEY AUTOINCREMENT NOT NULL,
+    search_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER NOT NULL,
     time_stamp DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
