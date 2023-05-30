@@ -167,18 +167,6 @@ html {
   font-family: 'Work Sans', sans-serif;
 }
 
-.searchButton {
-  width: 55px;
-  height: 30px;
-  border: 1px solid var(--secondary-color);
-  background: var(--secondary-color);
-  text-align: center;
-  color: var(--general-text-color);
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 13px;
-}
-
 .search_bar_wrap {
   width: 30%;
   left: 50%;
@@ -186,6 +174,7 @@ html {
   padding: 0;
   padding-bottom: var(--standard-spacing);
 }
+
 
 /* Search return field */ 
 .search_return {
@@ -208,8 +197,9 @@ that are rendered when the user searches)*/
   margin-bottom: var(--standard-spacing);
   margin-top: var(--standard-spacing);
   border-style: solid;
-  border-color: #00B4CC;
+  border-color: #77cdde;
   border-radius: 5px;
+  background-color: rgba(119, 205, 222, 0.3);
   margin: auto;
 }
 
