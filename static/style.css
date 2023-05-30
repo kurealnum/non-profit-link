@@ -215,7 +215,7 @@ that are rendered when the user searches)*/
 
 .search_return_words {
   display: inline-block;
-  padding: var(--standard-spacing);
+  padding: 10px;
 }
 
 /* Footer */

@@ -149,24 +149,32 @@ def search():
         pass
 
     elif request.method == "POST":
+        #variables
+        user_id = session["user_id"]
         #storing the search query (and the time)
         search = request.form["search"]
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+         
+        #saving the value of the search
+        conn.execute("INSERT INTO searches (user_id, search) VALUES (?, ?)", (user_id, search))
 
-        conn.execute("INSERT INTO searches (search, time_stamp) VALUES (?,?)", (search, timestamp))
+        #saving the time of the search
+        conn.execute("INSERT INTO searches_time (user_id, time_stamp) VALUES (?, ?)", (user_id,timestamp))
         conn.commit()
 
         if search == "":
-            org_returns = None
+            org_rows = None
 
         else:
-            org_returns = conn.execute("SELECT * FROM ORGS WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
-            #theres no way to check the length of this object, so we instead check if fetchone() returns none 
-            if org_returns.fetchone() is None:
-                org_returns = False
+            org_returns = conn.execute("SELECT org_name, country, region, zip, city, street_address FROM orgs_loc WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
+            #theres no way to check the length of this object, so we instead check if fetchall() has anything in it
+            org_rows = org_returns.fetchall()
+
+            if len(org_rows) < 1:
+                org_rows = False
                 
-        #this should actually be the return for the JS method
-        return render_template('searched.html', items=org_returns)
+        #this is whats returned when the fetch function in searchhelper.js is called
+        return render_template('searched.html', items=org_rows)
     
     return render_template('search.html')
 
