@@ -1,3 +1,6 @@
+# Important info
+I've never collaborated on github before, so my settings could be completely screwed up. If they are, please let me know.
+
 # NPL (Non Profit Link)
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
