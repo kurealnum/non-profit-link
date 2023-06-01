@@ -4,12 +4,18 @@
 
 {% elif items is not none %}
 
-    {% for item in items %}
+    {% for i in range(items|length) %}
     <div class="surrounding_box">
         <div class="box">
             <li class="search_return_words">
-                
-                <address>{{ item[5] }} <br> {{ item[4] }} {{ item[2] }}, {{ item[3] }}</address>
+                {{ items[i][0] }}
+            </li>
+            <li class="search_return_words">
+                <!-- TODO: get org name and website put here. keep working on formatting -->
+                <address>{{ items[i][5] }} <br> {{ items[i][4] }} {{ items[i][2] }}, {{ items[i][3] }}</address>
+            </li>
+            <li class="search_return_words">
+                {{ items[i][6] }}
             </li>
         </div>
     </div>

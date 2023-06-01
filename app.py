@@ -166,7 +166,12 @@ def search():
             org_rows = None
 
         else:
-            org_returns = conn.execute("SELECT org_name, country, region, zip, city, street_address FROM orgs_loc WHERE SUBSTR(zip,1,?) = ?", (len(search), search))
+            sql_statement = ("SELECT orgs_loc.org_name, country, region, zip, city, street_address, website "
+                             "FROM orgs_loc "
+                             "JOIN orgs_info ON orgs_info.org_id = orgs_loc.org_id "
+                             "WHERE SUBSTR(zip,1,?) = ?")
+            
+            org_returns = conn.execute(sql_statement, (len(search), search))
             #theres no way to check the length of this object, so we instead check if fetchall() has anything in it
             org_rows = org_returns.fetchall()
 
@@ -174,7 +179,7 @@ def search():
                 org_rows = False
                 
         #this is whats returned when the fetch function in searchhelper.js is called
-        return render_template('searched.html', items=org_rows)
+        return render_template('searched.html', items=org_rows, websites=None)
     
     return render_template('search.html')
 

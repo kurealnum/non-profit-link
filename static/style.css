@@ -204,7 +204,9 @@ that are rendered when the user searches)*/
 }
 
 .search_return_words {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
 }
 
