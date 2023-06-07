@@ -123,8 +123,7 @@ html {
   text-align: center;
   max-width: var(--standard-width);
   position: static;
-  margin: 0 auto;
-  padding: var(--standard-spacing);
+  margin: auto;
 }
 
 /* Forms/Inputs/Buttons */
@@ -185,6 +184,7 @@ html {
   list-style-type: none;
   text-align: center;
   margin: 0 auto; 
+  margin-bottom: auto;
 }
 
 /* singular item css (the words in the boxes, the boxes 
@@ -212,7 +212,6 @@ that are rendered when the user searches)*/
 
 /* Footer */
 footer {
-  margin-top: auto;
   background-color: var(--primary-color);
   overflow: auto;
   position: relative;

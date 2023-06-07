@@ -107,7 +107,7 @@ def register():
             return flash_render("Password needs to be 8 characters or longer", "register.html")
 
         # Put username into database
-        conn.execute("INSERT INTO basic_users (username, password_hash) VALUES(?, ?)", (username, generate_password_hash(password)))
+        conn.execute("INSERT INTO basic_users (username, password_hash, user_type) VALUES(?, ?, ?)", (username, generate_password_hash(password), "basic"))
         conn.commit()
 
         # Redirect user to home page
