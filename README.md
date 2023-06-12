@@ -1,6 +1,3 @@
-# Important info
-I've never collaborated on github before, so my settings could be completely screwed up. If they are, please let me know.
-
 # NPL (Non Profit Link)
 Written in Python, Jinja2, HTML, CSS, and SQLite3
 
@@ -8,16 +5,9 @@ Layout/Design: Read this if you're trying to understand the project: https://doc
 
 Database design: Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Third Normal Form (3NF); (This may be deprecated, I'll likely forget about it). https://drawsql.app/teams/da-best-team-in-da-world/diagrams/main
 
-# How can I help?
-If you're interested in contributing, please do! I will take all the help I can get, but here's what I'm really confused on/really need right now:
-
--Frontend: (as in CSS, and styling). I'm completely lost on this stuff.
-
--Documentation: I probably make enough comments myself for readability, but the README feels really light. 
-
--Names/ideas: I need names for the project itself, and ideas for what I should do with this.
-
--Database design: I have a decent grasp on this, but getting keys/normalization right is tricky
+# Contact information
+- Discord: **kureal#2398**
+- Email: **oscar.gaske.cs@gmail.com**
 
 # FAQ
 #### What am I going to do with this?
@@ -29,12 +19,3 @@ SQLite, I'm lazy. I do of course have a database file, but I'm adding it to .git
 #### Why are there so many "Lorem ipsums"?
 I just want to simulate having to scroll down a page, just to make sure everything scrolls properly. The actual text here probably won't be longer than a paragraph.
 
-#### What do you need help with?
-See "[How can I help?](#how-can-i-help?)"
-
-# TODO
-I use [Todoist](https://todoist.com/app/today) to mange all of my tasks. You need an account, and *I* need to invite you to the project. 
-
-Just send me the email that you registered with to my discord (kureal#2398) or my email (oscar.gaske.cs@gmail.com). 
-
-I might take a bit longer to respond on my email, but I will!
