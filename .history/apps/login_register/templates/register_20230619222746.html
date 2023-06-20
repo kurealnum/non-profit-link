@@ -1,10 +1,5 @@
 {% extends 'layout.html' %}
 
-{% block title %}
-    Register
-{% endblock %}
-
-{% block body %}
 <form action="/register" method="post" class="login_form">
 
     <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text" class="login">
@@ -16,4 +11,3 @@
     <button type="submit" class="login">Register</button>
 
 </form>
-<{% endblock %}

@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+
+/*Nav Bar*/
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 2.5%;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding: 14px;
+  position: relative;
+}
+
+nav a {
+  color: var(--element-text-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: var(--highlight-color);
+}
+
+/* Flask Flashes */
+.flashes {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px 12px 20px;
+  margin: 1% 40% 1% 40%;
+  border-width: 2px;
+  border-color: #00B4CC;
+  background-color: #00B4CC;
+  border-style: solid;
+}
+
+
+/*
+nav a::before {
+  content: '';
+  display: inline-block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0;
+ 
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+I'd like to come back to the animation at somepoint, but it's
+just too much effort ATM.
+*/
+
+
+/* Header */
+header {
+  background-color: var(--primary-color);
+  overflow: auto;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  height: 100%;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.introduction, .search_text {
+  font-size: 18px;
+  color: var(--general-text-color);
+  text-align: center;
+  padding: var(--standard-spacing);
+  max-width: var(--standard-width);
+  position: static;
+  margin: 0 auto !important;
+}
+
+.search_text { 
+  padding: 0;
+}
+
+.main_text_body {
+  font-size: 18px;
+  color: var(--general-text-color);
+  text-align: center;
+  max-width: var(--standard-width);
+  position: static;
+  margin: auto;
+}
+
+/* Forms/Inputs/Buttons */
+.login_form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Work Sans', sans-serif;
+  padding: 12px 0px 12px 0px;
+  margin: 1% 0;
+}
+
+.login {
+  font-family: 'Work Sans', sans-serif;
+  padding: 6px 12px 6px 12px;
+  margin: 0.5% 40% 0.5% 40%;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+
+/* Search bar */
+.search {
+  width: 100%;
+  padding-top: var(--standard-spacing);
+  position: static;
+  display: flex;
+  padding: 0;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 2px solid var(--secondary-color);
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  color: #0f1112;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.search_bar_wrap {
+  width: 30%;
+  left: 50%;
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: var(--standard-spacing);
+}
+
+
+/* Search return field */ 
+.search_return {
+  position: static;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: var(--general-text-color);
+  list-style-type: none;
+  text-align: center;
+  margin: 0 auto; 
+  margin-bottom: auto;
+}
+
+/* singular item css (the words in the boxes, the boxes 
+that are rendered when the user searches)*/
+.surrounding_box {
+  padding: var(--standard-spacing);
+}
+
+.box {
+  margin-bottom: var(--standard-spacing);
+  margin-top: var(--standard-spacing);
+  border-style: solid;
+  border-color: #77cdde;
+  border-radius: 5px;
+  background-color: rgba(119, 205, 222, 0.3);
+  margin: auto;
+}
+
+.search_return_words {
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer li {
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding: 14px;
+  position: relative;
+}
+
+footer a {
+  color: var(--element-text-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+footer a:hover {
+  color: var(--highlight-color);
+}
+
+.footer_text {
+  font-size: 11px;
+}
+
+/*Variables and whatnot */
+:root {
+  /* colors */
+  --primary-color: #55d6aa;
+  --secondary-color: #9EEFE5;
+  --element-text-color: #1f1e1e;
+  --general-text-color: #fff;
+  --highlight-color: #4a4afd;
+
+    /* sizes/spacing */
+  --standard-spacing: 20px;
+  --standard-width: 700px;
+}

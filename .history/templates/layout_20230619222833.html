@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--use the <link> class and not the <meta> (you are stupid) -->
+  <link rel="stylesheet" href="{% static style.css %}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>NP Link - {% block title %}{% endblock %}</title>
+</head>
+
+  <header>
+    <nav>
+      {% if session["user_id"] %}
+      <ul>
+        <li><a href="{{ url_for("home") }}">Home</a></li>
+        <li><a href="{{ url_for("about_us") }}">About Us</a></li>
+        <li><a href="{{ url_for("technicals") }}">Technicals</a></li>     
+        <li><a href="{{ url_for("search")}}">Search</a></li> 
+        <li><a href="{{ url_for("logout")}}">Logout</a></li>
+      </ul>
+      {% else %}
+      <ul>
+        <li><a href="{{ url_for("login") }}">Login</a></li>
+        <li><a href="{{ url_for("register") }}">Register</a></li>
+      </ul>
+      {% endif %}
+    </nav>
+  </header>
+
+<body>
+  <!-- double curly brackets means using a variable that has been passed through from flask/python: {{search_query}}-->
+  {% block body %}{% endblock %}
+</body>
+
+<footer>
+  <section class="footer_links">
+    <ul>
+      <li><a href="https://github.com/kurealnum" target="_blank">My Github <i class="fa fa-github" aria-hidden="true"></i></a></li>
+      <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">Your local Food Bank <i class="fa fa-cutlery" aria-hidden="true"></i></a></li>
+      <li><a href="https://github.com/kurealnum/FlaskWebApp/branches" target="_blank">Fork Me <i class="fa fa-github" aria-hidden="true"></i></a></li>
+      <!--might wanna get a better link if people wanna fork-->
+    </ul>
+  </section>
+
+  <section class="footer_text">
+    <p>DISCLAIMER: This webapp is solely intended for accepting and making donations. 
+      We do not facilitate or encourage any financial transactions or exchanges through 
+      this platform. Also, while I do use as many modern security features as I can, please
+      don't input sensitive information like your SSN.</p>
+  </section>
+</footer>
+
+
+</html>
