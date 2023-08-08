@@ -1,1 +1,0 @@
-.\django_main_env\bin\activate

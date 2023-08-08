@@ -1,3 +1,4 @@
 {
-    "hediet.vscode-drawio.offline": false
+    "hediet.vscode-drawio.offline": false,
+    "python.analysis.typeCheckingMode": "basic"
 }
