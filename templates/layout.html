@@ -5,10 +5,9 @@
 
 <head>
   <meta charset="utf-8">
-  <!--use the <link> class and not the <meta> (you are stupid) -->
-  <link rel="stylesheet" href="{% static style.css %}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>NP Link - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
   <header>
@@ -28,7 +27,6 @@
   </header>
 
 <body>
-  <!-- double curly brackets means using a variable that has been passed through from flask/python: {{search_query}}-->
   {% block body %}{% endblock %}
 </body>
 
@@ -38,15 +36,13 @@
       <li><a href="https://github.com/kurealnum" target="_blank">My Github <i class="fa fa-github" aria-hidden="true"></i></a></li>
       <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">Your local Food Bank <i class="fa fa-cutlery" aria-hidden="true"></i></a></li>
       <li><a href="https://github.com/kurealnum/FlaskWebApp/branches" target="_blank">Fork Me <i class="fa fa-github" aria-hidden="true"></i></a></li>
-      <!--might wanna get a better link if people wanna fork-->
     </ul>
   </section>
 
   <section class="footer_text">
     <p>DISCLAIMER: This webapp is solely intended for accepting and making donations. 
-      We do not facilitate or encourage any financial transactions or exchanges through 
-      this platform. Also, while I do use as many modern security features as I can, please
-      don't input sensitive information like your SSN.</p>
+      We currently do not facilitate or encourage any financial transactions or exchanges through 
+      this platform.</p>
   </section>
 </footer>
 
