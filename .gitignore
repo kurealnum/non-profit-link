@@ -4,3 +4,4 @@ __pycache__/
 *.db
 *.db-journal
 flask_session/
+*.sqlite3
