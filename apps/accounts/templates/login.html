@@ -5,12 +5,10 @@
 {% endblock %}
 
 {% block body %}
-<form action="/login_user" method="post" class="login_form">
+<form action="/accounts/login/" method="post" class="login_form">
 
     {% csrf_token %}
     {{ form }}
-
-    <input id="confirmation" name="confirmation" placeholder="Confirmation Password" type="password" class="login">
 
     <button type="submit" class="login">Register</button>
 </form>
