@@ -6,12 +6,16 @@ from .forms import LoginForm
 
 
 def login_user(request):
-    template = loader.get_template('login.html')
 
     if request.method == "POST":
         form = LoginForm(request.POST)
+
+        #if the form isn't empty
         if form.is_valid():
-            print(form.cleaned_data["email"])
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, email="cattledoger@gmail.com", password="TinkerIsCool")
+            print(user)
 
     #else is a GET request
     else:
