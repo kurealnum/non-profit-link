@@ -14,7 +14,7 @@ def login_user(request):
         if form.is_valid():
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            user = authenticate(request, email="cattledoger@gmail.com", password="TinkerIsCool")
+            user = authenticate(request, username=email, password=password)
             print(user)
 
     #else is a GET request
