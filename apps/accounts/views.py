@@ -6,7 +6,6 @@ from .forms import LoginForm
 
 
 def login_user(request):
-    print(request)
 
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -31,4 +30,4 @@ def login_user(request):
 
 
 def logout_user(request):
-    pass
+    logout(request)

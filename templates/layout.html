@@ -11,6 +11,11 @@
 </head>
 
   <header>
+    {% if request.user.is_authenticated %}
+      <p>You are logged in!</p>
+    {% else %}
+      <p>You are not logged in!</p>
+    {% endif %}
     <nav>
       <ul>
         <li><a href="{% url 'index' %}">Non-Profit Link</a></li>
