@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
@@ -22,12 +22,16 @@ def login_user(request):
             if user:
                 login(request, user)
 
+                return redirect('/')
+
     #else is a GET request
     else:
         form = LoginForm()
 
-    return render(request, "login.html", {"form": form})
+        return render(request, "login.html", {"form": form})
 
 
 def logout_user(request):
     logout(request)
+
+    return redirect('/')
