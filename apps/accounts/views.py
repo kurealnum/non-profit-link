@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm
+from django.contrib.auth.models import User
+from .forms import LoginRegisterForm
+
+LOGIN_FORM = "login.html"
+REGISTER_FORM = "register.html"
 
 
 def login_user(request):
 
     if request.method == "POST":
-        form = LoginForm(request.POST)
+        form = LoginRegisterForm(request.POST)
 
         #if the form isn't empty
         if form.is_valid():
@@ -26,12 +30,29 @@ def login_user(request):
 
     #else is a GET request
     else:
-        form = LoginForm()
+        form = LoginRegisterForm()
 
-        return render(request, "login.html", {"form": form})
+        return render(request, LOGIN_FORM, {"form": form})
 
 
 def logout_user(request):
     logout(request)
 
     return redirect('/')
+
+
+def register_user(request):
+    if request.method == "POST":
+        form = LoginRegisterForm(request.POST)
+
+        #if the form isn't empty
+        if form.is_valid():
+
+            #data
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+    
+    else:
+        form = LoginRegisterForm()
+
+        return render(request, REGISTER_FORM, {"form": form})
