@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import LoginRegisterForm
+from .forms import LoginRegisterForm, CustomUserCreationForm
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
@@ -27,6 +27,9 @@ def login_user(request):
                 login(request, user)
 
                 return redirect('/')
+            
+            else:
+                return HttpResponse("<p>Hello</p>")
 
     #else is a GET request
     else:
@@ -43,7 +46,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        form = LoginRegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
 
         #if the form isn't empty
         if form.is_valid():
@@ -51,6 +54,10 @@ def register_user(request):
             #data
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
+
+            # user = User.objects.create_user
+
+        return (request, REGISTER_FORM, {"form": form})
     
     else:
         form = LoginRegisterForm()
