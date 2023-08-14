@@ -6,6 +6,8 @@ Written in Python, Django, React (at some point)/JS, HTML, CSS, and SQLite3 (Pos
 
 **_Database design:_** Keep in mind that this platform doesn't support SQLITE flavors, so production code will look a teensy bit different. Database currently meets: Third Normal Form (3NF); (This may be deprecated, I'll likely forget about it).
 
+If you clone this project and create your own superuser, **_your email_** is your username on the Django Admin page.
+
 # Contact information
 
 - Discord: **kureal#0464**
@@ -19,4 +21,4 @@ I will do my best to explain this, but no promises that it'll make sense. My mom
 
 #### What database will you/are you using?
 
-SQLite.
+SQLite. PostgreSQL (pronounced "post - gree - skew - l") in the future.
