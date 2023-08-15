@@ -33,7 +33,7 @@ def login_user(request):
                 return redirect('/')
             
             else:
-                return HttpResponse("<p>Hello</p>")
+                return HttpResponse("You need to fix this form")
 
     #else is a GET request
     else:
@@ -61,7 +61,10 @@ def register_user(request):
 
             CustomUser.objects.create_user(email=email, password=password)
 
-        return redirect("/")
+            return redirect('/accounts/login')
+
+        else:
+            return HttpResponse("You need to fix this form")
     
     else:
         form = CustomUserCreationForm()
