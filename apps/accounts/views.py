@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import LoginRegisterForm, CustomUserCreationForm
@@ -34,7 +35,8 @@ def login_user(request):
             
             #else error with the form (add more to this later)
             else:
-                return HttpResponse("You need to fix this form")
+                messages.error(request, "Incorrect credentials")
+                return redirect('login')
 
     #else is a GET request
     else:
