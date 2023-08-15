@@ -53,13 +53,13 @@ def register_user(request):
 
             #data
             email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
+            password = form.cleaned_data["password1"]
 
             # user = User.objects.create_user
 
-        return (request, REGISTER_FORM, {"form": form})
+        return render(request, REGISTER_FORM, {"form": form})
     
     else:
-        form = LoginRegisterForm()
+        form = CustomUserCreationForm()
 
         return render(request, REGISTER_FORM, {"form": form})
