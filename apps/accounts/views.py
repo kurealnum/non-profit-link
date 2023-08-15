@@ -61,7 +61,7 @@ def register_user(request):
 
             CustomUser.objects.create_user(email=email, password=password)
 
-        return render(request, REGISTER_FORM, {"form": form})
+        return redirect("/")
     
     else:
         form = CustomUserCreationForm()
