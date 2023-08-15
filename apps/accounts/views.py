@@ -4,9 +4,13 @@ from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import LoginRegisterForm, CustomUserCreationForm
+from .models import CustomUser
+from .managers import CustomUserManager
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
+
+CUserManager = CustomUserManager()
 
 
 def login_user(request):
@@ -55,7 +59,7 @@ def register_user(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
 
-            # user = User.objects.create_user
+            CustomUser.objects.create_user(email=email, password=password)
 
         return render(request, REGISTER_FORM, {"form": form})
     
