@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'apps.accounts',
     'apps.homepage',
+    'apps.non_profit_homepage',
 ]
 
 MIDDLEWARE = [
