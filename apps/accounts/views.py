@@ -32,6 +32,7 @@ def login_user(request):
 
                 return redirect('/')
             
+            #else error with the form (add more to this later)
             else:
                 return HttpResponse("You need to fix this form")
 
@@ -43,6 +44,7 @@ def login_user(request):
 
 
 def logout_user(request):
+    #super simple view :)
     logout(request)
 
     return redirect('/')
@@ -59,13 +61,16 @@ def register_user(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
 
+            #create user
             CustomUser.objects.create_user(email=email, password=password)
 
             return redirect('/accounts/login')
 
+        #else error with the form (add more to this later)
         else:
             return HttpResponse("You need to fix this form")
     
+    #else a get request
     else:
         form = CustomUserCreationForm()
 
