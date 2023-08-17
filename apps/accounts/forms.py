@@ -19,4 +19,4 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta: 
         password2 = None
         model = CustomUser
-        fields = ("email", "password")
+        fields = ("email",)
