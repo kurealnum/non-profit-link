@@ -7,16 +7,16 @@ class LoginRegisterForm(forms.Form):
     email = forms.EmailField(label="Enter your email", max_length=100)
     password = forms.CharField(label="Enter your password", max_length=100)
 
-class CustomUserCreationForm(forms.Form):
-    password2 = None
-
+class CustomUserCreationForm(UserCreationForm):
+    
     class Meta:
+        password2 = None
         model = CustomUser
         fields = ("email",)
 
 class CustomUserChangeForm(UserChangeForm):
-    password2 = None
-
+   
     class Meta: 
+        password2 = None
         model = CustomUser
         fields = ("email", "password")
