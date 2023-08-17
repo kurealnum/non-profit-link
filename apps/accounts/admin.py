@@ -5,6 +5,15 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
+    fieldsets = [
+        (
+            None,
+            {
+                "fields": ["email",]
+            }
+        )
+    ]
+    username = None
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
