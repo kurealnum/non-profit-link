@@ -5,7 +5,7 @@ from .managers import CustomUserManager
 class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
-    non_profit_name = models.CharField(unique=False, max_length=100)
+    non_profit_name = models.CharField(unique=False, max_length=100, default="Un-named non-profit :(")
     email = models.EmailField(unique=True)
 
     USERNAME_FIELD = "email"
