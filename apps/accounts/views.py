@@ -31,7 +31,7 @@ def login_user(request):
             if user:
                 login(request, user)
 
-                return redirect('/')
+                return redirect('dashboard')
             
             #else error with the form (add more to this later)
             else:
@@ -62,11 +62,6 @@ def register_user(request):
             #data
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
-            conf_password = form.cleaned_data["password2"]
-
-            if password != conf_password:
-                messages.error(request, "Your passwords are not the same")
-                return redirect('register')
 
             #create user
             CustomUser.objects.create_user(email=email, password=password)
@@ -75,7 +70,7 @@ def register_user(request):
 
         #else error with the form (add more to this later)
         else:
-            messages.error(request, "Please enter a more secure password")
+            messages.error(request, "Please enter a more secure password and ensure that your passwords are the same length")
             return redirect('register')
         
     #else a get request
