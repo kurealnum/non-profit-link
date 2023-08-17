@@ -35,7 +35,7 @@ def login_user(request):
             
             #else error with the form (add more to this later)
             else:
-                messages.error(request, "Incorrect credentials")
+                messages.error(request, "Incorrect email and/or password")
                 return redirect('login')
 
     #else is a GET request
@@ -62,6 +62,11 @@ def register_user(request):
             #data
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
+            conf_password = form.cleaned_data["password2"]
+
+            if password != conf_password:
+                messages.error(request, "Your passwords are not the same")
+                return redirect('register')
 
             #create user
             CustomUser.objects.create_user(email=email, password=password)
@@ -70,8 +75,9 @@ def register_user(request):
 
         #else error with the form (add more to this later)
         else:
-            return HttpResponse("You need to fix this form")
-    
+            messages.error(request, "Please enter a more secure password")
+            return redirect('register')
+        
     #else a get request
     else:
         form = CustomUserCreationForm()

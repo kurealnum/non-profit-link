@@ -11,17 +11,15 @@
 </head>
 
   <header>
-    {% if request.user.is_authenticated %}
-      <p>You are logged in!</p>
-    {% else %}
-      <p>You are not logged in!</p>
-    {% endif %}
     <nav>
       <ul>
         <li><a href="{% url 'index' %}">Non-Profit Link</a></li>
-        <li><a href="{% url 'login' %}">MY NON-PROFIT</a></li>
-        <li><a href="TEST">CONTRIBUTABLE ITEMS</a></li>     
-        <li><a href="TEST">NON-PROFITS</a></li> 
+        <li><a href="{% url 'login' %}">My non-profit</a></li>
+        <li><a href="TEST">Contributable items</a></li>     
+        <li><a href="TEST">Non-profits</a></li> 
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'logout' %}"></a>Logout</li>
+        {% endif %}
       </ul>
     </nav>
   </header>
