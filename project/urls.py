@@ -21,7 +21,7 @@ urlpatterns = [
     #my urls
     path('', include('apps.homepage.urls')),
     path('accounts/', include('apps.accounts.urls')),
-    path('mynonprofit/', include('apps.non_profit_homepage.urls')),
+    path('mynonprofit/', include('apps.dashboard.urls')),
 
     #django urls
     path('accounts/', include('django.contrib.auth.urls')),
