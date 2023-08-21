@@ -1,5 +1,6 @@
 flask_main_env/
 django_main_env/
+env/
 __pycache__/
 *.db
 *.db-journal
