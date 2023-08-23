@@ -12,7 +12,7 @@ function App() {
         </a>
         <a href="https://react.dev" target="_blank">
           <img
-            src="/frontend_dist/assets/react-35ef61ed.svg"
+            src="/frontend_dist/assets/react.svg"
             className="logo react"
             alt="React logo"
           />
