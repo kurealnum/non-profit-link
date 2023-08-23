@@ -2,7 +2,7 @@
 
 import Title from "../components/Title";
 
-function App() {
+function HomepageHero() {
   return (
     <>
       <Title>Helping non-profits share their resources since 2023</Title>
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomepageHero;

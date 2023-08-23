@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+
+import HomepageHero from "./HomepageHero.tsx";
 import Button from "../components/Button.tsx";
+import HomepageParagrahs from "./HomepageParagrahs.tsx";
 
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
   <React.StrictMode>
-    <App />
+    <HomepageHero />
   </React.StrictMode>
 );
 
@@ -19,3 +21,14 @@ for (let i = 0; i < buttons.length; i++) {
     </React.StrictMode>
   );
 }
+
+var paragraphs = [
+  ["My paragraph", "My header"],
+  ["My paragraph2", "My header2"],
+];
+
+ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
+  <React.StrictMode>
+    <HomepageParagrahs paragraphs={paragraphs}></HomepageParagrahs>
+  </React.StrictMode>
+);
