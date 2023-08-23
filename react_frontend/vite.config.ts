@@ -13,6 +13,5 @@ export default defineConfig({
       }
     },
     outDir: "../frontend_dist",
-    emptyOutDir: true,
   }
 })
