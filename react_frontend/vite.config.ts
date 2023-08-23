@@ -12,6 +12,7 @@ export default defineConfig({
         assetFileNames: `assets/[name].[ext]`
       }
     },
-    outDir: "../frontend_dist"
+    outDir: "../frontend_dist",
+    emptyOutDir: true,
   }
 })
