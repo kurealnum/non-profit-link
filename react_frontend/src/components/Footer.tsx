@@ -1,14 +1,19 @@
-interface Props {
-  //imgs are [0], alts are [1], and links are [2]
-  imgs_alts_links: string[][];
+export interface imgs_info {
+  img: string;
+  alt: string;
+  link: string;
 }
 
-const Footer = ({ imgs_alts_links }: Props) => {
+interface Props {
+  items: imgs_info[];
+}
+
+const Footer = ({ items }: Props) => {
   return (
     <>
-      {imgs_alts_links.map((ial, index) => (
-        <a key={index} href={ial[2]}>
-          <img src={ial[0]} alt={ial[1]} />
+      {items.map((ial, index) => (
+        <a key={index} href={ial.link}>
+          <img src={ial.img} alt={ial.alt} />
         </a>
       ))}
     </>
