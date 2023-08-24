@@ -5,7 +5,9 @@ import Title from "../components/Title";
 function HomepageHero() {
   return (
     <>
-      <Title>Helping non-profits share their resources since 2023</Title>
+      <Title highlight_word="non-profits">
+        Helping non-profits share their resources since 2023
+      </Title>
     </>
   );
 }

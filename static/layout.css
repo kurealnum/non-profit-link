@@ -7,8 +7,13 @@
     --accent: #02D6DE;
     --text: #ECECED;
    
+    color: var(--text);
     background-color: var(--background);
     font-family: 'Poppins', 'Arial';
+}
+
+.highlight-word {
+    color: var(--accent);
 }
 
 nav {
@@ -43,6 +48,18 @@ nav a {
     display: flex;
     margin-left: auto;
     margin-right: 0;
+}
+
+#react-homepage-hero {
+    height: 60vh;
+    margin: auto;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
 }
 
 @media (max-width: 500px) {
