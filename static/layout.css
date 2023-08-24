@@ -4,3 +4,11 @@
     background-color: #262828;
     font-family: 'Poppins', 'Arial';
 }
+
+nav {
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+}
