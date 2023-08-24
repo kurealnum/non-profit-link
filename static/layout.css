@@ -16,6 +16,7 @@ nav {
 }
 
 nav ul {
+    width: 100%;
     display: flex;
     list-style: none;
     padding: 0;
@@ -28,13 +29,14 @@ nav li {
 nav a {
     color: var(--text);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .nav-title a {
     color: var(--accent);
-    text-decoration: underline;
-    font-size: 16px;
+    border-bottom:  2px solid var(--accent);
+    padding-bottom: 4px;
+    font-size: 18px;
 }
 
 .nav-links {
