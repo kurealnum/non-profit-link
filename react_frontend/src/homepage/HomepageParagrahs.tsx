@@ -1,8 +1,13 @@
 import Header from "../components/Header";
 
+export interface paragraphInfo {
+  paragraph: string;
+  header: string;
+}
+
 interface Props {
   //[0] is the paragraph, [1] is the header
-  paragraphs: string[][];
+  paragraphs: paragraphInfo[];
 }
 
 const HomepageParagrahs = ({ paragraphs }: Props) => {
@@ -10,8 +15,8 @@ const HomepageParagrahs = ({ paragraphs }: Props) => {
     <div className="paragraphs">
       {paragraphs.map((paragraph, index) => (
         <>
-          <Header key={index}>{paragraph[1]}</Header>
-          <p key={index}>{paragraph[0]}</p>
+          <Header key={index}>{paragraph.header}</Header>
+          <p key={index}>{paragraph.paragraph}</p>
         </>
       ))}
     </div>

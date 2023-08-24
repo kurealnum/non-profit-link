@@ -1,11 +1,11 @@
-export interface imgs_info {
+export interface imgsInfo {
   img: string;
   alt: string;
   link: string;
 }
 
 interface Props {
-  items: imgs_info[];
+  items: imgsInfo[];
 }
 
 const Footer = ({ items }: Props) => {
