@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-    background-color: #262828;
+    --background: #202222;
+    --primary: #303333;
+    --secondary: #262828;
+    --accent: #02D6DE;
+    --text: #ECECED;
+   
+    background-color: var(--background);
     font-family: 'Poppins', 'Arial';
 }
 
@@ -9,6 +15,36 @@ nav {
     display: flex;
 }
 
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    padding: 10px;
+}
+
 nav a {
+    color: var(--text);
     text-decoration: none;
+    font-size: 12px;
+}
+
+.nav-title a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+.nav-links {
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+@media (max-width: 500px) {
+    .desktop {
+        display: none;
+    }
 }

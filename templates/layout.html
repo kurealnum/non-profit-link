@@ -12,17 +12,19 @@
   <header>
     <nav>
       <ul>
-        <li><a href="{% url 'index' %}">Non-Profit Link</a></li>
-        {% if request.user.is_authenticated %}
-        <li><a href="{% url 'dashboard' %}">My non-profit</a></li>
-        {% else %}
-        <li><a href="{% url 'login' %}">My non-profit</a></li>
-        {% endif %}
-        <li><a href="TEST">Contributable items</a></li>     
-        <li><a href="TEST">Non-profits</a></li> 
-        {% if request.user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Logout</a></li>
-        {% endif %}
+        <li class="nav-title"><a href="{% url 'index' %}">Non-Profit Link</a></li>
+        <div class="nav-links">
+          {% if request.user.is_authenticated %}
+          <li><a href="{% url 'dashboard' %}">My non-profit</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">My non-profit</a></li>
+          {% endif %}
+          <li><a href="TEST">Contributable items</a></li>
+          <li class="desktop"><a href="TEST">Non-profits</a></li>
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
+        </div>
       </ul>
     </nav>
   </header>
