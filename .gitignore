@@ -6,3 +6,4 @@ __pycache__/
 *.db-journal
 flask_session/
 *.sqlite3
+node_modules/
