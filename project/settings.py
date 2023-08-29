@@ -131,7 +131,7 @@ STATIC_URL = 'frontend_dist/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'frontend_dist',
-    BASE_DIR / 'frontend_dist/assets',
+    ("frontend_dist", "/assets")
 ]
 
 # Default primary key field type
