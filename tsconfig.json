@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
+      "noEmit": true,
       "jsx": "react",
-      "jsx": "react",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
+      "allowImportingTsExtensions": true,
+      "useDefineForClassFields": true,
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
       "target": "ES2020",
       "sourceMap": true,
       "outDir": "frontend_dist",
