@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+      "jsx": "react",
+      "jsx": "react",
       "module": "NodeNext",
       "moduleResolution": "NodeNext",
       "target": "ES2020",
