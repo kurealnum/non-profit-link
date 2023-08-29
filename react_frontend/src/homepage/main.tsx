@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import Vite from "../assets/vite.svg";
+
 import HomepageHero from "./HomepageHero.tsx";
 import Button from "../components/Button.tsx";
 import HomepageParagrahs, { paragraphInfo } from "./HomepageParagrahs.tsx";
@@ -37,7 +39,7 @@ ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
 //just demos for now, remember that the img url needs to be the location of the img in the dist folder
 const imgs_info_input: imgsInfo[] = [
   {
-    img: "frontend_dist/assets/react.svg",
+    img: Vite,
     alt: "A react image",
     link: "https://google.com",
   },
