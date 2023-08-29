@@ -1,14 +1,21 @@
+// note to future self: split chunks
 {
     "compilerOptions": {
+      "useDefineForClassFields": true,
+      "allowImportingTsExtensions": true,
       "noEmit": true,
       "jsx": "react",
-      "allowImportingTsExtensions": true,
-      "useDefineForClassFields": true,
+      "target": "ES2020",
       "module": "ESNext",
       "moduleResolution": "Bundler",
-      "target": "ES2020",
       "sourceMap": true,
       "outDir": "frontend_dist",
+
+      // linting
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true
     },
     "include": ["assets/**/*"],
 }
