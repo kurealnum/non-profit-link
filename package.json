@@ -4,7 +4,8 @@
   "description": "Written in Python, Django, React (at some point)/JS, HTML, CSS, and SQLite3 (Postgres at some point)",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "webpack --mode development"
   },
   "keywords": [],
   "author": "",
