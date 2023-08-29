@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import Vite from "./";
+import Vite from "./imgs/";
 
 import HomepageHero from "./HomepageHero.tsx";
 import Button from "./components/Button.tsx";
