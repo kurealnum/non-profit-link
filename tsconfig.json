@@ -17,5 +17,5 @@
       "noUnusedParameters": true,
       "noFallthroughCasesInSwitch": true
     },
-    "include": ["assets/**/*"],
+    "include": ["assets/**/*", "declarations.d.ts"],
 }
