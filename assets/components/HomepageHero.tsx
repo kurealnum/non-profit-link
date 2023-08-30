@@ -1,7 +1,7 @@
 //this file will be used "in line" with the homepage app in Django
 import React from "react";
 
-import Title from "./components/Title";
+import Title from "./Title";
 import Blob from "./imgs/title_blob.svg";
 
 function HomepageHero() {

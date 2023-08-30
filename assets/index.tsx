@@ -3,9 +3,11 @@ import ReactDOM from "react-dom/client";
 
 import Vite from "./imgs/vite.svg";
 
-import HomepageHero from "./HomepageHero.tsx";
+import HomepageHero from "./components/HomepageHero.tsx";
 import Button from "./components/Button.tsx";
-import HomepageParagrahs, { paragraphInfo } from "./HomepageParagraphs.tsx";
+import HomepageParagrahs, {
+  paragraphInfo,
+} from "./components/HomepageParagraphs.tsx";
 import Footer, { imgsInfo } from "./components/Footer.tsx";
 
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
