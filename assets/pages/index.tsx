@@ -3,11 +3,9 @@ import ReactDOM from "react-dom/client";
 
 import Vite from "../imgs/vite.svg";
 
-import HomepageHero from "../components/HomepageHero.tsx";
+import HomepageHero from "../components/MainTitle.tsx";
 import Button from "../components/Button.tsx";
-import HomepageParagrahs, {
-  paragraphInfo,
-} from "../components/HomepageParagraphs.tsx";
+import Paragraphs, { paragraphInfo } from "../components/Paragraphs.tsx";
 import Footer, { imgsInfo } from "../components/Footer.tsx";
 
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
@@ -34,7 +32,7 @@ const paragraphs: paragraphInfo[] = [
 
 ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
   <React.StrictMode>
-    <HomepageParagrahs paragraphs={paragraphs}></HomepageParagrahs>
+    <Paragraphs paragraphs={paragraphs}></Paragraphs>
   </React.StrictMode>
 );
 

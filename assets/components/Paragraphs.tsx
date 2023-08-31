@@ -12,12 +12,12 @@ interface Props {
   paragraphs: paragraphInfo[];
 }
 
-const HomepageParagrahs = ({ paragraphs }: Props) => {
+const Paragraphs = ({ paragraphs }: Props) => {
   return (
     <div className="paragraphs">
       {paragraphs.map((paragraph, index) => (
         <>
-          <Header key={index}>{paragraph.header}</Header>
+          <Header key={paragraph.header}>{paragraph.header}</Header>
           <p key={index}>{paragraph.paragraph}</p>
         </>
       ))}
@@ -25,4 +25,4 @@ const HomepageParagrahs = ({ paragraphs }: Props) => {
   );
 };
 
-export default HomepageParagrahs;
+export default Paragraphs;
