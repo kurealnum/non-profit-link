@@ -1,9 +1,11 @@
 const path = require('path');
+const glob = require('glob');
 
 module.exports = {
-    entry:'./assets/pages/index.tsx',
+    entry: {index: './assets/pages/index.tsx',
+            login: './assets/pages/login.tsx'},
     output: {
-        filename: 'index-bundle.js',  // output bundle file name
+        filename: '[name].js',  // output bundle file name
         path: path.resolve(__dirname, './static'),  // path to our Django static directory
     },
     resolve: {
