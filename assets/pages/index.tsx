@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import Vite from "./imgs/vite.svg";
+import Vite from "../imgs/vite.svg";
 
-import HomepageHero from "./components/HomepageHero.tsx";
-import Button from "./components/Button.tsx";
+import HomepageHero from "../components/HomepageHero.tsx";
+import Button from "../components/Button.tsx";
 import HomepageParagrahs, {
   paragraphInfo,
-} from "./components/HomepageParagraphs.tsx";
-import Footer, { imgsInfo } from "./components/Footer.tsx";
+} from "../components/HomepageParagraphs.tsx";
+import Footer, { imgsInfo } from "../components/Footer.tsx";
 
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
   <React.StrictMode>

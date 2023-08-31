@@ -10,26 +10,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/HomepageHero.tsx":
-/*!*********************************!*\
-  !*** ./assets/HomepageHero.tsx ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_Title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Title */ \"./assets/components/Title.tsx\");\n/* harmony import */ var _imgs_title_blob_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./imgs/title_blob.svg */ \"./assets/imgs/title_blob.svg\");\n//this file will be used \"in line\" with the homepage app in Django\n\n\n\nfunction HomepageHero() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Title__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    highlight_word: \"non-profits\",\n    background_img: [_imgs_title_blob_svg__WEBPACK_IMPORTED_MODULE_2__[\"default\"], \"Blob image as background for the title\"]\n  }, \"Helping non-profits share their resources since 2023\"));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomepageHero);\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/HomepageHero.tsx?");
-
-/***/ }),
-
-/***/ "./assets/HomepageParagraphs.tsx":
-/*!***************************************!*\
-  !*** ./assets/HomepageParagraphs.tsx ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Header */ \"./assets/components/Header.tsx\");\n\n\nvar HomepageParagrahs = function HomepageParagrahs(_ref) {\n  var paragraphs = _ref.paragraphs;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"paragraphs\"\n  }, paragraphs.map(function (paragraph, index) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      key: index\n    }, paragraph.header), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"p\", {\n      key: index\n    }, paragraph.paragraph));\n  }));\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomepageParagrahs);\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/HomepageParagraphs.tsx?");
-
-/***/ }),
-
 /***/ "./assets/components/Button.tsx":
 /*!**************************************!*\
   !*** ./assets/components/Button.tsx ***!
@@ -60,6 +40,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./assets/components/HomepageHero.tsx":
+/*!********************************************!*\
+  !*** ./assets/components/HomepageHero.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Title */ \"./assets/components/Title.tsx\");\n/* harmony import */ var _imgs_title_blob_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imgs/title_blob.svg */ \"./assets/imgs/title_blob.svg\");\n//this file will be used \"in line\" with the homepage app in Django\n\n\n\nfunction HomepageHero() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Title__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    highlight_word: \"non-profits\",\n    background_img: [_imgs_title_blob_svg__WEBPACK_IMPORTED_MODULE_2__[\"default\"], \"Blob image as background for the title\"]\n  }, \"Helping non-profits share their resources since 2023\"));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomepageHero);\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/components/HomepageHero.tsx?");
+
+/***/ }),
+
+/***/ "./assets/components/HomepageParagraphs.tsx":
+/*!**************************************************!*\
+  !*** ./assets/components/HomepageParagraphs.tsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ \"./assets/components/Header.tsx\");\n\n\nvar HomepageParagrahs = function HomepageParagrahs(_ref) {\n  var paragraphs = _ref.paragraphs;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"paragraphs\"\n  }, paragraphs.map(function (paragraph, index) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Header__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      key: index\n    }, paragraph.header), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"p\", {\n      key: index\n    }, paragraph.paragraph));\n  }));\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomepageParagrahs);\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/components/HomepageParagraphs.tsx?");
+
+/***/ }),
+
 /***/ "./assets/components/Title.tsx":
 /*!*************************************!*\
   !*** ./assets/components/Title.tsx ***!
@@ -70,13 +70,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./assets/index.tsx":
-/*!**************************!*\
-  !*** ./assets/index.tsx ***!
-  \**************************/
+/***/ "./assets/pages/index.tsx":
+/*!********************************!*\
+  !*** ./assets/pages/index.tsx ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _imgs_vite_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./imgs/vite.svg */ \"./assets/imgs/vite.svg\");\n/* harmony import */ var _HomepageHero_tsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HomepageHero.tsx */ \"./assets/HomepageHero.tsx\");\n/* harmony import */ var _components_Button_tsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Button.tsx */ \"./assets/components/Button.tsx\");\n/* harmony import */ var _HomepageParagraphs_tsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HomepageParagraphs.tsx */ \"./assets/HomepageParagraphs.tsx\");\n/* harmony import */ var _components_Footer_tsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Footer.tsx */ \"./assets/components/Footer.tsx\");\n\n\n\n\n\n\n\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById(\"react-homepage-hero\")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HomepageHero_tsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null)));\nvar buttons = document.getElementsByClassName(\"react-button\");\nvar buttons_titles = [\"Search non-profits\", \"Search items\"];\nfor (var i = 0; i < buttons.length; i++) {\n  react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(buttons[i]).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Button_tsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], null, buttons_titles[i])));\n}\nvar paragraphs = [{\n  header: \"My First Header\",\n  paragraph: \"My First Paragraph\"\n}, {\n  header: \"My Second Header\",\n  paragraph: \"My Second Paragraph\"\n}];\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById(\"react-paragraphs\")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HomepageParagraphs_tsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n  paragraphs: paragraphs\n})));\n\n//just demos for now, remember that the img url needs to be the location of the img in the dist folder\nvar imgs_info_input = [{\n  img: _imgs_vite_svg__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  alt: \"A react image\",\n  link: \"https://google.com\"\n}];\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementsByTagName(\"footer\")[0]).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Footer_tsx__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n  items: imgs_info_input\n})));\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/index.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _imgs_vite_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imgs/vite.svg */ \"./assets/imgs/vite.svg\");\n/* harmony import */ var _components_HomepageHero_tsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/HomepageHero.tsx */ \"./assets/components/HomepageHero.tsx\");\n/* harmony import */ var _components_Button_tsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Button.tsx */ \"./assets/components/Button.tsx\");\n/* harmony import */ var _components_HomepageParagraphs_tsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/HomepageParagraphs.tsx */ \"./assets/components/HomepageParagraphs.tsx\");\n/* harmony import */ var _components_Footer_tsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Footer.tsx */ \"./assets/components/Footer.tsx\");\n\n\n\n\n\n\n\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById(\"react-homepage-hero\")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_HomepageHero_tsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null)));\nvar buttons = document.getElementsByClassName(\"react-button\");\nvar buttons_titles = [\"Search non-profits\", \"Search items\"];\nfor (var i = 0; i < buttons.length; i++) {\n  react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(buttons[i]).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Button_tsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], null, buttons_titles[i])));\n}\nvar paragraphs = [{\n  header: \"My First Header\",\n  paragraph: \"My First Paragraph\"\n}, {\n  header: \"My Second Header\",\n  paragraph: \"My Second Paragraph\"\n}];\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById(\"react-paragraphs\")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_HomepageParagraphs_tsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n  paragraphs: paragraphs\n})));\n\n//just demos for now, remember that the img url needs to be the location of the img in the dist folder\nvar imgs_info_input = [{\n  img: _imgs_vite_svg__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  alt: \"A react image\",\n  link: \"https://google.com\"\n}];\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementsByTagName(\"footer\")[0]).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Footer_tsx__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n  items: imgs_info_input\n})));\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/index.tsx?");
 
 /***/ }),
 
@@ -289,7 +289,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./assets/index.tsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./assets/pages/index.tsx");
 /******/ 	
 /******/ })()
 ;

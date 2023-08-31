@@ -2,7 +2,7 @@
 import React from "react";
 
 import Title from "./Title";
-import Blob from "./imgs/title_blob.svg";
+import Blob from "../imgs/title_blob.svg";
 
 function HomepageHero() {
   return (
