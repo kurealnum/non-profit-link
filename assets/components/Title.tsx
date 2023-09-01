@@ -16,7 +16,11 @@ const Title = ({ children, highlight_word, background_img }: Props) => {
         <span className="highlight-word">{highlight_word}</span>
         {split_children[1]}
       </h1>
-      <img src={background_img[0]} alt={background_img[1]} />
+      <img
+        src={background_img[0]}
+        alt={background_img[1]}
+        id="title-background"
+      />
     </>
   );
 };

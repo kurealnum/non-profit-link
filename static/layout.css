@@ -12,6 +12,11 @@
     font-family: 'Poppins', 'Arial';
 }
 
+:root, body {
+    margin: 0;
+    padding: 0;
+}
+
 .highlight-word {
     color: var(--accent);
 }
@@ -60,6 +65,21 @@ nav a {
 
 h1 {
     text-align: center;
+}
+
+#react-homepage-hero {
+    position: relative;
+}
+
+#title-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 96%;
+    z-index: -1;
 }
 
 @media (max-width: 500px) {
