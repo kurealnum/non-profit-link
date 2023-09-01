@@ -82,6 +82,23 @@ h1 {
     z-index: -1;
 }
 
+.homepage-search {
+    display: flex;
+    flex-direction: column;
+    margin: 50px; 
+}
+
+button {
+    margin: 0 auto;
+    color: var(--secondary);
+    background-color: var(--accent);
+    font-family: 'Poppins', 'Arial';
+    border: none;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 20px;
+}
+
 @media (max-width: 500px) {
     .desktop {
         display: none;
