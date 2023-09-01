@@ -18,11 +18,6 @@ ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
 const buttons = document.getElementsByClassName("homepage-search");
 const buttons_titles = ["Search non-profits", "Search items"];
 
-const paragraphs: paragraphInfo[] = [
-  { header: "My First Header", paragraph: "My First Paragraph" },
-  { header: "My Second Header", paragraph: "My Second Paragraph" },
-];
-
 for (let i = 0; i < buttons.length; i++) {
   ReactDOM.createRoot(buttons[i]!).render(
     <React.StrictMode>
@@ -30,6 +25,17 @@ for (let i = 0; i < buttons.length; i++) {
     </React.StrictMode>
   );
 }
+
+const paragraphs: paragraphInfo[] = [
+  {
+    header: "My First Header",
+    paragraph: "My First Paragraph",
+  },
+  {
+    header: "My Second Header",
+    paragraph: "My Second Paragraph",
+  },
+];
 
 //render for paragraphs
 ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(

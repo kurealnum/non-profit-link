@@ -8,21 +8,16 @@ export interface paragraphInfo {
 }
 
 interface Props {
-  //[0] is the paragraph, [1] is the header
   paragraphs: paragraphInfo[];
 }
 
 const Paragraphs = ({ paragraphs }: Props) => {
-  return (
-    <div className="paragraphs">
-      {paragraphs.map((paragraph, index) => (
-        <>
-          <Header key={paragraph.header}>{paragraph.header}</Header>
-          <p key={index}>{paragraph.paragraph}</p>
-        </>
-      ))}
+  return paragraphs.map((paragraph, index) => (
+    <div className="paragraph" key={index}>
+      <Header key={paragraph.header}>{paragraph.header}</Header>
+      <p key={index}>{paragraph.paragraph}</p>
     </div>
-  );
+  ));
 };
 
 export default Paragraphs;
