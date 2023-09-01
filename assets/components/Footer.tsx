@@ -1,10 +1,5 @@
 import React from "react";
-
-export interface imgsInfo {
-  img: string;
-  alt: string;
-  link: string;
-}
+import { imgsInfo } from "../interfaces/imgsInfo";
 
 interface Props {
   items: imgsInfo[];

@@ -97,6 +97,7 @@ button {
     border-radius: 20px;
     padding: 3px 10px;
     font-size: 20px;
+    font-weight: 500;
 }
 
 @media (max-width: 500px) {

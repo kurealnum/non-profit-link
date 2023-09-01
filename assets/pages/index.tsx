@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import Vite from "../imgs/vite.svg";
+import SearchButton from "../imgs/search_button_icon.svg";
 
+import { imgsInfo } from "../interfaces/imgsInfo.ts";
 import HomepageHero from "../components/MainTitle.tsx";
 import Button from "../components/Button.tsx";
 import Paragraphs, { paragraphInfo } from "../components/Paragraphs.tsx";
-import Footer, { imgsInfo } from "../components/Footer.tsx";
+import Footer from "../components/Footer.tsx";
 
+//render the hero
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
   <React.StrictMode>
     <HomepageHero />
@@ -16,12 +19,14 @@ ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
 
 //render for homepage-search
 const buttons = document.getElementsByClassName("homepage-search");
-const buttons_titles = ["Search non-profits", "Search items"];
+const buttons_info = ["Search non-profits", "Search items"];
 
 for (let i = 0; i < buttons.length; i++) {
   ReactDOM.createRoot(buttons[i]!).render(
     <React.StrictMode>
-      <Button>{buttons_titles[i]}</Button>
+      <Button imgsInfo={{ img: SearchButton, alt: "search" }}>
+        {buttons_info[i]}
+      </Button>
     </React.StrictMode>
   );
 }
