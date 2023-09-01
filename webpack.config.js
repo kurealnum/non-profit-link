@@ -12,7 +12,7 @@ module.exports = {
     ],
     output: {
         filename: '[name].js',  // output bundle file name
-        path: path.resolve(__dirname, './static'),  // path to our Django static directory
+        path: path.resolve(__dirname, './react_static'),  // path to our Django static directory
         clean: true,
     },
     resolve: {

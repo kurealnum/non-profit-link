@@ -129,7 +129,8 @@ USE_TZ = True
 STATIC_URL = 'frontend_dist/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'react_static',
+    BASE_DIR / 'django_static',
 ]
 
 # Default primary key field type
