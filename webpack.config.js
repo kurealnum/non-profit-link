@@ -1,12 +1,19 @@
 const path = require('path');
 const glob = require('glob');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {"index": './assets/pages/index.tsx',
             "login": './assets/pages/login.tsx'},
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Output Management',
+      }),
+    ],
     output: {
         filename: '[name].js',  // output bundle file name
         path: path.resolve(__dirname, './static'),  // path to our Django static directory
+        clean: true,
     },
     resolve: {
       extensions: ['.ts', '.tsx']
