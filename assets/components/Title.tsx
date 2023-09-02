@@ -1,14 +1,16 @@
 import React from "react";
 
+import { imgsInfo } from "../interfaces/imgsInfo";
+
 interface Props {
   children: string;
   highlight_word: string;
   id?: string;
   //img src from frontend_dist, and alt
-  background_img: string[];
+  imgsInfo?: imgsInfo;
 }
 
-const Title = ({ children, highlight_word, id, background_img }: Props) => {
+const Title = ({ children, highlight_word, id, imgsInfo }: Props) => {
   const split_children = children.split(highlight_word);
   return (
     <>
@@ -17,11 +19,9 @@ const Title = ({ children, highlight_word, id, background_img }: Props) => {
         <span className="highlight-word">{highlight_word}</span>
         {split_children[1]}
       </h1>
-      <img
-        src={background_img[0]}
-        alt={background_img[1]}
-        id="title-background"
-      />
+      {imgsInfo && (
+        <img src={imgsInfo.img} alt={imgsInfo.alt} id="title-background" />
+      )}
     </>
   );
 };

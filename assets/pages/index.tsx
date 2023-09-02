@@ -3,17 +3,23 @@ import ReactDOM from "react-dom/client";
 
 import Vite from "../imgs/vite.svg";
 import SearchButton from "../imgs/search_button_icon.svg";
+import TitleBlobSVG from "../imgs/title_blob.svg";
 
 import { imgsInfo } from "../interfaces/imgsInfo.ts";
-import HomepageHero from "../components/MainTitle.tsx";
+import MainTitle from "../components/MainTitle.tsx";
 import Button from "../components/Button.tsx";
 import Paragraphs, { paragraphInfo } from "../components/Paragraphs.tsx";
 import Footer from "../components/Footer.tsx";
 
 //render the hero
+const hero_imgs_info: imgsInfo = {
+  img: TitleBlobSVG,
+  alt: "Title blob SVG",
+};
+
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
   <React.StrictMode>
-    <HomepageHero />
+    <MainTitle imgsInfo={hero_imgs_info} />
   </React.StrictMode>
 );
 
@@ -52,7 +58,6 @@ ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
 );
 
 //render for footer
-//just demos for now, remember that the img url needs to be the location of the img in the dist folder
 const imgs_info_input: imgsInfo[] = [
   {
     img: Vite,
