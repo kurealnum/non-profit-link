@@ -6,6 +6,8 @@ import ReactDOM from "react-dom/client";
 import Vite from "../imgs/vite.svg";
 import SearchButton from "../imgs/search_button_icon.svg";
 import TitleBlobSVG from "../imgs/title_blob.svg";
+import FirstParagraphBlob from "../imgs/first_paragraph_blob.svg";
+import SecondParagraphBlob from "../imgs/second_paragraph_blob.svg";
 
 // component imports
 import { imgsInfo } from "../interfaces/imgsInfo.ts";
@@ -42,20 +44,28 @@ for (let i = 0; i < buttons.length; i++) {
   );
 }
 
+//render for paragraphs
 const paragraphs: paragraphInfo[] = [
   {
     header: "My First Header",
     paragraph:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    imgsInfo: {
+      img: FirstParagraphBlob,
+      alt: "Decorative blue blob on paragraph",
+    },
   },
   {
     header: "My Second Header",
     paragraph:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    imgsInfo: {
+      img: SecondParagraphBlob,
+      alt: "Decorative blue blob on paragraph",
+    },
   },
 ];
 
-//render for paragraphs
 ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
   <React.StrictMode>
     <Paragraphs paragraphs={paragraphs}></Paragraphs>

@@ -15,7 +15,7 @@
   \********************************/
 /***/ (() => {
 
-eval("//pretty sure i can just use different files to control page renders (i think)\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/login.tsx?");
+eval("// you can use different files to control page renders;\n// i.e. pick and choose which JS file you want to use\n// also TODO\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/login.tsx?");
 
 /***/ })
 

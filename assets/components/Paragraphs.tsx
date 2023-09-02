@@ -1,10 +1,13 @@
 import React from "react";
 
+import { imgsInfo } from "../interfaces/imgsInfo";
+
 import Header from "./Header";
 
 export interface paragraphInfo {
   paragraph: string;
   header: string;
+  imgsInfo?: imgsInfo;
 }
 
 interface Props {
@@ -18,6 +21,10 @@ const Paragraphs = ({ paragraphs }: Props) => {
     <div className="paragraph" key={index}>
       <Header key={paragraph.header}>{paragraph.header}</Header>
       <p key={index}>{paragraph.paragraph}</p>
+      {/* if imgs info does exist, create an image */}
+      {paragraph.imgsInfo && (
+        <img src={paragraph.imgsInfo.img} alt={paragraph.imgsInfo.alt}></img>
+      )}
     </div>
   ));
 };
