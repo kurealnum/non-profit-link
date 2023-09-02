@@ -9,6 +9,7 @@ function HomepageHero() {
     <>
       <Title
         highlight_word="non-profits"
+        id="hero-title"
         background_img={[Blob, "Blob image as background for the title"]}
       >
         Helping non-profits share their resources since 2023
