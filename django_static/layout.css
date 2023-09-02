@@ -65,6 +65,9 @@ nav a {
 
 h1 {
     text-align: center;
+    font-weight: 400;
+    max-width: 95%;
+    margin: 0 auto;
 }
 
 #react-homepage-hero {
@@ -109,6 +112,10 @@ button {
     padding: 3px 15px;
     justify-content: space-between;
     white-space: nowrap;
+}
+
+p {
+    text-align: center;
 }
 
 @media (max-width: 500px) {
