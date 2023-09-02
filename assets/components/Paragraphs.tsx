@@ -23,7 +23,11 @@ const Paragraphs = ({ paragraphs }: Props) => {
       <p key={index}>{paragraph.paragraph}</p>
       {/* if imgs info does exist, create an image */}
       {paragraph.imgsInfo && (
-        <img src={paragraph.imgsInfo.img} alt={paragraph.imgsInfo.alt}></img>
+        <img
+          src={paragraph.imgsInfo.img}
+          alt={paragraph.imgsInfo.alt}
+          id={paragraph.header}
+        ></img>
       )}
     </div>
   ));

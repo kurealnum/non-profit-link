@@ -124,6 +124,18 @@ p {
 
 .paragraph {
     margin: 50px 0;
+    position: relative;
+}
+
+.paragraph img {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: -100px;
+    bottom: 0;
+    margin: auto;
+    width: 90%;
+    z-index: -1;
 }
 
 @media (max-width: 500px) {
