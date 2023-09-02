@@ -9,10 +9,10 @@ interface Props {
 
 const Button = ({ children, imgsInfo }: Props) => {
   return (
-    <>
+    <div className="search-button">
       <button>{children}</button>
       {imgsInfo && <img src={imgsInfo.img} alt={imgsInfo.alt}></img>}
-    </>
+    </div>
   );
 };
 
