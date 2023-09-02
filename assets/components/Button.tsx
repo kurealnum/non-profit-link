@@ -11,6 +11,7 @@ const Button = ({ children, imgsInfo }: Props) => {
   return (
     <div className="search-button">
       <button>{children}</button>
+      {/* only add an image if imgsInfo exists */}
       {imgsInfo && <img src={imgsInfo.img} alt={imgsInfo.alt}></img>}
     </div>
   );

@@ -12,6 +12,7 @@ interface Props {
 function HomepageHero({ imgsInfo }: Props) {
   return (
     <>
+      {/* utilizing a pre-existing Title component*/}
       <Title highlight_word="non-profits" id="hero-title" imgsInfo={imgsInfo}>
         Helping non-profits share their resources since 2023
       </Title>

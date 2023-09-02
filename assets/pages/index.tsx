@@ -1,22 +1,26 @@
+// package imports
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// img imports
 import Vite from "../imgs/vite.svg";
 import SearchButton from "../imgs/search_button_icon.svg";
 import TitleBlobSVG from "../imgs/title_blob.svg";
 
+// component imports
 import { imgsInfo } from "../interfaces/imgsInfo.ts";
 import MainTitle from "../components/MainTitle.tsx";
 import Button from "../components/Button.tsx";
 import Paragraphs, { paragraphInfo } from "../components/Paragraphs.tsx";
 import Footer from "../components/Footer.tsx";
 
-//render the hero
+//hero info
 const hero_imgs_info: imgsInfo = {
   img: TitleBlobSVG,
   alt: "Title blob SVG",
 };
 
+// render for the hero
 ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
   <React.StrictMode>
     <MainTitle imgsInfo={hero_imgs_info} />
@@ -27,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("react-homepage-hero")!).render(
 const buttons = document.getElementsByClassName("homepage-search");
 const buttons_info = ["Search non-profits", "Search items"];
 
+// dynamically generate buttons
 for (let i = 0; i < buttons.length; i++) {
   ReactDOM.createRoot(buttons[i]!).render(
     <React.StrictMode>

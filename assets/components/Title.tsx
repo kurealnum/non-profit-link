@@ -15,10 +15,12 @@ const Title = ({ children, highlight_word, id, imgsInfo }: Props) => {
   return (
     <>
       <h1 id={id}>
+        {/* this is how we highlight a certain word */}
         {split_children[0]}
         <span className="highlight-word">{highlight_word}</span>
         {split_children[1]}
       </h1>
+      {/* only add an image if imgsInfo exists */}
       {imgsInfo && (
         <img src={imgsInfo.img} alt={imgsInfo.alt} id="title-background" />
       )}

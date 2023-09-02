@@ -8,6 +8,7 @@ interface Props {
 const Footer = ({ items }: Props) => {
   return (
     <>
+      {/* map our imgs out for our footer */}
       {items.map((ial, index) => (
         <a key={index} href={ial.link}>
           <img src={ial.img} alt={ial.alt} />
