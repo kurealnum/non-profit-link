@@ -3,11 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // img imports
-import Vite from "../imgs/vite.svg";
 import SearchButton from "../imgs/search_button_icon.svg";
 import TitleBlobSVG from "../imgs/title_blob.svg";
 import FirstParagraphBlob from "../imgs/first_paragraph_blob.svg";
 import SecondParagraphBlob from "../imgs/second_paragraph_blob.svg";
+import EmailIcon from "../imgs/email_icon.svg";
+import BrowserIcon from "../imgs/browser_window.svg";
+import GithubIcon from "../imgs/github_icon.svg";
+import QuestionIcon from "../imgs/question_mark_icon.svg";
 
 // component imports
 import { imgsInfo } from "../interfaces/imgsInfo.ts";
@@ -75,9 +78,24 @@ ReactDOM.createRoot(document.getElementById("react-paragraphs")!).render(
 //render for footer
 const imgs_info_input: imgsInfo[] = [
   {
-    img: Vite,
-    alt: "A react image",
-    link: "https://google.com",
+    img: EmailIcon,
+    alt: "An email icon",
+    link: "oscar.gaske.cs@gmail.com",
+  },
+  {
+    img: BrowserIcon,
+    alt: "A browser icon",
+    link: "IFORGETWHERETHISGOES",
+  },
+  {
+    img: GithubIcon,
+    alt: "A github icon",
+    link: "https://github.com/kurealnum/non-profit-link",
+  },
+  {
+    img: QuestionIcon,
+    alt: "A question mark icon",
+    link: "IFORGETWHERETHISGOES",
   },
 ];
 

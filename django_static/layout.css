@@ -139,6 +139,12 @@ p {
     z-index: -1;
 }
 
+footer a img {
+    padding: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
 @media (max-width: 500px) {
     .desktop {
         display: none;
