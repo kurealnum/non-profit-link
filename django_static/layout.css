@@ -116,22 +116,23 @@ button {
 
 p {
     text-align: center;
-    max-width: 80%;
+    max-width: 87%;
     margin: 3vh auto;
-    padding: 10px;
-    background: var(--primary)
+    padding: 14px 10px;
+    background: var(--primary);
+    margin-bottom: 175px;
+    border-radius: 5px;
 }
 
-.paragraph {
-    margin: 50px 0;
+.paragraph-text-img {
     position: relative;
 }
 
 .paragraph img {
-    position: relative;
+    position: absolute;
     left: 0;
     right: 0;
-    top: -100px;
+    top: 250px;
     bottom: 0;
     margin: auto;
     width: 90%;
