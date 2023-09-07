@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import CustomUser
+from .models import orgs
 
 
 class LoginRegisterForm(forms.Form):
@@ -11,12 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
     
     class Meta:
         password2 = None
-        model = CustomUser
+        model = orgs
         fields = ("email",)
 
 class CustomUserChangeForm(UserChangeForm):
    
     class Meta: 
         password2 = None
-        model = CustomUser
+        model = orgs
         fields = ("email",)

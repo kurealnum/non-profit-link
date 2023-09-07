@@ -87,7 +87,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'accounts.orgs'
 
 AUTHENTICATION_BACKENDS = ['apps.accounts.backends.EmailBackend']
 

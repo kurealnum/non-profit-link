@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import LoginRegisterForm, CustomUserCreationForm
-from .models import CustomUser
+from .models import orgs
 from .managers import CustomUserManager
 
 LOGIN_FORM = "login.html"
@@ -64,7 +64,7 @@ def register_user(request):
             password = form.cleaned_data["password1"]
 
             #create user
-            CustomUser.objects.create_user(email=email, password=password)
+            orgs.objects.create_user(email=email, password=password)
 
             return redirect('/accounts/login')
 
