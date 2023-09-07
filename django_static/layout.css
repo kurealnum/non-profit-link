@@ -139,10 +139,26 @@ p {
     z-index: -1;
 }
 
-footer a img {
-    padding: 10px;
+footer {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 25px auto;
+    width: 80%;
+}
+
+footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: var(--accent);
+}
+
+footer img {
+    width: 75%;
+    height: 75%;
 }
 
 @media (max-width: 500px) {
