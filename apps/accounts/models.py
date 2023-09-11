@@ -11,6 +11,18 @@ class org_loc(models.Model):
     street_address = models.CharField(unique=True, max_length=50)
 
 
+class org_contact_info(models.Model):
+    phone = models.PositiveIntegerField(
+        max_length=11, unique=True
+    )  # max_length for 11234567890
+    email = models.EmailField(unique=True)
+
+
+class org_info(models.Model):
+    desc = models.CharField(max_length=1000, unique=False)
+    website = models.URLField(unique=False)
+
+
 class org(AbstractUser):
     objects = CustomUserManager()
 
@@ -18,7 +30,10 @@ class org(AbstractUser):
         unique=False, max_length=100, default="Un-named non-profit :("
     )
     loc = models.OneToOneField(org_loc, on_delete=models.CASCADE, primary_key=True)
-    email = models.EmailField(unique=True)
+    contact = models.OneToOneField(
+        org_contact_info, on_delete=models.CASCADE, primary_key=True
+    )
+    info = models.OneToOneField(org_info, on_delete=models.CASCADE, primary_key=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ()  # type: ignore
