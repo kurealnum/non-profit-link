@@ -1,4 +1,8 @@
 {
-    "hediet.vscode-drawio.offline": false,
-    "python.analysis.typeCheckingMode": "basic"
+  "hediet.vscode-drawio.offline": false,
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }
