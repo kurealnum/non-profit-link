@@ -20,3 +20,6 @@ class orgs_loc(models.Model):
     zip = models.SmallIntegerField(unique=False, null=False) #can be null
     city = models.CharField(unique=False, max_length=50)
     street_address = models.CharField(unique=True, max_length=50)
+
+class item(models.Model):
+    org = models.ForeignKey(orgs, on_delete=models.CASCADE)
