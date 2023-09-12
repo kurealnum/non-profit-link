@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import orgs
+from .models import org
 
 
 class CustomUserAdmin(UserAdmin):
@@ -9,15 +9,20 @@ class CustomUserAdmin(UserAdmin):
         (
             None,
             {
-                "fields": ["email",]
-            }
+                "fields": [
+                    "email",
+                ]
+            },
         )
     ]
     username = None
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = orgs
-    list_display = ["email", ]
-    ordering = ('-email',)
+    model = org
+    list_display = [
+        "email",
+    ]
+    ordering = ("-email",)
 
-admin.site.register(orgs, CustomUserAdmin)
+
+admin.site.register(org, CustomUserAdmin)

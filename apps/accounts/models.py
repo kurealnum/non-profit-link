@@ -12,9 +12,7 @@ class org_loc(models.Model):
 
 
 class org_contact_info(models.Model):
-    phone = models.PositiveIntegerField(
-        max_length=11, unique=True
-    )  # max_length for 11234567890
+    phone = models.PositiveIntegerField(unique=True)  # max_length for 11234567890
     email = models.EmailField(unique=True)
 
 
@@ -24,18 +22,16 @@ class org_info(models.Model):
 
 
 class org(AbstractUser):
-    objects = CustomUserManager()
+    objects: CustomUserManager = CustomUserManager()
 
     non_profit_name = models.CharField(
-        unique=False, max_length=100, default="Un-named non-profit :("
+        unique=True, max_length=100, default="Un-named non-profit :("
     )
-    loc = models.OneToOneField(org_loc, on_delete=models.CASCADE, primary_key=True)
-    contact = models.OneToOneField(
-        org_contact_info, on_delete=models.CASCADE, primary_key=True
-    )
-    info = models.OneToOneField(org_info, on_delete=models.CASCADE, primary_key=True)
+    loc = models.OneToOneField(org_loc, on_delete=models.CASCADE)
+    contact = models.OneToOneField(org_contact_info, on_delete=models.CASCADE)
+    info = models.OneToOneField(org_info, on_delete=models.CASCADE)
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "non_profit_name"
     REQUIRED_FIELDS = ()  # type: ignore
 
     def __str__(self) -> str:
@@ -43,6 +39,6 @@ class org(AbstractUser):
 
 
 class item(models.Model):  # model for all items
-    org = models.ForeignKey(org, on_delete=models.CASCADE, primary_key=True)
+    org = models.ForeignKey(org, on_delete=models.CASCADE)
     want = models.BooleanField(unique=False, max_length=100)
     count = models.SmallIntegerField(unique=False, default=1)
