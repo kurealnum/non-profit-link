@@ -12,7 +12,7 @@ class org_loc(models.Model):
 
 
 class org_contact_info(models.Model):
-    phone = models.PositiveIntegerField(unique=True)  # max_length for 11234567890
+    phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
 
@@ -39,6 +39,6 @@ class org(AbstractUser):
 
 
 class item(models.Model):  # model for all items
-    org = models.ForeignKey(org, on_delete=models.CASCADE)
-    want = models.BooleanField(unique=False, max_length=100)
+    org = models.ForeignKey("org", on_delete=models.CASCADE)
+    want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)
