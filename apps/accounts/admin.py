@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import org, org_contact_info, org_info, org_loc, item
+from .models import Org
 
 
 class OrgAdmin(admin.ModelAdmin):
@@ -26,4 +26,4 @@ class OrgAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(org, OrgAdmin)
+admin.site.register(Org, OrgAdmin)

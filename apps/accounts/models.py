@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
 
 
-class org_loc(models.Model):
+class OrgLocations(models.Model):
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.SmallIntegerField(unique=False, null=False)  # can be null
@@ -11,27 +11,25 @@ class org_loc(models.Model):
     street_address = models.CharField(unique=True, max_length=50)
 
 
-class org_contact_info(models.Model):
+class OrgContactInfo(models.Model):
     phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
 
-class org_info(models.Model):
+class OrgInfo(models.Model):
     desc = models.CharField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
 
-class org(AbstractUser):
+class Org(AbstractUser):
     objects: CustomUserManager = CustomUserManager()
 
     non_profit_name = models.CharField(
         unique=True, max_length=100, default="Un-named non-profit :(", null=False
     )
-    loc = models.OneToOneField(org_loc, on_delete=models.CASCADE, null=True)
-    contact = models.OneToOneField(
-        org_contact_info, on_delete=models.CASCADE, null=True
-    )
-    info = models.OneToOneField(org_info, on_delete=models.CASCADE, null=True)
+    loc = models.OneToOneField(OrgLocations, on_delete=models.CASCADE, null=True)
+    contact = models.OneToOneField(OrgContactInfo, on_delete=models.CASCADE, null=True)
+    info = models.OneToOneField(OrgInfo, on_delete=models.CASCADE, null=True)
     username = None
     USERNAME_FIELD = "non_profit_name"
     REQUIRED_FIELDS = ()  # type: ignore
