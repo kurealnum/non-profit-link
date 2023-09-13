@@ -25,11 +25,13 @@ class org(AbstractUser):
     objects: CustomUserManager = CustomUserManager()
 
     non_profit_name = models.CharField(
-        unique=True, max_length=100, default="Un-named non-profit :("
+        unique=True, max_length=100, default="Un-named non-profit :(", null=False
     )
-    loc = models.OneToOneField(org_loc, on_delete=models.CASCADE)
-    contact = models.OneToOneField(org_contact_info, on_delete=models.CASCADE)
-    info = models.OneToOneField(org_info, on_delete=models.CASCADE)
+    loc = models.OneToOneField(org_loc, on_delete=models.CASCADE, null=True)
+    contact = models.OneToOneField(
+        org_contact_info, on_delete=models.CASCADE, null=True
+    )
+    info = models.OneToOneField(org_info, on_delete=models.CASCADE, null=True)
 
     USERNAME_FIELD = "non_profit_name"
     REQUIRED_FIELDS = ()  # type: ignore

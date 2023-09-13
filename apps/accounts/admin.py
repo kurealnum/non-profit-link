@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
             None,
             {
                 "fields": [
-                    "email",
+                    "non_profit_name",
                 ]
             },
         )
@@ -20,9 +20,9 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = org
     list_display = [
-        "email",
+        "non_profit_name",
     ]
-    ordering = ("-email",)
+    ordering = ("-non_profit_name",)
 
 
 admin.site.register(org, CustomUserAdmin)
