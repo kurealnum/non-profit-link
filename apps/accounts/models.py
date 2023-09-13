@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
 
 
-class OrgLocations(models.Model):
+class OrgLocation(models.Model):
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.SmallIntegerField(unique=False, null=False)  # can be null
@@ -27,7 +27,7 @@ class Org(AbstractUser):
     non_profit_name = models.CharField(
         unique=True, max_length=100, default="Un-named non-profit :(", null=False
     )
-    loc = models.OneToOneField(OrgLocations, on_delete=models.CASCADE, null=True)
+    loc = models.OneToOneField(OrgLocation, on_delete=models.CASCADE, null=True)
     contact = models.OneToOneField(OrgContactInfo, on_delete=models.CASCADE, null=True)
     info = models.OneToOneField(OrgInfo, on_delete=models.CASCADE, null=True)
     username = None
@@ -38,7 +38,7 @@ class Org(AbstractUser):
         return self.email
 
 
-class item(models.Model):  # model for all items
+class Item(models.Model):  # model for all items
     org = models.ForeignKey("org", on_delete=models.CASCADE)
     want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)

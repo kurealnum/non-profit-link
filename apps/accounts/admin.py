@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import Org
+from .models import Org, OrgContactInfo, OrgInfo, OrgLocation, Item
 
 
+@admin.register(Org)
 class OrgAdmin(admin.ModelAdmin):
     fieldsets = [
         (
@@ -23,7 +24,23 @@ class OrgAdmin(admin.ModelAdmin):
         "non_profit_name",
     ]
     ordering = ("-non_profit_name",)
+
+
+@admin.register(OrgContactInfo)
+class OrgContactInfoAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Org, OrgAdmin)
+@admin.register(OrgInfo)
+class OrgInfoAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(OrgLocation)
+class OrgLocationAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Item)
+class OrgItemAdmin(admin.ModelAdmin):
+    pass
