@@ -32,7 +32,7 @@ class org(AbstractUser):
         org_contact_info, on_delete=models.CASCADE, null=True
     )
     info = models.OneToOneField(org_info, on_delete=models.CASCADE, null=True)
-
+    username = None
     USERNAME_FIELD = "non_profit_name"
     REQUIRED_FIELDS = ()  # type: ignore
 
