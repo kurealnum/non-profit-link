@@ -6,7 +6,9 @@
 # Design database in Django
 
 - Database schema
-- Create database schema in Django
+- Create an admin user
+- Create a command to create a non-profit from terminal
+- Update admin panel with org
 
 # Login/Register/Logout forms
 
