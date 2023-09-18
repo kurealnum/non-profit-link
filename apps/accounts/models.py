@@ -18,7 +18,7 @@ class OrgLocation(models.Model):
 
 
 class OrgContactInfo(models.Model):
-    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
+    org = models.ForeignKey("org", on_delete=models.CASCADE)
     phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
@@ -28,7 +28,7 @@ class OrgContactInfo(models.Model):
 
 
 class OrgInfo(models.Model):
-    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
+    org = models.ForeignKey("org", on_delete=models.CASCADE)
     desc = models.CharField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
