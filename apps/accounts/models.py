@@ -11,15 +11,27 @@ class OrgLocation(models.Model):
     city = models.CharField(unique=False, max_length=50)
     street_address = models.CharField(unique=True, max_length=50)
 
+    class Meta:
+        verbose_name = "OrgLocationInfo"
+        verbose_name_plural = "OrgsLocationInfo"
+
 
 class OrgContactInfo(models.Model):
     phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
+    class Meta:
+        verbose_name = "OrgContactInfo"
+        verbose_name_plural = "OrgsContactInfo"
+
 
 class OrgInfo(models.Model):
     desc = models.CharField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
+
+    class Meta:
+        verbose_name = "OrgInfo"
+        verbose_name_plural = "OrgsInfo"
 
 
 class Org(AbstractUser):
@@ -38,8 +50,16 @@ class Org(AbstractUser):
     def __str__(self) -> str:
         return self.email
 
+    class Meta:
+        verbose_name = "Org"
+        verbose_name_plural = "Orgs"
+
 
 class Item(models.Model):  # model for all items
     org = models.ForeignKey("org", on_delete=models.CASCADE)
     want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)
+
+    class Meta:
+        verbose_name = "Item"
+        verbose_name_plural = "Items"

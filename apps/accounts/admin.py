@@ -19,7 +19,7 @@ class OrgAdmin(admin.ModelAdmin):
     username = None
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = admin.ModelAdmin
+    model = Org
     list_display = [
         "non_profit_name",
     ]
