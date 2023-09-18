@@ -5,6 +5,7 @@ from .managers import CustomUserManager
 
 
 class OrgLocation(models.Model):
+    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.SmallIntegerField(unique=False, null=False)  # can be null
@@ -17,6 +18,7 @@ class OrgLocation(models.Model):
 
 
 class OrgContactInfo(models.Model):
+    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
     phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
@@ -26,6 +28,7 @@ class OrgContactInfo(models.Model):
 
 
 class OrgInfo(models.Model):
+    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
     desc = models.CharField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
@@ -37,14 +40,14 @@ class OrgInfo(models.Model):
 class Org(AbstractUser):
     objects: CustomUserManager = CustomUserManager()
 
-    non_profit_name = models.CharField(
-        unique=True, max_length=100, default="Un-named non-profit :(", null=False
+    org_name = models.CharField(
+        unique=False, max_length=100, default="UN-NAMED-ORG", null=False
     )
-    loc = models.OneToOneField(OrgLocation, on_delete=models.CASCADE, null=True)
-    contact = models.OneToOneField(OrgContactInfo, on_delete=models.CASCADE, null=True)
-    info = models.OneToOneField(OrgInfo, on_delete=models.CASCADE, null=True)
+    # loc = models.OneToOneField(OrgLocation, on_delete=models.CASCADE, null=True)
+    # contact = models.OneToOneField(OrgContactInfo, on_delete=models.CASCADE, null=True)
+    # info = models.OneToOneField(OrgInfo, on_delete=models.CASCADE, null=True)
     username = None
-    USERNAME_FIELD = "non_profit_name"
+    USERNAME_FIELD = "org_name"
     REQUIRED_FIELDS = ()  # type: ignore
 
     def __str__(self) -> str:

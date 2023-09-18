@@ -29,8 +29,8 @@ class OrgAdmin(admin.ModelAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = Org
-    list_display = ["non_profit_name", "loc"]
-    ordering = ("-non_profit_name",)
+    list_display = ["org_name"]
+    ordering = ("-org_name",)
 
 
 @admin.register(OrgContactInfo)
