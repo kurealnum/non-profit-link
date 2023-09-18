@@ -4,8 +4,26 @@ from django.db import models
 from .managers import CustomUserManager
 
 
+class Org(AbstractUser):
+    objects: CustomUserManager = CustomUserManager()
+
+    org_name = models.CharField(
+        unique=False, max_length=100, default="UN-NAMED-ORG", null=False
+    )
+    username = None
+    USERNAME_FIELD = "org_name"
+    REQUIRED_FIELDS = ()  # type: ignore
+
+    def __str__(self) -> str:
+        return self.email
+
+    class Meta:
+        verbose_name = "Org"
+        verbose_name_plural = "Orgs"
+
+
 class OrgLocation(models.Model):
-    org = models.ForeignKey("org", on_delete=models.CASCADE, related_name="+")
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.SmallIntegerField(unique=False, null=False)  # can be null
@@ -18,7 +36,7 @@ class OrgLocation(models.Model):
 
 
 class OrgContactInfo(models.Model):
-    org = models.ForeignKey("org", on_delete=models.CASCADE)
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
     phone = models.PositiveIntegerField(unique=True)
     email = models.EmailField(unique=True)
 
@@ -28,34 +46,13 @@ class OrgContactInfo(models.Model):
 
 
 class OrgInfo(models.Model):
-    org = models.ForeignKey("org", on_delete=models.CASCADE)
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
     desc = models.CharField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
     class Meta:
         verbose_name = "OrgInfo"
         verbose_name_plural = "OrgsInfo"
-
-
-class Org(AbstractUser):
-    objects: CustomUserManager = CustomUserManager()
-
-    org_name = models.CharField(
-        unique=False, max_length=100, default="UN-NAMED-ORG", null=False
-    )
-    # loc = models.OneToOneField(OrgLocation, on_delete=models.CASCADE, null=True)
-    # contact = models.OneToOneField(OrgContactInfo, on_delete=models.CASCADE, null=True)
-    # info = models.OneToOneField(OrgInfo, on_delete=models.CASCADE, null=True)
-    username = None
-    USERNAME_FIELD = "org_name"
-    REQUIRED_FIELDS = ()  # type: ignore
-
-    def __str__(self) -> str:
-        return self.email
-
-    class Meta:
-        verbose_name = "Org"
-        verbose_name_plural = "Orgs"
 
 
 class Item(models.Model):  # model for all items
