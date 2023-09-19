@@ -11,11 +11,12 @@ class Org(AbstractUser):
         unique=False, max_length=100, default="UN-NAMED-ORG", null=False
     )
     username = None
+    password = models.CharField(max_length=100, null=False)
     USERNAME_FIELD = "org_name"
     REQUIRED_FIELDS = ()  # type: ignore
 
     def __str__(self) -> str:
-        return self.email
+        return self.org_name
 
     class Meta:
         verbose_name = "Org"

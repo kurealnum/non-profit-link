@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginRegisterForm
 from .models import Org, OrgContactInfo, OrgInfo, OrgLocation, Item
 
 
@@ -29,7 +29,6 @@ class OrgAdmin(admin.ModelAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = Org
-    list_display = ["org_name"]
     ordering = ("-org_name",)
 
 

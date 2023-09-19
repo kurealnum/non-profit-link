@@ -11,15 +11,18 @@ class LoginRegisterForm(forms.Form):
     )
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(forms.ModelForm):
     class Meta:
         password2 = None
         model = Org
-        fields = ("email",)
+        exclude = ("date_joined",)
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         password2 = None
         model = Org
-        fields = ("email",)
+        fields = (
+            "org_name",
+            "password",
+        )
