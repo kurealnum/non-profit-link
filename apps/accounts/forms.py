@@ -24,6 +24,8 @@ class CustomUserCreationForm(forms.ModelForm):
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        password2 = None
         model = Org
-        exclude = ("last_login",)
+        exclude = (
+            "last_login",
+            "date_joined",
+        )

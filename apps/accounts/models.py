@@ -8,9 +8,12 @@ class Org(AbstractUser):
     objects: CustomUserManager = CustomUserManager()
 
     org_name = models.CharField(
-        unique=False, max_length=100, default="UN-NAMED-ORG", null=False
+        unique=True, max_length=100, default="UN-NAMED-ORG", null=False
     )
     username = None
+    first_name = None
+    last_name = None
+    email = None
     password = models.CharField(max_length=100, null=False)
     USERNAME_FIELD = "org_name"
     REQUIRED_FIELDS = ()  # type: ignore
