@@ -12,6 +12,10 @@ class LoginRegisterForm(forms.Form):
 
 
 class CustomUserCreationForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput(), label="Enter your password", max_length=100
+    )
+
     class Meta:
         password2 = None
         model = Org
@@ -22,7 +26,4 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         password2 = None
         model = Org
-        fields = (
-            "org_name",
-            "password",
-        )
+        exclude = ("last_login",)

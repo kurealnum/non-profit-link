@@ -3,6 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginRegisterForm
 from .models import Org, OrgContactInfo, OrgInfo, OrgLocation, Item
 
+from django.contrib.auth.forms import UserChangeForm
+
 
 # inlines for Org
 class OrgContactInfoInline(admin.TabularInline):
