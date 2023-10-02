@@ -2,9 +2,10 @@ from django import forms
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import Org
+from .models import Org, OrgLocation
 
 
+# basic user change forms
 class LoginRegisterForm(forms.Form):
     email = forms.EmailField(label="Enter your email", max_length=100)
     password = forms.CharField(
@@ -18,7 +19,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = Org
-        fields = ["org_name", "password"]
+        fields = ["org_name"]
 
 
 class CustomUserChangeForm(forms.ModelForm):
@@ -28,3 +29,10 @@ class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = Org
         fields = ["org_name"]
+
+
+# org info form
+class OrgLocationEditForm(forms.ModelForm):
+    class Meta:
+        model = OrgLocation
+        fields = "__all__"

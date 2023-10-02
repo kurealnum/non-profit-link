@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import LoginRegisterForm, CustomUserCreationForm
-from .models import Org
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template import loader
+
+from .forms import CustomUserCreationForm, LoginRegisterForm, OrgLocationEditForm
 from .managers import CustomUserManager
+from .models import Org
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
@@ -76,5 +77,8 @@ def register_user(request):
     # else a get request
     else:
         form = CustomUserCreationForm()
+        locations_form = OrgLocationEditForm()
 
-        return render(request, REGISTER_FORM, {"form": form})
+        return render(
+            request, REGISTER_FORM, {"form": form, "locations_form": locations_form}
+        )
