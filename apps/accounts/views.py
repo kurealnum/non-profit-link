@@ -5,7 +5,13 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 
-from .forms import CustomUserCreationForm, LoginRegisterForm, OrgLocationEditForm
+from .forms import (
+    CustomUserCreationForm,
+    LoginRegisterForm,
+    OrgLocationEditForm,
+    OrgContactInfoEditForm,
+    OrgInfoEditForm,
+)
 from .managers import CustomUserManager
 from .models import Org
 
@@ -76,9 +82,18 @@ def register_user(request):
 
     # else a get request
     else:
-        form = CustomUserCreationForm()
+        org = CustomUserCreationForm()
         locations_form = OrgLocationEditForm()
+        contact_form = OrgContactInfoEditForm()
+        general_info_form = OrgInfoEditForm()
 
         return render(
-            request, REGISTER_FORM, {"form": form, "locations_form": locations_form}
+            request,
+            REGISTER_FORM,
+            {
+                "org": org,
+                "locations_form": locations_form,
+                "contact_form": contact_form,
+                "general_info_form": general_info_form,
+            },
         )

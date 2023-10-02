@@ -1,8 +1,6 @@
 from django import forms
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import Org, OrgLocation
+from .models import Org, OrgLocation, OrgContactInfo, OrgInfo, Item
 
 
 # basic user change forms
@@ -31,8 +29,31 @@ class CustomUserChangeForm(forms.ModelForm):
         fields = ["org_name"]
 
 
-# org info form
+# org info forms
 class OrgLocationEditForm(forms.ModelForm):
     class Meta:
         model = OrgLocation
         fields = "__all__"
+        exclude = ("org",)
+
+
+class OrgContactInfoEditForm(forms.ModelForm):
+    class Meta:
+        model = OrgContactInfo
+        fields = "__all__"
+        exclude = ("org",)
+
+
+class OrgInfoEditForm(forms.ModelForm):
+    class Meta:
+        model = OrgInfo
+        fields = "__all__"
+        exclude = ("org",)
+
+
+# item form
+class ItemEditForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = "__all__"
+        exclude = ("org",)
