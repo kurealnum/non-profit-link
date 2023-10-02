@@ -12,29 +12,19 @@ class LoginRegisterForm(forms.Form):
     )
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta:
-        password2 = None
-        model = Org
-        exclude = (
-            "date_joined",
-            "last_login",
-            "is_superuser",
-            "groups",
-            "user_permissions",
-            "is_staff",
-            "is_active",
-        )
-
-
-class CustomUserChangeForm(UserChangeForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = Org
-        exclude = (
-            "last_login",
-            "date_joined",
-        )
+        fields = ["org_name", "password"]
+
+
+class CustomUserChangeForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = Org
+        fields = ["org_name"]

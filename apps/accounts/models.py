@@ -14,7 +14,6 @@ class Org(AbstractUser):
     first_name = None
     last_name = None
     email = None
-    password = models.CharField(max_length=100, null=False)
     USERNAME_FIELD = "org_name"
     REQUIRED_FIELDS = ()  # type: ignore
 
