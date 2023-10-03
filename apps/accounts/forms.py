@@ -1,6 +1,7 @@
 from django import forms
+from django.utils.safestring import mark_safe
 
-from .models import Org, OrgLocation, OrgContactInfo, OrgInfo, Item
+from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
 
 
 # basic user change forms
@@ -12,7 +13,12 @@ class LoginRegisterForm(forms.Form):
 
 
 class CustomUserCreationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label=mark_safe(
+            "Your password must:<br />-Be longer than 8 characters<br />-Have an uppercase and lowercase characters<br />-Use a special character/number"
+        ),
+    )
     confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
