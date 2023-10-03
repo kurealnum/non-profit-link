@@ -23,13 +23,15 @@ CUserManager = CustomUserManager()
 
 def login_user(request):
     if request.method == "POST":
-        form = LoginRegisterForm(request.POST)
+        login_register = LoginRegisterForm(request.POST)
 
         # if the form isn't empty
-        if form.is_valid():
+        if login_register.is_valid():
+            login_register = login_register.cleaned_data
+
             # data
-            email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
+            email = login_register["email"]
+            password = login_register["password"]
             user = authenticate(request, username=email, password=password)
 
             # if authenticate returns a user object, which means that the user is valid
@@ -59,18 +61,35 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
+        data = request.POST
+        org = CustomUserCreationForm(data)
+        locations_form = OrgLocationEditForm(data)
+        contact_form = OrgContactInfoEditForm(data)
+        general_info_form = OrgInfoEditForm(data)
 
-        # if the form isn't empty
-        if form.is_valid():
-            # data
-            email = form.cleaned_data["email"]
-            password = form.cleaned_data["password1"]
+        # if the forms are valid
+        if (
+            org.is_valid()
+            and locations_form.is_valid()
+            and contact_form.is_valid()
+            and general_info_form.is_valid()
+        ):
+            # cleaning data
+            org = org.cleaned_data
+            locations_form = locations_form.cleaned_data
+            contact_form = contact_form.cleaned_data
+            general_info_form = general_info_form.cleaned_data
 
             # create user
-            Org.objects.create_user(name=email, password=password)
+            org = Org.objects.create_user(
+                name=org["org_name"], password=org["password"]
+            )
 
-            return redirect("/accounts/login")
+            # just for testing right now
+            org.country = locations_form["country"]
+            org.save()
+
+            return redirect("/accounts/login/")
 
         # else error with the form (add more to this later)
         else:
@@ -78,6 +97,7 @@ def register_user(request):
                 request,
                 "Please enter a more secure password and ensure that your passwords are the same length",
             )
+            print(org.is_valid())
             return redirect("register")
 
     # else a get request
