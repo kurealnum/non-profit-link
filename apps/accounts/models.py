@@ -8,7 +8,11 @@ class Org(AbstractUser):
     objects: CustomUserManager = CustomUserManager()
 
     org_name = models.CharField(
-        unique=True, max_length=100, default="UN-NAMED-ORG", null=False
+        unique=True,
+        max_length=100,
+        default="UN-NAMED-ORG",
+        null=False,
+        error_messages={"required": "Orginization with this name already exists"},
     )
     username = None
     first_name = None

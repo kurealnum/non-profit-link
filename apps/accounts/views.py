@@ -60,6 +60,19 @@ def logout_user(request):
 
 
 def register_user(request):
+    # creating forms, do this in a funciton
+    org = CustomUserCreationForm()
+    locations_form = OrgLocationEditForm()
+    contact_form = OrgContactInfoEditForm()
+    general_info_form = OrgInfoEditForm()
+
+    render_forms = {
+        "org": org,
+        "locations_form": locations_form,
+        "contact_form": contact_form,
+        "general_info_form": general_info_form,
+    }
+
     if request.method == "POST":
         data = request.POST
         org = CustomUserCreationForm(data)
@@ -67,13 +80,15 @@ def register_user(request):
         contact_form = OrgContactInfoEditForm(data)
         general_info_form = OrgInfoEditForm(data)
 
+        valid_forms_count = [
+            org.is_valid(),
+            locations_form.is_valid(),
+            contact_form.is_valid(),
+            general_info_form.is_valid(),
+        ]
+
         # if the forms are valid
-        if (
-            org.is_valid()
-            and locations_form.is_valid()
-            and contact_form.is_valid()
-            and general_info_form.is_valid()
-        ):
+        if sum(valid_forms_count) == len(valid_forms_count):
             # cleaning data
             org = org.cleaned_data
             locations_form = locations_form.cleaned_data
@@ -93,27 +108,17 @@ def register_user(request):
 
         # else error with the form (add more to this later)
         else:
-            messages.error(
-                request,
-                "Please enter a more secure password and ensure that your passwords are the same length",
-            )
             print(org.is_valid())
-            return redirect("register")
+            return render(
+                request,
+                REGISTER_FORM,
+                render_forms,
+            )
 
     # else a get request
     else:
-        org = CustomUserCreationForm()
-        locations_form = OrgLocationEditForm()
-        contact_form = OrgContactInfoEditForm()
-        general_info_form = OrgInfoEditForm()
-
         return render(
             request,
             REGISTER_FORM,
-            {
-                "org": org,
-                "locations_form": locations_form,
-                "contact_form": contact_form,
-                "general_info_form": general_info_form,
-            },
+            render_forms,
         )
