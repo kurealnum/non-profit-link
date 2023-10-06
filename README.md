@@ -1,5 +1,7 @@
 # NPL (Non Profit Link)
 
+**Important:** Apparently I have been misspelling "organization" as "orginization". This is the most embarassing moment of my entire life. If you see a misspelled word, please change it.
+
 Written in Python, Django, React (at some point)/JS, HTML, CSS, and SQLite3 (Postgres at some point)
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the project. However, everything will **_eventually be on .drawio files_**.
