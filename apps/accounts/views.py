@@ -30,9 +30,9 @@ def login_user(request):
             login_register = login_register.cleaned_data
 
             # data
-            email = login_register["email"]
+            org_name = login_register["org_name"]
             password = login_register["password"]
-            user = authenticate(request, username=email, password=password)
+            user = authenticate(request, org_name=org_name, password=password)
 
             # if authenticate returns a user object, which means that the user is valid
             if user:
