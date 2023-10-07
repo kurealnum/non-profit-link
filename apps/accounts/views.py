@@ -76,16 +76,18 @@ def register_user(request):
         # if the forms are valid
         if sum(valid_forms_count) == len(valid_forms_count):
             # cleaning data
-            user_forms = [form.cleaned_data for form in user_forms]
+            # user_forms = [form.cleaned_data for form in user_forms]
 
-            # create user
-            org = Org.objects.create_user(
-                name=user_forms[0]["org_name"], password=user_forms[0]["password"]
-            )
+            # # create user
+            # org = Org.objects.create_user(
+            #     name=user_forms[0]["org_name"], password=user_forms[0]["password"]
+            # )
 
-            # just for testing right now
-            org.country = user_forms[1]["country"]
-            org.save()
+            # # just for testing right now
+            # org.country = user_forms[1]["country"]
+            # org.save()
+            for form in user_forms:
+                form.save()
 
             return redirect("/accounts/login/")
 
