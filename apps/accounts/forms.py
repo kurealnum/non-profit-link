@@ -6,7 +6,7 @@ from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
 
 # basic user change forms
 class LoginRegisterForm(forms.Form):
-    org_name = forms.EmailField(label="Enter your organizations name", max_length=100)
+    org_name = forms.CharField(label="Enter your organizations name", max_length=100)
     password = forms.CharField(
         widget=forms.PasswordInput(), label="Enter your password", max_length=100
     )
