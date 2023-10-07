@@ -5,10 +5,7 @@
 
 # Design database in Django
 
-- Database schema
-- Create an admin user
-- Create a command to create a non-profit from terminal
-- Update admin panel with org
+- Mainly using a Kanban for my TODO at the moment, please reach out for more information. In general, I am designing the frontend according to the Figma design listed in the README.
 
 # Login/Register/Logout forms
 
