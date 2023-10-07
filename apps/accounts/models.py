@@ -12,7 +12,7 @@ class Org(AbstractUser):
         max_length=100,
         default="UN-NAMED-ORG",
         null=False,
-        error_messages={"required": "Orginization with this name already exists"},
+        error_messages={"unique": "Orginization with this name already exists"},
     )
     username = None
     first_name = None
@@ -33,9 +33,9 @@ class OrgLocation(models.Model):
     org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
-    zip = models.SmallIntegerField(unique=False, null=False)  # can be null
+    zip = models.IntegerField(unique=False)
     city = models.CharField(unique=False, max_length=50)
-    street_address = models.CharField(unique=True, max_length=50)
+    street_address = models.CharField(unique=False, max_length=50)
 
     class Meta:
         verbose_name = "OrgLocationInfo"
@@ -54,7 +54,7 @@ class OrgContactInfo(models.Model):
 
 class OrgInfo(models.Model):
     org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
-    desc = models.CharField(max_length=1000, unique=False)
+    desc = models.TextField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
     class Meta:

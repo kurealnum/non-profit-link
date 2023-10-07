@@ -8,9 +8,9 @@ from django.template import loader
 from .forms import (
     CustomUserCreationForm,
     LoginRegisterForm,
-    OrgLocationEditForm,
     OrgContactInfoEditForm,
     OrgInfoEditForm,
+    OrgLocationEditForm,
 )
 from .managers import CustomUserManager
 from .models import Org
@@ -23,11 +23,11 @@ CUserManager = CustomUserManager()
 
 def login_user(request):
     if request.method == "POST":
-        login_register = LoginRegisterForm(request.POST)
+        login_register_form = LoginRegisterForm(request.POST)
 
         # if the form isn't empty
-        if login_register.is_valid():
-            login_register = login_register.cleaned_data
+        if login_register_form.is_valid():
+            login_register = login_register_form.cleaned_data
 
             # data
             org_name = login_register["org_name"]
@@ -42,14 +42,13 @@ def login_user(request):
 
             # else error with the form (add more to this later)
             else:
-                messages.error(request, "Incorrect email and/or password")
-                return redirect("login")
+                return render(request, LOGIN_FORM, {"form": login_register_form})
 
     # else is a GET request
     else:
-        form = LoginRegisterForm()
+        login_register_form = LoginRegisterForm()
 
-        return render(request, LOGIN_FORM, {"form": form})
+        return render(request, LOGIN_FORM, {"form": login_register_form})
 
 
 def logout_user(request):
