@@ -90,7 +90,10 @@ DATABASES = {
 
 AUTH_USER_MODEL = "accounts.org"
 
-AUTHENTICATION_BACKENDS = ["apps.accounts.backends.EmailBackend"]
+AUTHENTICATION_BACKENDS = [
+    "apps.accounts.backends.OrgBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 
 # Password validation
