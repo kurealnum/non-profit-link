@@ -10,7 +10,6 @@ class Org(AbstractUser):
     org_name = models.CharField(
         unique=True,
         max_length=100,
-        default="UN-NAMED-ORG",
         null=False,
         error_messages={"unique": "Orginization with this name already exists"},
     )
@@ -44,8 +43,8 @@ class OrgLocation(models.Model):
 
 class OrgContactInfo(models.Model):
     org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
-    phone = models.PositiveIntegerField(unique=True)
-    email = models.EmailField(unique=True)
+    phone = models.PositiveIntegerField(unique=False)
+    email = models.EmailField(unique=False)
 
     class Meta:
         verbose_name = "OrgContactInfo"

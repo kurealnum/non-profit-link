@@ -75,16 +75,6 @@ def register_user(request):
 
         # if the forms are valid
         if sum(valid_forms_count) == len(valid_forms_count):
-            # # cleaning data
-            # user_forms = [form.cleaned_data for form in user_forms]
-            print(user_forms[0]["password"])
-
-            # creating the user
-            # Org.objects.create_user(
-            #     name=user_forms[0].cleaned_data["org_name"],
-            #     password=user_forms[0].cleaned_data["password"],
-            # )
-
             # TODO: save forms
             for form in user_forms:
                 form.save(True)
