@@ -8,9 +8,10 @@
 <form action="/accounts/register/" method="post" class="login_form">
 
     {% csrf_token %}
-    {% for form in forms %}
-        {{ form }}
-    {% endfor %}
+    {{ org }}
+    {{ locations_form }}
+    {{ contact_form }}
+    {{ general_info_form }}
 
     <button type="submit" class="login">Register</button>
 </form>
