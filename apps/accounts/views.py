@@ -62,34 +62,32 @@ def logout_user(request):
 def register_user(request):
     if request.method == "POST":
         data = request.POST
-        org = CustomUserCreationForm(data)
-        locations_form = OrgLocationEditForm(data)
-        contact_form = OrgContactInfoEditForm(data)
-        general_info_form = OrgInfoEditForm(data)
 
-        valid_forms_count = [
-            org.is_valid(),
-            locations_form.is_valid(),
-            contact_form.is_valid(),
-            general_info_form.is_valid(),
-        ]
+        # still need to figure out how to get the post data into these forms
+        user_forms = create_big_form(
+            CustomUserCreationForm(data),
+            OrgLocationEditForm(data),
+            OrgContactInfoEditForm(data),
+            OrgInfoEditForm(data),
+        )
+
+        valid_forms_count = [form.is_valid() for form in user_forms]
 
         # if the forms are valid
         if sum(valid_forms_count) == len(valid_forms_count):
-            # cleaning data
-            org = org.cleaned_data
-            locations_form = locations_form.cleaned_data
-            contact_form = contact_form.cleaned_data
-            general_info_form = general_info_form.cleaned_data
+            # # cleaning data
+            # user_forms = [form.cleaned_data for form in user_forms]
+            print(user_forms[0]["password"])
 
-            # create user
-            org = Org.objects.create_user(
-                name=org["org_name"], password=org["password"]
-            )
+            # creating the user
+            # Org.objects.create_user(
+            #     name=user_forms[0].cleaned_data["org_name"],
+            #     password=user_forms[0].cleaned_data["password"],
+            # )
 
-            # just for testing right now
-            org.country = locations_form["country"]
-            org.save()
+            # TODO: save forms
+            for form in user_forms:
+                form.save(True)
 
             return redirect("/accounts/login/")
 
@@ -99,27 +97,27 @@ def register_user(request):
                 request,
                 REGISTER_FORM,
                 {
-                    "org": org,
-                    "locations_form": locations_form,
-                    "contact_form": contact_form,
-                    "general_info_form": general_info_form,
+                    "forms": user_forms,
                 },
             )
 
     # else a get request
     else:
-        org = CustomUserCreationForm()
-        locations_form = OrgLocationEditForm()
-        contact_form = OrgContactInfoEditForm()
-        general_info_form = OrgInfoEditForm()
+        # org = CustomUserCreationForm()
+        # locations_form = OrgLocationEditForm()
+        # contact_form = OrgContactInfoEditForm()
+        # general_info_form = OrgInfoEditForm()
+
+        forms = create_big_form(
+            None,
+            CustomUserCreationForm(),
+            OrgLocationEditForm(),
+            OrgContactInfoEditForm(),
+            OrgInfoEditForm(),
+        )
 
         return render(
             request,
             REGISTER_FORM,
-            {
-                "org": org,
-                "locations_form": locations_form,
-                "contact_form": contact_form,
-                "general_info_form": general_info_form,
-            },
+            {"forms": forms},
         )
