@@ -64,25 +64,53 @@ def register_user(request):
         data = request.POST
 
         # still need to figure out how to get the post data into these forms
-        user_forms = create_big_form(
+        valid_forms_count = [
             CustomUserCreationForm(data),
             OrgLocationEditForm(data),
             OrgContactInfoEditForm(data),
             OrgInfoEditForm(data),
-        )
+        ]
 
-        valid_forms_count = [form.is_valid() for form in user_forms]
+        # validating forms
+        validated_forms_count = [form.is_valid() for form in valid_forms_count]
 
-        # if the forms are valid
-        if sum(valid_forms_count) == len(valid_forms_count):
+        # if all of the forms are valid
+        if sum(validated_forms_count) == len(valid_forms_count):
+            # the cleaned version of the new user form
+            NewUserForm = CustomUserCreationForm(data)
+
+            # validate and clean
+            NewUserForm.is_valid()
+            NewUserForm = NewUserForm.cleaned_data
+
+            # creating a new user
+            new_user = Org.objects.create_user(
+                name=NewUserForm["org_name"], password=NewUserForm["password"]
+            )
+
+            # user forms with instance for saving
+            user_forms = [
+                CustomUserCreationForm(data, instance=new_user),
+                OrgLocationEditForm(data, instance=new_user),
+                OrgContactInfoEditForm(data, instance=new_user),
+                OrgInfoEditForm(data, instance=new_user),
+            ]
+
             # TODO: save forms
             for form in user_forms:
                 form.save(True)
 
             return redirect("/accounts/login/")
 
-        # else error with the form (add more to this later)
+        # else error with the form
         else:
+            user_forms = [
+                CustomUserCreationForm(data),
+                OrgLocationEditForm(data),
+                OrgContactInfoEditForm(data),
+                OrgInfoEditForm(data),
+            ]
+
             return render(
                 request,
                 REGISTER_FORM,
