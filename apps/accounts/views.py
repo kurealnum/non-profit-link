@@ -64,7 +64,7 @@ def register_user(request):
         data = request.POST
 
         # still need to figure out how to get the post data into these forms
-        valid_forms_count = [
+        forms = [
             CustomUserCreationForm(data),
             OrgLocationEditForm(data),
             OrgContactInfoEditForm(data),
@@ -72,33 +72,17 @@ def register_user(request):
         ]
 
         # validating forms
-        validated_forms_count = [form.is_valid() for form in valid_forms_count]
+        validated_forms_count = [form.is_valid() for form in forms]
 
         # if all of the forms are valid
-        if sum(validated_forms_count) == len(valid_forms_count):
-            # the cleaned version of the new user form
-            NewUserForm = CustomUserCreationForm(data)
-
-            # validate and clean
-            NewUserForm.is_valid()
-            NewUserForm = NewUserForm.cleaned_data
-
-            # creating a new user
-            new_user = Org.objects.create_user(
-                name=NewUserForm["org_name"], password=NewUserForm["password"]
-            )
-
-            # user forms with instance for saving
-            user_forms = [
-                CustomUserCreationForm(data, instance=new_user),
-                OrgLocationEditForm(data, instance=new_user),
-                OrgContactInfoEditForm(data, instance=new_user),
-                OrgInfoEditForm(data, instance=new_user),
-            ]
+        if sum(validated_forms_count) == len(forms):
+            new_user = forms[0].save()
 
             # TODO: save forms
-            for form in user_forms:
-                form.save(True)
+            for form in forms[1:]:
+                newform = form.save(commit=False)
+                newform.org = new_user
+                newform.save()
 
             return redirect("/accounts/login/")
 

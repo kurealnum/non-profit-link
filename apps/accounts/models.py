@@ -29,7 +29,7 @@ class Org(AbstractUser):
 
 
 class OrgLocation(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.IntegerField(unique=False)
@@ -42,7 +42,7 @@ class OrgLocation(models.Model):
 
 
 class OrgContactInfo(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
     phone = models.PositiveIntegerField(unique=False)
     email = models.EmailField(unique=False)
 
@@ -52,7 +52,7 @@ class OrgContactInfo(models.Model):
 
 
 class OrgInfo(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True)
+    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
     desc = models.TextField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
@@ -62,7 +62,7 @@ class OrgInfo(models.Model):
 
 
 class Item(models.Model):  # model for all items
-    org = models.ForeignKey("org", on_delete=models.CASCADE)
+    org = models.ForeignKey("org", on_delete=models.CASCADE, blank=True)
     want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)
 

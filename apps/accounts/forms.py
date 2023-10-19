@@ -40,21 +40,21 @@ class OrgLocationEditForm(forms.ModelForm):
     class Meta:
         model = OrgLocation
         fields = "__all__"
-        exclude = ("org",)
+        widgets = {"org": forms.HiddenInput()}
 
 
 class OrgContactInfoEditForm(forms.ModelForm):
     class Meta:
         model = OrgContactInfo
         fields = "__all__"
-        exclude = ("org",)
+        widgets = {"org": forms.HiddenInput()}
 
 
 class OrgInfoEditForm(forms.ModelForm):
     class Meta:
         model = OrgInfo
         fields = "__all__"
-        exclude = ("org",)
+        widgets = {"org": forms.HiddenInput()}
 
 
 # item form
@@ -62,4 +62,4 @@ class ItemEditForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = "__all__"
-        exclude = ("org",)
+        widgets = {"org": forms.HiddenInput()}
