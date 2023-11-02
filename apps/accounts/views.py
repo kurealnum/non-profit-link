@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
+from django.contrib.auth.password_validation import validate_password
+from django import forms as forms
+from django.forms import ValidationError
 
 from .forms import (
     CustomUserCreationForm,
@@ -64,22 +67,35 @@ def register_user(request):
         data = request.POST
 
         # still need to figure out how to get the post data into these forms
-        forms = [
+        input_forms = [
             CustomUserCreationForm(data),
             OrgLocationEditForm(data),
             OrgContactInfoEditForm(data),
             OrgInfoEditForm(data),
         ]
 
+        # check if password is valid
+        cleaned_user_form = input_forms[0].cleaned_data
+
+        try:
+            validate_password(cleaned_user_form["password"])
+        except ValidationError:
+            return redirect("/accounts/register/")
+
+        # check if password = password2
+        if cleaned_user_form["password"] != cleaned_user_form["confirm_password"]:
+            pass
+            # TODO: Something here
+
         # validating forms
-        validated_forms_count = [form.is_valid() for form in forms]
+        validated_forms_count = [form.is_valid() for form in input_forms]
 
-        # if all of the forms are valid
-        if sum(validated_forms_count) == len(forms):
-            new_user = forms[0].save()
+        # if all of the input_forms are valid
+        if sum(validated_forms_count) == len(input_forms):
+            new_user = input_forms[0].save()
 
-            # TODO: save forms
-            for form in forms[1:]:
+            # save forms
+            for form in input_forms[1:]:
                 newform = form.save(commit=False)
                 newform.org = new_user
                 newform.save()
