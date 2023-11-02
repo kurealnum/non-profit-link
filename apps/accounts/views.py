@@ -81,6 +81,7 @@ def register_user(request):
         try:
             validate_password(cleaned_user_info_form["password"])
         except ValidationError:
+            print("Validation Error")
             return render(
                 request,
                 REGISTER_FORM,
@@ -92,6 +93,7 @@ def register_user(request):
             cleaned_user_info_form["password"]
             != cleaned_user_info_form["confirm_password"]
         ):
+            print("Password match error")
             return render(
                 request,
                 REGISTER_FORM,
@@ -103,7 +105,7 @@ def register_user(request):
 
         # if all of the input_forms are valid
         if sum(validated_forms_count) == len(input_forms):
-            new_user = input_forms[0].save()
+            new_user = user_info_form.save()
 
             # save forms
             for form in input_forms[1:]:
