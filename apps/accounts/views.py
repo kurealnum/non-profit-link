@@ -63,29 +63,40 @@ def logout_user(request):
 
 
 def register_user(request):
-    if request.method == "POST":
-        data = request.POST
+    user_info_form = CustomUserCreationForm(request.POST or None)
 
-        # still need to figure out how to get the post data into these forms
-        input_forms = [
-            CustomUserCreationForm(data),
-            OrgLocationEditForm(data),
-            OrgContactInfoEditForm(data),
-            OrgInfoEditForm(data),
-        ]
+    # init the forms
+    input_forms = [
+        OrgLocationEditForm(request.POST or None),
+        OrgContactInfoEditForm(request.POST or None),
+        OrgInfoEditForm(request.POST or None),
+    ]
 
+    # if the user submitted, they're trying to register, so do register stuff:
+    if request.method == "POST" and user_info_form.is_valid():
         # check if password is valid
-        cleaned_user_form = input_forms[0].cleaned_data
+        cleaned_user_info_form = user_info_form.cleaned_data
 
+        # attempt to validate the password
         try:
-            validate_password(cleaned_user_form["password"])
+            validate_password(cleaned_user_info_form["password"])
         except ValidationError:
-            return redirect("/accounts/register/")
+            return render(
+                request,
+                REGISTER_FORM,
+                {"forms": [user_info_form] + input_forms},
+            )
 
         # check if password = password2
-        if cleaned_user_form["password"] != cleaned_user_form["confirm_password"]:
-            pass
-            # TODO: Something here
+        if (
+            cleaned_user_info_form["password"]
+            != cleaned_user_info_form["confirm_password"]
+        ):
+            return render(
+                request,
+                REGISTER_FORM,
+                {"forms": [user_info_form] + input_forms},
+            )
 
         # validating forms
         validated_forms_count = [form.is_valid() for form in input_forms]
@@ -102,40 +113,8 @@ def register_user(request):
 
             return redirect("/accounts/login/")
 
-        # else error with the form
-        else:
-            user_forms = [
-                CustomUserCreationForm(data),
-                OrgLocationEditForm(data),
-                OrgContactInfoEditForm(data),
-                OrgInfoEditForm(data),
-            ]
-
-            return render(
-                request,
-                REGISTER_FORM,
-                {
-                    "forms": user_forms,
-                },
-            )
-
-    # else a get request
-    else:
-        # org = CustomUserCreationForm()
-        # locations_form = OrgLocationEditForm()
-        # contact_form = OrgContactInfoEditForm()
-        # general_info_form = OrgInfoEditForm()
-
-        forms = [
-            None,
-            CustomUserCreationForm(),
-            OrgLocationEditForm(),
-            OrgContactInfoEditForm(),
-            OrgInfoEditForm(),
-        ]
-
-        return render(
-            request,
-            REGISTER_FORM,
-            {"forms": forms},
-        )
+    return render(
+        request,
+        REGISTER_FORM,
+        {"forms": [user_info_form] + input_forms},
+    )
