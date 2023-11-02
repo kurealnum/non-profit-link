@@ -15,7 +15,7 @@ from .forms import (
     OrgInfoEditForm,
     OrgLocationEditForm,
 )
-from .helpers import create_big_form
+
 from .managers import CustomUserManager
 from .models import Org
 
@@ -126,13 +126,13 @@ def register_user(request):
         # contact_form = OrgContactInfoEditForm()
         # general_info_form = OrgInfoEditForm()
 
-        forms = create_big_form(
+        forms = [
             None,
             CustomUserCreationForm(),
             OrgLocationEditForm(),
             OrgContactInfoEditForm(),
             OrgInfoEditForm(),
-        )
+        ]
 
         return render(
             request,
