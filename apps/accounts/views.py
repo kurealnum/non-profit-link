@@ -46,6 +46,7 @@ def login_user(request):
 
             # else error with the form (add more to this later)
             else:
+                login_register_form.add_error(None, "Username or password is incorrect")
                 return render(request, LOGIN_FORM, {"form": login_register_form})
 
     # else is a GET request
