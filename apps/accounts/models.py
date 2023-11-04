@@ -36,6 +36,9 @@ class OrgLocation(models.Model):
     city = models.CharField(unique=False, max_length=50)
     street_address = models.CharField(unique=False, max_length=50)
 
+    def __str__(self) -> str:
+        return f"Locations for {self.org}"
+
     class Meta:
         verbose_name = "OrgLocationInfo"
         verbose_name_plural = "OrgsLocationInfo"
@@ -46,6 +49,9 @@ class OrgContactInfo(models.Model):
     phone = models.PositiveIntegerField(unique=False)
     email = models.EmailField(unique=False)
 
+    def __str__(self) -> str:
+        return f"Contact info for {self.org}"
+
     class Meta:
         verbose_name = "OrgContactInfo"
         verbose_name_plural = "OrgsContactInfo"
@@ -55,6 +61,9 @@ class OrgInfo(models.Model):
     org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
     desc = models.TextField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
+
+    def __str__(self) -> str:
+        return f"Org info for {self.org}"
 
     class Meta:
         verbose_name = "OrgInfo"
