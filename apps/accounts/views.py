@@ -109,10 +109,13 @@ def register_user(request):
             )
 
         if all(validated_forms_count):
-            new_user = user_info_form.save()
+            # inital save on the new user
+            new_user = user_info_form.save(commit=False)
+            new_user.set_password(cleaned_user_info_form["password"])
+            new_user.save()
 
             # save forms
-            for form in input_forms[1:]:
+            for form in input_forms:
                 newform = form.save(commit=False)
                 newform.org = new_user
                 newform.save()
