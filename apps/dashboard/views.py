@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from apps.accounts.models import Org, OrgLocation, OrgContactInfo, OrgInfo, Item
+from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 
 
 @login_required

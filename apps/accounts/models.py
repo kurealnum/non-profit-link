@@ -69,6 +69,9 @@ class Item(models.Model):  # model for all items
     want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)
 
+    def __str__(self) -> str:
+        return self.item_name
+
     class Meta:
         verbose_name = "Item"
         verbose_name_plural = "Items"
