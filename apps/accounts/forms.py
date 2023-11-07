@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import SetPasswordForm, UserChangeForm, UserCreationForm
 from django.utils.safestring import mark_safe
 
 from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
@@ -12,7 +13,7 @@ class LoginRegisterForm(forms.Form):
     )
 
 
-class CustomUserCreationForm(forms.ModelForm):
+class CustomUserCreationForm(UserCreationForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         label=mark_safe(
@@ -26,10 +27,7 @@ class CustomUserCreationForm(forms.ModelForm):
         fields = ["org_name"]
 
 
-class CustomUserChangeForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
-
+class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = Org
         fields = ["org_name"]

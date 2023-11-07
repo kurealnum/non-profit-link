@@ -12,6 +12,7 @@ class Org(AbstractUser):
         max_length=100,
         null=False,
         error_messages={"unique": "Orginization with this name already exists"},
+        primary_key=True,
     )
     username = None
     first_name = None
