@@ -5,23 +5,19 @@ from .managers import CustomUserManager
 
 
 class Org(AbstractUser):
-    objects: CustomUserManager = CustomUserManager()
-
-    org_name = models.CharField(
+    username = models.CharField(
         unique=True,
         max_length=100,
         null=False,
         error_messages={"unique": "Orginization with this name already exists"},
+        verbose_name="org name",
     )
-    username = None
+
     first_name = None
     last_name = None
-    email = None
-    USERNAME_FIELD = "org_name"
-    REQUIRED_FIELDS = ()  # type: ignore
 
     def __str__(self) -> str:
-        return self.org_name
+        return self.username
 
     class Meta:
         verbose_name = "Org"

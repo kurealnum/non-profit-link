@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginRegisterForm
-from .models import Org, OrgContactInfo, OrgInfo, OrgLocation, Item
 
-from django.contrib.auth.forms import UserChangeForm
+from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
 
 
 # inlines for Org
@@ -23,15 +21,10 @@ class ItemInline(admin.TabularInline):
     model = Item
 
 
-# admin registers
-@admin.register(Org)
-class OrgAdmin(admin.ModelAdmin):
+class OrgAdmin(UserAdmin):
     inlines = [OrgContactInfoInline, OrgInfoInline, OrgLocationInline, ItemInline]
-    username = None
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
-    model = Org
-    ordering = ("-org_name",)
+    fields = ["username", "password"]
+    fieldsets = []
 
 
 @admin.register(OrgContactInfo)
@@ -52,3 +45,6 @@ class OrgLocationAdmin(admin.ModelAdmin):
 @admin.register(Item)
 class OrgItemAdmin(admin.ModelAdmin):
     pass
+
+
+admin.site.register(Org, OrgAdmin)
