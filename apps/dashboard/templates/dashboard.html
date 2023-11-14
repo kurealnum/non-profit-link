@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
 {% block title %} Dashboard {% endblock %}
+{% load static %}
 
 {% block body %}
     <section id="left-of-dashboard">
-        <!-- passing data to js -->
+        <!-- passing data to js, will all be re-written in react -->
         {{ org|json_script:'org' }}
         <h2>{{ org }}'s dashboard</h2>
         <p>{{ org_info.desc }}</p>
@@ -25,4 +26,7 @@
         {% endfor %}
     </section>
 
+    <div id="react-dashboard"></div>
+
+    <script src="{% static 'dashboard.js' %}"></script>
 {% endblock %}

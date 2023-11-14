@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {"index": './assets/pages/index.tsx',
-            "login": './assets/pages/login.tsx'},
+            "login": './assets/pages/login.tsx',
+            "dashboard": './assets/pages/dashboard.tsx'},
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Output Management',
