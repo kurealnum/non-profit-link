@@ -12,8 +12,18 @@ def dashboard(request):
     current_org_location = OrgLocation.objects.get(org=current_org)
     current_org_contact_info = OrgContactInfo.objects.get(org=current_org)
     current_org_info = OrgInfo.objects.get(org=current_org)
-    current_org_items = current_org.item_set.all()  # type: ignore not sure why i have to do this, it's a completely valid thingy (whatever you call it)
+    current_wanted_org_items = current_org.item_set.filter(want=True)  # type: ignore
+    current_needed_org_items = current_org.item_set.filter(want=False)  # type: ignore not sure why i have to do this, it's a completely valid thingy (whatever you call it)
 
-    print(current_org_items)
-
-    return render(request, "dashboard.html")
+    return render(
+        request,
+        "dashboard.html",
+        context={
+            "current_org": current_org,
+            "current_org_location": current_org_location,
+            "current_org_contact_info": current_org_contact_info,
+            "current_org_info": current_org_info,
+            "current_wanted_org_items": current_wanted_org_items,
+            "current_needed_org_items": current_needed_org_items,
+        },
+    )
