@@ -19,10 +19,7 @@ def dashboard(request):
         request,
         "dashboard.html",
         context={
-            "org": {
-                "org-name": org.username,
-                "org-desc": org_info.desc,
-            },
+            "org": org,
             "org_location": org_location,
             "org_contact_info": org_contact_info,
             "org_info": org_info,

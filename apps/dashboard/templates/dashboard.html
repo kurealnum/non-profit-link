@@ -4,29 +4,27 @@
 
 {% block body %}
     <section id="left-of-dashboard">
-        <!-- passing data to js, will all be re-written in react -->
-        {{ org|json_script:'org' }}
-        <h2>{{ org }}'s dashboard</h2>
+        <h2>{{ org.username }}'s dashboard</h2>
         <p>{{ org_info.desc }}</p>
         <button>Edit Information</button>
         <button>Check out your homepage!</button>
     </section>
     <section class="mid-of-dashboard">
-        {% for item in wanted_org_items %}
-            {{ item }}
-        {% empty %}
+        <ul class="items-list">
+            {% for item in wanted_org_items %}
+                {{ item }}
+            {% empty %}
+        </ul>
             <h2>You don't have any items listed as wanted!</h2>
         {% endfor %}
     </section>
     <section class="right-of-dashboard">
-        {% for item in needed_org_items %}
-            {{ item }}
-        {% empty %}
+        <ul class="items-list">
+            {% for item in needed_org_items %}
+                {{ item }}
+            {% empty %}
+        </ul>
             <h2>You don't have any items listed as needed!</h2>
         {% endfor %}
     </section>
-
-    <div id="react-dashboard"></div>
-
-    <script src="{% static 'dashboard.js' %}"></script>
 {% endblock %}
