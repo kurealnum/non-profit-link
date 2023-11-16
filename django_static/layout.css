@@ -17,21 +17,6 @@
     padding: 0;
 }
 
-#homepage-hero {
-    height: 90vh;
-    display: flex;
-}
-
-#hero-title {
-    display: flex;
-    margin: auto;
-    font-size: 48px;
-}
-
-#title-background {
-    height: 40%;
-}
-
 .highlight-word {
     color: var(--accent);
 }
@@ -176,7 +161,7 @@ footer a {
 }
 
 footer img {
-    color: var(--primary)
+    color: var(--primary);
     width: 75%;
     height: 75%;
 }
