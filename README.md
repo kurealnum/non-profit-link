@@ -4,6 +4,8 @@ Written in Python, Django, React/JS, HTML, CSS, and SQLite3 (Postgres at some po
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the project. However, everything will **_eventually be on .drawio files_**.
 
+**_Some extra diagrams (might be unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
+
 If you clone this project and create your own superuser, **_your email_** is your username on the Django Admin page.
 
 # Setup

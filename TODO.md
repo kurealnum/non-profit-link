@@ -6,7 +6,7 @@
 
 - Finish the frontend on the dashboard
 
-- Add an edit account URL
+- Add an edit account URL (and of course the logic behind editing an accounts information)
 
 - On the dashboard, add some sort of pop up that, when pressing the "edit needed items" or "edit wanted items" button, allows you to add and remove those items.
 
