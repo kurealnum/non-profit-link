@@ -1,7 +1,17 @@
 # TODO
 
-- **Important:** Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
+- Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Mainly using a Kanban for my TODO at the moment, please reach out for more information. In general, I am designing the frontend according to the Figma design listed in the README.
+- Finish the frontend on the homepage
+
+- Finish the frontend on the dashboard
+
+- Add an edit account URL
+
+- On the dashboard, add some sort of pop up that, when pressing the "edit needed items" or "edit wanted items" button, allows you to add and remove those items.
+
+- Add a URL (see Contributable Items in the navbar) that contains a list of contributable items.
+
+- Add a URL (see Non-profits in the navbar) that shows a list of _all_ the non-profits
 
 - Frontend work. Here's a [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!
