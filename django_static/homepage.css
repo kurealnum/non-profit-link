@@ -1,0 +1,47 @@
+.highlight-word {
+    color: var(--accent);
+}
+
+#react-homepage-hero {
+    height: 60vh;
+    margin: auto;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+#react-homepage-hero {
+    position: relative;
+}
+
+#title-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 96%;
+    z-index: -1;
+}
+
+.homepage-search {
+    display: flex;
+    flex-direction: column;
+    margin: 50px; 
+}
+
+.paragraph-text-img {
+    position: relative;
+}
+
+.paragraph img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 250px;
+    bottom: 0;
+    margin: auto;
+    width: 90%;
+    z-index: -1;
+}
