@@ -2,24 +2,23 @@
     color: var(--accent);
 }
 
-#react-homepage-hero {
-    height: 60vh;
-    margin: auto;
-    flex-direction: column;
+#homepage-hero {
+    height: 90vh;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
-#react-homepage-hero {
+#hero-title {
     position: relative;
+    margin: 0 auto;
+    width: 96%;
 }
 
 #title-background {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
     margin: auto;
     width: 96%;
     z-index: -1;

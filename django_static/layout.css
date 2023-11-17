@@ -17,6 +17,11 @@
     padding: 0;
 }
 
+header {
+    height: 10vh;
+    z-index: -1;
+}
+
 nav {
     display: flex;
 }
