@@ -2,7 +2,7 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Finish the frontend on the homepage. I still need to pull the top 5 most needed/wanted items into a list!
+- Finish the frontend on the homepage.
 
 - Finish the frontend on the dashboard
 

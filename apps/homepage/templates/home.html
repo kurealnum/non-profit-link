@@ -17,9 +17,15 @@
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>
+    {% for org in random_5_orgs %}
+        {{ org.username }}
+    {% endfor %}
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>
+    {% for item in top_5_items %}
+        {{ item.item_name }} {{ item.count }}
+    {% endfor %}
 </div>
 <div id="react-paragraphs"></div>
 
