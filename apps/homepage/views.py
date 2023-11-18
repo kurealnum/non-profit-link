@@ -7,7 +7,7 @@ from ..accounts.models import Item, Org
 
 def index(request):
     # this only queries for 5 items, per this stackoverflow post: https://stackoverflow.com/questions/6574003/django-limiting-query-results
-    top_5_items = Item.objects.all().order_by("-count")[:5]
+    top_5_items = Item.objects.all().order_by("-count").distinct("item_name")[:5]
 
     # what we'll send in context
     top_5_items_context = []
@@ -23,6 +23,7 @@ def index(request):
         top_5_items_context.append([len(number_of_orgs_with_item), total_count])
 
     print(top_5_items_context)
+    print(top_5_items)
 
     # getting 5 random models
     total_orgs = Org.objects.count()
