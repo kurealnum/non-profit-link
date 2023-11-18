@@ -58,7 +58,7 @@ class OrgInfo(models.Model):
 
 
 class Item(models.Model):  # model for all items
-    item_name = models.CharField(max_length=100, unique=True, primary_key=False)
+    item_name = models.CharField(max_length=100, unique=False, primary_key=False)
     org = models.ForeignKey("org", on_delete=models.CASCADE, blank=True)
     want = models.BooleanField(unique=False, max_length=100, default=True)
     count = models.SmallIntegerField(unique=False, default=1)
@@ -67,5 +67,6 @@ class Item(models.Model):  # model for all items
         return self.item_name
 
     class Meta:
+        unique_together = "org", "item_name"
         verbose_name = "Item"
         verbose_name_plural = "Items"
