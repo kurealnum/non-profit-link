@@ -6,7 +6,7 @@
 
 - Finish the frontend on the dashboard
 
-- Add more information to the Item model (description, "units")
+- Edit the models to allow for only one Item name per org (i.e. org1 can have an Item peaches, and org2 can have an Item peaches, but org1 cannot have 2 Item(s) peaches)
 
 - Add an edit account URL (and of course the logic behind editing an accounts information)
 
