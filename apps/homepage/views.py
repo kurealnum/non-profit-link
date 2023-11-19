@@ -1,20 +1,25 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from django.db.models import Min
 
 from ..accounts.models import Item, Org
 
 
 def index(request):
     # this only queries for 5 items, per this stackoverflow post: https://stackoverflow.com/questions/6574003/django-limiting-query-results
-    top_5_items = Item.objects.all().order_by("-count").distinct("item_name")[:5]
+
+    # I would like to do this, but im not using postgresql
+    # top_5_items = Item.objects.order_by("count").values("item_name").distinct()[:5]
+
+    top_5_items = []
 
     # what we'll send in context
     top_5_items_context = []
 
     for index, item in enumerate(top_5_items):
         # getting and counting all items across all orgs with the same name
-        number_of_orgs_with_item = Item.objects.filter(item_name=item.item_name)
+        number_of_orgs_with_item = Item.objects.filter(item_name=item)
 
         # summing those items
         total_count = sum([temp_item.count for temp_item in number_of_orgs_with_item])

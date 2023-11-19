@@ -1,5 +1,7 @@
 # TODO
 
+- Currently working on changing the database engine to PostgreSQL!
+
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
 - Finish the frontend on the homepage.
