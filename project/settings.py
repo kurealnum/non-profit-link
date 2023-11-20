@@ -11,11 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Loading environment variables
+dotenv_path = join(dirname(__file__), "db_password.env")
+load_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -83,8 +88,12 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "test",
+        "USER": "postgres",
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": "5433",
     }
 }
 
