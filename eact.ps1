@@ -1,1 +1,1 @@
-.\env\bin\activate
+.\env\Scripts\activate
