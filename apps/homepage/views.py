@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from django.db.models import Min
+from django.db.models import Sum, Count, Subquery
 
 from ..accounts.models import Item, Org
 
@@ -9,10 +9,7 @@ from ..accounts.models import Item, Org
 def index(request):
     # this only queries for 5 items, per this stackoverflow post: https://stackoverflow.com/questions/6574003/django-limiting-query-results
 
-    # I would like to do this, but im not using postgresql
-    # top_5_items = Item.objects.order_by("count").values("item_name").distinct()[:5]
-
-    top_5_items = []
+    top_5_items = []  # just temporary
 
     # what we'll send in context
     top_5_items_context = []
@@ -26,9 +23,6 @@ def index(request):
 
         # adding that to what we'll send in context
         top_5_items_context.append([len(number_of_orgs_with_item), total_count])
-
-    print(top_5_items_context)
-    print(top_5_items)
 
     # getting 5 random models
     total_orgs = Org.objects.count()
