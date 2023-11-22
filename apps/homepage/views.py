@@ -1,7 +1,5 @@
-from django.http import HttpResponse
+from django.db.models import Sum
 from django.shortcuts import render
-from django.template import loader
-from django.db.models import Sum, Count, Subquery
 
 from ..accounts.models import Item, Org
 
