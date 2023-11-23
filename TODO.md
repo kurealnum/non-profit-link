@@ -1,14 +1,12 @@
 # TODO
 
-- Currently working on changing the database engine to PostgreSQL!
+- CONTRIBUTING.md would be nice
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
 - Finish the frontend on the homepage.
 
 - Finish the frontend on the dashboard
-
-- Differentiate between needed and wanted items on the homepage views.py
 
 - Add an edit account URL (and of course the logic behind editing an accounts information)
 
