@@ -32,6 +32,9 @@ class OrgLocation(models.Model):
     city = models.CharField(unique=False, max_length=50)
     street_address = models.CharField(unique=False, max_length=50)
 
+    def __str__(self):
+        return str(self.org)
+
     class Meta:
         verbose_name = "OrgLocationInfo"
         verbose_name_plural = "OrgsLocationInfo"
@@ -41,6 +44,9 @@ class OrgContactInfo(models.Model):
     org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
     phone = models.PositiveIntegerField(unique=False)
     email = models.EmailField(unique=False)
+
+    def __str__(self):
+        return self.org
 
     class Meta:
         verbose_name = "OrgContactInfo"
@@ -52,6 +58,9 @@ class OrgInfo(models.Model):
     desc = models.TextField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 
+    def __str__(self):
+        return self.org
+
     class Meta:
         verbose_name = "OrgInfo"
         verbose_name_plural = "OrgsInfo"
@@ -62,7 +71,7 @@ class Item(models.Model):  # model for all items
     org = models.ForeignKey("org", on_delete=models.CASCADE, blank=True)
     count = models.SmallIntegerField(unique=False, default=1)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.item_name
 
     class Meta:

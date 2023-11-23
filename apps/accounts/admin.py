@@ -21,30 +21,30 @@ class ItemInline(admin.TabularInline):
     model = Item
 
 
+# registering models
+@admin.register(Org)
 class OrgAdmin(UserAdmin):
     inlines = [OrgContactInfoInline, OrgInfoInline, OrgLocationInline, ItemInline]
     fields = ["username", "password"]
+    list_display = ["username", "email", "is_staff"]
     fieldsets = []
 
 
 @admin.register(OrgContactInfo)
 class OrgContactInfoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["org", "phone", "email"]
 
 
 @admin.register(OrgInfo)
 class OrgInfoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["org", "website"]
 
 
 @admin.register(OrgLocation)
 class OrgLocationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["org", "country", "region", "zip", "city", "street_address"]
 
 
 @admin.register(Item)
 class OrgItemAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Org, OrgAdmin)
+    list_display = ["item_name", "count", "org"]
