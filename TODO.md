@@ -14,6 +14,4 @@
 
 - Add a URL (see Non-profits in the navbar) that shows a list of _all_ the non-profits
 
-- Format the admin panel!
-
 FOR FRONTEND WORK: Here's a [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!
