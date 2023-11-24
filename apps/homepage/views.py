@@ -12,8 +12,6 @@ def index(request):
         .order_by("-sum")[:5]
     )
 
-    print(top_5_items)
-
     # getting 5 random models
     total_orgs = Org.objects.count()
     upper_bound = 5 if total_orgs >= 5 else total_orgs

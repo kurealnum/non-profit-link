@@ -2,6 +2,16 @@
     color: var(--accent);
 }
 
+.search-item-results {
+    background-color: var(--primary);
+    margin: 5px 0;
+    box-shadow: 10px;
+}
+
+.search-results {
+    background-color: var(--primary);
+}
+
 #homepage-hero {
     height: 90vh;
     display: flex;

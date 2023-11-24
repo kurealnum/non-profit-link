@@ -23,9 +23,11 @@
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>
-    {% for item in top_5_items %}
-        {{ item.0 }} {{ item.1}}
-    {% endfor %}
+    <div class="search-results">
+        {% for item in top_5_items %}
+            <div class="search-item-results">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
+        {% endfor %}
+    </div>
 </div>
 <div id="react-paragraphs"></div>
 
