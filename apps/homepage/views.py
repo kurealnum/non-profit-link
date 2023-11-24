@@ -1,16 +1,18 @@
-from django.db.models import Sum
+from django.db.models import Count, Sum
 from django.shortcuts import render
 
 from ..accounts.models import Item, Org
 
 
 def index(request):
-    # getting the 5 items with the highest count
+    # getting the 5 items with the highest count, and the number of orgs that need that item
     top_5_items = (
         Item.objects.values_list("item_name")
-        .annotate(sum=Sum("count"))
+        .annotate(sum=Sum("count"), org_count=Count("org"))
         .order_by("-sum")[:5]
     )
+
+    print(top_5_items)
 
     # getting 5 random models
     total_orgs = Org.objects.count()
