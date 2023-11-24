@@ -17,9 +17,11 @@
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>
-    {% for org in random_5_orgs %}
-        {{ org.username }}
-    {% endfor %}
+    <div class="search-results">
+        {% for org in random_5_orgs %}
+            <div class="search-item-results">{{ org.username }}: Located in {{ org.city }}</div>
+        {% endfor %}
+    </div>
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>

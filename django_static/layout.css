@@ -73,6 +73,10 @@ button {
     font-size: 20px;
 }
 
+.react-search-button {
+    margin: 12px 0;
+}
+
 .search-button {
     display: flex;
     margin: 0 auto;
