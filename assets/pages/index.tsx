@@ -2,6 +2,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+//  json imports
+import pageContent from "./pageContent.json";
+
 // img imports
 import SearchButton from "../imgs/search_button_icon.svg";
 import FirstParagraphBlob from "../imgs/first_paragraph_blob.svg";
@@ -32,21 +35,23 @@ for (let i = 0; i < buttons.length; i++) {
   );
 }
 
+// data/content for each paragraph
+const paragraphOne = pageContent.paragraphOne;
+const paragraphTwo = pageContent.paragraphTwo;
+
 //render for paragraphs
 const paragraphs: paragraphInfo[] = [
   {
-    header: "My First Header",
-    paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    header: paragraphOne.headerOne,
+    paragraph: paragraphOne.paragraphContent,
     imgsInfo: {
       img: FirstParagraphBlob,
       alt: "Decorative blue blob on paragraph",
     },
   },
   {
-    header: "My Second Header",
-    paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    header: paragraphTwo.headerTwo,
+    paragraph: paragraphTwo.paragraphContent,
     imgsInfo: {
       img: SecondParagraphBlob,
       alt: "Decorative blue blob on paragraph",
