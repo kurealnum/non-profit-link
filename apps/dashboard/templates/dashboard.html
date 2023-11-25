@@ -19,12 +19,5 @@
         {% endfor %}
     </section>
     <section class="right-of-dashboard">
-        <ul class="items-list">
-            {% for item in needed_org_items %}
-                {{ item }}
-            {% empty %}
-        </ul>
-            <h2>You don't have any items listed as needed!</h2>
-        {% endfor %}
     </section>
 {% endblock %}
