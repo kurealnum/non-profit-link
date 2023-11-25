@@ -4,8 +4,6 @@
 
 - Remove type-ignores on accounts/urls
 
-- Deeper refactor on accounts/admin
-
 - Finish the frontend on the homepage.
 
 - Finish the frontend on the dashboard
