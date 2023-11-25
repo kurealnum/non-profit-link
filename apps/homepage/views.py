@@ -12,7 +12,7 @@ def index(request):
         .order_by("-sum")[:5]
     )
 
-    # query for 5 semi-random
+    # query for 5 semi-random orgs
     random_5_orgs = (
         Org.objects.select_related("orglocation")
         .values_list("username", "orglocation__region", "orglocation__city")

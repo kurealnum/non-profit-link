@@ -1,12 +1,8 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
-from django.template import loader
-from django.contrib.auth.password_validation import validate_password
 from django import forms as forms
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.password_validation import validate_password
 from django.forms import ValidationError
+from django.shortcuts import redirect, render
 
 from .forms import (
     CustomUserCreationForm,
@@ -15,9 +11,7 @@ from .forms import (
     OrgInfoEditForm,
     OrgLocationEditForm,
 )
-
 from .managers import CustomUserManager
-from .models import Org
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
@@ -29,22 +23,22 @@ def login_user(request):
     if request.method == "POST":
         login_register_form = LoginRegisterForm(request.POST)
 
-        # if the form isn't empty
+        # essentially just checking if the form isn't empty
         if login_register_form.is_valid():
             login_register = login_register_form.cleaned_data
 
-            # data
+            # inputted data
             username = login_register["username"]
             password = login_register["password"]
             user = authenticate(request, username=username, password=password)
 
-            # if authenticate returns a user object, which means that the user is valid
+            # if authenticate returns a user object, the user is valid
             if user:
                 login(request, user)
 
                 return redirect("dashboard")
 
-            # else error with the form (add more to this later)
+            # else error with the form
             else:
                 login_register_form.add_error(None, "Username or password is incorrect")
                 return render(request, LOGIN_FORM, {"form": login_register_form})
@@ -73,13 +67,10 @@ def register_user(request):
         OrgInfoEditForm(request.POST or None),
     ]
 
-    # if the user submitted, they're trying to register, so do register stuff:
+    # if the user submitted the form and the form is valid
     if request.method == "POST" and user_info_form.is_valid():
         # validating forms
         validated_forms_count = [form.is_valid() for form in input_forms]
-
-        for i in input_forms:
-            print(i.errors)
 
         # check if password is valid
         cleaned_user_info_form = user_info_form.cleaned_data
@@ -97,7 +88,7 @@ def register_user(request):
                 {"forms": [user_info_form] + input_forms},
             )
 
-        # check if password = password2
+        # check if password = confirm password
         if (
             cleaned_user_info_form["password"]
             != cleaned_user_info_form["confirm_password"]

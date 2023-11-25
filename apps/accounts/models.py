@@ -1,8 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from .managers import CustomUserManager
-
 
 class Org(AbstractUser):
     username = models.CharField(
