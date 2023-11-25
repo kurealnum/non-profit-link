@@ -1,7 +1,7 @@
-from django.db.models import Count, Sum
+from django.db.models import Count, Subquery, Sum, OuterRef
 from django.shortcuts import render
 
-from ..accounts.models import Item, Org
+from ..accounts.models import Item, Org, OrgLocation
 
 
 def index(request):
@@ -12,14 +12,19 @@ def index(request):
         .order_by("-sum")[:5]
     )
 
-    # getting 5 random models
-    total_orgs = Org.objects.count()
-    upper_bound = 5 if total_orgs >= 5 else total_orgs
-    lower_bound = upper_bound - 5 if upper_bound - 5 >= 0 else 0
-    random_5_orgs = Org.objects.all()[lower_bound:upper_bound]
+    # query for 5 semi-random
+    random_5_orgs = (
+        Org.objects.select_related("orglocation")
+        .values_list("username", "orglocation__region", "orglocation__city")
+        .order_by("?")[:5]
+    )
 
     return render(
         request,
         "home.html",
-        context={"random_5_orgs": random_5_orgs, "top_5_items": list(top_5_items)},
+        context={
+            "random_5_orgs": list(random_5_orgs),
+            "top_5_items": list(top_5_items),
+            # "random_5_orgs_location": list(random_5_orgs_location),
+        },
     )
