@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+# for more info on models, see the database diagram in diagrams/
+
 
 class Org(AbstractUser):
     username = models.CharField(
@@ -64,7 +66,7 @@ class OrgInfo(models.Model):
         verbose_name_plural = "OrgsInfo"
 
 
-class Item(models.Model):  # model for all items
+class Item(models.Model):
     item_name = models.CharField(max_length=100, unique=False)
     org = models.ForeignKey("org", on_delete=models.CASCADE, blank=True)
     count = models.SmallIntegerField(unique=False, default=1)
