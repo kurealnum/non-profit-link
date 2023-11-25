@@ -1,7 +1,7 @@
-from django.db.models import Count, Subquery, Sum, OuterRef
+from django.db.models import Count, Sum
 from django.shortcuts import render
 
-from ..accounts.models import Item, Org, OrgLocation
+from ..accounts.models import Item, Org
 
 
 def index(request):
@@ -23,8 +23,7 @@ def index(request):
         request,
         "home.html",
         context={
-            "random_5_orgs": list(random_5_orgs),
-            "top_5_items": list(top_5_items),
-            # "random_5_orgs_location": list(random_5_orgs_location),
+            "random_5_orgs": random_5_orgs,
+            "top_5_items": top_5_items,
         },
     )
