@@ -11,11 +11,11 @@
     </section>
     <section class="mid-of-dashboard">
         <ul class="items-list">
-            {% for item in wanted_org_items %}
+            {% for item in org_items %}
                 {{ item }}
             {% empty %}
         </ul>
-            <h2>You don't have any items listed as wanted!</h2>
+            <h2>You don't have any items listed!</h2>
         {% endfor %}
     </section>
     <section class="right-of-dashboard">
