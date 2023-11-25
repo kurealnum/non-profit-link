@@ -11,12 +11,9 @@ from .forms import (
     OrgInfoEditForm,
     OrgLocationEditForm,
 )
-from .managers import CustomUserManager
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
-
-CUserManager = CustomUserManager()
 
 
 def login_user(request):
