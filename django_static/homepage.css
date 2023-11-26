@@ -44,17 +44,11 @@
     margin: 50px; 
 }
 
-.paragraph-text-img {
-    position: relative;
-}
-
-.paragraph img {
+.paragraph-text-img img {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 250px;
-    bottom: 0;
     margin: auto;
     width: 90%;
+    left: 0;
+    right: 0;
     z-index: -1;
 }

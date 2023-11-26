@@ -21,7 +21,6 @@ const Paragraphs = ({ paragraphs }: Props) => {
     <div className="paragraph" key={index}>
       <Header key={paragraph.header}>{paragraph.header}</Header>
       <div className="paragraph-text-img">
-        <p key={index}>{paragraph.paragraph}</p>
         {/* if imgs info does exist, create an image */}
         {paragraph.imgsInfo && (
           <img
@@ -30,6 +29,7 @@ const Paragraphs = ({ paragraphs }: Props) => {
             id={paragraph.header}
           ></img>
         )}
+        <p key={index}>{paragraph.paragraph}</p>
       </div>
     </div>
   ));
