@@ -1,11 +1,25 @@
 {% extends 'layout.html' %}
-{% block title %} Dashboard {% endblock %}
 {% load static %}
+{% block head-info %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+{% endblock %}
+{% block title %} Dashboard {% endblock %}
+
+<!-- just for future notice, the left, mid, and right of dashboard are only
+present in the desktop size. the mobile version is completely vertical -->
 
 {% block body %}
     <section id="left-of-dashboard">
         <h2>{{ org.username }}'s dashboard</h2>
+        <p>Welcome to your dashboard! Filler info, filler info, filler info.</p>
+        <h3>Your non-profit's public description:</h3>
         <p>{{ org_info.desc }}</p>
+        <h3>Address:</h3>
+        <p>{{ org_location.street_address }}, 
+            {{ org_location.zip }}, 
+            {{ org_location.city }}, 
+            {{ org_location.region }}
+        </p>
         <button>Edit Information</button>
         <button>Check out your homepage!</button>
     </section>

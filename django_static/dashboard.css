@@ -1,0 +1,22 @@
+#left-of-dashboard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary);
+  width: 90vw;
+  margin: 0 auto;
+}
+
+#left-of-dashboard h2 {
+  margin: 0 auto;
+  padding-top: 25px;
+  font-size: 28px;
+}
+
+#left-of-dashboard p {
+  background: none;
+  margin: 0 auto;
+}
+
+#left-of-dashboard h3 {
+  margin: 0 auto;
+}
