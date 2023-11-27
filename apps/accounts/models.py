@@ -19,6 +19,9 @@ class Org(AbstractUser):
     def __str__(self) -> str:
         return self.username
 
+    def get_absolute_url(self):
+        return f"/nonprofits/homepage/{self.username}/"
+
     class Meta:
         verbose_name = "Org"
         verbose_name_plural = "Orgs"
