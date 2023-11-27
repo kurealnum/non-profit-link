@@ -21,7 +21,7 @@ def index(request):
 
     return render(
         request,
-        "home.html",
+        "index.html",
         context={
             "random_5_orgs": random_5_orgs,
             "top_5_items": top_5_items,
