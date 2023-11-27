@@ -19,13 +19,12 @@ from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    #my urls
-    path('', include('apps.homepage.urls')),
-    path('accounts/', include('apps.accounts.urls')),
-    path('mynonprofit/', include('apps.dashboard.urls')),
-
-    #django urls
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls),
-    re_path(r".*", TemplateView.as_view(template_name='index.html'))
+    # my urls
+    path("", include("apps.index.urls")),
+    path("accounts/", include("apps.accounts.urls")),
+    path("mynonprofit/", include("apps.org_pages.urls")),
+    # django urls
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+    re_path(r".*", TemplateView.as_view(template_name="index.html")),
 ]

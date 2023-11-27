@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block head-info %}
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
 {% endblock %}
 {% block title %} Dashboard {% endblock %}
 
@@ -10,9 +10,7 @@ present in the desktop size. the mobile version is completely vertical -->
 
 {% block body %}
     <section id="left-of-dashboard">
-        <h2>{{ org.username }}'s dashboard</h2>
-        <p>Welcome to your dashboard! Filler info, filler info, filler info.</p>
-        <h3>Your non-profit's public description:</h3>
+        <h2>{{ org.username }}</h2>
         <p>{{ org_info.desc }}</p>
         <h3>Address:</h3>
         <p>{{ org_location.street_address }}, 
@@ -20,8 +18,6 @@ present in the desktop size. the mobile version is completely vertical -->
             {{ org_location.city }}, 
             {{ org_location.region }}
         </p>
-        <button>Edit Information</button>
-        <button>Check out your homepage!</button>
     </section>
     <section class="mid-of-dashboard">
         <ul class="items-list">
@@ -29,7 +25,7 @@ present in the desktop size. the mobile version is completely vertical -->
                 {{ item }}
             {% empty %}
         </ul>
-            <h2>You don't have any items listed!</h2>
+            <h2>This org doesn't have any items listed :(</h2>
         {% endfor %}
     </section>
     <section class="right-of-dashboard">
