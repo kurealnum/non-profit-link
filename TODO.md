@@ -2,6 +2,8 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
+- Perhaps try whatever the heck the webpack dev server is?
+
 - Remove type-ignores on accounts/urls
 
 - Finish the frontend on the homepage.
