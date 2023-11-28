@@ -1,10 +1,10 @@
 {
     "paragraphOne": {
-        "headerOne": "My 1st Header",
-        "paragraphContent": "My 1st Paragraph"
+        "headerOne": "How can I help?",
+        "paragraphContent": "If you are a member of a charity organization or know any members, you can redirect them to us, where they can share their supplies. If you would like to donate supplies to charity organizations in need, you could do this by connecting with them via NPL too."
     },
     "paragraphTwo": {
-        "headerTwo": "My 2nd Header",
-        "paragraphContent": "My 1st Paragraph"
+        "headerTwo": "Who we are",
+        "paragraphContent": "The main idea of NPL is it, to help connect different charity organizations like food pantries or homeless shelters for example. These organizations often have excess of some supplies but might have a shortage of other supplies. This is where NPL comes into play; it provides a platform for these organizations where they can share their excess in return of supplies the really need. This could help reducing the waste of supplies and distributing it more optimal."
     }
 }
