@@ -206,7 +206,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
   \***************************************/
 /***/ ((module) => {
 
-eval("module.exports = JSON.parse('{\"paragraphOne\":{\"headerOne\":\"My 1st Header\",\"paragraphContent\":\"My 1st Paragraph\"},\"paragraphTwo\":{\"headerTwo\":\"My 2nd Header\",\"paragraphContent\":\"My 1st Paragraph\"}}');\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/pageContent.json?");
+eval("module.exports = JSON.parse('{\"paragraphOne\":{\"headerOne\":\"How can I help?\",\"paragraphContent\":\"If you\\'re a member of a charity organization or know any members, you can redirect them to us, where they can share their supplies. If you would like to donate supplies to charity organizations in need, you can do this by connecting with them via NPL too.\"},\"paragraphTwo\":{\"headerTwo\":\"Who we are\",\"paragraphContent\":\"The primary goal of NPL is to to help connect different charity organizations, like food pantries or homeless shelters. These organizations often have an excess of some supplies but a shortage of others. This is where NPL comes into play; it provides a platform for these organizations where they can share their excess, and get the supplies they really need.\"}}');\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/pageContent.json?");
 
 /***/ })
 
