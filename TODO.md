@@ -2,8 +2,6 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Remove type-ignores on accounts/urls
-
 - Finish the frontend on the homepage.
 
 - Finish the frontend on the dashboard
