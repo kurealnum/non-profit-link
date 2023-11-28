@@ -16,6 +16,10 @@
     margin-bottom: 20px;
 }
 
+.last-search-result {
+    margin-bottom: 100px;
+}
+
 #homepage-hero {
     height: 90vh;
     display: flex;
@@ -45,10 +49,11 @@
 }
 
 .paragraph-text-img img {
-    position: absolute;
-    margin: auto;
+    position: relative;
     width: 90%;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 50px;
+    bottom: 100px;
     z-index: -1;
 }

@@ -95,8 +95,8 @@ p {
     max-width: 87%;
     margin: 3vh auto;
     padding: 14px 10px;
+    margin-bottom: 0;
     background: var(--primary);
-    margin-bottom: 175px;
     border-radius: 5px;
 }
 

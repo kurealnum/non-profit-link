@@ -1,4 +1,4 @@
--{% extends 'layout.html' %}
+{% extends 'layout.html' %}
 {% load static %}
 {% block title %} Home {% endblock %}
 
@@ -25,7 +25,7 @@
 </div>
 <div class="homepage-search">
     <div class="react-search-button"></div>
-    <div class="search-results">
+    <div class="search-results last-search-result">
         {% for item in top_5_items %}
             <div class="search-item-results">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
         {% endfor %}
