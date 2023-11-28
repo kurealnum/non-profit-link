@@ -9,21 +9,27 @@
 present in the desktop size. the mobile version is completely vertical -->
 
 {% block body %}
-    <section id="left-of-dashboard">
-        <h2>{{ org.username }}'s dashboard</h2>
-        <p>Welcome to your dashboard! Filler info, filler info, filler info.</p>
-        <button>Edit Information</button>
-        <button>Check out your homepage!</button>
-    </section>
-    <section class="mid-of-dashboard">
-        <ul class="items-list">
-            {% for item in org_items %}
-                {{ item }}
-            {% empty %}
-        </ul>
-            <h2>You don't have any items listed!</h2>
-        {% endfor %}
-    </section>
-    <section class="right-of-dashboard">
-    </section>
+    <div class="dashboard-body">
+        <section id="left-of-dashboard">
+            <div class="dashboard-text">
+                <h2>{{ org.username }}'s dashboard</h2>
+                <p>Here’s your non-profit’s dashboard! You can edit what you need, what you have to spare, and see some basic information about your non-profit!</p>
+            </div>
+            <div class="dashboard-buttons">
+                <button>Edit Information</button>
+                <button>Check out your homepage!</button>
+            </div>
+        </section>
+        <section class="mid-of-dashboard">
+            <ul class="items-list">
+                {% for item in org_items %}
+                    {{ item }}
+                {% empty %}
+            </ul>
+                <h2>You don't have any items listed!</h2>
+            {% endfor %}
+        </section>
+        <section class="right-of-dashboard">
+        </section>
+    </div>
 {% endblock %}

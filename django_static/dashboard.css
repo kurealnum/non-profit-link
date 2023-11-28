@@ -1,13 +1,13 @@
 #left-of-dashboard {
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary);
-  width: 90vw;
+  width: 85vw;
   margin: 0 auto;
 }
 
 #left-of-dashboard h2 {
   margin: 0 auto;
+  text-align: center;
   padding-top: 25px;
   font-size: 28px;
 }
@@ -15,8 +15,27 @@
 #left-of-dashboard p {
   background: none;
   margin: 0 auto;
+  padding-bottom: 25px;
 }
 
 #left-of-dashboard h3 {
   margin: 0 auto;
+}
+
+.dashboard-text {
+  background-color: var(--secondary);
+  margin-top: 20px;
+}
+
+.dashboard-buttons {
+  margin: 20px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.dashboard-body {
+  background: var(--primary);
+  margin: 0 12px;
 }
