@@ -21,7 +21,7 @@ import Paragraphs, { paragraphInfo } from "../components/Paragraphs.tsx";
 import Footer from "../components/Footer.tsx";
 
 //render for homepage-search
-const buttons = document.getElementsByClassName("react-search-button");
+const buttons = document.getElementsByClassName("react-button");
 const buttons_info = ["Search non-profits", "Search items"];
 
 // dynamically generate buttons

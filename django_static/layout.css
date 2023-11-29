@@ -73,13 +73,9 @@ button {
     font-size: 20px;
 }
 
-.react-search-button {
-    margin: 12px 0;
-}
-
-.search-button {
+.button {
     display: flex;
-    margin: 0 auto;
+    margin: 12px auto;
     color: var(--secondary);
     background-color: var(--accent);
     font-family: 'Poppins', 'Arial';

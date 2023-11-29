@@ -8,7 +8,7 @@ import Button from "../components/Button.tsx";
 // img imports
 import EditIcon from "../imgs/edit_icon.svg";
 
-const buttons = document.getElementsByClassName("react-edit-button");
+const buttons = document.getElementsByClassName("react-button");
 const buttons_text = ["Edit your needs", "Edit your surplus"];
 
 for (let i = 0; i < buttons.length; i++) {

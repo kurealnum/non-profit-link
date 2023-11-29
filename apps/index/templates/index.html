@@ -16,7 +16,7 @@
     
 </div>
 <div class="homepage-search">
-    <div class="react-search-button"></div>
+    <div class="react-button"></div>
     <div class="search-results">
         {% for org_info in random_5_orgs %}
             <div class="search-item-results">{{ org_info.0 }}: Located in {{ org_info.1 }}, {{ org_info.2 }}</div>
@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="homepage-search">
-    <div class="react-search-button"></div>
+    <div class="react-button"></div>
     <div class="search-results last-search-result">
         {% for item in top_5_items %}
             <div class="search-item-results">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
