@@ -38,15 +38,18 @@ h2 {
 
 .dashboard-body {
   background: var(--primary);
-  margin: 0 12px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 16px;
+  margin-bottom: 40px;
 }
 
 .item {
   background-color: var(--primary);
   font-weight: 100;
   padding: 6px 10px;
-  margin: 10px 20px;
+  margin: 7px 20px;
   box-shadow: 5px 5px 5px var(--background);
   border-left: 2px solid white;
 }
@@ -55,6 +58,7 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 0;
+  margin-bottom: 13px;
 }
 
 .mid-of-dashboard , .right-of-dashboard{
@@ -72,6 +76,7 @@ h2 {
 h3 {
   margin: 25px auto;
   margin-top: 0px;
+  font-weight: 500;
 }
 
 .react-button {
