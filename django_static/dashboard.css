@@ -44,6 +44,7 @@ h2 {
 
 .item {
   background-color: var(--primary);
+  font-weight: 100;
   padding: 6px 10px;
   margin: 10px 20px;
   box-shadow: 5px 5px 5px var(--background);
@@ -71,4 +72,15 @@ h2 {
 h3 {
   margin: 25px auto;
   margin-top: 0px;
+}
+
+.react-button {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.dashboard-button {
+  background: var(--secondary);
+  color: var(--text);
+  font-weight: 400;
 }
