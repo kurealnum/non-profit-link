@@ -2,7 +2,7 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add a boolean "want" field to items, and an OPTIONAL "description of units" field"
+- Add some more of the logic to dashboard
 
 - Finish the frontend on the dashboard
 
