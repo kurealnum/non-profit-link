@@ -20,23 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./assets/components/Header.tsx":
-/*!**************************************!*\
-  !*** ./assets/components/Header.tsx ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nvar Header = function Header(_ref) {\n  var children = _ref.children;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, children);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/components/Header.tsx?");
-
-/***/ }),
-
 /***/ "./assets/pages/dashboard.tsx":
 /*!************************************!*\
   !*** ./assets/pages/dashboard.tsx ***!
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _components_Button_tsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Button.tsx */ \"./assets/components/Button.tsx\");\n/* harmony import */ var _components_Header_tsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Header.tsx */ \"./assets/components/Header.tsx\");\n// package imports\n\n\n\n// component imports\n\n\nvar left_of_dashboard_info = JSON.parse(document.getElementById(\"org\").textContent);\nreact_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById(\"react-dashboard\")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", {\n  id: \"left-of-dashboard\"\n}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header_tsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null, left_of_dashboard_info[\"org-name\"] + \"'s dashboard\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"p\", null, left_of_dashboard_info[\"org-desc\"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Button_tsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null, \"Temporary\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", {\n  id: \"mid-of-dashboard\"\n}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", {\n  id: \"right-of-dashboard\"\n})));\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/dashboard.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _components_Button_tsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Button.tsx */ \"./assets/components/Button.tsx\");\n/* harmony import */ var _imgs_edit_icon_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../imgs/edit_icon.svg */ \"./assets/imgs/edit_icon.svg\");\n// package imports\n\n\n\n// component imports\n\n\n// img imports\n\nvar buttons = document.getElementsByClassName(\"react-edit-button\");\nvar buttons_text = [\"Edit your needs\", \"Edit your surplus\"];\nfor (var i = 0; i < buttons.length; i++) {\n  react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(buttons[i]).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Button_tsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    imgsInfo: {\n      img: _imgs_edit_icon_svg__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n      alt: \"Edit button\"\n    }\n  }, buttons_text[i])));\n}\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/pages/dashboard.tsx?");
+
+/***/ }),
+
+/***/ "./assets/imgs/edit_icon.svg":
+/*!***********************************!*\
+  !*** ./assets/imgs/edit_icon.svg ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"c93e59a8a4584d5558e1eccba060d41f.svg\");\n\n//# sourceURL=webpack://nplink-djangomigration/./assets/imgs/edit_icon.svg?");
 
 /***/ }),
 
@@ -164,6 +164,18 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -187,6 +199,29 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

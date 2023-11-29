@@ -4,20 +4,19 @@ import ReactDOM from "react-dom/client";
 
 // component imports
 import Button from "../components/Button.tsx";
-import Header from "../components/Header.tsx";
 
-const left_of_dashboard_info = JSON.parse(
-  document.getElementById("org")!.textContent!
-);
+// img imports
+import EditIcon from "../imgs/edit_icon.svg";
 
-ReactDOM.createRoot(document.getElementById("react-dashboard")!).render(
-  <React.StrictMode>
-    <section id="left-of-dashboard">
-      <Header>{left_of_dashboard_info["org-name"] + "'s dashboard"}</Header>
-      <p>{left_of_dashboard_info["org-desc"]}</p>
-      <Button>Temporary</Button>
-    </section>
-    <section id="mid-of-dashboard"></section>
-    <section id="right-of-dashboard"></section>
-  </React.StrictMode>
-);
+const buttons = document.getElementsByClassName("react-edit-button");
+const buttons_text = ["Edit your needs", "Edit your surplus"];
+
+for (let i = 0; i < buttons.length; i++) {
+  ReactDOM.createRoot(buttons[i]).render(
+    <React.StrictMode>
+      <Button imgsInfo={{ img: EditIcon, alt: "Edit button" }}>
+        {buttons_text[i]}
+      </Button>
+    </React.StrictMode>
+  );
+}
