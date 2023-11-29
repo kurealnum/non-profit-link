@@ -49,7 +49,7 @@ class OrgContactInfo(models.Model):
     email = models.EmailField(unique=False)
 
     def __str__(self):
-        return self.org
+        return str(self.org)
 
     class Meta:
         verbose_name = "OrgContactInfo"
@@ -62,7 +62,7 @@ class OrgInfo(models.Model):
     website = models.URLField(unique=False)
 
     def __str__(self):
-        return self.org
+        return str(self.org)
 
     class Meta:
         verbose_name = "OrgInfo"
