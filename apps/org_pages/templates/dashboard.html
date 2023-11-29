@@ -24,7 +24,7 @@ present in the desktop size. the mobile version is completely vertical -->
             <h2>Your needs</h2>
             <ul class="items-list">
                 {% for item in wanted_org_items %}
-                    <div class="item">{{item.count}} {{ item }}</div>
+                    <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
             </ul>
                 <h2>You don't have any items listed!</h2>
@@ -35,7 +35,7 @@ present in the desktop size. the mobile version is completely vertical -->
             <h2>Your surplus</h2>
             <ul class="items-list">
                 {% for item in surplus_org_items %}
-                    <div class="item">{{item.count}} {{ item }}</div>
+                    <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
             </ul>
                 <h2>You don't have any items listed!</h2>
