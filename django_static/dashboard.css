@@ -5,7 +5,7 @@
   margin: 0 auto;
 }
 
-#left-of-dashboard h2 {
+h2 {
   margin: 0 auto;
   text-align: center;
   padding-top: 25px;
@@ -25,11 +25,12 @@
 .dashboard-text {
   background-color: var(--secondary);
   margin-top: 20px;
+  border-radius: 5px;
 }
 
 .dashboard-buttons {
   margin: 20px;
-  height: 200px;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -38,4 +39,31 @@
 .dashboard-body {
   background: var(--primary);
   margin: 0 12px;
+  margin-top: 10px;
+}
+
+.item {
+  background-color: var(--primary);
+  padding: 6px 10px;
+  margin: 10px 20px;
+  box-shadow: 5px 5px 5px var(--background);
+  border-left: 2px solid white;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.mid-of-dashboard {
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 85vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }

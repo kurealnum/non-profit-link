@@ -2,6 +2,8 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
+- Add a boolean "want" field to items, and an OPTIONAL "description of units" field"
+
 - Finish the frontend on the dashboard
 
 - Add an edit account URL (and of course the logic behind editing an accounts information)

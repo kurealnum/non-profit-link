@@ -21,9 +21,10 @@ present in the desktop size. the mobile version is completely vertical -->
             </div>
         </section>
         <section class="mid-of-dashboard">
+            <h2>Your needs</h2>
             <ul class="items-list">
                 {% for item in org_items %}
-                    {{ item }}
+                    <div class="item">{{item.count}} {{ item }}</div>
                 {% empty %}
             </ul>
                 <h2>You don't have any items listed!</h2>
