@@ -10,7 +10,7 @@ present in the desktop size. the mobile version is completely vertical -->
 
 {% block body %}
     <div class="dashboard-body">
-        <section id="left-of-dashboard">
+        <section class="left-of-dashboard">
             <div class="dashboard-text">
                 <h2>{{ org.username }}'s dashboard</h2>
                 <p>Here’s your non-profit’s dashboard! You can edit what you need, what you have to spare, and see some basic information about your non-profit!</p>
@@ -27,7 +27,7 @@ present in the desktop size. the mobile version is completely vertical -->
                     <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
             </ul>
-                <h2>You don't have any items listed!</h2>
+                <h3>You don't have any items listed!</h3>
             {% endfor %}
             <div class="react-edit-button"></button>
         </section>
@@ -38,7 +38,7 @@ present in the desktop size. the mobile version is completely vertical -->
                     <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
             </ul>
-                <h2>You don't have any items listed!</h2>
+                <h3>You don't have any items listed!</h3>
             {% endfor %}
             <div class="react-edit-button"></button>
         </section>

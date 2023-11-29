@@ -1,4 +1,4 @@
-#left-of-dashboard {
+.left-of-dashboard {
   display: flex;
   flex-direction: column;
   width: 85vw;
@@ -12,13 +12,13 @@ h2 {
   font-size: 28px;
 }
 
-#left-of-dashboard p {
+.left-of-dashboard p {
   background: none;
   margin: 0 auto;
   padding-bottom: 25px;
 }
 
-#left-of-dashboard h3 {
+.left-of-dashboard h3 {
   margin: 0 auto;
 }
 
@@ -56,7 +56,7 @@ h2 {
   padding: 0;
 }
 
-.mid-of-dashboard {
+.mid-of-dashboard , .right-of-dashboard{
   background-color: var(--secondary);
   display: flex;
   flex-direction: column;
@@ -66,4 +66,9 @@ h2 {
   margin-top: 30px;
   margin-bottom: 20px;
   border-radius: 5px;
+}
+
+h3 {
+  margin: 25px auto;
+  margin-top: 0px;
 }
