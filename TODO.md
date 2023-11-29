@@ -2,7 +2,7 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add some more of the logic to dashboard
+- Logic added: new bugs in Admin with Item models
 
 - Finish the frontend on the dashboard
 

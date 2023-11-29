@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse
 
 from apps.accounts.models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
 
@@ -13,7 +12,8 @@ def dashboard(request):
     org_location = OrgLocation.objects.get(org=org)
     org_contact_info = OrgContactInfo.objects.get(org=org)
     org_info = OrgInfo.objects.get(org=org)
-    org_items = Item.objects.filter(org=org)
+    wanted_org_items = Item.objects.filter(org=org, want=True)
+    surplus_org_items = Item.objects.filter(org=org, want=False)
 
     return render(
         request,
@@ -23,7 +23,8 @@ def dashboard(request):
             "org_location": org_location,
             "org_contact_info": org_contact_info,
             "org_info": org_info,
-            "org_items": org_items,
+            "wanted_org_items": wanted_org_items,
+            "surplus_org_items": surplus_org_items,
         },
     )
 
