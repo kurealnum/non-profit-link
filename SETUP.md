@@ -1,6 +1,6 @@
 # Setup
 
-Make sure you have Python 3.10 and NPM installed. Also, I'm assuming that you're working out of Windows PowerShell. If you aren't, the following commands might be a little bit different.
+Make sure you have Python 3.10 installed. Also, I'm assuming that you're working out of Windows PowerShell. If you aren't, the following commands might be a little bit different.
 
 If you're working out of Windows CMD instead, the commands should _barely_ be different.
 
@@ -22,29 +22,11 @@ We're using PostgreSQL (pronounced po-st-gree-skewl)! I'm not going to bother wa
 
 - Update any required information in the Database section of settings.py.
 
-## NPM/React/TypeScript Setup
-
-**_If you're just contributing to the backend or HTML files, you don't need to worry about doing any of this._**
-
-I might lose some of you here, so try and stay with me. Making React work with Django is hard enough, but throwing TypeScript in just creates a whole different mess. I have a pretty good setup at the moment, but improvements are _always_ welcome.
-
-Also, keep in mind that all of these commands should be run from the _root folder_ of the project
-
-- Start by running `npm install`. This should install everything in package-lock.json.
-
-- Then, attempt to run `npm run dev` (builds your project). Unless specified in the most recent commit, there should be no build issues.
-
-Confused about which folders are which? Check out the [folders](#folders) section.
-
-As long as these commands run, you should be good to go! Check out the [react](#so-react) section to start contributing!
-
 ## Folders
 
 - **.vscode**: Just VSCode settings
 - **apps**: All apps, future and present
-- **assets**: All TS/TSX files, i.e. all raw files for React
 - **diagrams**: Draw.io files. Just a database diagram at the moment
-- **django_static**: Static that is only accessed by Django
+- **static**: Static files
 - **project**: Project folder for Django
-- **react_static**: All React stuff is compiled (well, technically transpiled) here. Django then takes the JS and any other files that it needs, if that makes any sense.
-- **templates**: Templates for Django!
+- **templates**: Templates for Django

@@ -1,6 +1,6 @@
 # NPL (Non Profit Link)
 
-Written in Python, Django, React/JS, HTML, CSS, and SQLite3 (Postgres at some point)
+Written in Python, Django, HTML, CSS, and Postgres
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the project. However, everything will **_eventually be on .drawio files_**.
 
@@ -17,13 +17,7 @@ If you clone this project and create your own superuser, **_your email_** is you
 
 ## So... React?
 
-Using React (and even JS) feels very overbearing and unnecessary for the current state of this project. That doesn't mean I won't use it in the future, but for now, I will be moving everything back to/writing everything in raw HTML/CSS, and I'll add in React when only when I _need_ it.
-
-**Important:** the current files, components, etc. will all remain in this repository. I just won't be using them.
-
-I've set up React so that you can use different files to control page renders. In other words, you can pick and choose which _compiled_ JS files you'd like to use.
-
-Make sure to add your new TS/TSX files to `webpack.config.js`.
+React has (as of 11/30/23) been completely removed from this project. I would've liked to have kept it around, but it was really only causing _major_ cramps in my workflow. Other than being "scalable", it served no purpose.
 
 ## What am I going to do with this/what is it for?
 
@@ -33,4 +27,4 @@ To resolve this, I'd like to develop a web application with Django that will ena
 
 ## What database will you/are you using?
 
-SQLite. PostgreSQL (pronounced "post - gree - skew - l") in the future.
+PostgreSQL (pronounced "post - gree - skew - l")
