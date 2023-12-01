@@ -89,3 +89,7 @@ h3 {
   color: var(--text);
   font-weight: 400;
 }
+
+#needs-modal, #wants-modal {
+  display: none;
+}
