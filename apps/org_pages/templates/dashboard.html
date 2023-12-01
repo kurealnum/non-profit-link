@@ -30,7 +30,7 @@ present in the desktop size. the mobile version is completely vertical -->
                 <h3>You don't have any items listed!</h3>
             {% endfor %}
             <div class="button">
-                <button>Edit your needs</button>
+                <button id="needs-button">Edit your needs</button>
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>
@@ -44,9 +44,10 @@ present in the desktop size. the mobile version is completely vertical -->
                 <h3>You don't have any items listed!</h3>
             {% endfor %}
             <div class="button">
-                <button>Edit your surplus</button>
+                <button id="surplus-button">Edit your surplus</button>
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>
     </div>
+<script src="dashboard.js"></script>
 {% endblock %}
