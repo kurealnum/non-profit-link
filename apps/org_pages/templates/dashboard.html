@@ -31,7 +31,7 @@ present in the desktop size. the mobile version is completely vertical -->
             {% endfor %}
             <div class="button">
                 <button id="needs-button">Edit your needs</button>
-                <div id="needs-modal">{% include 'edit_needs_modal.html' %}</div>
+                <div id="needs-modal" class="modal">{% include 'edit_needs_modal.html' %}</div>
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>
@@ -46,7 +46,7 @@ present in the desktop size. the mobile version is completely vertical -->
             {% endfor %}
             <div class="button">
                 <button id="surplus-button">Edit your surplus</button>
-                <div id="surplus-modal"></div>
+                <div id="surplus-modal" class="modal"></div>
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>
