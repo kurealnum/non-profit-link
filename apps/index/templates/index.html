@@ -16,7 +16,10 @@
     
 </div>
 <div class="homepage-search">
-    <div class="react-button"></div>
+    <div class="button">
+        <button>Search non-profits</button>
+        <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+    </div>
     <div class="search-results">
         {% for org_info in random_5_orgs %}
             <div class="search-item-results">{{ org_info.0 }}: Located in {{ org_info.1 }}, {{ org_info.2 }}</div>
@@ -24,14 +27,34 @@
     </div>
 </div>
 <div class="homepage-search">
-    <div class="react-button"></div>
+    <div class="button">
+        <button>Search items</button>
+        <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+    </div>
     <div class="search-results last-search-result">
         {% for item in top_5_items %}
             <div class="search-item-results">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
         {% endfor %}
     </div>
 </div>
-<div id="react-paragraphs"></div>
+<div class="paragraph">
+    <h1>My 1st Header</h1>
+    <div class="paragraph-text-img">
+        <p>
+            My Paragraph Content
+        </p>
+        <img src="{% static 'first_paragraph_blob.svg' %}">
+    </div>
+</div>
+<div class="paragraph">
+    <h1>My 2nd Header</h1>
+    <div class="paragraph-text-img">
+        <p>
+            My Paragraph Content
+        </p>
+        <img src="{% static 'second_paragraph_blob.svg' %}">
+    </div>
+</div>
 
 <footer></footer>
 
