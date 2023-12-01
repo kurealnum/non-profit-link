@@ -145,6 +145,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "static/imgs",
     BASE_DIR / "static/css",
+    BASE_DIR / "static/js",
 ]
 
 # Default primary key field type

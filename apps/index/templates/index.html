@@ -37,21 +37,18 @@
         {% endfor %}
     </div>
 </div>
+<!-- paragraph info is filled in with index.js -->
 <div class="paragraph">
-    <h1>My 1st Header</h1>
+    <h1 class="js-header"></h1>
     <div class="paragraph-text-img">
-        <p>
-            My Paragraph Content
-        </p>
+        <p class="js-paragraph"></p>
         <img src="{% static 'first_paragraph_blob.svg' %}">
     </div>
 </div>
 <div class="paragraph">
-    <h1>My 2nd Header</h1>
+    <h1 class="js-header"></h1>
     <div class="paragraph-text-img">
-        <p>
-            My Paragraph Content
-        </p>
+        <p class="js-paragraph"></p>
         <img src="{% static 'second_paragraph_blob.svg' %}">
     </div>
 </div>
@@ -70,4 +67,5 @@
         <img src="{% static 'question_mark_icon.svg' %}" alt="A question mark icon">
     </a>
 </footer>
+<script type="module" src="{% static 'index.js' %}"></script>
 {% endblock %}
