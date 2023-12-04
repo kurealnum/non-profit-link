@@ -1,7 +1,8 @@
 from django.db.models import Count, Sum
 from django.shortcuts import render
 
-from ..accounts.models import Item, Org
+from apps.accounts.models import Org
+from apps.items.models import Item
 
 
 def index(request):

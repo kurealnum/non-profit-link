@@ -1,7 +1,8 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
-from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
+from .models import Org, OrgContactInfo, OrgInfo, OrgLocation
+from apps.items.models import Item
 
 
 # basic user change forms
