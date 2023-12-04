@@ -118,5 +118,5 @@ def register_user(request):
     )
 
 
-def all_non_profits(request):
+def search_non_profits(request):
     return render(request, "non_profits.html")

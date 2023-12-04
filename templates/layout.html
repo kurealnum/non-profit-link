@@ -21,7 +21,7 @@
           <li><a href="{% url 'login' %}">My non-profit</a></li>
           {% endif %}
           <li><a href="{% url 'search_items' %}">Contributable items</a></li>
-          <li class="desktop"><a href="{% url 'all_non_profits' %}">Non-profits</a></li>
+          <li class="desktop"><a href="{% url 'search_non_profits' %}">Non-profits</a></li>
           {% if request.user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}
