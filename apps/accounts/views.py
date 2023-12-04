@@ -116,3 +116,7 @@ def register_user(request):
         REGISTER_FORM,
         {"forms": [user_info_form] + input_forms},
     )
+
+
+def all_non_profits(request):
+    return render(request, "non_profits.html")
