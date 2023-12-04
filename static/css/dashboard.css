@@ -126,3 +126,13 @@ h3 {
 .modal button:last-of-type {
   margin-bottom: 25px;
 }
+
+#needs-modal-blur {
+  position: absolute;
+  height: 100vh;
+  width: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+}
