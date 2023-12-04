@@ -23,6 +23,7 @@ urlpatterns = [
     path("", include("apps.index.urls")),
     path("accounts/", include("apps.accounts.urls")),
     path("nonprofits/", include("apps.org_pages.urls")),
+    path("items/", include("apps.items.urls")),
     # django urls
     path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
