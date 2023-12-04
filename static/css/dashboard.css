@@ -107,11 +107,12 @@ h3 {
   margin-right: auto;
   width: 80vw;
   height: 40vh;
-  background: blue;
+  background: var(--secondary);
   color: var(--text);
   height:fit-content;
   gap: 10px;
   border-radius: 5px;
+  transition: all 0.3s;
 }
 
 .modal h1 {
@@ -128,11 +129,15 @@ h3 {
 }
 
 #needs-modal-blur {
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: hidden;
   position: absolute;
   height: 100vh;
   width: 100vh;
   left: 0;
+  right: 0;
+  bottom: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(7px);
 }

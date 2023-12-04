@@ -5,13 +5,13 @@ const modalBlur = document.getElementById("needs-modal-blur")
 
 needsButton.onclick = function() {
     document.documentElement.style.overflow = "hidden"
-    modalBlur.style.display = "block"
+    modalBlur.style.visibility = "visible"
     needsModal.style.display = "flex"
 }
 
 needsCloseButton.onclick = function() {
     needsModal.style.display = "none"
-    modalBlur.style.display = "none"
+    modalBlur.style.visibility = "hidden"
     document.documentElement.style.overflow = "auto"
 }
 
