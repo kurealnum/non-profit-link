@@ -17,6 +17,6 @@ class Item(models.Model):
         return self.item_name
 
     class Meta:
-        unique_together = Org, "item_name"
+        unique_together = "org", "item_name"
         verbose_name = "Item"
         verbose_name_plural = "Items"
