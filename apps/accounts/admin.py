@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Item, Org, OrgContactInfo, OrgInfo, OrgLocation
+from .models import Org, OrgContactInfo, OrgInfo, OrgLocation
+
+from apps.items.models import Item
 
 
 # inlines for Org
@@ -43,8 +45,3 @@ class OrgInfoAdmin(admin.ModelAdmin):
 @admin.register(OrgLocation)
 class OrgLocationAdmin(admin.ModelAdmin):
     list_display = ["org", "country", "region", "zip", "city", "street_address"]
-
-
-@admin.register(Item)
-class OrgItemAdmin(admin.ModelAdmin):
-    list_display = ["item_name", "count", "org"]
