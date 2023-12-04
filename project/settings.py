@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.index",
     "apps.org_pages",
+    "apps.items",
     "django_extensions",
 ]
 
