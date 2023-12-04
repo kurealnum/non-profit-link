@@ -90,19 +90,39 @@ h3 {
   font-weight: 400;
 }
 
-#needs-modal, #wants-modal {
+#needs-modal, #surplus-modal {
   display: none;
 }
 
 .modal {
-  display: flex;
   position: absolute;
+  flex-direction: column;
   z-index: 1;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   width: 80vw;
   height: 40vh;
   background: blue;
+  color: var(--text);
+  height:fit-content;
+  gap: 10px;
+  border-radius: 5px;
+}
+
+.modal h1 {
+  padding: 20px 0;
+  border-bottom: 2px solid white;
+} 
+
+.modal button {
+  margin: 0 30px;
+}
+
+.modal button:last-of-type {
+  margin-bottom: 25px;
 }

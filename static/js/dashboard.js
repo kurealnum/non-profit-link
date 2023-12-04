@@ -3,7 +3,7 @@ const needsModal = document.getElementById("needs-modal")
 const needsCloseButton = document.getElementById("needs-close-button")
 
 needsButton.onclick = function() {
-    needsModal.style.display = "block"
+    needsModal.style.display = "flex"
 }
 
 needsCloseButton.onclick = function() {
