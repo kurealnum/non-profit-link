@@ -8,6 +8,15 @@ needsButton.onclick = function() {
 }
 
 needsCloseButton.onclick = function() {
-    needsModal.close()
+    needsModal.setAttribute("closing", "");
+
+    needsModal.addEventListener(
+        "animationend",
+        () => {
+            needsModal.removeAttribute("closing");
+            needsModal.close();
+        },
+        { once: true }
+    );
 }
 

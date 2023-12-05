@@ -90,8 +90,7 @@ h3 {
   font-weight: 400;
 }
 
-dialog[open] {
-  display: flex;
+dialog {
   position: fixed;
   flex-direction: column;
   z-index: 1;
@@ -109,12 +108,25 @@ dialog[open] {
   height:fit-content;
   gap: 10px;
   border-radius: 5px;
-  transition: all 0.3s;
+}
+
+dialog[open] {
+  display: flex;
+  animation: fade-in 700ms forwards;
+}
+
+dialog[closing] {
+  pointer-events: none;
+  animation: fade-out 500ms forwards;
 }
 
 dialog::backdrop {
   background: rgb(0 0 0 / 0.5);
   backdrop-filter: blur(10px);
+}
+
+dialog[open]::backdrop {
+  animation: fade-in 500ms forwards;
 }
 
 dialog h1 {
@@ -129,3 +141,22 @@ dialog button {
 dialog button:last-of-type {
   margin-bottom: 25px;
 }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
