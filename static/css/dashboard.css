@@ -95,7 +95,9 @@ h3 {
 }
 
 .modal {
-  position: absolute;
+  opacity: 0;
+  transition: .4s ease opacity; 
+  position: fixed;
   flex-direction: column;
   z-index: 1;
   left: 0;
@@ -129,9 +131,10 @@ h3 {
 }
 
 #needs-modal-blur {
-  transition: visibility 0s, opacity 0.5s linear;
-  visibility: hidden;
-  position: absolute;
+  display: none;
+  opacity: 0;
+  transition: .4s ease opacity;
+  position: fixed;
   height: 100vh;
   width: 100vh;
   left: 0;
