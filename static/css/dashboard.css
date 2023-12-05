@@ -112,6 +112,11 @@ dialog[open] {
   transition: all 0.3s;
 }
 
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(10px);
+}
+
 dialog h1 {
   padding: 20px 0;
   border-bottom: 2px solid white;
