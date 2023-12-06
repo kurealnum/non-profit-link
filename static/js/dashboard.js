@@ -1,5 +1,5 @@
+const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
-const needsModal = document.querySelector("#needs-modal") //is a dialog element
 const needsCloseButton = document.getElementById("needs-close-button")
 
 needsButton.onclick = function() {
@@ -18,4 +18,28 @@ needsCloseButton.onclick = function() {
         { once: true }
     );
 }
+
+
+const surplusModal = document.querySelector('#surplus-modal')
+const surplusButton = document.getElementById("surplus-button")
+const surplusCloseButton = document.getElementById("surplus-close-button")
+
+surplusButton.onclick = function() {
+    surplusModal.showModal()
+}
+
+surplusCloseButton.onclick = function() {
+    surplusModal.setAttribute("closing", "");
+
+    surplusModal.addEventListener(
+        "animationend",
+        () => {
+            surplusModal.removeAttribute("closing");
+            surplusModal.close();
+        },
+        { once: true }
+    );
+}
+
+
 

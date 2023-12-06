@@ -46,7 +46,7 @@ present in the desktop size. the mobile version is completely vertical -->
             {% endfor %}
             <div class="button">
                 <button id="surplus-button">Edit your surplus</button>
-                <dialog id="surplus-modal"></dialog>
+                <dialog id="surplus-modal">{% include 'edit_surplus_modal.html' %}</dialog>
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>

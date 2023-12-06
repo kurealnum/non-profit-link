@@ -2,7 +2,7 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add the second "surplus" modal on the dashboard
+- Add functionality to both of the modals on the dashboard
 
 - Fix the backdrop on both of the modals on the dashboard (no animations)
 
