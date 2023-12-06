@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 from apps.items.models import Item
+from apps.items.forms import CustomItemForm
 
 
-@login_required
+@login_required  # type: ignore
 def dashboard(request):
     # getting the current user/org info
     user = request.user
@@ -16,18 +17,30 @@ def dashboard(request):
     wanted_org_items = Item.objects.filter(org=org, want=True)
     surplus_org_items = Item.objects.filter(org=org, want=False)
 
-    return render(
-        request,
-        "dashboard.html",
-        context={
-            "org": org,
-            "org_location": org_location,
-            "org_contact_info": org_contact_info,
-            "org_info": org_info,
-            "wanted_org_items": wanted_org_items,
-            "surplus_org_items": surplus_org_items,
-        },
-    )
+    # TODO
+    # check if post or get
+    # if post, then validate forms
+    if request.method == "POST":
+        pass
+        # and do something with the form data to see what's been added, edited, or deleted
+        # send some sort of message that says "saved" (can be thru js or django)
+
+    # if get, just return 2 new forms
+    if request.method == "GET":
+        needed_items_form = CustomItemForm()
+        return render(
+            request,
+            "dashboard.html",
+            context={
+                "org": org,
+                "org_location": org_location,
+                "org_contact_info": org_contact_info,
+                "org_info": org_info,
+                "wanted_org_items": wanted_org_items,
+                "surplus_org_items": surplus_org_items,
+                "needed_items_form": needed_items_form,
+            },
+        )
 
 
 def homepage(request, org_name):
