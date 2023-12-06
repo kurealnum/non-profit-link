@@ -2,7 +2,9 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add a modal on the dashboard that allows you to add and remove needed and wanted items (Currently working on this, but feel free to contribute)
+- Add the second "surplus" modal on the dashboard
+
+- Fix the backdrop on both of the modals on the dashboard (no animations)
 
 - Create the frontend for items/search-items/
 

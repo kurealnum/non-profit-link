@@ -129,6 +129,10 @@ dialog[open]::backdrop {
   animation: fade-in 500ms forwards;
 }
 
+dialog[closing]::backdrop {
+  animation: fade-out 500ms forwards;
+}
+
 dialog h1 {
   padding: 20px 0;
   border-bottom: 2px solid white;
