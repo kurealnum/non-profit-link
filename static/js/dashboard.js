@@ -4,6 +4,7 @@ const needsCloseButton = document.getElementById("needs-close-button")
 
 needsButton.onclick = function() {
     needsModal.showModal()
+    document.body.style.overflow = "hidden"
 }
 
 needsCloseButton.onclick = function() {
@@ -14,6 +15,7 @@ needsCloseButton.onclick = function() {
         () => {
             needsModal.removeAttribute("closing");
             needsModal.close();
+            document.body.style.overflow = "auto"
         },
         { once: true }
     );
@@ -26,6 +28,7 @@ const surplusCloseButton = document.getElementById("surplus-close-button")
 
 surplusButton.onclick = function() {
     surplusModal.showModal()
+    document.body.style.overflow = "hidden"
 }
 
 surplusCloseButton.onclick = function() {
@@ -36,6 +39,7 @@ surplusCloseButton.onclick = function() {
         () => {
             surplusModal.removeAttribute("closing");
             surplusModal.close();
+            document.body.style.overflow = "auto"
         },
         { once: true }
     );
