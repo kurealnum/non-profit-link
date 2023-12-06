@@ -91,6 +91,7 @@ h3 {
 }
 
 dialog {
+  box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
   position: fixed;
   flex-direction: column;
   z-index: 1;
@@ -112,25 +113,12 @@ dialog {
 
 dialog[open] {
   display: flex;
-  animation: fade-in 700ms forwards;
+  animation: fade-in 250ms forwards;
 }
 
 dialog[closing] {
   pointer-events: none;
-  animation: fade-out 500ms forwards;
-}
-
-dialog::backdrop {
-  background: rgb(0 0 0 / 0.5);
-  backdrop-filter: blur(10px);
-}
-
-dialog[open]::backdrop {
-  animation: fade-in 500ms forwards;
-}
-
-dialog[closing]::backdrop {
-  animation: fade-out 500ms forwards;
+  animation: fade-out 240ms forwards;
 }
 
 dialog h1 {

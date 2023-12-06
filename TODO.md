@@ -4,8 +4,6 @@
 
 - Add functionality to both of the modals on the dashboard
 
-- Fix the backdrop on both of the modals on the dashboard (no animations)
-
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
