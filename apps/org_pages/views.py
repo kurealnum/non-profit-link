@@ -17,6 +17,14 @@ def dashboard(request):
     wanted_org_items = Item.objects.filter(org=org, want=True)
     surplus_org_items = Item.objects.filter(org=org, want=False)
 
+    # TODO
+    # check if post or get
+    # if post, then validate forms
+    if request.method == "POST":
+        pass
+        # and do something with the form data to see what's been added, edited, or deleted
+        # send some sort of message that says "saved" (can be thru js or django)
+
     # if get, just return 2 new forms
     if request.method == "GET":
         needed_items_form = CustomItemForm()
