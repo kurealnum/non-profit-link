@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "apps.org_pages",
     "apps.items",
     "django_extensions",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
