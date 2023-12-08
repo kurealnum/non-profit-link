@@ -1,26 +1,35 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from rest_framework import permissions, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from apps.accounts.models import Org
 from .models import Item
-
-API_ERROR_TEMPLATE = "api_error.html"
+from .serializers import ItemSerializer
 
 
 def search_items(request):
     return render(request, "search_items.html")
 
 
-@login_required  # type: ignore
-def add_item(request, item_name):
-    # TODO
-    if request.method == "POST":
-        print("Post")
+class ItemListApiView(APIView):
+    def get(self, request):
+        # getting the current user
+        user = request.user
+        org = Org.objects.get(username=user.username)
+        all_items = Item.objects.filter(org=org)
+        serializer = ItemSerializer(all_items, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def post(self, request):
+        data = {
+            "task": request.data.get("task"),
+            "completed": request.data.get("completed"),
+            "user": request.user.id,
+        }
+        serializer = ItemSerializer(data=data)  # type: ignore
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-def delete_item(request, item_name):
-    # TODO
-    if request.method == "POST":
-        current_user = request.user
-        Item.objects.filter(org=current_user, item_name=item_name).delete()
-    else:
-        return render(request, API_ERROR_TEMPLATE)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
