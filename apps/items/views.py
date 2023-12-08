@@ -12,27 +12,16 @@ def search_items(request):
     return render(request, "search_items.html")
 
 
-class ItemListApiView(APIView):
-    # TODO: make a check to see if item exists, return 404 if does not
-
-    # returns selected item info
-    def get(self, request, item_name):
-        # getting the current user
-        user = request.user
-        org = Org.objects.get(username=user.username)
-
-        item = Item.objects.filter(org=org, item_name=item_name)
-        serializer = ItemSerializer(item)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
+# TODO test views in here
+class SpecificItemApiView(APIView):
     # creates a new item
-    def post(self, request, item_name):
+    def post(self, request):
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
 
         data = {
-            "item_name": item_name,
+            "item_name": request.data.get("item_name"),
             "want": request.data.get("want"),
             "units_description": request.user.id,
             "count": request.data.get("count"),
@@ -44,6 +33,25 @@ class ItemListApiView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# TODO test views in here
+class SingleItemApiView(APIView):
+    # returns selected item info
+    def get(self, request, item_name):
+        # getting the current user
+        user = request.user
+        org = Org.objects.get(username=user.username)
+
+        if not Item.objects.filter(item_name=item_name).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # TODO: figure out why this query isn't working
+        item = Item.objects.filter(org=org, item_name=item_name)
+        print(org.id, item_name)
+        print(item)
+        serializer = ItemSerializer(item)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, item_name):
         # getting the current user
