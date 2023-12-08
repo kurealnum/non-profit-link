@@ -17,15 +17,22 @@ class ItemListApiView(APIView):
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
+
         all_items = Item.objects.filter(org=org)
         serializer = ItemSerializer(all_items, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        # getting the current user
+        user = request.user
+        org = Org.objects.get(username=user.username)
+
         data = {
-            "task": request.data.get("task"),
-            "completed": request.data.get("completed"),
-            "user": request.user.id,
+            "item_name": request.data.get("item_name"),
+            "want": request.data.get("want"),
+            "units_description": request.user.id,
+            "count": request.data.get("count"),
+            "org": org.id,  # type: ignore
         }
         serializer = ItemSerializer(data=data)  # type: ignore
         if serializer.is_valid():
