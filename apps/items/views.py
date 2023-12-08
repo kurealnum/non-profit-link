@@ -12,7 +12,7 @@ def search_items(request):
     return render(request, "search_items.html")
 
 
-# TODO test views in here
+# post and put requests for the model
 class SpecificItemApiView(APIView):
     # creates a new item
     def post(self, request):
@@ -35,6 +35,7 @@ class SpecificItemApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# get and delete methods for the item model
 class SingleItemApiView(APIView):
     # returns selected item info
     def get(self, request, item_name):
