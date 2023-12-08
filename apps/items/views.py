@@ -35,21 +35,18 @@ class SpecificItemApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# TODO test views in here
 class SingleItemApiView(APIView):
     # returns selected item info
     def get(self, request, item_name):
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
+        org_id = org.id  # type: ignore
 
-        if not Item.objects.filter(item_name=item_name).exists():
+        if not Item.objects.filter(org=org_id, item_name=item_name).exists():
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        # TODO: figure out why this query isn't working
-        item = Item.objects.filter(org=org, item_name=item_name)
-        print(org.id, item_name)
-        print(item)
+        item = Item.objects.get(org=org, item_name=item_name)
         serializer = ItemSerializer(item)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
