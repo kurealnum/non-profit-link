@@ -1,6 +1,12 @@
 # TODO
 
+A lot of smaller TODOs will be located with a "# TODO" in files. You can use extensions to easily locate these, or just find them manually.
+
+## TODO List
+
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
+
+- Update to new Django version
 
 - Add functionality to both of the modals on the dashboard. Using DRF, I'm implementing an Items CRUD API. Then I'll implement the frontend!
 
