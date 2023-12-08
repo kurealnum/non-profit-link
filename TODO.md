@@ -2,7 +2,7 @@
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add functionality to both of the modals on the dashboard
+- Add functionality to both of the modals on the dashboard. Using DRF, I'm implementing an Items CRUD API. Then I'll implement the frontend!
 
 - Create the frontend for items/search-items/
 

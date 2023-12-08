@@ -1,7 +1,7 @@
 # NPL (Non Profit Link)
 
 Written in Python, HTML, and CSS
-Uses Django and Postgres (possibly HTMX/Alpine.js in the future)
+Uses Django, DRF (Django Rest Framework), and Postgres (possibly HTMX/Alpine.js in the future)
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the project. However, everything will **_eventually be on .drawio files_**.
 
@@ -19,6 +19,10 @@ If you clone this project and create your own superuser, **_your email_** is you
 ## So... React?
 
 React has (as of 11/30/23) been completely removed from this project. I would've liked to have kept it around, but it was really only causing _major_ cramps in my workflow. Other than being "scalable", it served no purpose.
+
+## DRF (Django Rest Framework)?
+
+Used for the Items API (see apps/items/)!
 
 ## What am I going to do with this/what is it for?
 
