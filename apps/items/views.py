@@ -12,6 +12,7 @@ def search_items(request):
     return render(request, "search_items.html")
 
 
+# TODO: refactor all of this (use get_object_or_404())
 # post and put requests for the model
 class SpecificItemApiView(APIView):
     # creates a new item
@@ -33,6 +34,36 @@ class SpecificItemApiView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request):
+        # getting the current user
+        user = request.user
+        org = Org.objects.get(username=user.username)
+        org_id = org.id  # type: ignore
+
+        # dont include org_id in this data because that would be redundant
+        edited_item = {
+            "old_item_name": request.data.get("old_item_name"),
+            "new_item_name": request.data.get("new_item_name"),
+            "want": request.data.get("want"),
+            "units_description": request.data.get("units_description"),
+            "count": request.data.get("count"),
+        }
+
+        if not Item.objects.filter(
+            org=org_id, item_name=edited_item["old_item_name"]
+        ).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # if the object does exist, then
+        Item.objects.filter(org=org_id, item_name=edited_item["old_item_name"]).update(
+            item_name=edited_item["new_item_name"],
+            want=edited_item["want"],
+            units_description=edited_item["units_description"],
+            count=edited_item["count"],
+        )
+
+        return Response(status=status.HTTP_200_OK)
 
 
 # get and delete methods for the item model
