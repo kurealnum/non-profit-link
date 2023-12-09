@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from rest_framework import permissions, status
+from django.shortcuts import get_object_or_404, render
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.accounts.models import Org
+
 from .models import Item
 from .serializers import ItemSerializer
 
@@ -12,9 +13,8 @@ def search_items(request):
     return render(request, "search_items.html")
 
 
-# TODO: refactor all of this (use get_object_or_404())
 # post and put requests for the model
-class SpecificItemApiView(APIView):
+class PostPutItemApiView(APIView):
     # creates a new item
     def post(self, request):
         # getting the current user
@@ -67,7 +67,7 @@ class SpecificItemApiView(APIView):
 
 
 # get and delete methods for the item model
-class SingleItemApiView(APIView):
+class GetDeleteItemApiView(APIView):
     # returns selected item info
     def get(self, request, item_name):
         # getting the current user
@@ -75,10 +75,8 @@ class SingleItemApiView(APIView):
         org = Org.objects.get(username=user.username)
         org_id = org.id  # type: ignore
 
-        if not Item.objects.filter(org=org_id, item_name=item_name).exists():
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        item = get_object_or_404(Item, org=org_id, item_name=item_name)
 
-        item = Item.objects.get(org=org, item_name=item_name)
         serializer = ItemSerializer(item)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -89,8 +87,6 @@ class SingleItemApiView(APIView):
         org_id = org.id  # type: ignore
 
         # getting and deleting the item
-        if Item.objects.filter(org=org_id, item_name=item_name).exists():
-            Item.objects.get(org=org_id, item_name=item_name).delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        item = get_object_or_404(Item, org=org_id, item_name=item_name)
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
