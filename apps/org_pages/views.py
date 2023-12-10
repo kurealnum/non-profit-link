@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 from apps.items.models import Item
-from apps.items.forms import CustomItemForm
 
 
 @login_required  # type: ignore
@@ -19,7 +18,6 @@ def dashboard(request):
 
     # if get, just return 2 new forms
     if request.method == "GET":
-        needed_items_form = CustomItemForm()
         return render(
             request,
             "dashboard.html",
@@ -30,7 +28,6 @@ def dashboard(request):
                 "org_info": org_info,
                 "wanted_org_items": wanted_org_items,
                 "surplus_org_items": surplus_org_items,
-                "needed_items_form": needed_items_form,
             },
         )
 
