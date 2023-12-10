@@ -1,3 +1,4 @@
+// closing and opening the needs modal
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
 const needsCloseButton = document.getElementById("needs-close-button")
@@ -22,6 +23,7 @@ needsCloseButton.onclick = function() {
 }
 
 
+// closing and opening the surplus modal
 const surplusModal = document.querySelector('#surplus-modal')
 const surplusButton = document.getElementById("surplus-button")
 const surplusCloseButton = document.getElementById("surplus-close-button")
@@ -45,5 +47,13 @@ surplusCloseButton.onclick = function() {
     );
 }
 
+
+// adding a new item to the needs modal (NOT saving it)
+const neededModalItemsList = document.getElementById("needed-items-list")
+const needsNewButton = document.getElementById("needs-new-button")
+
+needsNewButton.onclick = function() {
+    neededModalItemsList.insertAdjacentHTML('beforeend', "<div class='item'><input type='text' value='# of units'><input type='text' value='units'> of <input type='text' value='item'></div>")
+}
 
 

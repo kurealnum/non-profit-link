@@ -1,5 +1,5 @@
 <h1>Edit your listed needs</h1>
-<ul class="items-list">
+<ul id="needed-items-list" class="items-list">
     {% for item in wanted_org_items %}
         <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
     {% empty %}
@@ -7,5 +7,5 @@
     {% endfor %}
 </ul>
 
-<button>Add new item &plus;</button>
+<button id="needs-new-button">Add new item &plus;</button>
 <button id="needs-close-button">Close</button>
