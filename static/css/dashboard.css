@@ -61,6 +61,11 @@ h2 {
   margin-bottom: 0;
 }
 
+.item input {
+  width:auto;
+  max-width: 60px;
+}
+
 .mid-of-dashboard , .right-of-dashboard{
   background-color: var(--secondary);
   display: flex;

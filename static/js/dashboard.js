@@ -53,7 +53,13 @@ const neededModalItemsList = document.getElementById("needed-items-list")
 const needsNewButton = document.getElementById("needs-new-button")
 
 needsNewButton.onclick = function() {
-    neededModalItemsList.insertAdjacentHTML('beforeend', "<div class='item'><input type='text' value='# of units'><input type='text' value='units'> of <input type='text' value='item'></div>")
+    neededModalItemsList.insertAdjacentHTML('beforeend', `
+    <div class='item'>
+        <input type='text' value='# of units'>
+        <input type='text' value='units'> of 
+        <input type='text' value='item'>
+    </div>`
+    )
 }
 
 
