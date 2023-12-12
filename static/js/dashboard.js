@@ -118,6 +118,15 @@ needsCloseAndSave.onclick = function() {
         // JSON object!!
         body: JSON.stringify(needsPOSTRequest[0])}
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
+        .then(function (response) {
+            return (response.json())
+        })
+        .then(function (data) {
+            for (let i in data) {
+                console.log(data[i])
+            }
+        })
+
     if (POSTResponse.ok) {
         // actually close the modal
         needsModal.setAttribute("closing", "");
@@ -133,7 +142,6 @@ needsCloseAndSave.onclick = function() {
         );
     }
     else {
-        // TODO
         console.log("Something went wrong, and I have no user feedback!")
     }
 }
