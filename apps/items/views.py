@@ -24,7 +24,7 @@ class PostPutItemApiView(APIView):
         data = {
             "item_name": request.data.get("item_name"),
             "want": request.data.get("want"),
-            "units_description": request.user.id,
+            "units_description": request.data.get("units_description"),
             "count": request.data.get("count"),
             "org": org.id,  # type: ignore
         }

@@ -83,9 +83,13 @@ needsNewButton.onclick = function() {
             const unitType = document.getElementById("unit-type").value
             const itemName = document.getElementById("item-name").value
 
-            // TODO adding the data to the post request that we'll make when
-            // the user saves the modal. to do because this isn't the correct format
-            needsPOSTRequest.push(numberOfUnits, unitType, itemName)
+            // TODO figure out how to get the org.id from Django
+            needsPOSTRequest.push({
+                item_name: itemName,
+                want: true,
+                units_description: unitType,
+                count: numberOfUnits
+            })
 
             // deleting the old item
             const oldItem = document.getElementById("creating-item")
@@ -97,6 +101,34 @@ needsNewButton.onclick = function() {
             `)
         }
     }
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+return "";
+}
+  
+
+const testButton = document.getElementById("test-button")
+testButton.onclick = function() {
+    const requestOptions = {
+        method: 'POST', 
+        headers: {'Content-Type': 'application/json',
+                  "X-CSRFToken": getCookie("csrftoken"),
+                  "Accept": "application/json",}, 
+        body: JSON.stringify(needsPOSTRequest[0])}
+    fetch('http://127.0.0.1:8000/items/manage-item/', requestOptions)
 }
 
 
