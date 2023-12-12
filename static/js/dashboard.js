@@ -79,9 +79,14 @@ needsNewButton.onclick = function() {
         // assigning onclick func every time we create a new `newItem` div
         createItem.onclick = function() {
             isNewItem = !isNewItem;
-            const numberOfUnits = document.getElementById("number-of-units").value
             const unitType = document.getElementById("unit-type").value
             const itemName = document.getElementById("item-name").value
+            let numberOfUnits = document.getElementById("number-of-units").value
+
+            // if it's the default value, DRF will throw a 400
+            if (numberOfUnits == "# of units") {
+                numberOfUnits = 0;
+            }
 
             // TODO figure out how to get the org.id from Django
             needsPOSTRequest.push({
@@ -102,6 +107,7 @@ needsNewButton.onclick = function() {
         }
     }
 }
+
 
 function getCookie(cname) {
     let name = cname + "=";

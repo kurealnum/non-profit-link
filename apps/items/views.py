@@ -17,6 +17,7 @@ def search_items(request):
 class PostPutItemApiView(APIView):
     # creates a new item
     def post(self, request):
+        # TODO more user feedback, perhaps?
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
@@ -28,6 +29,7 @@ class PostPutItemApiView(APIView):
             "count": request.data.get("count"),
             "org": org.id,  # type: ignore
         }
+        print(data)
         serializer = ItemSerializer(data=data)  # type: ignore
         if serializer.is_valid():
             serializer.save()
