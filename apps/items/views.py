@@ -17,7 +17,7 @@ def search_items(request):
 class PostPutItemApiView(APIView):
     # creates a new item
     def post(self, request):
-        # TODO more user feedback, perhaps?
+        # TODO user feedback "this item exists already"
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)

@@ -1,27 +1,13 @@
 // closing and opening the needs modal
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
-const needsCloseButton = document.getElementById("needs-close-button")
 
 needsButton.onclick = function() {
     needsModal.showModal()
     document.body.style.overflow = "hidden"
 }
 
-needsCloseButton.onclick = function() {
-    needsModal.setAttribute("closing", "");
-
-    needsModal.addEventListener(
-        "animationend",
-        () => {
-            needsModal.removeAttribute("closing");
-            needsModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    );
-}
-
+// needsCloseButton.onclick is lower down, as it has more functionality than just closing
 
 // closing and opening the surplus modal
 const surplusModal = document.querySelector('#surplus-modal')
@@ -56,7 +42,7 @@ let needsPOSTRequest = [];
 // html for creating a new item, and rendering a 'completed' new item
 const newItem = `
 <div id='creating-item' class="item">
-    <input id='number-of-units' type='text' value='# of units'>
+    <input id='number-of-units' type='number' value='0'>
     <input id='unit-type' type='text' value='units'> of 
     <input id='item-name' type='text' value='item'>
     <button id="create-item">&checkmark;</button>
@@ -82,11 +68,6 @@ needsNewButton.onclick = function() {
             const unitType = document.getElementById("unit-type").value
             const itemName = document.getElementById("item-name").value
             let numberOfUnits = document.getElementById("number-of-units").value
-
-            // if it's the default value, DRF will throw a 400
-            if (numberOfUnits == "# of units") {
-                numberOfUnits = 0;
-            }
 
             // TODO figure out how to get the org.id from Django
             needsPOSTRequest.push({
@@ -126,15 +107,35 @@ return "";
 }
   
 
-const testButton = document.getElementById("test-button")
-testButton.onclick = function() {
-    const requestOptions = {
+const needsCloseAndSave = document.getElementById("needs-close-button")
+needsCloseAndSave.onclick = function() {
+    const POSTRequestOptions = {
         method: 'POST', 
         headers: {'Content-Type': 'application/json',
                   "X-CSRFToken": getCookie("csrftoken"),
                   "Accept": "application/json",}, 
+        // this needs to be changed when the API changes to iterate through a 
+        // JSON object!!
         body: JSON.stringify(needsPOSTRequest[0])}
-    fetch('http://127.0.0.1:8000/items/manage-item/', requestOptions)
+    const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
+    if (POSTResponse.ok) {
+        // actually close the modal
+        needsModal.setAttribute("closing", "");
+
+        needsModal.addEventListener(
+            "animationend",
+            () => {
+                needsModal.removeAttribute("closing");
+                needsModal.close();
+                document.body.style.overflow = "auto"
+            },
+            { once: true }
+        );
+    }
+    else {
+        // TODO
+        console.log("Something went wrong, and I have no user feedback!")
+    }
 }
 
 
