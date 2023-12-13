@@ -40,10 +40,10 @@ function createNewItem(){
     return function () {
         itemCounter++
         neededModalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='creating-item' class="item js-created-item-${itemCounter}">
-            <input id='number-of-units' type='number' value='0'>
-            <input id='unit-type' type='text' value='units'> of 
-            <input id='item-name' type='text' value='item'>
+        <div id='creating-item' class="item">
+            <input id='number-of-units-${itemCounter}' type='number' value='0'>
+            <input id='unit-type-${itemCounter}' type='text' value='units'> of 
+            <input id='item-name-${itemCounter}' type='text' value='item'>
         </div>
         `)
         return "js-created-item-" + itemCounter
@@ -58,24 +58,10 @@ const needsNewButton = document.getElementById("needs-new-button")
 
 // these are the "buckets" in the eraser.io diagrams
 let needsNewItemClasses = [];
-let needsPOSTRequest = [];
 
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and save the class name
-    needsNewItemClasses.push(needsModalNewItem())
-
-    // assigning onclick func every time we create a new `newItem` div
-    const unitType = document.getElementById("unit-type").value
-    const itemName = document.getElementById("item-name").value
-    let numberOfUnits = document.getElementById("number-of-units").value
-
-    // add the data to the post request
-    // the "want" field is NOT in here for simpler user feedback
-    needsPOSTRequest.push({
-        item_name: itemName,
-        units_description: unitType,
-        count: numberOfUnits
-    })       
+    needsNewItemClasses.push(needsModalNewItem()) 
 }
 
 
@@ -100,6 +86,10 @@ return "";
 // the close and save button on the needs modal
 const needsCloseAndSave = document.getElementById("needs-close-button")
 needsCloseAndSave.onclick = function() {
+    // TODO run through every input and put that info into needsPOSTRequest
+    // data should look something like count, units description, and item name
+    let needsPOSTRequest = [];
+
     const POSTRequestOptions = {
         method: 'POST', 
         headers: {'Content-Type': 'application/json',
