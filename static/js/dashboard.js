@@ -45,7 +45,6 @@ const newItem = `
     <input id='number-of-units' type='number' value='0'>
     <input id='unit-type' type='text' value='units'> of 
     <input id='item-name' type='text' value='item'>
-    <button id="create-item">&checkmark;</button>
 </div>
 `
 
@@ -77,14 +76,14 @@ needsNewButton.onclick = function() {
                 count: numberOfUnits
             })
 
-            // deleting the old item
-            const oldItem = document.getElementById("creating-item")
-            oldItem.remove()
+            // // deleting the old item
+            // const oldItem = document.getElementById("creating-item")
+            // oldItem.remove()
 
-            // making the new item
-            neededModalItemsList.insertAdjacentHTML('beforeend', `
-                <div class="item"> ${numberOfUnits} ${unitType} of ${itemName} </div>
-            `)
+            // // making the new item
+            // neededModalItemsList.insertAdjacentHTML('beforeend', `
+            //     <div class="item"> ${numberOfUnits} ${unitType} of ${itemName} </div>
+            // `)
         }
     }
 }
@@ -135,7 +134,6 @@ needsCloseAndSave.onclick = function() {
         })
         .then(function (data) {
             for (let i in data) {
-                console.log(i)
                 // TODO
                 // not finished, this won't just be some massive loop!
                 makeAlert("warning", data[i][0])
