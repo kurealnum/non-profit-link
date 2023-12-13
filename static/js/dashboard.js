@@ -105,8 +105,20 @@ function getCookie(cname) {
     }
 return "";
 }
+
+
+// makes an alert element and displays it
+function makeAlert(alertType, content) {
+    let alertHTML = `
+        <div class="alert ${alertType}">
+            <p>${content}</p>
+        </div>
+    `
+    document.body.insertAdjacentHTML('beforeend', alertHTML)
+}
   
 
+// the close and save button on the needs modal
 const needsCloseAndSave = document.getElementById("needs-close-button")
 needsCloseAndSave.onclick = function() {
     const POSTRequestOptions = {
@@ -114,7 +126,7 @@ needsCloseAndSave.onclick = function() {
         headers: {'Content-Type': 'application/json',
                   "X-CSRFToken": getCookie("csrftoken"),
                   "Accept": "application/json",}, 
-        // this needs to be changed when the API changes to iterate through a 
+        // TODO this needs to be changed when the API changes to iterate through a 
         // JSON object!!
         body: JSON.stringify(needsPOSTRequest[0])}
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
@@ -123,7 +135,10 @@ needsCloseAndSave.onclick = function() {
         })
         .then(function (data) {
             for (let i in data) {
-                console.log(data[i])
+                console.log(i)
+                // TODO
+                // not finished, this won't just be some massive loop!
+                makeAlert("warning", data[i][0])
             }
         })
 
@@ -145,6 +160,8 @@ needsCloseAndSave.onclick = function() {
         console.log("Something went wrong, and I have no user feedback!")
     }
 }
+
+
 
 
 

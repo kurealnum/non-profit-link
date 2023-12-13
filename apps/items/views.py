@@ -21,6 +21,7 @@ class PostPutItemApiView(APIView):
         user = request.user
         org = Org.objects.get(username=user.username)
 
+        # TODO: needs to accept a list of this data
         data = {
             "item_name": request.data.get("item_name"),
             "want": request.data.get("want"),
