@@ -34,40 +34,48 @@ surplusCloseButton.onclick = function() {
 }
 
 
+// function for creating a new item, and rendering a new item with inputs instead of fields
+function createNewItem(){
+    let itemCounter = 0
+    return function () {
+        itemCounter++
+        neededModalItemsList.insertAdjacentHTML('beforeend', `
+        <div id='creating-item' class="item js-created-item-${itemCounter}">
+            <input id='number-of-units' type='number' value='0'>
+            <input id='unit-type' type='text' value='units'> of 
+            <input id='item-name' type='text' value='item'>
+        </div>
+        `)
+        return "js-created-item-" + itemCounter
+    }
+}
+
+const needsModalNewItem = createNewItem()
+
 // adding a new item to the needs modal (NOT saving it)
 const neededModalItemsList = document.getElementById("needed-items-list")
 const needsNewButton = document.getElementById("needs-new-button")
+
+// these are the "buckets" in the eraser.io diagrams
+let needsNewItemClasses = [];
 let needsPOSTRequest = [];
 
-// check for if the user is already inputting a new item
-let isNewItem = false;
-
 needsNewButton.onclick = function() {
-    if (isNewItem) {
-        // tell the user that they can't create multiple unsaved items
-        console.log("You can't do that!")
-    }
-    else {
-        isNewItem = !isNewItem
-        neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
-        const createItem = document.getElementById("create-item")
+    // creates a new item with inputs as fields, and save the class name
+    needsNewItemClasses.push(needsModalNewItem())
 
-        // assigning onclick func every time we create a new `newItem` div
-        createItem.onclick = function() {
-            isNewItem = !isNewItem;
-            const unitType = document.getElementById("unit-type").value
-            const itemName = document.getElementById("item-name").value
-            let numberOfUnits = document.getElementById("number-of-units").value
+    // assigning onclick func every time we create a new `newItem` div
+    const unitType = document.getElementById("unit-type").value
+    const itemName = document.getElementById("item-name").value
+    let numberOfUnits = document.getElementById("number-of-units").value
 
-            // add the data to the post request
-            // the "want" field is NOT in here for simpler user feedback
-            needsPOSTRequest.push({
-                item_name: itemName,
-                units_description: unitType,
-                count: numberOfUnits
-            })
-        }
-    }
+    // add the data to the post request
+    // the "want" field is NOT in here for simpler user feedback
+    needsPOSTRequest.push({
+        item_name: itemName,
+        units_description: unitType,
+        count: numberOfUnits
+    })       
 }
 
 
@@ -100,7 +108,7 @@ needsCloseAndSave.onclick = function() {
         // TODO this needs to be changed when the API changes to iterate through a 
         // JSON object!!
         // extra want field to avoid redundant 'want' fields in needsPOSTRequest
-        body: JSON.stringify(needsPOSTRequest[0])} + JSON.stringify({"want": true})
+        body: {...JSON.stringify(needsPOSTRequest[0])}, ...JSON.stringify({"want": true})}
 
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
         .then(function (response) {
