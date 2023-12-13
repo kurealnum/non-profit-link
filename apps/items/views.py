@@ -21,10 +21,13 @@ class PostPutItemApiView(APIView):
         user = request.user
         org = Org.objects.get(username=user.username)
 
+        # want is a singular value, makes user feedback on frontend simpler
+        want = request.data.get("want")
+
         # TODO: needs to accept a list of this data
         data = {
             "item_name": request.data.get("item_name"),
-            "want": request.data.get("want"),
+            "want": want,
             "units_description": request.data.get("units_description"),
             "count": request.data.get("count"),
             "org": org.id,  # type: ignore

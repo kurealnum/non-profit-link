@@ -39,15 +39,6 @@ const neededModalItemsList = document.getElementById("needed-items-list")
 const needsNewButton = document.getElementById("needs-new-button")
 let needsPOSTRequest = [];
 
-// html for creating a new item, and rendering a 'completed' new item
-const newItem = `
-<div id='creating-item' class="item">
-    <input id='number-of-units' type='number' value='0'>
-    <input id='unit-type' type='text' value='units'> of 
-    <input id='item-name' type='text' value='item'>
-</div>
-`
-
 // check for if the user is already inputting a new item
 let isNewItem = false;
 
@@ -68,27 +59,19 @@ needsNewButton.onclick = function() {
             const itemName = document.getElementById("item-name").value
             let numberOfUnits = document.getElementById("number-of-units").value
 
-            // TODO figure out how to get the org.id from Django
+            // add the data to the post request
+            // the "want" field is NOT in here for simpler user feedback
             needsPOSTRequest.push({
                 item_name: itemName,
-                want: true,
                 units_description: unitType,
                 count: numberOfUnits
             })
-
-            // // deleting the old item
-            // const oldItem = document.getElementById("creating-item")
-            // oldItem.remove()
-
-            // // making the new item
-            // neededModalItemsList.insertAdjacentHTML('beforeend', `
-            //     <div class="item"> ${numberOfUnits} ${unitType} of ${itemName} </div>
-            // `)
         }
     }
 }
 
 
+// taken from Django's docs <3
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -104,17 +87,6 @@ function getCookie(cname) {
     }
 return "";
 }
-
-
-// makes an alert element and displays it
-function makeAlert(alertType, content) {
-    let alertHTML = `
-        <div class="alert ${alertType}">
-            <p>${content}</p>
-        </div>
-    `
-    document.body.insertAdjacentHTML('beforeend', alertHTML)
-}
   
 
 // the close and save button on the needs modal
@@ -127,7 +99,9 @@ needsCloseAndSave.onclick = function() {
                   "Accept": "application/json",}, 
         // TODO this needs to be changed when the API changes to iterate through a 
         // JSON object!!
-        body: JSON.stringify(needsPOSTRequest[0])}
+        // extra want field to avoid redundant 'want' fields in needsPOSTRequest
+        body: JSON.stringify(needsPOSTRequest[0])} + JSON.stringify({"want": true})
+
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
         .then(function (response) {
             return (response.json())
@@ -136,7 +110,7 @@ needsCloseAndSave.onclick = function() {
             for (let i in data) {
                 // TODO
                 // not finished, this won't just be some massive loop!
-                makeAlert("warning", data[i][0])
+                console.log(i)
             }
         })
 
