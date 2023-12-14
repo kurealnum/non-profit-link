@@ -52,9 +52,8 @@ function createNewItem(){
 }
 
 
-
 // these are the "buckets" in the eraser.io diagrams
-let needsNewItemClasses = [];
+let needsItemIndexes = [];
 // this func uses closure (i think thats what its called)
 const needsModalNewItem = createNewItem()
 
@@ -62,7 +61,7 @@ const needsModalNewItem = createNewItem()
 const needsNewButton = document.getElementById("needs-new-button")
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and save the class name
-    needsNewItemClasses.push(needsModalNewItem()) 
+    needsItemIndexes.push(needsModalNewItem()) 
 }
 
 
@@ -87,9 +86,22 @@ return "";
 // the close and save button on the needs modal
 const needsCloseAndSave = document.getElementById("needs-close-button")
 needsCloseAndSave.onclick = function() {
-    // TODO run through every input and put that info into needsPOSTRequest
     // data should look something like count, units description, and item name
     let needsPOSTRequest = [];
+
+    // gathering data for needsPOSTRequest 
+    // TODO is there a more JS way to do this?
+    for (let counter of needsItemIndexes) {
+        const item_name = document.querySelector("#item-name-" + counter).value
+        const units_description = document.querySelector("#unit-type-" + counter).value
+        const count = document.querySelector("#number-of-units-" + counter).value
+        const addedItem = {
+            "item_name": item_name,
+            "units_description": units_description,
+            "count": count,
+        }
+        needsPOSTRequest.push(addedItem)
+    }
 
     const POSTRequestOptions = {
         method: 'POST', 
