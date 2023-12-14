@@ -111,7 +111,7 @@ needsCloseAndSave.onclick = function() {
         // TODO this needs to be changed when the API changes to iterate through a 
         // JSON object!!
         // extra want field to avoid redundant 'want' fields in needsPOSTRequest
-        body: JSON.stringify({...needsPOSTRequest[0], ...{"want": true}})
+        body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
     }
 
     // TODO not sure how the logic should go from here down..

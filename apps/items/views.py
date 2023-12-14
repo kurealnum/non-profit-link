@@ -26,16 +26,20 @@ class PostPutItemApiView(APIView):
         # want is a singular value, makes user feedback on frontend simpler
         want = request.data.get("want")
 
-        # TODO: needs to accept a list of this data
-        data = {
-            "item_name": request.data.get("item_name"),
-            "want": want,
-            "units_description": request.data.get("units_description"),
-            "count": request.data.get("count"),
-            "org": org.id,  # type: ignore
-        }
+        serializer_data = []
 
-        serializer = ItemSerializer(data=data)  # type: ignore
+        # accepts a list of this data
+        for item in request.data.get("needsPOSTRequest"):
+            new_item = {
+                "item_name": item["item_name"],
+                "want": want,
+                "units_description": item["units_description"],
+                "count": item["count"],
+                "org": org.id,  # type: ignore
+            }
+            serializer_data.append(new_item)
+
+        serializer = ItemSerializer(data=serializer_data, many=True)  # type: ignore
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
