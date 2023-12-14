@@ -21,6 +21,8 @@ class PostPutItemApiView(APIView):
         user = request.user
         org = Org.objects.get(username=user.username)
 
+        print(request.data)
+
         # want is a singular value, makes user feedback on frontend simpler
         want = request.data.get("want")
 

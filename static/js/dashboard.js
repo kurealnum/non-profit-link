@@ -36,6 +36,7 @@ surplusCloseButton.onclick = function() {
 
 // function for creating a new item, and rendering a new item with inputs instead of fields
 function createNewItem(){
+    const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
     return function () {
         itemCounter++
@@ -46,19 +47,19 @@ function createNewItem(){
             <input id='item-name-${itemCounter}' type='text' value='item'>
         </div>
         `)
-        return "js-created-item-" + itemCounter
+        return itemCounter
     }
 }
 
-const needsModalNewItem = createNewItem()
 
-// adding a new item to the needs modal (NOT saving it)
-const neededModalItemsList = document.getElementById("needed-items-list")
-const needsNewButton = document.getElementById("needs-new-button")
 
 // these are the "buckets" in the eraser.io diagrams
 let needsNewItemClasses = [];
+// this func uses closure (i think thats what its called)
+const needsModalNewItem = createNewItem()
 
+// adding a new item to the needs modal (NOT saving it)
+const needsNewButton = document.getElementById("needs-new-button")
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and save the class name
     needsNewItemClasses.push(needsModalNewItem()) 
@@ -101,6 +102,7 @@ needsCloseAndSave.onclick = function() {
         body: JSON.stringify({...needsPOSTRequest[0], ...{"want": true}})
     }
 
+    // TODO not sure how the logic should go from here down..
     // figure out how to distinguish which field belongs to which input...
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
         .then(function (response) {
