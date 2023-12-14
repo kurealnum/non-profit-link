@@ -98,8 +98,10 @@ needsCloseAndSave.onclick = function() {
         // TODO this needs to be changed when the API changes to iterate through a 
         // JSON object!!
         // extra want field to avoid redundant 'want' fields in needsPOSTRequest
-        body: {...JSON.stringify(needsPOSTRequest[0])}, ...JSON.stringify({"want": true})}
+        body: JSON.stringify({...needsPOSTRequest[0], ...{"want": true}})
+    }
 
+    // figure out how to distinguish which field belongs to which input...
     const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
         .then(function (response) {
             return (response.json())
