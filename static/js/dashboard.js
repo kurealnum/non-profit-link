@@ -99,6 +99,8 @@ needsCloseAndSave.onclick = function() {
             "item_name": item_name,
             "units_description": units_description,
             "count": count,
+            // input id is to identify which input to assign errors to (if there are any)
+            "input_id": counter,
         }
         needsPOSTRequest.push(addedItem)
     }
@@ -108,8 +110,6 @@ needsCloseAndSave.onclick = function() {
         headers: {'Content-Type': 'application/json',
                   "X-CSRFToken": getCookie("csrftoken"),
                   "Accept": "application/json",}, 
-        // TODO this needs to be changed when the API changes to iterate through a 
-        // JSON object!!
         // extra want field to avoid redundant 'want' fields in needsPOSTRequest
         body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
     }
@@ -121,10 +121,12 @@ needsCloseAndSave.onclick = function() {
             return (response.json())
         })
         .then(function (data) {
-            for (let i in data) {
-                // TODO
-                // not finished, this won't just be some massive loop!
-                console.log(i)
+            console.log(data)
+            for (let errors of data) {
+                console.log(errors)
+                for (let i of Object.keys(errors)){
+                    console.log(errors[i])
+                }
             }
         })
 
