@@ -21,8 +21,6 @@ class PostPutItemApiView(APIView):
         user = request.user
         org = Org.objects.get(username=user.username)
 
-        print(request.data)
-
         # want is a singular value, makes user feedback on frontend simpler
         want = request.data.get("want")
 
@@ -37,9 +35,9 @@ class PostPutItemApiView(APIView):
                 "want": want,
                 "units_description": item["units_description"],
                 "count": item["count"],
+                "input_id": item["input_id"],
                 "org": org.id,  # type: ignore
             }
-            input_ids.append(item["input_id"])
             serializer_data.append(new_item)
 
         serializer = ItemSerializer(data=serializer_data, many=True)  # type: ignore
@@ -48,7 +46,9 @@ class PostPutItemApiView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         # TODO: figure out how to make this work
-        serializer.errors = list(zip(serializer.errors, input_ids))  # type: ignore
+        serializer.errors[0] = 1
+        print(serializer.errors)
+        # list(zip(serializer.errors, input_ids))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request):
