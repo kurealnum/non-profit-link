@@ -5,17 +5,18 @@ from .models import Item
 
 
 class ItemSerializer(serializers.ModelSerializer):
-    # ????
     input_id = serializers.IntegerField()
 
     class Meta:
         model = Item
         fields = "__all__"
-        extra_kwargs = {"input_id": {"error_messages"}}
         validators = [
             UniqueTogetherValidator(
                 queryset=Item.objects.all(),
                 fields=["org", "item_name"],
-                message="You cannot have duplicate items!",
+                message="Duplicate items!",
             )
         ]
+
+    # identifying which input to send an error to on the frontend
+    # TODO: figure out how to make this work

@@ -25,8 +25,6 @@ class PostPutItemApiView(APIView):
         want = request.data.get("want")
 
         serializer_data = []
-        # identifying which input to send an error to on the frontend
-        input_ids = []
 
         # accepts a list of this data
         for item in request.data.get("needsPOSTRequest"):
@@ -45,10 +43,6 @@ class PostPutItemApiView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        # TODO: figure out how to make this work
-        serializer.errors[0] = 1
-        print(serializer.errors)
-        # list(zip(serializer.errors, input_ids))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request):
