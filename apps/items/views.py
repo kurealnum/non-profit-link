@@ -36,16 +36,18 @@ class PostPutItemApiView(APIView):
                 "org": org.id,  # type: ignore
             }
             new_serializer = ItemSerializer(data=new_item)
-            item_id = item["input_id"]
             if new_serializer.is_valid():
                 new_serializer.save()
             else:
-                all_serializer_errors.append(new_serializer.errors)
+                # we have to do all of this just to get the input_id into the errors
+                errors = dict(new_serializer.errors)
+                errors["item_id"] = item["input_id"]
+                all_serializer_errors.append(errors)
 
         if all_serializer_errors:
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_201_CREATED)
 
     def put(self, request):
         # getting the current user
