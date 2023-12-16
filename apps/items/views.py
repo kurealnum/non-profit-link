@@ -24,7 +24,7 @@ class PostPutItemApiView(APIView):
         # want is a singular value, makes user feedback on frontend simpler
         want = request.data.get("want")
 
-        serializer_data = []
+        all_serializer_errors = []
 
         # accepts a list of this data
         for item in request.data.get("needsPOSTRequest"):
@@ -33,17 +33,19 @@ class PostPutItemApiView(APIView):
                 "want": want,
                 "units_description": item["units_description"],
                 "count": item["count"],
-                "input_id": item["input_id"],
                 "org": org.id,  # type: ignore
             }
-            serializer_data.append(new_item)
+            new_serializer = ItemSerializer(data=new_item)
+            item_id = item["input_id"]
+            if new_serializer.is_valid():
+                new_serializer.save()
+            else:
+                all_serializer_errors.append(new_serializer.errors)
 
-        serializer = ItemSerializer(data=serializer_data, many=True)  # type: ignore
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if all_serializer_errors:
+            return Response(status=status.HTTP_201_CREATED)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request):
         # getting the current user
