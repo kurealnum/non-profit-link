@@ -24,10 +24,12 @@ class PostPutItemApiView(APIView):
         # want is a singular value, makes user feedback on frontend simpler
         want = request.data.get("want")
 
+        # all of this because no default error message :(
         all_serializer_errors = []
+        serialzers_to_save = []
 
-        # accepts a list of this data
         for item in request.data.get("needsPOSTRequest"):
+            # accepts a list of this data
             new_item = {
                 "item_name": item["item_name"],
                 "want": want,
@@ -37,7 +39,8 @@ class PostPutItemApiView(APIView):
             }
             new_serializer = ItemSerializer(data=new_item)
             if new_serializer.is_valid():
-                new_serializer.save()
+                # we dont want to save if there's one serializer that isn't valid
+                serialzers_to_save.append(new_serializer)
             else:
                 # we have to do all of this just to get the input_id into the errors
                 errors = dict(new_serializer.errors)
@@ -46,6 +49,10 @@ class PostPutItemApiView(APIView):
 
         if all_serializer_errors:
             return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # saving all of the new items
+        for ser in serialzers_to_save:
+            ser.save()
 
         return Response(status=status.HTTP_201_CREATED)
 
