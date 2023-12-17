@@ -86,68 +86,64 @@ return "";
 // the close and save button on the needs modal
 const needsCloseAndSave = document.getElementById("needs-close-button")
 needsCloseAndSave.onclick = function() {
-    // data should look something like count, units description, and item name
-    let needsPOSTRequest = [];
+    async function createItems() {
+        // data should look something like count, units description, and item name
+        let needsPOSTRequest = [];
 
-    // gathering data for needsPOSTRequest 
-    // TODO is there a more JS way to do this?
-    for (let counter of needsItemIndexes) {
-        const item_name = document.querySelector("#item-name-" + counter).value
-        const units_description = document.querySelector("#unit-type-" + counter).value
-        const count = document.querySelector("#number-of-units-" + counter).value
-        const addedItem = {
-            "item_name": item_name,
-            "units_description": units_description,
-            "count": count,
-            // input id is to identify which input to assign errors to (if there are any)
-            "input_id": counter,
+        // gathering data for needsPOSTRequest 
+        // TODO is there a more JS way to do this?
+        for (let counter of needsItemIndexes) {
+            const item_name = document.querySelector("#item-name-" + counter).value
+            const units_description = document.querySelector("#unit-type-" + counter).value
+            const count = document.querySelector("#number-of-units-" + counter).value
+            const addedItem = {
+                "item_name": item_name,
+                "units_description": units_description,
+                "count": count,
+                // input id is to identify which input to assign errors to (if there are any)
+                "input_id": counter,
+            }
+            needsPOSTRequest.push(addedItem)
         }
-        needsPOSTRequest.push(addedItem)
-    }
 
-    const POSTRequestOptions = {
-        method: 'POST', 
-        headers: {'Content-Type': 'application/json',
-                  "X-CSRFToken": getCookie("csrftoken"),
-                  "Accept": "application/json",}, 
-        // extra want field to avoid redundant 'want' fields in needsPOSTRequest
-        body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
-    }
+        const POSTRequestOptions = {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json',
+                    "X-CSRFToken": getCookie("csrftoken"),
+                    "Accept": "application/json",}, 
+            // extra want field to avoid redundant 'want' fields in needsPOSTRequest
+            body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
+        }
 
-    // TODO not sure how the logic should go from here down..
-    // figure out how to distinguish which field belongs to which input...
-    const POSTResponse = fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
-        .then(function (response) {
-            return (response.json())
-        })
-        .then(function (data) {
-            console.log(data)
-            for (let errors of data) {
-                console.log(errors)
-                for (let i of Object.keys(errors)){
-                    console.log(errors[i])
+        // TODO not sure how the logic should go from here down..
+        // figure out how to distinguish which field belongs to which input...
+        const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
+            if (POSTResponse.status == 201) {
+                // actually close the modal
+                needsModal.setAttribute("closing", "");
+        
+                needsModal.addEventListener(
+                    "animationend",
+                    () => {
+                        needsModal.removeAttribute("closing");
+                        needsModal.close();
+                        document.body.style.overflow = "auto"
+                    },
+                    { once: true }
+                );
+            }
+            else {
+                const POSTResponseData = await POSTResponse.json()
+                for (let errors of POSTResponseData) {
+                    console.log(errors)
+                    for (let i of Object.keys(errors)){
+                        console.log(errors[i])
+                    }
                 }
             }
-        })
-
-    if (POSTResponse.ok) {
-        // actually close the modal
-        needsModal.setAttribute("closing", "");
-
-        needsModal.addEventListener(
-            "animationend",
-            () => {
-                needsModal.removeAttribute("closing");
-                needsModal.close();
-                document.body.style.overflow = "auto"
-            },
-            { once: true }
-        );
+        }
+        createItems()
     }
-    else {
-        console.log("Something went wrong, and I have no user feedback!")
-    }
-}
 
 
 

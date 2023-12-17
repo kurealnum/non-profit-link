@@ -10,7 +10,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out why text is not wrapping in modals on dashboard
 
-- API and functionality on modals will have MAJOR changes. Check out this Eraser.io design doc to see what I'm talking about: https://app.eraser.io/workspace/hhjBDIzPhrIHJAKpowOx
+- When adding a new item in the dashboard, if the item is valid and saves, add the new items to their respective `"items-list"`
+
+- Apply errors to fields with `reportValidity()` if there are errors
 
 - Create the frontend for items/search-items/
 

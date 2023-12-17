@@ -54,7 +54,7 @@ class PostPutItemApiView(APIView):
         for ser in serialzers_to_save:
             ser.save()
 
-        return Response(status=status.HTTP_201_CREATED)
+        return Response([], status=status.HTTP_201_CREATED)
 
     def put(self, request):
         # getting the current user
