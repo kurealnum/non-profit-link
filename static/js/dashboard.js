@@ -142,10 +142,10 @@ needsCloseAndSave.onclick = function() {
                     for (let key in rawErrorMessages) {
                         errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
                     }
-                     console.log(errorMessages)
-                    // const errorMessages = Object.keys(errors).reduce(
-                    //     // TODO not sure why curError[0] isnt working :(
-                    //     (allErrors, curError) => allErrors + ("<li>" + errors[curError] + "</li>"))
+                    // TODO not sure why this reduce func isnt working :(
+                        // just using a for loop to populate error messages atm
+                    // const errorMessages = Object.keys(rawErrorMessages).reduce(
+                    //     (allErrors, curError) => allErrors += ("<li>" + "a" + "</li>"))
                     itemWithError.insertAdjacentHTML('beforebegin', `
                         <ul>
                             ${errorMessages}

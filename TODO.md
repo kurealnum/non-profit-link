@@ -10,7 +10,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out why text is not wrapping in modals on dashboard
 
-- When adding a new item in the dashboard, if the item is valid and saves, add the new items to their respective `"items-list"`
+- When adding a new item in the dashboard, if the item is valid and saves, add the new items to their respective `"items-list"` element
+
+- Make errors with POST request render _only once_, and not multiple times
 
 - Create the frontend for items/search-items/
 
