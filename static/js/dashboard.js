@@ -143,14 +143,18 @@ needsCloseAndSave.onclick = function() {
                         errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
                     }
                     // TODO not sure why this reduce func isnt working :(
-                        // just using a for loop to populate error messages atm
+                    // just using a for loop to populate error messages atm
                     // const errorMessages = Object.keys(rawErrorMessages).reduce(
                     //     (allErrors, curError) => allErrors += ("<li>" + "a" + "</li>"))
-                    itemWithError.insertAdjacentHTML('beforebegin', `
-                        <ul>
-                            ${errorMessages}
-                        </ul>
-                    `)
+                    const isPresentError = document.getElementById("modal-error-" + inputId)
+                    // if there's not an error present already, do nothing
+                    if (!isPresentError) {
+                        itemWithError.insertAdjacentHTML('beforebegin', `
+                            <ul id="modal-error-${inputId}">
+                                ${errorMessages}
+                            </ul>
+                        `)
+                    }
                 } 
             }        
         }
