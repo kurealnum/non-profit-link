@@ -28,7 +28,7 @@ class PostPutItemApiView(APIView):
         all_serializer_errors = []
         serialzers_to_save = []
 
-        for item in request.data.get("needsPOSTRequest"):
+        for item in request.data.get("needsPOSTRequestInfo"):
             # accepts a list of this data
             new_item = {
                 "item_name": item["item_name"],

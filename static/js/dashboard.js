@@ -1,13 +1,3 @@
-// closing and opening the needs modal
-const needsModal = document.querySelector("#needs-modal") 
-const needsButton = document.getElementById("needs-button")
-
-needsButton.onclick = function() {
-    needsModal.showModal()
-    document.body.style.overflow = "hidden"
-}
-
-
 // function for rendering a new item with inputs instead of fields; uses closure
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
@@ -26,15 +16,24 @@ function createNewItem(){
 }
 
 
+// NEEDS MODAL
+const needsModal = document.querySelector("#needs-modal") 
+const needsButton = document.getElementById("needs-button")
+
+needsButton.onclick = function() {
+    needsModal.showModal()
+    document.body.style.overflow = "hidden"
+}
+
 // these are the "buckets" in the eraser.io diagrams
-let needsItemIndexes = [];
+let needsItemInputIds = [];
 const needsModalNewItem = createNewItem()
 
 // adding a new item to the needs modal (NOT saving it)
 const needsNewButton = document.getElementById("needs-new-button")
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and saves the class name
-    needsItemIndexes.push(needsModalNewItem()) 
+    needsItemInputIds.push(needsModalNewItem()) 
 }
 
 
@@ -57,15 +56,21 @@ return "";
   
 
 // the close and save button on the needs modal
-const needsCloseAndSave = document.getElementById("needs-close-button")
-needsCloseAndSave.onclick = function() {
+const needsCloseAndSaveButton = document.getElementById("needs-close-button")
+needsCloseAndSaveButton.onclick = function() {
     async function createItems() {
-        // data should look something like count, units description, and item name
-        let needsPOSTRequest = [];
+        let needsPOSTRequestInfo = [];
+        /* 
+        data in needsPOSTRequestInfo should look something like this:
+        count: 3
+        units_description: "verycool"
+        item_name: "myitem"
+        input_id: 2  (input id is to identify which input to assign errors to (if there are any))
+        */ 
 
-        // gathering data for needsPOSTRequest 
+        // gathering data for needsPOSTRequestInfo 
         // TODO is there a more JS way to do this?
-        for (let counter of needsItemIndexes) {
+        for (let counter of needsItemInputIds) {
             const item_name = document.querySelector("#item-name-" + counter).value
             const units_description = document.querySelector("#unit-type-" + counter).value
             const count = document.querySelector("#number-of-units-" + counter).value
@@ -73,10 +78,9 @@ needsCloseAndSave.onclick = function() {
                 "item_name": item_name,
                 "units_description": units_description,
                 "count": count,
-                // input id is to identify which input to assign errors to (if there are any)
                 "input_id": counter,
             }
-            needsPOSTRequest.push(addedItem)
+            needsPOSTRequestInfo.push(addedItem)
         }
 
         const POSTRequestOptions = {
@@ -84,8 +88,8 @@ needsCloseAndSave.onclick = function() {
             headers: {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}, 
-            // extra want field to avoid redundant 'want' fields in needsPOSTRequest
-            body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
+            // extra want field to avoid redundant 'want' fields in needsPOSTRequestInfo
+            body: JSON.stringify({needsPOSTRequestInfo, ...{"want": true}})
         }
 
         // figure out how to distinguish which field belongs to which input...
@@ -94,7 +98,7 @@ needsCloseAndSave.onclick = function() {
                 // visually add new items to dashboard, and remove old input fields
                 const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
                 const neededModalItemsList = document.getElementById("needed-items-list")
-                for (let itemInfo of needsPOSTRequest) {
+                for (let itemInfo of needsPOSTRequestInfo) {
                     const newItem = `
                         <div class="item">
                             ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
@@ -106,7 +110,7 @@ needsCloseAndSave.onclick = function() {
                     const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
                     oldInputField.remove()
                 }
-                needsItemIndexes = []
+                needsItemInputIds = []
                 
                 // close the modal
                 needsModal.setAttribute("closing", "");
@@ -149,17 +153,17 @@ needsCloseAndSave.onclick = function() {
                     }
                 } 
             }        
-        }
+    }
     createItems()
 }
       
 
-// closing and opening the surplus modal
+// SURPLUS MODAL
 const surplusModal = document.querySelector('#surplus-modal')
-const surplusButton = document.getElementById("surplus-button")
+const surplusOpenButton = document.getElementById("surplus-button")
 const surplusCloseButton = document.getElementById("surplus-close-button")
 
-surplusButton.onclick = function() {
+surplusOpenButton.onclick = function() {
     surplusModal.showModal()
     document.body.style.overflow = "hidden"
 }

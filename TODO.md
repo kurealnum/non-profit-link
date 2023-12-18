@@ -8,7 +8,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
-- Fix new items not being visually created in the modal
+- Add the delete and update methods to the needs modal
 
 - Create the frontend for items/search-items/
 
