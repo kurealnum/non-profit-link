@@ -136,10 +136,17 @@ needsCloseAndSave.onclick = function() {
                 for (let errors of POSTResponseData) {
                     // getting the input id, then going thru errors
                     const inputId = errors[1]["input_id"]
-                    const errorMessage = document.getElementById("js-item-" + inputId)
-                    const errorMessages = Object.keys(errors).reduce(
-                        (allErrors, curError) => allErrors + ("<li>" + curError[0][0] + "</li>"))
-                    errorMessage.insertAdjacentHTML('beforestart', `
+                    const itemWithError = document.getElementById("js-item-" + inputId)
+                    const rawErrorMessages = errors[0]
+                    let errorMessages = ""
+                    for (let key in rawErrorMessages) {
+                        errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
+                    }
+                     console.log(errorMessages)
+                    // const errorMessages = Object.keys(errors).reduce(
+                    //     // TODO not sure why curError[0] isnt working :(
+                    //     (allErrors, curError) => allErrors + ("<li>" + errors[curError] + "</li>"))
+                    itemWithError.insertAdjacentHTML('beforebegin', `
                         <ul>
                             ${errorMessages}
                         </ul>
