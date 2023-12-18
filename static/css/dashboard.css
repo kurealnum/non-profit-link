@@ -47,6 +47,7 @@ h2 {
 
 .item {
   background-color: var(--primary);
+  word-wrap: break-word;
   font-weight: 100;
   padding: 6px 10px;
   margin: 7px 20px;
@@ -97,6 +98,7 @@ h3 {
 dialog {
   box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
   position: fixed;
+  white-space: normal;
   flex-direction: column;
   z-index: 1;
   left: 0;
