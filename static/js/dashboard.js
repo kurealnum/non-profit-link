@@ -7,34 +7,8 @@ needsButton.onclick = function() {
     document.body.style.overflow = "hidden"
 }
 
-// needsCloseButton.onclick is lower down, as it has more functionality than just closing
 
-// closing and opening the surplus modal
-const surplusModal = document.querySelector('#surplus-modal')
-const surplusButton = document.getElementById("surplus-button")
-const surplusCloseButton = document.getElementById("surplus-close-button")
-
-surplusButton.onclick = function() {
-    surplusModal.showModal()
-    document.body.style.overflow = "hidden"
-}
-
-surplusCloseButton.onclick = function() {
-    surplusModal.setAttribute("closing", "");
-
-    surplusModal.addEventListener(
-        "animationend",
-        () => {
-            surplusModal.removeAttribute("closing");
-            surplusModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    );
-}
-
-
-// function for rendering a new item with inputs instead of fields
+// function for rendering a new item with inputs instead of fields; uses closure
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
@@ -54,13 +28,12 @@ function createNewItem(){
 
 // these are the "buckets" in the eraser.io diagrams
 let needsItemIndexes = [];
-// this func uses closure (i think thats what its called)
 const needsModalNewItem = createNewItem()
 
 // adding a new item to the needs modal (NOT saving it)
 const needsNewButton = document.getElementById("needs-new-button")
 needsNewButton.onclick = function() {
-    // creates a new item with inputs as fields, and save the class name
+    // creates a new item with inputs as fields, and saves the class name
     needsItemIndexes.push(needsModalNewItem()) 
 }
 
@@ -141,9 +114,10 @@ needsCloseAndSave.onclick = function() {
                 );
             }
             else {
+                // user feedback, i.e. making errors and displaying them
+                // the input_id is used to figure out which item had an error
                 const POSTResponseData = await POSTResponse.json()
                 for (let errors of POSTResponseData) {
-                    // getting the input id, then going thru errors
                     const inputId = errors[1]["input_id"]
                     const itemWithError = document.getElementById("js-item-" + inputId)
                     const rawErrorMessages = errors[0]
@@ -171,7 +145,31 @@ needsCloseAndSave.onclick = function() {
         }
     createItems()
 }
-        
+      
+
+// closing and opening the surplus modal
+const surplusModal = document.querySelector('#surplus-modal')
+const surplusButton = document.getElementById("surplus-button")
+const surplusCloseButton = document.getElementById("surplus-close-button")
+
+surplusButton.onclick = function() {
+    surplusModal.showModal()
+    document.body.style.overflow = "hidden"
+}
+
+surplusCloseButton.onclick = function() {
+    surplusModal.setAttribute("closing", "");
+
+    surplusModal.addEventListener(
+        "animationend",
+        () => {
+            surplusModal.removeAttribute("closing");
+            surplusModal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    );
+}
     
 
 

@@ -10,8 +10,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out why text is not wrapping in modals on dashboard
 
-- When adding a new item in the dashboard, if the item is valid and saves, add the new items to their respective `"items-list"` element
-
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
