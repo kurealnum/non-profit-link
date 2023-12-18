@@ -91,15 +91,22 @@ needsCloseAndSave.onclick = function() {
         // figure out how to distinguish which field belongs to which input...
         const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
             if (POSTResponse.status == 201) {
-                // visually new items to dashboard 
-                const neededModalItemsList = document.getElementById("needed-items-dashboard")
+                // visually add new items to dashboard, and remove old input fields
+                const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
+                const neededModalItemsList = document.getElementById("needed-items-list")
                 for (let itemInfo of needsPOSTRequest) {
-                    neededModalItemsList.insertAdjacentHTML('beforeend', `
+                    const newItem = `
                         <div class="item">
                             ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
                         </div>
-                    `)
+                    `
+                    neededDashboardItemsList.insertAdjacentHTML('beforeend', newItem)
+                    neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
+                    // removing old input fields
+                    const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
+                    oldInputField.remove()
                 }
+                needsItemIndexes = []
                 
                 // close the modal
                 needsModal.setAttribute("closing", "");
