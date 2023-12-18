@@ -34,7 +34,7 @@ surplusCloseButton.onclick = function() {
 }
 
 
-// function for creating a new item, and rendering a new item with inputs instead of fields
+// function for rendering a new item with inputs instead of fields
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
@@ -118,9 +118,18 @@ needsCloseAndSave.onclick = function() {
         // figure out how to distinguish which field belongs to which input...
         const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
             if (POSTResponse.status == 201) {
-                // actually close the modal
+                // visually new items to dashboard 
+                const neededModalItemsList = document.getElementById("needed-items-dashboard")
+                for (let itemInfo of needsPOSTRequest) {
+                    neededModalItemsList.insertAdjacentHTML('beforeend', `
+                        <div class="item">
+                            ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
+                        </div>
+                    `)
+                }
+                
+                // close the modal
                 needsModal.setAttribute("closing", "");
-        
                 needsModal.addEventListener(
                     "animationend",
                     () => {
@@ -142,10 +151,12 @@ needsCloseAndSave.onclick = function() {
                     for (let key in rawErrorMessages) {
                         errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
                     }
+
                     // TODO not sure why this reduce func isnt working :(
                     // just using a for loop to populate error messages atm
                     // const errorMessages = Object.keys(rawErrorMessages).reduce(
                     //     (allErrors, curError) => allErrors += ("<li>" + "a" + "</li>"))
+
                     const isPresentError = document.getElementById("modal-error-" + inputId)
                     // if there's not an error present already, do nothing
                     if (!isPresentError) {

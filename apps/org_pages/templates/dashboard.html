@@ -22,13 +22,13 @@ present in the desktop size. the mobile version is completely vertical -->
         </section>
         <section class="mid-of-dashboard">
             <h2>Your needs</h2>
-            <ul class="items-list">
+            <ul id="needed-items-dashboard" class="items-list">
                 {% for item in wanted_org_items %}
                     <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
-            </ul>
                 <h3>You don't have any items listed!</h3>
             {% endfor %}
+            </ul>
             <div class="button">
                 <button id="needs-button">Edit your needs</button>
                 <dialog id="needs-modal">{% include 'edit_needs_modal.html' %}</dialog>
