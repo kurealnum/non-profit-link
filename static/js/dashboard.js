@@ -41,8 +41,8 @@ function createNewItem(){
     return function () {
         itemCounter++
         neededModalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='creating-item' class="item">
-            <input id='number-of-units-${itemCounter}' type='number' value='0'>
+        <div id='js-item-${itemCounter}' class="item">
+            <input id='number-of-units-${itemCounter}'type='number' value='0'>
             <input id='unit-type-${itemCounter}' type='text' value='units'> of 
             <input id='item-name-${itemCounter}' type='text' value='item'>
         </div>
@@ -115,7 +115,6 @@ needsCloseAndSave.onclick = function() {
             body: JSON.stringify({needsPOSTRequest, ...{"want": true}})
         }
 
-        // TODO not sure how the logic should go from here down..
         // figure out how to distinguish which field belongs to which input...
         const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
             if (POSTResponse.status == 201) {
@@ -135,15 +134,23 @@ needsCloseAndSave.onclick = function() {
             else {
                 const POSTResponseData = await POSTResponse.json()
                 for (let errors of POSTResponseData) {
-                    console.log(errors)
-                    for (let i of Object.keys(errors)){
-                        console.log(errors[i])
-                    }
-                }
-            }
+                    // getting the input id, then going thru errors
+                    const inputId = errors[1]["input_id"]
+                    const errorMessage = document.getElementById("js-item-" + inputId)
+                    const errorMessages = Object.keys(errors).reduce(
+                        (allErrors, curError) => allErrors + ("<li>" + curError[0][0] + "</li>"))
+                    errorMessage.insertAdjacentHTML('beforestart', `
+                        <ul>
+                            ${errorMessages}
+                        </ul>
+                    `)
+                } 
+            }        
         }
-        createItems()
-    }
+    createItems()
+}
+        
+    
 
 
 

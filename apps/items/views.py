@@ -44,8 +44,7 @@ class PostPutItemApiView(APIView):
             else:
                 # we have to do all of this just to get the input_id into the errors
                 errors = dict(new_serializer.errors)
-                errors["item_id"] = item["input_id"]
-                all_serializer_errors.append(errors)
+                all_serializer_errors.append([errors, {"input_id": item["input_id"]}])
 
         if all_serializer_errors:
             return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)

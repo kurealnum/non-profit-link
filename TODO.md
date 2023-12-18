@@ -12,8 +12,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - When adding a new item in the dashboard, if the item is valid and saves, add the new items to their respective `"items-list"`
 
-- Apply errors to fields with `reportValidity()` if there are errors
-
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
