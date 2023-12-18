@@ -1,7 +1,8 @@
 # NPL (Non Profit Link)
 
 Written in Python, HTML, and CSS
-Uses Django, DRF (Django Rest Framework), and Postgres (possibly HTMX/Alpine.js in the future)
+
+Uses Django, DRF (Django Rest Framework), and Postgres (possibly HTMX/Alpine.js in the future).
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the project. However, everything will **_eventually be on .drawio files_**.
 

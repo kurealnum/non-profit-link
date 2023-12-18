@@ -1,5 +1,7 @@
 # Setup
 
+If you have any trouble setting up the project, contact me at with my contact information in README.md.
+
 Make sure you have Python 3.10 installed. Also, I'm assuming that you're working out of Windows PowerShell. If you aren't, the following commands might be a little bit different.
 
 If you're working out of Windows CMD instead, the commands should _barely_ be different.
