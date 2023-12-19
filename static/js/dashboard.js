@@ -27,24 +27,28 @@ needsButton.onclick = function() {
 }
 
 // these are the "buckets" in the eraser.io diagrams
-let needsItemInputIds = [];
-const needsModalNewItem = createNewItem()
+let needsPostBucket = []; // item Ids
+let needsDeleteBucket = [] // item names
+
 
 // adding a new item to the needs modal (NOT saving it)
 const needsNewButton = document.getElementById("needs-new-button")
+const needsModalNewItem = createNewItem()
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and saves the class name
-    needsItemInputIds.push(needsModalNewItem()) 
+    needsPostBucket.push(needsModalNewItem()) 
 }
 
 // delete items buttons
 const deleteButtons = document.getElementsByClassName("delete-item")
 for (let button of deleteButtons) {
     button.onclick = function(event) {
+        const deleteButton = event.target
         // TODO ask the user if they're sure they want to delete the item
-        // TODO add data to arr similar to needsItemInputIds
-        // TODO update needsCloseAndSaveButton.onclick to include the delete call
-        event.target.parentElement.remove()
+        // add data to arr similar to needsPostBucket (needsDeleteBucket)
+        let itemName = deleteButton.dataset.name
+        needsDeleteBucket.push(itemName)
+        deleteButton.parentElement.remove()
     }
 }
 
@@ -82,7 +86,7 @@ needsCloseAndSaveButton.onclick = function() {
 
         // gathering data for needsPOSTRequestInfo 
         // TODO is there a more JS way to do this?
-        for (let counter of needsItemInputIds) {
+        for (let counter of needsPostBucket) {
             const item_name = document.querySelector("#item-name-" + counter).value
             const units_description = document.querySelector("#unit-type-" + counter).value
             const count = document.querySelector("#number-of-units-" + counter).value
@@ -122,7 +126,7 @@ needsCloseAndSaveButton.onclick = function() {
                     const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
                     oldInputField.remove()
                 }
-                needsItemInputIds = []
+                needsPostBucket = []
                 
                 // close the modal
                 needsModal.setAttribute("closing", "");
@@ -166,8 +170,9 @@ needsCloseAndSaveButton.onclick = function() {
                 } 
             }        
         }
-    // worth noting that there's almost no way that there cna be any errors with
+    // worth noting that there's almost no way that there can be any errors with
     // this api call
+    // TODO update needsCloseAndSaveButton.onclick to include the delete call
     async function deleteItems() {
 
     }
