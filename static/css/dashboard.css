@@ -112,6 +112,8 @@ dialog {
   height: 40vh;
   background: var(--secondary);
   color: var(--text);
+  height:-webkit-fit-content;
+  height:-moz-fit-content;
   height:fit-content;
   gap: 10px;
   border-radius: 5px;
@@ -119,12 +121,14 @@ dialog {
 
 dialog[open] {
   display: flex;
-  animation: fade-in 250ms forwards;
+  -webkit-animation: fade-in 250ms forwards;
+          animation: fade-in 250ms forwards;
 }
 
 dialog[closing] {
   pointer-events: none;
-  animation: fade-out 240ms forwards;
+  -webkit-animation: fade-out 240ms forwards;
+          animation: fade-out 240ms forwards;
 }
 
 dialog h1 {
@@ -136,12 +140,21 @@ dialog button {
   margin: 0 30px;
 }
 
-dialog button:last-of-type {
+dialog .last-button {
   margin-bottom: 25px;
 }
 
 .button {
   margin-bottom: 20px;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-in {
@@ -150,6 +163,15 @@ dialog button:last-of-type {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -165,5 +187,7 @@ dialog button:last-of-type {
 .delete-item {
   width: 10px;
   height: 10px;
+  margin: 0;
+  margin-bottom: 0;
 }
 

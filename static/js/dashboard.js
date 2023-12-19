@@ -39,9 +39,11 @@ needsNewButton.onclick = function() {
 
 // delete items buttons
 const deleteButtons = document.getElementsByClassName("delete-item")
-// TODO more js way to do this?
 for (let button of deleteButtons) {
     button.onclick = function(event) {
+        // TODO ask the user if they're sure they want to delete the item
+        // TODO add data to arr similar to needsItemInputIds
+        // TODO update needsCloseAndSaveButton.onclick to include the delete call
         event.target.parentElement.remove()
     }
 }
