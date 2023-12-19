@@ -45,7 +45,7 @@ for (let button of deleteButtons) {
     button.onclick = function(event) {
         const deleteButton = event.target
         // TODO ask the user if they're sure they want to delete the item
-        // add data to arr similar to needsPostBucket (needsDeleteBucket)
+        // add data to needsDeleteBucket
         let itemName = deleteButton.dataset.name
         needsDeleteBucket.push(itemName)
         deleteButton.parentElement.remove()

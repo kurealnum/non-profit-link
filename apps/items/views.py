@@ -14,8 +14,7 @@ def search_items(request):
 
 
 # post and put requests for the model
-class PostPutItemApiView(APIView):
-    # creates a new item
+class RequestDataApiView(APIView):
     def post(self, request):
         # getting the current user
         user = request.user
@@ -55,6 +54,19 @@ class PostPutItemApiView(APIView):
 
         return Response([], status=status.HTTP_201_CREATED)
 
+    def delete(self, request):
+        # getting the current user
+        user = request.user
+        org = Org.objects.get(username=user.username)
+        org_id = org.id  # type: ignore
+
+        # getting and deleting all of the items
+        all_items = request.data.get("item_names")
+        for item in all_items:
+            cur_item = get_object_or_404(Item, org=org_id, item_name=item)
+            cur_item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     def put(self, request):
         # getting the current user
         user = request.user
@@ -87,7 +99,7 @@ class PostPutItemApiView(APIView):
 
 
 # get and delete methods for the item model
-class GetDeleteItemApiView(APIView):
+class UrlDataApiView(APIView):
     # returns selected item info
     def get(self, request, item_name):
         # getting the current user
