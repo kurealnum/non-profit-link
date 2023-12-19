@@ -1,35 +1,21 @@
-// function for rendering a new item with inputs instead of fields; uses closure
-function createNewItem(){
-    const neededModalItemsList = document.getElementById("needed-items-list")
-    let itemCounter = 0
-    return function () {
-        itemCounter++
-        neededModalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='js-item-${itemCounter}' class="item">
-            <input id='number-of-units-${itemCounter}'type='number' value='0'>
-            <input id='unit-type-${itemCounter}' type='text' value='units'> of 
-            <input id='item-name-${itemCounter}' type='text' value='item'>
-        </div>
-        `)
-        return itemCounter
-    }
-}
-
+// GLOBAL
+const headersForItemApi = {'Content-Type': 'application/json',
+                    "X-CSRFToken": getCookie("csrftoken"),
+                    "Accept": "application/json",}
 
 // NEEDS MODAL
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
+
+// these are the "buckets" in the eraser.io diagrams
+let needsPostBucket = []; // item Ids
+let needsDeleteBucket = [] // item names
 
 // showing the modal
 needsButton.onclick = function() {
     needsModal.showModal()
     document.body.style.overflow = "hidden"
 }
-
-// these are the "buckets" in the eraser.io diagrams
-let needsPostBucket = []; // item Ids
-let needsDeleteBucket = [] // item names
-
 
 // adding a new item to the needs modal (NOT saving it)
 const needsNewButton = document.getElementById("needs-new-button")
@@ -50,24 +36,6 @@ for (let button of deleteButtons) {
         needsDeleteBucket.push(itemName)
         deleteButton.parentElement.remove()
     }
-}
-
-
-// taken from Django's docs <3
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-return "";
 }
   
 
@@ -101,9 +69,7 @@ needsCloseAndSaveButton.onclick = function() {
 
         const POSTRequestOptions = {
             method: 'POST', 
-            headers: {'Content-Type': 'application/json',
-                    "X-CSRFToken": getCookie("csrftoken"),
-                    "Accept": "application/json",}, 
+            headers: headersForItemApi, 
             // extra want field to avoid redundant 'want' fields in needsPOSTRequestInfo
             body: JSON.stringify({needsPOSTRequestInfo, ...{"want": true}})
         }
@@ -202,6 +168,42 @@ surplusCloseButton.onclick = function() {
         },
         { once: true }
     );
+}
+
+
+// function for rendering a new item with inputs instead of fields; uses closure
+function createNewItem(){
+    const neededModalItemsList = document.getElementById("needed-items-list")
+    let itemCounter = 0
+    return function () {
+        itemCounter++
+        neededModalItemsList.insertAdjacentHTML('beforeend', `
+        <div id='js-item-${itemCounter}' class="item">
+            <input id='number-of-units-${itemCounter}'type='number' value='0'>
+            <input id='unit-type-${itemCounter}' type='text' value='units'> of 
+            <input id='item-name-${itemCounter}' type='text' value='item'>
+        </div>
+        `)
+        return itemCounter
+    }
+}
+
+
+// taken from Django's docs <3
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+return "";
 }
     
 
