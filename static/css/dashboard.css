@@ -162,3 +162,8 @@ dialog button:last-of-type {
   }
 }
 
+.delete-item {
+  width: 10px;
+  height: 10px;
+}
+

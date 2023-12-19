@@ -10,6 +10,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add the delete and update methods to the needs modal
 
+- General frontend work, like touching up the dashboard, adding shadows, etc.
+
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/

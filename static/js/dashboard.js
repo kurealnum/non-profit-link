@@ -20,6 +20,7 @@ function createNewItem(){
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
 
+// showing the modal
 needsButton.onclick = function() {
     needsModal.showModal()
     document.body.style.overflow = "hidden"
@@ -34,6 +35,15 @@ const needsNewButton = document.getElementById("needs-new-button")
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and saves the class name
     needsItemInputIds.push(needsModalNewItem()) 
+}
+
+// delete items buttons
+const deleteButtons = document.getElementsByClassName("delete-item")
+// TODO more js way to do this?
+for (let button of deleteButtons) {
+    button.onclick = function(event) {
+        event.target.parentElement.remove()
+    }
 }
 
 
@@ -153,6 +163,11 @@ needsCloseAndSaveButton.onclick = function() {
                     }
                 } 
             }        
+        }
+    // worth noting that there's almost no way that there cna be any errors with
+    // this api call
+    async function deleteItems() {
+
     }
     createItems()
 }
