@@ -87,11 +87,11 @@ needsCloseAndSaveButton.onclick = function() {
                     const newModalItem = `
                         <div class="item">
                             ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
-                            <button data-name="${itemInfo["item_name"]}" class="delete-item" id="delete-item-${itemInfo["item_name"]}"></button>
+                            <button data-name="${itemInfo["item_name"]}" class="delete-item" id="delete-item-js-${itemInfo["item_name"]}"></button>
                         </div>
                     `
                     const newDashboardItem = `
-                    <div class="item" id="delete-item-dashboard-${itemInfo["item_name"]}">
+                    <div class="item" id="delete-item-${itemInfo["item_name"]}">
                         ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
                     </div>
                     `
@@ -100,8 +100,8 @@ needsCloseAndSaveButton.onclick = function() {
 
                     // adding delete method to new delete button
 
-                    // TODO toDelete in deleteItem() is null?
-                    document.getElementById("delete-item-" + itemInfo["item_name"]).onclick = deleteItem
+                    // TODO toDelete in on line 155 is null?
+                    document.getElementById("delete-item-js-" + itemInfo["item_name"]).onclick = deleteItem
 
                     // removing old input fields
                     const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
@@ -154,7 +154,8 @@ needsCloseAndSaveButton.onclick = function() {
                 const toDelete = document.getElementById("delete-item-" + item)
                 toDelete.remove()
             }
-            // TODO set needsDeleteBucket to empty
+            // set needsDeleteBucket to empty
+            needsDeleteBucket = []
             return true
         }
         else {
