@@ -134,7 +134,11 @@ needsCloseAndSaveButton.onclick = function() {
         }
         const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
         if (deleteResponse.ok) {
-            // TODO remove items from dashboard
+            // remove items from dashboard
+            for (let item of needsDeleteBucket) {
+                const toDelete = document.getElementById("delete-item-" + item)
+                toDelete.remove()
+            }
             // TODO set needsDeleteBucket to empty
             return true
         }
@@ -192,6 +196,7 @@ function createNewItem(){
     let itemCounter = 0
     return function () {
         itemCounter++
+        // TODO need to rewrite this function to allow itemCounter to be an itemName
         neededModalItemsList.insertAdjacentHTML('beforeend', `
         <div id='js-item-${itemCounter}' class="item">
             <input id='number-of-units-${itemCounter}'type='number' value='0'>

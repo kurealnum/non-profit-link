@@ -24,7 +24,7 @@ present in the desktop size. the mobile version is completely vertical -->
             <h2>Your needs</h2>
             <ul id="needed-items-dashboard" class="items-list">
                 {% for item in wanted_org_items %}
-                    <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
+                    <div class="item" id="delete-item-{{ item }}">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}
                 <h3>You don't have any items listed!</h3>
             {% endfor %}
