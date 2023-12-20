@@ -64,8 +64,8 @@ needsCloseAndSaveButton.onclick = function() {
             const units_description = document.querySelector("#unit-type-" + counter).value
             const count = document.querySelector("#number-of-units-" + counter).value
             const addedItem = {
-                "item_name": item_name,
-                "units_description": units_description,
+                "item_name": escapeHtml(item_name),
+                "units_description": escapeHtml(units_description),
                 "count": count,
                 "input_id": counter,
             }
@@ -85,7 +85,9 @@ needsCloseAndSaveButton.onclick = function() {
                 // visually add new items to dashboard, and remove old input fields
                 const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
                 const neededModalItemsList = document.getElementById("needed-items-list")
+                // render and delete items
                 for (let itemInfo of needsPOSTRequestInfo) {
+                    // don't need to escape HTML because we already escaped it
                     const newModalItem = `
                         <div class="item">
                             ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
@@ -101,8 +103,6 @@ needsCloseAndSaveButton.onclick = function() {
                     neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
 
                     // adding delete method to new delete button
-
-                    // TODO toDelete in on line 155 is null?
                     document.getElementById("delete-item-js-" + itemInfo["item_name"]).onclick = deleteItem
 
                     // removing old input fields
@@ -116,6 +116,7 @@ needsCloseAndSaveButton.onclick = function() {
                 // user feedback, i.e. making errors and displaying them
                 // the input_id is used to figure out which item had an error
                 const POSTResponseData = await POSTResponse.json()
+                // we know that error messages is safe, because the response is from our own API
                 for (let errors of POSTResponseData) {
                     const inputId = errors[1]["input_id"]
                     const itemWithError = document.getElementById("js-item-" + inputId)
@@ -229,7 +230,7 @@ function createNewItem(){
     }
 }
 
-// taken from Django's docs <3
+// function to get a certain cookie, taken from Django's docs <3
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -246,7 +247,23 @@ function getCookie(cname) {
 return "";
 }
     
-
+// function to escape potentially dangerous HTML chars
+var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;',
+    '`': '&#x60;',
+    '=': '&#x3D;'
+  };
+  
+  function escapeHtml (string) {
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return entityMap[s];
+    });
+  }
 
 
 
