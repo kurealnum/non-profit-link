@@ -31,6 +31,8 @@ function deleteItem(event) {
     // add data to needsDeleteBucket
     let itemName = deleteButton.dataset.name
     needsDeleteBucket.push(itemName)
+
+    // delete item in modal, and delete 
     deleteButton.parentElement.remove()
 }
 
@@ -89,15 +91,16 @@ needsCloseAndSaveButton.onclick = function() {
                         </div>
                     `
                     const newDashboardItem = `
-                    <div class="item" id="delete-item-${itemInfo["item_name"]}>
+                    <div class="item" id="delete-item-dashboard-${itemInfo["item_name"]}">
                         ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
                     </div>
                     `
-                    // TODO item doesn't render
                     neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
                     neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
 
                     // adding delete method to new delete button
+
+                    // TODO toDelete in deleteItem() is null?
                     document.getElementById("delete-item-" + itemInfo["item_name"]).onclick = deleteItem
 
                     // removing old input fields
