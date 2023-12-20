@@ -4,6 +4,8 @@
 
 - All contributions are completely welcome!
 
+- I would highly reccommend using an extension like TODO tree to find TODOs in files. Only **major** issues/problems will be listed in TODO.md
+
 - Write clean code! Use semantically meaningful naming, add comments, and most of all, prioritize readability.
 
 - Be nice, but don't hesitate to correct someone on an issue!

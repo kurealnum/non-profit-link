@@ -8,6 +8,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
+- Rewrite a bit of the logic so the post function uses the raw item name instead of a generated "id" (itemCounter to be specific)
+
 - Add the delete and update methods to the needs modal
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
