@@ -8,7 +8,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
-- Escape user input with `insertAdjacentHTML()`
+- Escape user input when using `insertAdjacentHTML()`
+
+- Add some sort of check to see if an item you're trying to delete is already in `needsPostBucket`, and don't add it if it's already there.
 
 - Rewrite a bit of the logic so the post function uses the raw item name instead of a generated "id" (itemCounter to be specific)
 
