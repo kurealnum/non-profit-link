@@ -25,19 +25,20 @@ needsNewButton.onclick = function() {
     needsPostBucket.push(needsModalNewItem()) 
 }
 
+function deleteItem(event) {
+    const deleteButton = event.target
+    // TODO ask the user if they're sure they want to delete the item
+    // add data to needsDeleteBucket
+    let itemName = deleteButton.dataset.name
+    needsDeleteBucket.push(itemName)
+    deleteButton.parentElement.remove()
+}
+
 // delete items buttons
 const deleteButtons = document.getElementsByClassName("delete-item")
 for (let button of deleteButtons) {
-    button.onclick = function(event) {
-        const deleteButton = event.target
-        // TODO ask the user if they're sure they want to delete the item
-        // add data to needsDeleteBucket
-        let itemName = deleteButton.dataset.name
-        needsDeleteBucket.push(itemName)
-        deleteButton.parentElement.remove()
-    }
-}
-  
+    button.onclick = deleteItem
+}  
 
 // the close and save button on the needs modal
 const needsCloseAndSaveButton = document.getElementById("needs-close-button")
@@ -81,13 +82,24 @@ needsCloseAndSaveButton.onclick = function() {
                 const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
                 const neededModalItemsList = document.getElementById("needed-items-list")
                 for (let itemInfo of needsPOSTRequestInfo) {
-                    const newItem = `
+                    const newModalItem = `
                         <div class="item">
                             ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
+                            <button data-name="${itemInfo["item_name"]}" class="delete-item" id="delete-item-${itemInfo["item_name"]}"></button>
                         </div>
                     `
-                    neededDashboardItemsList.insertAdjacentHTML('beforeend', newItem)
-                    neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
+                    const newDashboardItem = `
+                    <div class="item" id="delete-item-${itemInfo["item_name"]}>
+                        ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
+                    </div>
+                    `
+                    // TODO item doesn't render
+                    neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
+                    neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
+
+                    // adding delete method to new delete button
+                    document.getElementById("delete-item-" + itemInfo["item_name"]).onclick = deleteItem
+
                     // removing old input fields
                     const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
                     oldInputField.remove()
