@@ -10,7 +10,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add some sort of check to see if an item you're trying to delete is already in `needsPostBucket`, and don't add it if it's already there.
 
-- Add the delete and update methods to the needs modal
+- Add the update method to the needs modal
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 

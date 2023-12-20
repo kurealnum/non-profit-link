@@ -4,8 +4,8 @@ const headersForItemApi = {'Content-Type': 'application/json',
                     "Accept": "application/json",}
 
 // these are the "buckets" in the eraser.io diagrams
-let needsPostBucket = []; // item Ids
-let needsDeleteBucket = [] // item names
+let needsPostBucket = new Set(); // item Ids
+let needsDeleteBucket = new Set() // item names
 
 
 
@@ -24,7 +24,7 @@ const needsNewButton = document.getElementById("needs-new-button")
 const needsModalNewItem = createNewItem()
 needsNewButton.onclick = function() {
     // creates a new item with inputs as fields, and saves the class name
-    needsPostBucket.push(needsModalNewItem()) 
+    needsPostBucket.add(needsModalNewItem()) 
 }
 
 // delete items buttons
@@ -38,7 +38,7 @@ function deleteItem(event) {
     // TODO ask the user if they're sure they want to delete the item
     // add data to needsDeleteBucket
     let itemName = deleteButton.dataset.name
-    needsDeleteBucket.push(itemName)
+    needsDeleteBucket.add(itemName)
 
     // delete item in modal, and delete 
     deleteButton.parentElement.remove()
@@ -110,7 +110,7 @@ needsCloseAndSaveButton.onclick = function() {
                     oldInputField.remove()
                 }
                 // set the post bucket to empty for when the modal is reopened
-                needsPostBucket = []
+                needsPostBucket = new Set()
             }
             else {
                 // user feedback, i.e. making errors and displaying them
@@ -148,7 +148,7 @@ needsCloseAndSaveButton.onclick = function() {
         const needsDeleteRequestOptions = {
             method: 'DELETE', 
             headers: headersForItemApi, 
-            body: JSON.stringify({"item_names": needsDeleteBucket})
+            body: JSON.stringify({"item_names": Array.from(needsDeleteBucket)}) 
         }
         const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
         if (deleteResponse.ok) {
@@ -158,7 +158,7 @@ needsCloseAndSaveButton.onclick = function() {
                 toDelete.remove()
             }
             // set needsDeleteBucket to empty
-            needsDeleteBucket = []
+            needsDeleteBucket = new Set()
             return true
         }
         else {
