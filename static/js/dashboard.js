@@ -22,8 +22,10 @@ needsButton.onclick = function() {
 // adding a new item to the needs modal (NOT saving it)
 const needsNewButton = document.getElementById("needs-new-button")
 const needsModalNewItem = createNewItem()
-needsNewButton.onclick = function() {
-    // creates a new item with inputs as fields, and saves the class name
+needsNewButton.onclick = createItem
+
+// creates a new item with inputs as fields, and saves the class name
+function createItem() {
     needsPostBucket.add(needsModalNewItem()) 
 }
 
@@ -33,12 +35,18 @@ for (let button of deleteButtons) {
     button.onclick = deleteItem
 }  
 
+// deletes an item
 function deleteItem(event) {
     const deleteButton = event.target
     // TODO ask the user if they're sure they want to delete the item
     // add data to needsDeleteBucket
     let itemName = deleteButton.dataset.name
-    needsDeleteBucket.add(itemName)
+    if (needsPostBucket.has(itemName)) {
+        needsPostBucket.delete(itemName)
+    }
+    else {
+        needsDeleteBucket.add(itemName)
+    }
 
     // delete item in modal, and delete 
     deleteButton.parentElement.remove()
@@ -58,9 +66,12 @@ needsCloseAndSaveButton.onclick = function() {
         */ 
 
         // gathering data for needsPOSTRequestInfo 
-        // TODO is there a more JS way to do this?
         for (let counter of needsPostBucket) {
             const item_name = document.querySelector("#item-name-" + counter).value
+            // if there's a query set to delete this item, then we want to remove that query
+            if (needsDeleteBucket.has(item_name)) {
+                needsDeleteBucket.delete(item_name)
+            }
             const units_description = document.querySelector("#unit-type-" + counter).value
             const count = document.querySelector("#number-of-units-" + counter).value
             const addedItem = {
@@ -148,6 +159,7 @@ needsCloseAndSaveButton.onclick = function() {
         const needsDeleteRequestOptions = {
             method: 'DELETE', 
             headers: headersForItemApi, 
+            // have to use Array.from because of set
             body: JSON.stringify({"item_names": Array.from(needsDeleteBucket)}) 
         }
         const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
