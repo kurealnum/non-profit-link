@@ -92,19 +92,8 @@ needsCloseAndSaveButton.onclick = function() {
                     const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
                     oldInputField.remove()
                 }
+                // set the post bucket to empty for when the modal is reopened
                 needsPostBucket = []
-                
-                // close the modal
-                needsModal.setAttribute("closing", "");
-                needsModal.addEventListener(
-                    "animationend",
-                    () => {
-                        needsModal.removeAttribute("closing");
-                        needsModal.close();
-                        document.body.style.overflow = "auto"
-                    },
-                    { once: true }
-                );
             }
             else {
                 // user feedback, i.e. making errors and displaying them
@@ -136,9 +125,7 @@ needsCloseAndSaveButton.onclick = function() {
                 } 
             }        
         }
-    // worth noting that there's almost no way that there can be any errors with
-    // this api call
-    // TODO update needsCloseAndSaveButton.onclick to include the delete call
+    // worth noting that there's almost no way that there can be any errors with this api call
     async function deleteItems() {
         const needsDeleteRequestOptions = {
             method: 'DELETE', 
@@ -147,16 +134,30 @@ needsCloseAndSaveButton.onclick = function() {
         }
         const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
         if (deleteResponse.ok) {
-            //TODO close the modal i guess?
-            console.log ("Delete did work")
+            // TODO remove items from dashboard
+            // TODO set needsDeleteBucket to empty
+            return true
         }
         else {
-            //TODO feedback to the user
-            console.log("Delete didn't work")
+            return false
         }
     }
-    deleteItems()
-    createItems()
+    // if there are no issues with managing the items, close the modal
+    const didDelete = deleteItems()
+    const didCreate = createItems()
+    if (didDelete && didCreate) {
+        // close the modal
+        needsModal.setAttribute("closing", "");
+        needsModal.addEventListener(
+            "animationend",
+            () => {
+                needsModal.removeAttribute("closing");
+                needsModal.close();
+                document.body.style.overflow = "auto"
+            },
+            { once: true }
+        );
+    }
 }
       
 
