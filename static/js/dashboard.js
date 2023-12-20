@@ -3,13 +3,15 @@ const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
 
-// NEEDS MODAL
-const needsModal = document.querySelector("#needs-modal") 
-const needsButton = document.getElementById("needs-button")
-
 // these are the "buckets" in the eraser.io diagrams
 let needsPostBucket = []; // item Ids
 let needsDeleteBucket = [] // item names
+
+
+
+// NEEDS MODAL
+const needsModal = document.querySelector("#needs-modal") 
+const needsButton = document.getElementById("needs-button")
 
 // showing the modal
 needsButton.onclick = function() {
@@ -25,6 +27,12 @@ needsNewButton.onclick = function() {
     needsPostBucket.push(needsModalNewItem()) 
 }
 
+// delete items buttons
+const deleteButtons = document.getElementsByClassName("delete-item")
+for (let button of deleteButtons) {
+    button.onclick = deleteItem
+}  
+
 function deleteItem(event) {
     const deleteButton = event.target
     // TODO ask the user if they're sure they want to delete the item
@@ -36,13 +44,7 @@ function deleteItem(event) {
     deleteButton.parentElement.remove()
 }
 
-// delete items buttons
-const deleteButtons = document.getElementsByClassName("delete-item")
-for (let button of deleteButtons) {
-    button.onclick = deleteItem
-}  
-
-// the close and save button on the needs modal
+// Close and Save button on needsModal
 const needsCloseAndSaveButton = document.getElementById("needs-close-button")
 needsCloseAndSaveButton.onclick = function() {
     async function createItems() {
@@ -179,7 +181,8 @@ needsCloseAndSaveButton.onclick = function() {
         );
     }
 }
-      
+  
+
 
 // SURPLUS MODAL
 const surplusModal = document.querySelector('#surplus-modal')
@@ -206,6 +209,8 @@ surplusCloseButton.onclick = function() {
 }
 
 
+
+// HELPER FUNCTIONS
 // function for rendering a new item with inputs instead of fields; uses closure
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
@@ -223,7 +228,6 @@ function createNewItem(){
         return itemCounter
     }
 }
-
 
 // taken from Django's docs <3
 function getCookie(cname) {
