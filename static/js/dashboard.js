@@ -140,8 +140,22 @@ needsCloseAndSaveButton.onclick = function() {
     // this api call
     // TODO update needsCloseAndSaveButton.onclick to include the delete call
     async function deleteItems() {
-
+        const needsDeleteRequestOptions = {
+            method: 'DELETE', 
+            headers: headersForItemApi, 
+            body: JSON.stringify({"item_names": needsDeleteBucket})
+        }
+        const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
+        if (deleteResponse.ok) {
+            //TODO close the modal i guess?
+            console.log ("Delete did work")
+        }
+        else {
+            //TODO feedback to the user
+            console.log("Delete didn't work")
+        }
     }
+    deleteItems()
     createItems()
 }
       
