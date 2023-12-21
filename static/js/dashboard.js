@@ -35,9 +35,7 @@ function createNewItem(){
     return function (buttonFunction, oldName) {
         itemCounter++
         let oldNameData = ""
-        console.log("a")
         if (oldName !== "") {
-            console.log("b")
             oldNameData = "data-old_name=" + oldName
         }
         neededModalItemsList.insertAdjacentHTML('beforeend', `
@@ -162,8 +160,9 @@ function createItemToEdit(event) {
 }
 
 async function saveEditedItem(event) {
-    const itemId = event.target.dataset.item_id
-    const oldItemName = event.target.dataset.old_name
+    const editButton = event.target
+    const itemId = editButton.dataset.item_id
+    const oldItemName = editButton.dataset.old_name
     const newItemName = document.getElementById('item-name-' + itemId).value
     const unitsDescription = document.getElementById('unit-type-' + itemId).value
     const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
@@ -174,10 +173,24 @@ async function saveEditedItem(event) {
     }
     const putResponse = await fetch(apiUrl, putOptions)
     if (putResponse.ok) {
-        // TODO update the item info in dashboard
-        // TODO delete the input fields
-        // TODO create a new .item div with updated info in modal
-        console.log("success!")
+        // update the item info in dashboard
+        const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
+        const itemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
+        oldDashboardElement.setAttribute("id", newItemName)
+        oldDashboardElement.innerHTML = itemInfo
+        // delete the input fields
+        editButton.parentElement.remove()
+        // delete the old element
+        const oldModalElement = document.getElementById("delete-item-" + oldItemName)
+        oldModalElement.parentElement.remove()
+        // create a new .item div with updated info in modal
+        neededModalItemsList.insertAdjacentHTML('beforeend', `
+            <div class="item">
+                ${itemInfo}
+                <button data-name="${newItemName}" class="delete-item" id="delete-item-${newItemName}"></button>
+                <button data-name="${newItemName}" class="edit-item"></button>
+            </div>
+        `)
     }
     else {
         // TODO there should be no way for a delete request to fail, but still
