@@ -66,9 +66,16 @@ async function postItem(event) {
         const toRemove = document.getElementById("js-item-" + itemId)
         toRemove.remove()
         // create a basic item field
-        const newItem = `
+        const newModalItem = `
             <div class="item">
                 ${numberOfUnits} ${unitsDescription} of ${itemName}
+                <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
+            </div>
+        `
+        const newDashboardItem = `
+            <div class="item" id="dashboard-delete-item-${itemName}">
+                ${numberOfUnits} ${unitsDescription} of ${itemName}
+                <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
             </div>
         `
         // if there were errors, but the user corrected them...
@@ -77,8 +84,11 @@ async function postItem(event) {
             areErrors.remove()
         }
         // render new items
-        neededDashboardItemsList.insertAdjacentHTML('beforeend', newItem)
-        neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
+        neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
+        neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
+        // add functionality to the added button
+        const newButton = document.getElementById("delete-item-" + itemName)
+        newButton.onclick = deleteItem()
     }
     else {
         // render errors
@@ -109,11 +119,27 @@ for (let button of deleteButtons) {
 }  
 
 // deletes an item
-function deleteItem(event) {
+async function deleteItem(event) {
     const deleteButton = event.target
     // TODO ask the user if they're sure they want to delete the item
-    // delete item in modal, and delete 
-    deleteButton.parentElement.remove()
+    // api request
+    const itemName = deleteButton.dataset.name
+    const deleteOptions = {
+        method: 'DELETE',
+        headers: headersForItemApi
+    }
+    const deleteRequest = await fetch("http://127.0.0.1:8000/items/manage-item/" + itemName + "/", deleteOptions)
+    if (deleteRequest.ok) {
+        // delete item in modal
+        const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
+        dashboardItem.remove()
+        // removing the modal element
+        deleteButton.parentElement.remove()
+    }
+    else {
+        // there should be no way for a delete request to fail, but still
+        console.log("???")
+    }
 }
 
 // Close and Save button on needsModal
