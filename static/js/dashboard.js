@@ -3,12 +3,6 @@ const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
 
-// these are the "buckets" in the eraser.io diagrams
-let needsPostBucket = new Set(); // item Ids
-let needsDeleteBucket = new Set() // item names
-
-
-
 // NEEDS MODAL
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
@@ -26,7 +20,7 @@ needsNewButton.onclick = createItem
 
 // creates a new item with inputs as fields, and saves the class name
 function createItem() {
-    needsPostBucket.add(needsModalNewItem()) 
+    needsModalNewItem()
 }
 
 // delete items buttons
@@ -55,144 +49,17 @@ function deleteItem(event) {
 // Close and Save button on needsModal
 const needsCloseAndSaveButton = document.getElementById("needs-close-button")
 needsCloseAndSaveButton.onclick = function() {
-    async function createItems() {
-        let needsPOSTRequestInfo = [];
-        /* 
-        data in needsPOSTRequestInfo should look something like this:
-        count: 3
-        units_description: "verycool"
-        item_name: "myitem"
-        input_id: 2  (input id is to identify which input to assign errors to (if there are any))
-        */ 
-
-        // gathering data for needsPOSTRequestInfo 
-        for (let counter of needsPostBucket) {
-            const item_name = document.querySelector("#item-name-" + counter).value
-            // if there's a query set to delete this item, then we want to remove that query
-            if (needsDeleteBucket.has(item_name)) {
-                needsDeleteBucket.delete(item_name)
-            }
-            const units_description = document.querySelector("#unit-type-" + counter).value
-            const count = document.querySelector("#number-of-units-" + counter).value
-            const addedItem = {
-                "item_name": escapeHtml(item_name),
-                "units_description": escapeHtml(units_description),
-                "count": count,
-                "input_id": counter,
-            }
-            needsPOSTRequestInfo.push(addedItem)
-        }
-
-        const POSTRequestOptions = {
-            method: 'POST', 
-            headers: headersForItemApi, 
-            // extra want field to avoid redundant 'want' fields in needsPOSTRequestInfo
-            body: JSON.stringify({needsPOSTRequestInfo, ...{"want": true}})
-        }
-
-        // figure out how to distinguish which field belongs to which input...
-        const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
-            if (POSTResponse.status == 201) {
-                // visually add new items to dashboard, and remove old input fields
-                const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
-                const neededModalItemsList = document.getElementById("needed-items-list")
-                // render and delete items
-                for (let itemInfo of needsPOSTRequestInfo) {
-                    // don't need to escape HTML because we already escaped it
-                    const newModalItem = `
-                        <div class="item">
-                            ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
-                            <button data-name="${itemInfo["item_name"]}" class="delete-item" id="delete-item-js-${itemInfo["item_name"]}"></button>
-                        </div>
-                    `
-                    const newDashboardItem = `
-                    <div class="item" id="delete-item-${itemInfo["item_name"]}">
-                        ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
-                    </div>
-                    `
-                    neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
-                    neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
-
-                    // adding delete method to new delete button
-                    document.getElementById("delete-item-js-" + itemInfo["item_name"]).onclick = deleteItem
-
-                    // removing old input fields
-                    const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
-                    oldInputField.remove()
-                }
-                // set the post bucket to empty for when the modal is reopened
-                needsPostBucket = new Set()
-            }
-            else {
-                // user feedback, i.e. making errors and displaying them
-                // the input_id is used to figure out which item had an error
-                const POSTResponseData = await POSTResponse.json()
-                // we know that error messages is safe, because the response is from our own API
-                for (let errors of POSTResponseData) {
-                    const inputId = errors[1]["input_id"]
-                    const itemWithError = document.getElementById("js-item-" + inputId)
-                    const rawErrorMessages = errors[0]
-                    let errorMessages = ""
-                    for (let key in rawErrorMessages) {
-                        errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
-                    }
-
-                    // TODO not sure why this reduce func isnt working :(
-                    // just using a for loop to populate error messages atm
-                    // const errorMessages = Object.keys(rawErrorMessages).reduce(
-                    //     (allErrors, curError) => allErrors += ("<li>" + "a" + "</li>"))
-
-                    const isPresentError = document.getElementById("modal-error-" + inputId)
-                    // if there's not an error present already, do nothing
-                    if (!isPresentError) {
-                        itemWithError.insertAdjacentHTML('beforebegin', `
-                            <ul id="modal-error-${inputId}">
-                                ${errorMessages}
-                            </ul>
-                        `)
-                    }
-                } 
-            }        
-        }
-    // worth noting that there's almost no way that there can be any errors with this api call
-    async function deleteItems() {
-        const needsDeleteRequestOptions = {
-            method: 'DELETE', 
-            headers: headersForItemApi, 
-            // have to use Array.from because of set
-            body: JSON.stringify({"item_names": Array.from(needsDeleteBucket)}) 
-        }
-        const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
-        if (deleteResponse.ok) {
-            // remove items from dashboard
-            for (let item of needsDeleteBucket) {
-                const toDelete = document.getElementById("delete-item-" + item)
-                toDelete.remove()
-            }
-            // set needsDeleteBucket to empty
-            needsDeleteBucket = new Set()
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    // if there are no issues with managing the items, close the modal
-    const didDelete = deleteItems()
-    const didCreate = createItems()
-    if (didDelete && didCreate) {
-        // close the modal
-        needsModal.setAttribute("closing", "");
-        needsModal.addEventListener(
-            "animationend",
-            () => {
-                needsModal.removeAttribute("closing");
-                needsModal.close();
-                document.body.style.overflow = "auto"
-            },
-            { once: true }
-        );
-    }
+    // close the modal
+    needsModal.setAttribute("closing", "");
+    needsModal.addEventListener(
+        "animationend",
+        () => {
+            needsModal.removeAttribute("closing");
+            needsModal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    )
 }
   
 
@@ -236,10 +103,18 @@ function createNewItem(){
             <input id='number-of-units-${itemCounter}'type='number' value='0'>
             <input id='unit-type-${itemCounter}' type='text' value='units'> of 
             <input id='item-name-${itemCounter}' type='text' value='item'>
+            <button data-item_id=${itemCounter} id='create-item-${itemCounter}'>&check;</button>
         </div>
         `)
+        const newButton = document.getElementById("create-item-" + itemCounter)
+        newButton.onclick = postItem
         return itemCounter
     }
+}
+
+// sends post req to Item API
+function postItem(event) {
+    console.log(event.target.dataset.item_id)
 }
 
 // function to get a certain cookie, taken from Django's docs <3
