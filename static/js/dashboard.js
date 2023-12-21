@@ -130,7 +130,6 @@ async function postItem(event) {
     }
     const postReponse = await fetch('http://127.0.0.1:8000/items/manage-item/', postOptions)
     if (postReponse.ok) {
-        // TODO figure out how to delete preexisting errors if they exist
         // delete input fields 
         const toRemove = document.getElementById("js-item-" + itemId)
         toRemove.remove()
@@ -140,6 +139,12 @@ async function postItem(event) {
                 ${numberOfUnits} ${unitsDescription} of ${itemName}
             </div>
         `
+        // if there were errors, but the user corrected them...
+        const areErrors = document.getElementById("modal-error-" + itemId)
+        if (areErrors) {
+            areErrors.remove()
+        }
+        // render new items
         neededDashboardItemsList.insertAdjacentHTML('beforeend', newItem)
         neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
     }
