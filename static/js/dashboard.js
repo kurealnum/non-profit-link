@@ -2,7 +2,7 @@
 const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
-
+const apiUrl = "http://127.0.0.1:8000/items/manage-item/"
 const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
 const neededModalItemsList = document.getElementById("needed-items-list")
 
@@ -60,7 +60,7 @@ async function postItem(event) {
         // adding the 'want' field
         body: JSON.stringify({"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId})
     }
-    const postReponse = await fetch('http://127.0.0.1:8000/items/manage-item/', postOptions)
+    const postReponse = await fetch(apiUrl, postOptions)
     if (postReponse.ok) {
         // delete input fields 
         const toRemove = document.getElementById("js-item-" + itemId)
@@ -128,7 +128,7 @@ async function deleteItem(event) {
         method: 'DELETE',
         headers: headersForItemApi
     }
-    const deleteRequest = await fetch("http://127.0.0.1:8000/items/manage-item/" + itemName + "/", deleteOptions)
+    const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
     if (deleteRequest.ok) {
         // delete item in modal
         const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
@@ -138,7 +138,7 @@ async function deleteItem(event) {
     }
     else {
         // TODO there should be no way for a delete request to fail, but still
-        console.log("???")
+        console.log("Issue with POST request")
     }
 }
 
@@ -150,12 +150,26 @@ for (let button of editButtons) {
 
 function createItemToEdit(event) {
     const button = event.target
-    needsModalNewItem(postItem)
+    needsModalNewItem(saveEditedItem)
     button.remove()
 }
 
-function saveEditedItem() {
+async function saveEditedItem(event) {
+    const itemId = event.target.dataset.item_id
+    const data = getItemInfo(itemId, true)
+    const putOptions = {
+        method: 'PUT',
+        headers: headersForItemApi,
+        body: JSON.stringify(data, ...{"old_item_name"}),
+    }
+    const putResponse = fetch(apiUrl, putOptions)
+    if (putResponse.ok) {
 
+    }
+    else {
+        // TODO there should be no way for a delete request to fail, but still
+        console.log("Issue with PUT request")
+    }
 }
 
 // Close and Save button on needsModal
@@ -232,11 +246,11 @@ var entityMap = {
     '=': '&#x3D;'
   };
   
-  function escapeHtml (string) {
+function escapeHtml(string) {
     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
       return entityMap[s];
     });
-  }
+}
 
 
 
