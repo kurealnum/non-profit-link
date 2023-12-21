@@ -178,22 +178,29 @@ async function saveEditedItem(event) {
         const itemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
         oldDashboardElement.setAttribute("id", newItemName)
         oldDashboardElement.innerHTML = itemInfo
+
         // delete the input fields
         editButton.parentElement.remove()
         // delete the old element
         const oldModalElement = document.getElementById("delete-item-" + oldItemName)
         oldModalElement.parentElement.remove()
+
         // create a new .item div with updated info in modal
         neededModalItemsList.insertAdjacentHTML('beforeend', `
             <div class="item">
                 ${itemInfo}
                 <button data-name="${newItemName}" class="delete-item" id="delete-item-${newItemName}"></button>
-                <button data-name="${newItemName}" class="edit-item"></button>
+                <button data-name="${newItemName}" class="edit-item" id="edit-item-${newItemName}"></button>
             </div>
         `)
+        // add functions to new buttons
+        const newDeleteButton = document.getElementById("delete-item-" + newItemName)
+        const newEditButton = document.getElementById("edit-item-" + newItemName)
+        newDeleteButton.onclick = deleteItem
+        newEditButton.onclick = createItemToEdit 
     }
     else {
-        // TODO there should be no way for a delete request to fail, but still
+        // TODO there are actually a bunch of ways this could fail so its error rendering time
         console.log("Issue with PUT request")
     }
 }
