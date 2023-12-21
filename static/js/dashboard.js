@@ -32,14 +32,20 @@ function createItem() {
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
-    return function (buttonFunction) {
+    return function (buttonFunction, oldName) {
         itemCounter++
+        let oldNameData = ""
+        console.log("a")
+        if (oldName !== "") {
+            console.log("b")
+            oldNameData = "data-old_name=" + oldName
+        }
         neededModalItemsList.insertAdjacentHTML('beforeend', `
         <div id='js-item-${itemCounter}' class="item">
             <input id='number-of-units-${itemCounter}'type='number' value='0'>
             <input id='unit-type-${itemCounter}' type='text' value='units'> of 
             <input id='item-name-${itemCounter}' type='text' value='item'>
-            <button data-item_id=${itemCounter} id='create-item-${itemCounter}'>&check;</button>
+            <button ${oldNameData} data-item_id=${itemCounter} id='create-item-${itemCounter}'>&check;</button>
         </div>
         `)
         const newButton = document.getElementById("create-item-" + itemCounter)
@@ -150,21 +156,28 @@ for (let button of editButtons) {
 
 function createItemToEdit(event) {
     const button = event.target
-    needsModalNewItem(saveEditedItem)
+    const oldName = event.target.dataset.name
+    needsModalNewItem(saveEditedItem, oldName)
     button.remove()
 }
 
 async function saveEditedItem(event) {
     const itemId = event.target.dataset.item_id
-    const data = getItemInfo(itemId, true)
+    const oldItemName = event.target.dataset.old_name
+    const newItemName = document.getElementById('item-name-' + itemId).value
+    const unitsDescription = document.getElementById('unit-type-' + itemId).value
+    const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
     const putOptions = {
         method: 'PUT',
         headers: headersForItemApi,
-        body: JSON.stringify(data, ...{"old_item_name"}),
+        body: JSON.stringify({"old_item_name": oldItemName, "new_item_name": newItemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId}),
     }
-    const putResponse = fetch(apiUrl, putOptions)
+    const putResponse = await fetch(apiUrl, putOptions)
     if (putResponse.ok) {
-
+        // TODO update the item info in dashboard
+        // TODO delete the input fields
+        // TODO create a new .item div with updated info in modal
+        console.log("success!")
     }
     else {
         // TODO there should be no way for a delete request to fail, but still

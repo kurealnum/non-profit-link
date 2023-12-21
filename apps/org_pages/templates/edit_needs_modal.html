@@ -3,7 +3,7 @@
     {% for item in wanted_org_items %}
         <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}
             <button data-name="{{ item }}" class="delete-item" id="delete-item-{{ item }}"></button>
-            <button class="edit-item"></button>
+            <button data-name="{{ item }}" class="edit-item"></button>
         </div>
     {% empty %}
         <h3>You don't have any items listed!</h3>
