@@ -6,17 +6,13 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 `pre_optimized_item_api` is the inital Item API that I created. It was/is incredibly pre-optimized, which just made use of it more painful. I would love to do something with it in the future, but not right now.
 
-`item_api_rewrite` is the rewrite of the pre-optimized Item API. If you wish to contribute, focus on making it simple and easy to interact with.
-
 ## TODO List
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
-- Add some sort of check to see if an item you're trying to delete is already in `needsPostBucket`, and don't add it if it's already there.
-
-- Add the update method to the needs modal
+- Fix any bugs and issues with edge cases on the modals (Kureal is working on this!)
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 
