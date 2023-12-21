@@ -25,14 +25,14 @@ needsNewButton.onclick = createItem
 
 // creates a new item with inputs as fields, and saves the class name
 function createItem() {
-    needsModalNewItem()
+    needsModalNewItem(postItem)
 }
 
 // function for rendering a new item with inputs instead of fields; uses closure
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
-    return function () {
+    return function (buttonFunction) {
         itemCounter++
         neededModalItemsList.insertAdjacentHTML('beforeend', `
         <div id='js-item-${itemCounter}' class="item">
@@ -43,7 +43,7 @@ function createNewItem(){
         </div>
         `)
         const newButton = document.getElementById("create-item-" + itemCounter)
-        newButton.onclick = postItem
+        newButton.onclick = buttonFunction
         return itemCounter
     }
 }
@@ -137,9 +137,25 @@ async function deleteItem(event) {
         deleteButton.parentElement.remove()
     }
     else {
-        // there should be no way for a delete request to fail, but still
+        // TODO there should be no way for a delete request to fail, but still
         console.log("???")
     }
+}
+
+// PUT request logic for modal
+const editButtons = document.getElementsByClassName("edit-item")
+for (let button of editButtons) {
+    button.onclick = createItemToEdit
+}
+
+function createItemToEdit(event) {
+    const button = event.target
+    needsModalNewItem(postItem)
+    button.remove()
+}
+
+function saveEditedItem() {
+
 }
 
 // Close and Save button on needsModal

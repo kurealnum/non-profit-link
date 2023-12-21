@@ -15,7 +15,6 @@ def search_items(request):
 
 # post and put requests for the model
 class RequestDataApiView(APIView):
-    # UNTESTED
     def post(self, request):
         # getting the current user
         user = request.user
