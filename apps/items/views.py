@@ -15,44 +15,33 @@ def search_items(request):
 
 # post and put requests for the model
 class RequestDataApiView(APIView):
+    # UNTESTED
     def post(self, request):
         # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
 
-        # want is a singular value, makes user feedback on frontend simpler
-        want = request.data.get("want")
+        # accepts a list of this data
+        new_item = {
+            "item_name": request.data.get("item_name"),
+            "want": request.data.get("want"),
+            "units_description": request.data.get("units_description"),
+            "count": request.data.get("count"),
+            "org": org.id,  # type: ignore
+        }
 
-        # all of this because no default error message :(
-        all_serializer_errors = []
-        serialzers_to_save = []
+        new_item_serializer = ItemSerializer(data=new_item)
 
-        for item in request.data.get("needsPOSTRequestInfo"):
-            # accepts a list of this data
-            new_item = {
-                "item_name": item["item_name"],
-                "want": want,
-                "units_description": item["units_description"],
-                "count": item["count"],
-                "org": org.id,  # type: ignore
-            }
-            new_serializer = ItemSerializer(data=new_item)
-            if new_serializer.is_valid():
-                # we dont want to save if there's one serializer that isn't valid
-                serialzers_to_save.append(new_serializer)
-            else:
-                # we have to do all of this just to get the input_id into the errors
-                errors = dict(new_serializer.errors)
-                all_serializer_errors.append([errors, {"input_id": item["input_id"]}])
+        if new_item_serializer.errors:
+            return Response(
+                {
+                    "errors": new_item_serializer.errors,
+                    "input_id": request.data.get("input_id"),
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
-        if all_serializer_errors:
-            return Response(all_serializer_errors, status=status.HTTP_400_BAD_REQUEST)
-
-        # saving all of the new items
-        for ser in serialzers_to_save:
-            ser.save()
-
-        return Response([], status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_201_CREATED)
 
     def delete(self, request):
         # getting the current user
