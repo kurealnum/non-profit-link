@@ -2,10 +2,9 @@
 const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
-
-// these are the "buckets" in the eraser.io diagrams
-let needsPostBucket = new Set(); // item Ids
-let needsDeleteBucket = new Set() // item names
+const apiUrl = "http://127.0.0.1:8000/items/manage-item/"
+const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
+const neededModalItemsList = document.getElementById("needed-items-list")
 
 
 
@@ -19,180 +18,200 @@ needsButton.onclick = function() {
     document.body.style.overflow = "hidden"
 }
 
-// adding a new item to the needs modal (NOT saving it)
+// POST request logic for Needs Modal
 const needsNewButton = document.getElementById("needs-new-button")
 const needsModalNewItem = createNewItem()
 needsNewButton.onclick = createItem
 
 // creates a new item with inputs as fields, and saves the class name
 function createItem() {
-    needsPostBucket.add(needsModalNewItem()) 
+    needsModalNewItem(postItem)
 }
 
-// delete items buttons
+// function for rendering a new item with inputs instead of fields; uses closure
+function createNewItem(){
+    const neededModalItemsList = document.getElementById("needed-items-list")
+    let itemCounter = 0
+    return function (buttonFunction, oldName) {
+        itemCounter++
+        let oldNameData = ""
+        if (oldName !== "") {
+            oldNameData = "data-old_name=" + oldName
+        }
+        neededModalItemsList.insertAdjacentHTML('beforeend', `
+        <div id='js-item-${itemCounter}' class="item">
+            <input id='number-of-units-${itemCounter}'type='number' value='0'>
+            <input id='unit-type-${itemCounter}' type='text' value='units'> of 
+            <input id='item-name-${itemCounter}' type='text' value='item'>
+            <button ${oldNameData} data-item_id=${itemCounter} id='create-item-${itemCounter}'>&check;</button>
+        </div>
+        `)
+        const newButton = document.getElementById("create-item-" + itemCounter)
+        newButton.onclick = buttonFunction
+        return itemCounter
+    }
+}
+
+// makes post req to Item API
+async function postItem(event) {
+    const itemId = event.target.dataset.item_id
+    const itemName = document.getElementById('item-name-' + itemId).value
+    const unitsDescription = document.getElementById('unit-type-' + itemId).value
+    const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
+    const postOptions = {
+        method: 'POST',
+        headers: headersForItemApi,
+        // adding the 'want' field
+        body: JSON.stringify({"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId})
+    }
+    const postReponse = await fetch(apiUrl, postOptions)
+    if (postReponse.ok) {
+        // delete input fields 
+        const toRemove = document.getElementById("js-item-" + itemId)
+        toRemove.remove()
+        // create a basic item field
+        const newModalItem = `
+            <div class="item">
+                ${numberOfUnits} ${unitsDescription} of ${itemName}
+                <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
+            </div>
+        `
+        const newDashboardItem = `
+            <div class="item" id="dashboard-delete-item-${itemName}">
+                ${numberOfUnits} ${unitsDescription} of ${itemName}
+                <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
+            </div>
+        `
+        // if there were errors, but the user corrected them...
+        const areErrors = document.getElementById("modal-error-" + itemId)
+        if (areErrors) {
+            areErrors.remove()
+        }
+        // render new items
+        neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
+        neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
+        // add functionality to the added button
+        const newButton = document.getElementById("delete-item-" + itemName)
+        newButton.onclick = deleteItem()
+    }
+    else {
+        // render errors
+        const errorData = await postReponse.json()
+        const itemId = errorData["input_id"]
+        const errors = errorData["errors"]
+        let displayedErrors = ""
+        for (let error of Object.keys(errors)) {
+            displayedErrors += "<li>" + errors[error][0] + "</li>"
+        }
+        const isPresentError = document.getElementById("modal-error-" + itemId)
+        // if there's not an error present already, do nothing
+        if (!isPresentError) {
+            const itemWithError = document.getElementById("js-item-" + itemId)
+            itemWithError.insertAdjacentHTML('beforebegin', `
+                <ul id="modal-error-${itemId}">
+                    ${displayedErrors}
+                </ul>
+            `)
+        }
+    }
+}
+
+// DELETE request logic for Needs Modal
 const deleteButtons = document.getElementsByClassName("delete-item")
 for (let button of deleteButtons) {
     button.onclick = deleteItem
 }  
 
 // deletes an item
-function deleteItem(event) {
+async function deleteItem(event) {
     const deleteButton = event.target
     // TODO ask the user if they're sure they want to delete the item
-    // add data to needsDeleteBucket
-    let itemName = deleteButton.dataset.name
-    if (needsPostBucket.has(itemName)) {
-        needsPostBucket.delete(itemName)
+    // api request
+    const itemName = deleteButton.dataset.name
+    const deleteOptions = {
+        method: 'DELETE',
+        headers: headersForItemApi
+    }
+    const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
+    if (deleteRequest.ok) {
+        // delete item in modal
+        const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
+        dashboardItem.remove()
+        // removing the modal element
+        deleteButton.parentElement.remove()
     }
     else {
-        needsDeleteBucket.add(itemName)
+        // TODO there should be no way for a delete request to fail, but still
+        console.log("Issue with POST request")
     }
+}
 
-    // delete item in modal, and delete 
-    deleteButton.parentElement.remove()
+// PUT request logic for modal
+const editButtons = document.getElementsByClassName("edit-item")
+for (let button of editButtons) {
+    button.onclick = createItemToEdit
+}
+
+function createItemToEdit(event) {
+    const button = event.target
+    const oldName = event.target.dataset.name
+    needsModalNewItem(saveEditedItem, oldName)
+    button.remove()
+}
+
+async function saveEditedItem(event) {
+    const editButton = event.target
+    const itemId = editButton.dataset.item_id
+    const oldItemName = editButton.dataset.old_name
+    const newItemName = document.getElementById('item-name-' + itemId).value
+    const unitsDescription = document.getElementById('unit-type-' + itemId).value
+    const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
+    const putOptions = {
+        method: 'PUT',
+        headers: headersForItemApi,
+        body: JSON.stringify({"old_item_name": oldItemName, "new_item_name": newItemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId}),
+    }
+    const putResponse = await fetch(apiUrl, putOptions)
+    if (putResponse.ok) {
+        // update the item info in dashboard
+        const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
+        const itemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
+        oldDashboardElement.setAttribute("id", newItemName)
+        oldDashboardElement.innerHTML = itemInfo
+        // delete the input fields
+        editButton.parentElement.remove()
+        // delete the old element
+        const oldModalElement = document.getElementById("delete-item-" + oldItemName)
+        oldModalElement.parentElement.remove()
+        // create a new .item div with updated info in modal
+        neededModalItemsList.insertAdjacentHTML('beforeend', `
+            <div class="item">
+                ${itemInfo}
+                <button data-name="${newItemName}" class="delete-item" id="delete-item-${newItemName}"></button>
+                <button data-name="${newItemName}" class="edit-item"></button>
+            </div>
+        `)
+    }
+    else {
+        // TODO there should be no way for a delete request to fail, but still
+        console.log("Issue with PUT request")
+    }
 }
 
 // Close and Save button on needsModal
 const needsCloseAndSaveButton = document.getElementById("needs-close-button")
 needsCloseAndSaveButton.onclick = function() {
-    async function createItems() {
-        let needsPOSTRequestInfo = [];
-        /* 
-        data in needsPOSTRequestInfo should look something like this:
-        count: 3
-        units_description: "verycool"
-        item_name: "myitem"
-        input_id: 2  (input id is to identify which input to assign errors to (if there are any))
-        */ 
-
-        // gathering data for needsPOSTRequestInfo 
-        for (let counter of needsPostBucket) {
-            const item_name = document.querySelector("#item-name-" + counter).value
-            // if there's a query set to delete this item, then we want to remove that query
-            if (needsDeleteBucket.has(item_name)) {
-                needsDeleteBucket.delete(item_name)
-            }
-            const units_description = document.querySelector("#unit-type-" + counter).value
-            const count = document.querySelector("#number-of-units-" + counter).value
-            const addedItem = {
-                "item_name": escapeHtml(item_name),
-                "units_description": escapeHtml(units_description),
-                "count": count,
-                "input_id": counter,
-            }
-            needsPOSTRequestInfo.push(addedItem)
-        }
-
-        const POSTRequestOptions = {
-            method: 'POST', 
-            headers: headersForItemApi, 
-            // extra want field to avoid redundant 'want' fields in needsPOSTRequestInfo
-            body: JSON.stringify({needsPOSTRequestInfo, ...{"want": true}})
-        }
-
-        // figure out how to distinguish which field belongs to which input...
-        const POSTResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', POSTRequestOptions)
-            if (POSTResponse.status == 201) {
-                // visually add new items to dashboard, and remove old input fields
-                const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
-                const neededModalItemsList = document.getElementById("needed-items-list")
-                // render and delete items
-                for (let itemInfo of needsPOSTRequestInfo) {
-                    // don't need to escape HTML because we already escaped it
-                    const newModalItem = `
-                        <div class="item">
-                            ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
-                            <button data-name="${itemInfo["item_name"]}" class="delete-item" id="delete-item-js-${itemInfo["item_name"]}"></button>
-                        </div>
-                    `
-                    const newDashboardItem = `
-                    <div class="item" id="delete-item-${itemInfo["item_name"]}">
-                        ${itemInfo["count"]} ${itemInfo["units_description"]} of ${itemInfo["item_name"]}
-                    </div>
-                    `
-                    neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
-                    neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
-
-                    // adding delete method to new delete button
-                    document.getElementById("delete-item-js-" + itemInfo["item_name"]).onclick = deleteItem
-
-                    // removing old input fields
-                    const oldInputField = document.getElementById("js-item-" + itemInfo["input_id"])
-                    oldInputField.remove()
-                }
-                // set the post bucket to empty for when the modal is reopened
-                needsPostBucket = new Set()
-            }
-            else {
-                // user feedback, i.e. making errors and displaying them
-                // the input_id is used to figure out which item had an error
-                const POSTResponseData = await POSTResponse.json()
-                // we know that error messages is safe, because the response is from our own API
-                for (let errors of POSTResponseData) {
-                    const inputId = errors[1]["input_id"]
-                    const itemWithError = document.getElementById("js-item-" + inputId)
-                    const rawErrorMessages = errors[0]
-                    let errorMessages = ""
-                    for (let key in rawErrorMessages) {
-                        errorMessages += "<li>" + rawErrorMessages[key][0] + "</li>"
-                    }
-
-                    // TODO not sure why this reduce func isnt working :(
-                    // just using a for loop to populate error messages atm
-                    // const errorMessages = Object.keys(rawErrorMessages).reduce(
-                    //     (allErrors, curError) => allErrors += ("<li>" + "a" + "</li>"))
-
-                    const isPresentError = document.getElementById("modal-error-" + inputId)
-                    // if there's not an error present already, do nothing
-                    if (!isPresentError) {
-                        itemWithError.insertAdjacentHTML('beforebegin', `
-                            <ul id="modal-error-${inputId}">
-                                ${errorMessages}
-                            </ul>
-                        `)
-                    }
-                } 
-            }        
-        }
-    // worth noting that there's almost no way that there can be any errors with this api call
-    async function deleteItems() {
-        const needsDeleteRequestOptions = {
-            method: 'DELETE', 
-            headers: headersForItemApi, 
-            // have to use Array.from because of set
-            body: JSON.stringify({"item_names": Array.from(needsDeleteBucket)}) 
-        }
-        const deleteResponse = await fetch('http://127.0.0.1:8000/items/manage-item/', needsDeleteRequestOptions)
-        if (deleteResponse.ok) {
-            // remove items from dashboard
-            for (let item of needsDeleteBucket) {
-                const toDelete = document.getElementById("delete-item-" + item)
-                toDelete.remove()
-            }
-            // set needsDeleteBucket to empty
-            needsDeleteBucket = new Set()
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    // if there are no issues with managing the items, close the modal
-    const didDelete = deleteItems()
-    const didCreate = createItems()
-    if (didDelete && didCreate) {
-        // close the modal
-        needsModal.setAttribute("closing", "");
-        needsModal.addEventListener(
-            "animationend",
-            () => {
-                needsModal.removeAttribute("closing");
-                needsModal.close();
-                document.body.style.overflow = "auto"
-            },
-            { once: true }
-        );
-    }
+    // close the modal
+    needsModal.setAttribute("closing", "");
+    needsModal.addEventListener(
+        "animationend",
+        () => {
+            needsModal.removeAttribute("closing");
+            needsModal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    )
 }
   
 
@@ -224,24 +243,6 @@ surplusCloseButton.onclick = function() {
 
 
 // HELPER FUNCTIONS
-// function for rendering a new item with inputs instead of fields; uses closure
-function createNewItem(){
-    const neededModalItemsList = document.getElementById("needed-items-list")
-    let itemCounter = 0
-    return function () {
-        itemCounter++
-        // TODO need to rewrite this function to allow itemCounter to be an itemName
-        neededModalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='js-item-${itemCounter}' class="item">
-            <input id='number-of-units-${itemCounter}'type='number' value='0'>
-            <input id='unit-type-${itemCounter}' type='text' value='units'> of 
-            <input id='item-name-${itemCounter}' type='text' value='item'>
-        </div>
-        `)
-        return itemCounter
-    }
-}
-
 // function to get a certain cookie, taken from Django's docs <3
 function getCookie(cname) {
     let name = cname + "=";
@@ -271,11 +272,11 @@ var entityMap = {
     '=': '&#x3D;'
   };
   
-  function escapeHtml (string) {
+function escapeHtml(string) {
     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
       return entityMap[s];
     });
-  }
+}
 
 
 
