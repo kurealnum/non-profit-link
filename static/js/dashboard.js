@@ -74,12 +74,12 @@ async function postItem(event) {
             <div class="item">
                 ${numberOfUnits} ${unitsDescription} of ${itemName}
                 <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
+                <button data-name="${itemName}" class="edit-item" id="edit-item-${itemName}"></button>
             </div>
         `
         const newDashboardItem = `
             <div class="item" id="dashboard-delete-item-${itemName}">
                 ${numberOfUnits} ${unitsDescription} of ${itemName}
-                <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
             </div>
         `
         // if there were errors, but the user corrected them...
@@ -90,9 +90,12 @@ async function postItem(event) {
         // render new items
         neededDashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
         neededModalItemsList.insertAdjacentHTML('beforeend', newModalItem)
-        // add functionality to the added button
-        const newButton = document.getElementById("delete-item-" + itemName)
-        newButton.onclick = deleteItem()
+
+        // add functionality to the added buttons
+        const newDeleteButton = document.getElementById("delete-item-" + itemName)
+        const newEditButton = document.getElementById("edit-item-" + itemName)
+        newDeleteButton.onclick = deleteItem
+        newEditButton.onclick = createItemToEdit
     }
     else {
         // render errors
@@ -176,7 +179,7 @@ async function saveEditedItem(event) {
         // update the item info in dashboard
         const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
         const itemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
-        oldDashboardElement.setAttribute("id", newItemName)
+        oldDashboardElement.setAttribute("id", "dashboard-delete-item-" + newItemName)
         oldDashboardElement.innerHTML = itemInfo
 
         // delete the input fields
