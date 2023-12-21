@@ -97,7 +97,6 @@ function createNewItem(){
     let itemCounter = 0
     return function () {
         itemCounter++
-        // TODO need to rewrite this function to allow itemCounter to be an itemName
         neededModalItemsList.insertAdjacentHTML('beforeend', `
         <div id='js-item-${itemCounter}' class="item">
             <input id='number-of-units-${itemCounter}'type='number' value='0'>
@@ -112,9 +111,25 @@ function createNewItem(){
     }
 }
 
-// sends post req to Item API
-function postItem(event) {
-    console.log(event.target.dataset.item_id)
+// makes post req to Item API
+async function postItem(event) {
+    const itemId = event.target.dataset.item_id
+    const itemName = document.getElementById('item-name-' + itemId)
+    const unitsDescription = document.getElementById('unit-type-' + itemId)
+    const numberOfUnits = document.getElementById('number-of-units-' + itemId)
+    const postOptions = {
+        method: 'POST',
+        headers: headersForItemApi,
+        // adding the 'want' field
+        body: {"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits}
+    }
+    const postReponse = await fetch('http://127.0.0.1:8000/items/manage-item/', postOptions)
+    if (postReponse.ok) {
+        // TODO delete input fields, and create a basic item field
+    }
+    else {
+        // TODO render errors
+    }
 }
 
 // function to get a certain cookie, taken from Django's docs <3
