@@ -26,11 +26,12 @@ class RequestDataApiView(APIView):
             "item_name": request.data.get("item_name"),
             "want": request.data.get("want"),
             "units_description": request.data.get("units_description"),
-            "count": request.data.get("count"),
+            "count": int(request.data.get("count")),
             "org": org.id,  # type: ignore
         }
 
         new_item_serializer = ItemSerializer(data=new_item)
+        new_item_serializer.is_valid()
 
         if new_item_serializer.errors:
             return Response(
@@ -41,6 +42,7 @@ class RequestDataApiView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        new_item_serializer.save()
         return Response(status=status.HTTP_201_CREATED)
 
     # UNTESTED

@@ -3,6 +3,11 @@ const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
 
+const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
+const neededModalItemsList = document.getElementById("needed-items-list")
+
+
+
 // NEEDS MODAL
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
@@ -114,18 +119,29 @@ function createNewItem(){
 // makes post req to Item API
 async function postItem(event) {
     const itemId = event.target.dataset.item_id
-    const itemName = document.getElementById('item-name-' + itemId)
-    const unitsDescription = document.getElementById('unit-type-' + itemId)
-    const numberOfUnits = document.getElementById('number-of-units-' + itemId)
+    const itemName = document.getElementById('item-name-' + itemId).value
+    const unitsDescription = document.getElementById('unit-type-' + itemId).value
+    const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
     const postOptions = {
         method: 'POST',
         headers: headersForItemApi,
         // adding the 'want' field
-        body: {"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits}
+        body: JSON.stringify({"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits})
     }
     const postReponse = await fetch('http://127.0.0.1:8000/items/manage-item/', postOptions)
+    console.log(postReponse)
     if (postReponse.ok) {
-        // TODO delete input fields, and create a basic item field
+        // delete input fields 
+        const toRemove = document.getElementById("js-item-" + itemId)
+        toRemove.remove()
+        // create a basic item field
+        const newItem = `
+            <div class="item">
+                ${numberOfUnits} ${unitsDescription} of ${itemName}
+            </div>
+        `
+        neededDashboardItemsList.insertAdjacentHTML('beforeend', newItem)
+        neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
     }
     else {
         // TODO render errors
