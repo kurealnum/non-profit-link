@@ -1,3 +1,7 @@
+# What the heck is this branch?
+
+This is a version of the Item API that suffers from severe premature optimization. I would love to come back and fix everything that's wrong with it at somepoint, but that's for later.
+
 # NPL (Non Profit Link)
 
 Written in Python, HTML, and CSS
