@@ -126,11 +126,11 @@ async function postItem(event) {
         method: 'POST',
         headers: headersForItemApi,
         // adding the 'want' field
-        body: JSON.stringify({"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits})
+        body: JSON.stringify({"item_name": itemName, "want": true, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId})
     }
     const postReponse = await fetch('http://127.0.0.1:8000/items/manage-item/', postOptions)
-    console.log(postReponse)
     if (postReponse.ok) {
+        // TODO figure out how to delete preexisting errors if they exist
         // delete input fields 
         const toRemove = document.getElementById("js-item-" + itemId)
         toRemove.remove()
@@ -144,7 +144,24 @@ async function postItem(event) {
         neededModalItemsList.insertAdjacentHTML('beforeend', newItem)
     }
     else {
-        // TODO render errors
+        // render errors
+        const errorData = await postReponse.json()
+        const itemId = errorData["input_id"]
+        const errors = errorData["errors"]
+        let displayedErrors = ""
+        for (let error of Object.keys(errors)) {
+            displayedErrors += "<li>" + errors[error][0] + "</li>"
+        }
+        const isPresentError = document.getElementById("modal-error-" + itemId)
+        // if there's not an error present already, do nothing
+        if (!isPresentError) {
+            const itemWithError = document.getElementById("js-item-" + itemId)
+            itemWithError.insertAdjacentHTML('beforebegin', `
+                <ul id="modal-error-${itemId}">
+                    ${displayedErrors}
+                </ul>
+            `)
+        }
     }
 }
 
