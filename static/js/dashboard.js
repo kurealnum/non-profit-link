@@ -18,7 +18,7 @@ needsButton.onclick = function() {
     document.body.style.overflow = "hidden"
 }
 
-// adding a new item to the needs modal (NOT saving it)
+// POST request logic for Needs Modal
 const needsNewButton = document.getElementById("needs-new-button")
 const needsModalNewItem = createNewItem()
 needsNewButton.onclick = createItem
@@ -28,74 +28,6 @@ function createItem() {
     needsModalNewItem()
 }
 
-// delete items buttons
-const deleteButtons = document.getElementsByClassName("delete-item")
-for (let button of deleteButtons) {
-    button.onclick = deleteItem
-}  
-
-// deletes an item
-function deleteItem(event) {
-    const deleteButton = event.target
-    // TODO ask the user if they're sure they want to delete the item
-    // add data to needsDeleteBucket
-    let itemName = deleteButton.dataset.name
-    if (needsPostBucket.has(itemName)) {
-        needsPostBucket.delete(itemName)
-    }
-    else {
-        needsDeleteBucket.add(itemName)
-    }
-
-    // delete item in modal, and delete 
-    deleteButton.parentElement.remove()
-}
-
-// Close and Save button on needsModal
-const needsCloseAndSaveButton = document.getElementById("needs-close-button")
-needsCloseAndSaveButton.onclick = function() {
-    // close the modal
-    needsModal.setAttribute("closing", "");
-    needsModal.addEventListener(
-        "animationend",
-        () => {
-            needsModal.removeAttribute("closing");
-            needsModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    )
-}
-  
-
-
-// SURPLUS MODAL
-const surplusModal = document.querySelector('#surplus-modal')
-const surplusOpenButton = document.getElementById("surplus-button")
-const surplusCloseButton = document.getElementById("surplus-close-button")
-
-surplusOpenButton.onclick = function() {
-    surplusModal.showModal()
-    document.body.style.overflow = "hidden"
-}
-
-surplusCloseButton.onclick = function() {
-    surplusModal.setAttribute("closing", "");
-
-    surplusModal.addEventListener(
-        "animationend",
-        () => {
-            surplusModal.removeAttribute("closing");
-            surplusModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    );
-}
-
-
-
-// HELPER FUNCTIONS
 // function for rendering a new item with inputs instead of fields; uses closure
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
@@ -170,6 +102,65 @@ async function postItem(event) {
     }
 }
 
+// DELETE request logic for Needs Modal
+const deleteButtons = document.getElementsByClassName("delete-item")
+for (let button of deleteButtons) {
+    button.onclick = deleteItem
+}  
+
+// deletes an item
+function deleteItem(event) {
+    const deleteButton = event.target
+    // TODO ask the user if they're sure they want to delete the item
+    // delete item in modal, and delete 
+    deleteButton.parentElement.remove()
+}
+
+// Close and Save button on needsModal
+const needsCloseAndSaveButton = document.getElementById("needs-close-button")
+needsCloseAndSaveButton.onclick = function() {
+    // close the modal
+    needsModal.setAttribute("closing", "");
+    needsModal.addEventListener(
+        "animationend",
+        () => {
+            needsModal.removeAttribute("closing");
+            needsModal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    )
+}
+  
+
+
+// SURPLUS MODAL
+const surplusModal = document.querySelector('#surplus-modal')
+const surplusOpenButton = document.getElementById("surplus-button")
+const surplusCloseButton = document.getElementById("surplus-close-button")
+
+surplusOpenButton.onclick = function() {
+    surplusModal.showModal()
+    document.body.style.overflow = "hidden"
+}
+
+surplusCloseButton.onclick = function() {
+    surplusModal.setAttribute("closing", "");
+
+    surplusModal.addEventListener(
+        "animationend",
+        () => {
+            surplusModal.removeAttribute("closing");
+            surplusModal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    );
+}
+
+
+
+// HELPER FUNCTIONS
 // function to get a certain cookie, taken from Django's docs <3
 function getCookie(cname) {
     let name = cname + "=";
