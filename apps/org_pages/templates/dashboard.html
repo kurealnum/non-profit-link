@@ -37,7 +37,7 @@ present in the desktop size. the mobile version is completely vertical -->
         </section>
         <section class="right-of-dashboard">
             <h2>Your surplus</h2>
-            <ul class="items-list">
+            <ul id="surplus-items-dashboard" class="items-list">
                 {% for item in surplus_org_items %}
                     <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
                 {% empty %}

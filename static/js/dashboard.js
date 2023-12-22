@@ -258,6 +258,7 @@ class Modal {
 }
 
 const needsModal = new Modal(true, "needs")
+const surplusModal = new Modal(false, "surplus")
 
 
 

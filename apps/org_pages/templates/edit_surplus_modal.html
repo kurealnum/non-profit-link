@@ -1,11 +1,14 @@
 <h1>Edit your listed surplus</h1>
-<ul class="items-list">
+<ul id="surplus-items-list" class="items-list">
     {% for item in surplus_org_items %}
-        <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}</div>
+        <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}
+            <button data-name="{{ item }}" class="delete-item" id="delete-item-{{ item }}"></button>
+            <button data-name="{{ item }}" class="edit-item"></button>
+        </div>
     {% empty %}
         <h3>You don't have any items listed!</h3>
     {% endfor %}
 </ul>
 
-<button>Add new item &plus;</button>
-<button id="surplus-close-button">Close</button>
+<button id="surplus-new-button">Add new item &plus;</button>
+<button class="last-button" id="surplus-close-button">Close</button>
