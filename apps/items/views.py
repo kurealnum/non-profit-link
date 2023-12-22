@@ -57,13 +57,38 @@ class RequestDataApiView(APIView):
             "new_item_name": request.data.get("new_item_name"),
             "want": request.data.get("want"),
             "units_description": request.data.get("units_description"),
-            "count": request.data.get("count"),
+            "count": int(request.data.get("count")),
         }
+
+        serializer_info = {
+            "item_name": edited_item["new_item_name"],
+            "want": edited_item["want"],
+            "units_description": edited_item["units_description"],
+            "count": edited_item["count"],
+            "org": org_id,
+        }
+
+        # just to automatically check for errors
+        serializer_for_errors = ItemSerializer(data=serializer_info)
+        if not serializer_for_errors.is_valid():
+            return Response(
+                {
+                    "errors": serializer_for_errors.errors,
+                    "input_id": request.data.get("input_id"),
+                },
+                status.HTTP_400_BAD_REQUEST,
+            )
 
         if not Item.objects.filter(
             org=org_id, item_name=edited_item["old_item_name"]
         ).exists():
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {
+                    "errors": ["The item that you are trying to edit does not exist"],
+                    "input_id": request.data.get("input_id"),
+                },
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
         # if the object does exist, then
         Item.objects.filter(org=org_id, item_name=edited_item["old_item_name"]).update(
