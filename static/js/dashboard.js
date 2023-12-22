@@ -9,11 +9,62 @@ class Modal {
     constructor(isWant, needOrWant) {
         this.isWant = isWant
         this.needOrWant = needOrWant
+        this.itemCounter = 0
         this.myModal = document.querySelector(`#${needOrWant}-modal`)
-        this.OpenButton = document.getElementById(`${needOrWant}-button`)
         this.DashboardItemsList = document.getElementById(`${needOrWant}-items-dashboard`)
         this.ModalItemsList = document.getElementById(`${needOrWant}-items-list`)
-        this.NewButton = document.getElementById(`${needOrWant}-new-button`)
+
+        this.newItemButton = document.getElementById(`${needOrWant}-new-button`)
+        this.newItemButton.onclick = function () {
+            createNewItem(postItem)
+        }
+
+        this.modalCloseButton = document.getElementById(`${needOrWant}-close-button`)
+        this.modalCloseButton.onclick = function() {
+            hideMyModal(needsModal)
+        }
+
+        this.OpenButton = document.getElementById(`${needOrWant}-button`)
+        this.OpenButton.onclick = function() {
+            showMyModal(this.myModal)
+        }
+    }
+
+    showMyModal(modal) {
+        modal.showModal()
+        document.body.style.overflow = "hidden"
+    }
+    
+    hideMyModal(modal) {
+        modal.setAttribute("closing", "");
+        modal.addEventListener(
+            "animationend",
+            () => {
+                modal.removeAttribute("closing");
+                modal.close();
+                document.body.style.overflow = "auto"
+            },
+            { once: true }
+        )
+    }
+
+    createNewItem(buttonFunction, oldName){
+        this.itemCounter++
+        let oldNameData = ""
+        if (oldName !== "") {
+            oldNameData = "data-old_name=" + oldName
+        }
+        this.ModalItemsList.insertAdjacentHTML('beforeend', `
+        <div id='js-item-${this.itemCounter}' class="item">
+            <input id='number-of-units-${this.itemCounter}'type='number' value='0'>
+            <input id='unit-type-${this.itemCounter}' type='text' value='units'> of 
+            <input id='item-name-${this.itemCounter}' type='text' value='item'>
+            <button ${oldNameData} data-item_id=${this.itemCounter} id='create-item-${this.itemCounter}'>&check;</button>
+        </div>
+        `)
+        const newButton = document.getElementById("create-item-" + this.itemCounter)
+        newButton.onclick = buttonFunction
+        return this.itemCounter
     }
 }
 
