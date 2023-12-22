@@ -12,8 +12,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
-- Refactor items/views.py
-
 - Rewrite some of/finish the design docs for the Items API/modal
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.

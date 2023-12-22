@@ -13,12 +13,12 @@ def search_items(request):
     return render(request, "search_items.html")
 
 
-# post and put requests for the model
+# any endpoints that take information from the request itself
 class RequestDataApiView(APIView):
     def post(self, request):
-        # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
+        org_id = org.id  # type: ignore
 
         # accepts a list of this data
         new_item = {
@@ -26,7 +26,7 @@ class RequestDataApiView(APIView):
             "want": request.data.get("want"),
             "units_description": request.data.get("units_description"),
             "count": int(request.data.get("count")),
-            "org": org.id,  # type: ignore
+            "org": org_id,
         }
 
         new_item_serializer = ItemSerializer(data=new_item)
@@ -44,27 +44,17 @@ class RequestDataApiView(APIView):
         new_item_serializer.save()
         return Response(status=status.HTTP_201_CREATED)
 
-    # UNTESTED
     def put(self, request):
-        # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
         org_id = org.id  # type: ignore
+        old_item_name = request.data.get("old_item_name")
 
-        # dont include org_id in this data because that would be redundant
-        edited_item = {
-            "old_item_name": request.data.get("old_item_name"),
-            "new_item_name": request.data.get("new_item_name"),
+        serializer_info = {
+            "item_name": request.data.get("new_item_name"),
             "want": request.data.get("want"),
             "units_description": request.data.get("units_description"),
             "count": int(request.data.get("count")),
-        }
-
-        serializer_info = {
-            "item_name": edited_item["new_item_name"],
-            "want": edited_item["want"],
-            "units_description": edited_item["units_description"],
-            "count": edited_item["count"],
             "org": org_id,
         }
 
@@ -79,9 +69,7 @@ class RequestDataApiView(APIView):
                 status.HTTP_400_BAD_REQUEST,
             )
 
-        if not Item.objects.filter(
-            org=org_id, item_name=edited_item["old_item_name"]
-        ).exists():
+        if not Item.objects.filter(org=org_id, item_name=old_item_name).exists():
             return Response(
                 {
                     "errors": ["The item that you are trying to edit does not exist"],
@@ -90,38 +78,34 @@ class RequestDataApiView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        # if the object does exist, then
-        Item.objects.filter(org=org_id, item_name=edited_item["old_item_name"]).update(
-            item_name=edited_item["new_item_name"],
-            want=edited_item["want"],
-            units_description=edited_item["units_description"],
-            count=edited_item["count"],
+        Item.objects.filter(org=org_id, item_name=old_item_name).update(
+            item_name=serializer_info["item_name"],
+            want=serializer_info["want"],
+            units_description=serializer_info["units_description"],
+            count=serializer_info["count"],
         )
 
         return Response(status=status.HTTP_200_OK)
 
 
-# get and delete methods for the item model
+# any endpoints that take information from the URL
 class UrlDataApiView(APIView):
-    # returns selected item info
     def get(self, request, item_name):
-        # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
         org_id = org.id  # type: ignore
 
         item = get_object_or_404(Item, org=org_id, item_name=item_name)
-
+        # no need to check for errors, because the item in our database should
+        # be valid already
         serializer = ItemSerializer(item)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, item_name):
-        # getting the current user
         user = request.user
         org = Org.objects.get(username=user.username)
         org_id = org.id  # type: ignore
 
-        # getting and deleting the item
-        item = get_object_or_404(Item, org=org_id, item_name=item_name)
-        item.delete()
+        item_to_delete = get_object_or_404(Item, org=org_id, item_name=item_name)
+        item_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
