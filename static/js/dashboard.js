@@ -3,19 +3,18 @@ const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
                     "Accept": "application/json",}
 const apiUrl = "http://127.0.0.1:8000/items/manage-item/"
-const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
-const neededModalItemsList = document.getElementById("needed-items-list")
 
 
 
 // NEEDS MODAL
 const needsModal = document.querySelector("#needs-modal") 
 const needsButton = document.getElementById("needs-button")
+const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
+const neededModalItemsList = document.getElementById("needed-items-list")
 
 // showing the modal
 needsButton.onclick = function() {
-    needsModal.showModal()
-    document.body.style.overflow = "hidden"
+    showMyModal(needsModal)
 }
 
 // POST request logic for Needs Modal
@@ -128,24 +127,26 @@ for (let button of deleteButtons) {
 // deletes an item
 async function deleteItem(event) {
     const deleteButton = event.target
-    // TODO ask the user if they're sure they want to delete the item
-    // api request
-    const itemName = deleteButton.dataset.name
-    const deleteOptions = {
-        method: 'DELETE',
-        headers: headersForItemApi
-    }
-    const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
-    if (deleteRequest.ok) {
-        // delete item in modal
-        const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
-        dashboardItem.remove()
-        // removing the modal element
-        deleteButton.parentElement.remove()
-    }
-    else {
-        // TODO there should be no way for a delete request to fail, but still
-        console.log("Issue with POST request")
+    // ask the user if they're sure they want to delete the item
+    const userConfirmation = confirm("Are you sure that you want to delete this item?")
+    if (userConfirmation) {
+        // api request
+        const itemName = deleteButton.dataset.name
+        const deleteOptions = {
+            method: 'DELETE',
+            headers: headersForItemApi
+        }
+        const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
+        if (deleteRequest.ok) {
+            // delete item on dashboard
+            const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
+            dashboardItem.remove()
+            // removing the modal element
+            deleteButton.parentElement.remove()
+        }
+        else {
+            alert("Something went wrong! Please try deleting the item again.")
+        }
     }
 }
 
@@ -211,17 +212,7 @@ async function saveEditedItem(event) {
 // Close and Save button on needsModal
 const needsCloseAndSaveButton = document.getElementById("needs-close-button")
 needsCloseAndSaveButton.onclick = function() {
-    // close the modal
-    needsModal.setAttribute("closing", "");
-    needsModal.addEventListener(
-        "animationend",
-        () => {
-            needsModal.removeAttribute("closing");
-            needsModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    )
+    hideMyModal(needsModal)
 }
   
 
@@ -286,6 +277,24 @@ function escapeHtml(string) {
     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
       return entityMap[s];
     });
+}
+
+function showMyModal(modal) {
+    modal.showModal()
+    document.body.style.overflow = "hidden"
+}
+
+function hideMyModal(modal) {
+    modal.setAttribute("closing", "");
+    modal.addEventListener(
+        "animationend",
+        () => {
+            modal.removeAttribute("closing");
+            modal.close();
+            document.body.style.overflow = "auto"
+        },
+        { once: true }
+    )
 }
 
 
