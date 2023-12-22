@@ -1,3 +1,22 @@
+class Modal {
+    headersForItemApi = {
+        'Content-Type': 'application/json',
+        "X-CSRFToken": getCookie("csrftoken"),
+        "Accept": "application/json",
+    }
+    apiUrl = "http://127.0.0.1:8000/items/manage-item/"
+
+    constructor(isWant, needOrWant) {
+        this.isWant = isWant
+        this.needOrWant = needOrWant
+        this.myModal = document.querySelector(`#${needOrWant}-modal`)
+        this.OpenButton = document.getElementById(`${needOrWant}-button`)
+        this.DashboardItemsList = document.getElementById(`${needOrWant}-items-dashboard`)
+        this.ModalItemsList = document.getElementById(`${needOrWant}-items-list`)
+        this.NewButton = document.getElementById(`${needOrWant}-new-button`)
+    }
+}
+
 // GLOBAL
 const headersForItemApi = {'Content-Type': 'application/json',
                     "X-CSRFToken": getCookie("csrftoken"),
