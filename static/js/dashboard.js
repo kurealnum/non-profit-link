@@ -11,23 +11,22 @@ const needsModal = document.querySelector("#needs-modal")
 const needsButton = document.getElementById("needs-button")
 const neededDashboardItemsList = document.getElementById("needed-items-dashboard")
 const neededModalItemsList = document.getElementById("needed-items-list")
+const needsNewButton = document.getElementById("needs-new-button")
 
-// showing the modal
 needsButton.onclick = function() {
     showMyModal(needsModal)
 }
 
 // POST request logic for Needs Modal
-const needsNewButton = document.getElementById("needs-new-button")
 const needsModalNewItem = createNewItem()
-needsNewButton.onclick = createItem
 
-// creates a new item with inputs as fields, and saves the class name
 function createItem() {
     needsModalNewItem(postItem)
 }
 
-// function for rendering a new item with inputs instead of fields; uses closure
+needsNewButton.onclick = createItem
+
+// uses closure :p
 function createNewItem(){
     const neededModalItemsList = document.getElementById("needed-items-list")
     let itemCounter = 0
@@ -51,7 +50,6 @@ function createNewItem(){
     }
 }
 
-// makes post req to Item API
 async function postItem(event) {
     const itemId = event.target.dataset.item_id
     const itemName = document.getElementById('item-name-' + itemId).value
@@ -103,7 +101,9 @@ async function postItem(event) {
     }
 }
 
-// DELETE request logic for Needs Modal
+
+
+// DELETE request logic
 const deleteButtons = document.getElementsByClassName("delete-item")
 for (let button of deleteButtons) {
     button.onclick = deleteItem
@@ -112,10 +112,8 @@ for (let button of deleteButtons) {
 // deletes an item
 async function deleteItem(event) {
     const deleteButton = event.target
-    // ask the user if they're sure they want to delete the item
     const userConfirmation = confirm("Are you sure that you want to delete this item?")
     if (userConfirmation) {
-        // api request
         const itemName = deleteButton.dataset.name
         const deleteOptions = {
             method: 'DELETE',
@@ -123,28 +121,28 @@ async function deleteItem(event) {
         }
         const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
         if (deleteRequest.ok) {
-            // delete item on dashboard
+            // visually remove the deleted item from the dashboard and modal
             const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
             dashboardItem.remove()
-            // removing the modal element
             deleteButton.parentElement.remove()
         }
         else {
+            // this is very unlikely to happen, so we just use an alert instead of rendering errors
             alert("Something went wrong! Please try deleting the item again.")
         }
     }
 }
 
-// PUT request logic for modal
+// PUT request logic
 const editButtons = document.getElementsByClassName("edit-item")
 for (let button of editButtons) {
     button.onclick = createItemToEdit
 }
 
 function createItemToEdit(event) {
-    const button = event.target
     const oldName = event.target.dataset.name
     needsModalNewItem(saveEditedItem, oldName)
+    const button = event.target
     button.remove()
 }
 
@@ -162,27 +160,25 @@ async function saveEditedItem(event) {
     }
     const putResponse = await fetch(apiUrl, putOptions)
     if (putResponse.ok) {
-        // update the item info in dashboard
+        // visually update the old item's info on the dashboard and moal
         const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
-        const itemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
+        const newItemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
         oldDashboardElement.setAttribute("id", "dashboard-delete-item-" + newItemName)
-        oldDashboardElement.innerHTML = itemInfo
+        oldDashboardElement.innerHTML = newItemInfo
 
-        // delete the input fields
         editButton.parentElement.remove()
-        // delete the old element
+
         const oldModalElement = document.getElementById("delete-item-" + oldItemName)
         oldModalElement.parentElement.remove()
 
-        // create a new .item div with updated info in modal
         neededModalItemsList.insertAdjacentHTML('beforeend', `
             <div class="item">
-                ${itemInfo}
+                ${newItemInfo}
                 <button data-name="${newItemName}" class="delete-item" id="delete-item-${newItemName}"></button>
                 <button data-name="${newItemName}" class="edit-item" id="edit-item-${newItemName}"></button>
             </div>
         `)
-        // add functions to new buttons
+
         const newDeleteButton = document.getElementById("delete-item-" + newItemName)
         const newEditButton = document.getElementById("edit-item-" + newItemName)
         newDeleteButton.onclick = deleteItem
@@ -200,12 +196,11 @@ async function saveEditedItem(event) {
     }
 }
 
-// Close and Save button on needsModal
-const needsCloseAndSaveButton = document.getElementById("needs-close-button")
-needsCloseAndSaveButton.onclick = function() {
+const needsCloseButton = document.getElementById("needs-close-button")
+needsCloseButton.onclick = function() {
     hideMyModal(needsModal)
 }
-  
+
 
 
 // SURPLUS MODAL
@@ -214,28 +209,17 @@ const surplusOpenButton = document.getElementById("surplus-button")
 const surplusCloseButton = document.getElementById("surplus-close-button")
 
 surplusOpenButton.onclick = function() {
-    surplusModal.showModal()
-    document.body.style.overflow = "hidden"
+    showMyModal(surplusModal)
 }
 
 surplusCloseButton.onclick = function() {
-    surplusModal.setAttribute("closing", "");
-
-    surplusModal.addEventListener(
-        "animationend",
-        () => {
-            surplusModal.removeAttribute("closing");
-            surplusModal.close();
-            document.body.style.overflow = "auto"
-        },
-        { once: true }
-    );
+    hideMyModal(surplusModal)
 }
 
 
 
 // HELPER FUNCTIONS
-// function to get a certain cookie, taken from Django's docs <3
+// taken from Django's docs <3
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -252,7 +236,6 @@ function getCookie(cname) {
 return "";
 }
     
-// function to escape potentially dangerous HTML chars
 var entityMap = {
     '&': '&amp;',
     '<': '&lt;',
