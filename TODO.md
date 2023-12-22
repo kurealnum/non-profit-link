@@ -12,7 +12,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
 
-- Rewrite some of/finish the design docs for the Items API/modal
+- Add the same functionality to the surplus modal. Can probably do this with OOP or something.
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 
