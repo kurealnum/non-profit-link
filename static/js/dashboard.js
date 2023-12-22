@@ -1,23 +1,23 @@
 class Modal {
-    headersForItemApi = {
-        'Content-Type': 'application/json',
-        "X-CSRFToken": this.getCookie("csrftoken"),
-        "Accept": "application/json",
-    }
-    apiUrl = "http://127.0.0.1:8000/items/manage-item/"
-
-    entityMap = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;',
-        '/': '&#x2F;',
-        '`': '&#x60;',
-        '=': '&#x3D;'
-    };
-
     constructor(isWant, needOrWant) {
+        this.headersForItemApi = {
+            'Content-Type': 'application/json',
+            "X-CSRFToken": this.getCookie("csrftoken"),
+            "Accept": "application/json",
+        }
+        this.apiUrl = "http://127.0.0.1:8000/items/manage-item/"
+    
+        this.entityMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '/': '&#x2F;',
+            '`': '&#x60;',
+            '=': '&#x3D;'
+        };
+
         this.isWant = isWant
         this.needOrWant = needOrWant
         this.itemCounter = 0
@@ -26,19 +26,13 @@ class Modal {
         this.modalItemsList = document.getElementById(`${needOrWant}-items-list`)
 
         this.newItemButton = document.getElementById(`${needOrWant}-new-button`)
-        this.newItemButton.onclick = function () {
-            this.createNewItem(postItem)
-        }
+        this.newItemButton.onclick = (() => this.createNewItem(this.postItem))
 
         this.modalCloseButton = document.getElementById(`${needOrWant}-close-button`)
-        this.modalCloseButton.onclick = function() {
-            this.hideMyModal(needsModal)
-        }
+        this.modalCloseButton.onclick = (() => this.hideMyModal(this.myModal))
 
         this.OpenButton = document.getElementById(`${needOrWant}-button`)
-        this.OpenButton.onclick = function() {
-            this.showMyModal(this.myModal)
-        }
+        this.OpenButton.onclick = (() => this.showMyModal(this.myModal))
 
         this.deleteButtons = document.getElementsByClassName("delete-item")
         for (let button of this.deleteButtons) {
@@ -51,12 +45,12 @@ class Modal {
         }
     }
 
-    showMyModal(modal) {
+    showMyModal = (modal) => {
         modal.showModal()
         document.body.style.overflow = "hidden"
     }
     
-    hideMyModal(modal) {
+    hideMyModal = (modal) => {
         modal.setAttribute("closing", "");
         modal.addEventListener(
             "animationend",
@@ -70,7 +64,7 @@ class Modal {
     }
 
     // oldName exists for PUT requests
-    createNewItem(buttonFunction, oldName){
+    createNewItem = (buttonFunction, oldName) => {
         this.itemCounter++
         let oldNameData = ""
         if (oldName !== "") {
@@ -89,17 +83,17 @@ class Modal {
         return this.itemCounter
     }
 
-    async postItem(event) {
+    postItem = async event => {
         const itemId = event.target.dataset.item_id
         const itemName = document.getElementById('item-name-' + itemId).value
         const unitsDescription = document.getElementById('unit-type-' + itemId).value
         const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
         const postOptions = {
             method: 'POST',
-            headers: headersForItemApi,
+            headers: this.headersForItemApi,
             body: JSON.stringify({"item_name": itemName, "want": this.isWant, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId})
         }
-        const postReponse = await fetch(apiUrl, postOptions)
+        const postReponse = await fetch(this.apiUrl, postOptions)
         if (postReponse.ok) {
             // delete input fields 
             const toRemove = document.getElementById("js-item-" + itemId)
@@ -129,8 +123,8 @@ class Modal {
             // add functionality to the added buttons
             const newDeleteButton = document.getElementById("delete-item-" + itemName)
             const newEditButton = document.getElementById("edit-item-" + itemName)
-            newDeleteButton.onclick = deleteItem
-            newEditButton.onclick = createItemToEdit
+            newDeleteButton.onclick = this.deleteItem
+            newEditButton.onclick = this.createItemToEdit
         }
         else {
             // render errors
@@ -139,16 +133,16 @@ class Modal {
         }
     }
 
-    async deleteItem(event) {
+    deleteItem = async event => {
         const deleteButton = event.target
         const userConfirmation = confirm("Are you sure that you want to delete this item?")
         if (userConfirmation) {
             const itemName = deleteButton.dataset.name
             const deleteOptions = {
                 method: 'DELETE',
-                headers: headersForItemApi
+                headers: this.headersForItemApi
             }
-            const deleteRequest = await fetch(apiUrl + itemName + "/", deleteOptions)
+            const deleteRequest = await fetch(this.apiUrl + itemName + "/", deleteOptions)
             if (deleteRequest.ok) {
                 // visually remove the deleted item from the dashboard and modal
                 const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
@@ -162,14 +156,14 @@ class Modal {
         }
     }
 
-    createItemToEdit(event) {
+    createItemToEdit = (event) => {
         const oldName = event.target.dataset.name
-        this.createNewItem(saveEditedItem, oldName)
+        this.createNewItem(this.saveEditedItem, oldName)
         const button = event.target
         button.remove()
     }
 
-    async saveEditedItem(event) {
+    saveEditedItem = async event => {
         const editButton = event.target
         const itemId = editButton.dataset.item_id
         const oldItemName = editButton.dataset.old_name
@@ -178,10 +172,10 @@ class Modal {
         const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
         const putOptions = {
             method: 'PUT',
-            headers: headersForItemApi,
+            headers: this.headersForItemApi,
             body: JSON.stringify({"old_item_name": oldItemName, "new_item_name": newItemName, "want": this.isWant, "units_description": unitsDescription, "count": numberOfUnits, "input_id": itemId}),
         }
-        const putResponse = await fetch(apiUrl, putOptions)
+        const putResponse = await fetch(this.apiUrl, putOptions)
         if (putResponse.ok) {
             // visually update the old item's info on the dashboard and moal
             const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
@@ -204,8 +198,8 @@ class Modal {
 
             const newDeleteButton = document.getElementById("delete-item-" + newItemName)
             const newEditButton = document.getElementById("edit-item-" + newItemName)
-            newDeleteButton.onclick = deleteItem
-            newEditButton.onclick = createItemToEdit 
+            newDeleteButton.onclick = this.deleteItem
+            newEditButton.onclick = this.createItemToEdit 
 
             // if there were errors, but the user corrected them...
             const areErrors = document.getElementById("modal-error-" + itemId)
@@ -219,7 +213,7 @@ class Modal {
         }
     }
 
-    getCookie(cname) {
+    getCookie = (cname) => {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
@@ -236,7 +230,7 @@ class Modal {
     }
 
     // renders errors SPECIFICALLY for the Item API
-    renderErrors(errorData) {
+    renderErrors = (errorData) => {
         const itemId = errorData["input_id"]
         const errors = errorData["errors"]
         let displayedErrors = ""
@@ -255,9 +249,9 @@ class Modal {
         }
     }
       
-    escapeHtml(string) {
+    escapeHtml = (string) => {
         return String(string).replace(/[&<>"'`=\/]/g, function (s) {
-          return entityMap[s];
+          return this.entityMap[s];
         });
     }
     
