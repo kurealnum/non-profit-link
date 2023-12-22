@@ -10,8 +10,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Update to Django 5.0. Test EVERYTHING before declaring the project as usable with Django 5.0
-
 - Add the same functionality to the surplus modal. Can probably do this with OOP or something.
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
