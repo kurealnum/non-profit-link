@@ -99,22 +99,7 @@ async function postItem(event) {
     else {
         // render errors
         const errorData = await postReponse.json()
-        const itemId = errorData["input_id"]
-        const errors = errorData["errors"]
-        let displayedErrors = ""
-        for (let error of Object.keys(errors)) {
-            displayedErrors += "<li>" + errors[error][0] + "</li>"
-        }
-        const isPresentError = document.getElementById("modal-error-" + itemId)
-        // if there's not an error present already, do nothing
-        if (!isPresentError) {
-            const itemWithError = document.getElementById("js-item-" + itemId)
-            itemWithError.insertAdjacentHTML('beforebegin', `
-                <ul id="modal-error-${itemId}">
-                    ${displayedErrors}
-                </ul>
-            `)
-        }
+        renderErrors(errorData)
     }
 }
 
@@ -202,10 +187,16 @@ async function saveEditedItem(event) {
         const newEditButton = document.getElementById("edit-item-" + newItemName)
         newDeleteButton.onclick = deleteItem
         newEditButton.onclick = createItemToEdit 
+
+        // if there were errors, but the user corrected them...
+        const areErrors = document.getElementById("modal-error-" + itemId)
+        if (areErrors) {
+            areErrors.remove()
+        }
     }
     else {
-        // TODO there are actually a bunch of ways this could fail so its error rendering time
-        console.log("Issue with PUT request")
+        const errorData = await putResponse.json()
+        renderErrors(errorData)
     }
 }
 
@@ -295,6 +286,26 @@ function hideMyModal(modal) {
         },
         { once: true }
     )
+}
+
+// renders errors SPECIFICALLY for the Item API
+function renderErrors(errorData) {
+    const itemId = errorData["input_id"]
+    const errors = errorData["errors"]
+    let displayedErrors = ""
+    for (let error of Object.keys(errors)) {
+        displayedErrors += "<li>" + errors[error][0] + "</li>"
+    }
+    const isPresentError = document.getElementById("modal-error-" + itemId)
+    // if there's not an error present already, do nothing
+    if (!isPresentError) {
+        const itemWithError = document.getElementById("js-item-" + itemId)
+        itemWithError.insertAdjacentHTML('beforebegin', `
+            <ul id="modal-error-${itemId}">
+                ${displayedErrors}
+            </ul>
+        `)
+    }
 }
 
 
