@@ -71,23 +71,23 @@ class Modal {
             oldNameData = "data-old_name=" + oldName
         }
         this.modalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='js-item-${this.itemCounter}' class="item">
-            <input id='number-of-units-${this.itemCounter}'type='number' value='0'>
-            <input id='unit-type-${this.itemCounter}' type='text' value='units'> of 
-            <input id='item-name-${this.itemCounter}' type='text' value='item'>
-            <button ${oldNameData} data-item_id=${this.itemCounter} id='create-item-${this.itemCounter}'>&check;</button>
+        <div id='${this.needOrWant}-js-item-${this.itemCounter}' class="item">
+            <input id='${this.needOrWant}-number-of-units-${this.itemCounter}'type='number' value='0'>
+            <input id='${this.needOrWant}-unit-type-${this.itemCounter}' type='text' value='units'> of 
+            <input id='${this.needOrWant}-item-name-${this.itemCounter}' type='text' value='item'>
+            <button ${oldNameData} data-item_id=${this.itemCounter} id='${this.needOrWant}-create-item-${this.itemCounter}'>&check;</button>
         </div>
         `)
-        const newButton = document.getElementById("create-item-" + this.itemCounter)
+        const newButton = document.getElementById(`${this.needOrWant}-create-item-` + this.itemCounter)
         newButton.onclick = buttonFunction
         return this.itemCounter
     }
 
     postItem = async event => {
         const itemId = event.target.dataset.item_id
-        const itemName = document.getElementById('item-name-' + itemId).value
-        const unitsDescription = document.getElementById('unit-type-' + itemId).value
-        const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
+        const itemName = document.getElementById(`${this.needOrWant}-item-name-` + itemId).value
+        const unitsDescription = document.getElementById(`${this.needOrWant}-unit-type-` + itemId).value
+        const numberOfUnits = document.getElementById(`${this.needOrWant}-number-of-units-` + itemId).value
         const postOptions = {
             method: 'POST',
             headers: this.headersForItemApi,
@@ -96,23 +96,23 @@ class Modal {
         const postReponse = await fetch(this.apiUrl, postOptions)
         if (postReponse.ok) {
             // delete input fields 
-            const toRemove = document.getElementById("js-item-" + itemId)
+            const toRemove = document.getElementById(`${this.needOrWant}-js-item-` + itemId)
             toRemove.remove()
             // create a basic item field
             const newModalItem = `
                 <div class="item">
                     ${numberOfUnits} ${unitsDescription} of ${itemName}
-                    <button data-name="${itemName}" class="delete-item" id="delete-item-${itemName}"></button>
-                    <button data-name="${itemName}" class="edit-item" id="edit-item-${itemName}"></button>
+                    <button data-name="${itemName}" class="delete-item" id="${this.needOrWant}-delete-item-${itemName}"></button>
+                    <button data-name="${itemName}" class="edit-item" id="${this.needOrWant}-edit-item-${itemName}"></button>
                 </div>
             `
             const newDashboardItem = `
-                <div class="item" id="dashboard-delete-item-${itemName}">
+                <div class="item" id="${this.needOrWant}-dashboard-delete-item-${itemName}">
                     ${numberOfUnits} ${unitsDescription} of ${itemName}
                 </div>
             `
             // if there were errors, but the user corrected them...
-            const areErrors = document.getElementById("modal-error-" + itemId)
+            const areErrors = document.getElementById(`${this.needOrWant}-modal-error-` + itemId)
             if (areErrors) {
                 areErrors.remove()
             }
@@ -121,8 +121,8 @@ class Modal {
             this.modalItemsList.insertAdjacentHTML('beforeend', newModalItem)
     
             // add functionality to the added buttons
-            const newDeleteButton = document.getElementById("delete-item-" + itemName)
-            const newEditButton = document.getElementById("edit-item-" + itemName)
+            const newDeleteButton = document.getElementById(`${this.needOrWant}-delete-item-` + itemName)
+            const newEditButton = document.getElementById(`${this.needOrWant}-edit-item-` + itemName)
             newDeleteButton.onclick = this.deleteItem
             newEditButton.onclick = this.createItemToEdit
         }
@@ -145,7 +145,7 @@ class Modal {
             const deleteRequest = await fetch(this.apiUrl + itemName + "/", deleteOptions)
             if (deleteRequest.ok) {
                 // visually remove the deleted item from the dashboard and modal
-                const dashboardItem = document.getElementById("dashboard-delete-item-" + itemName)
+                const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-` + itemName)
                 dashboardItem.remove()
                 deleteButton.parentElement.remove()
             }
@@ -167,9 +167,9 @@ class Modal {
         const editButton = event.target
         const itemId = editButton.dataset.item_id
         const oldItemName = editButton.dataset.old_name
-        const newItemName = document.getElementById('item-name-' + itemId).value
-        const unitsDescription = document.getElementById('unit-type-' + itemId).value
-        const numberOfUnits = document.getElementById('number-of-units-' + itemId).value
+        const newItemName = document.getElementById(`${this.needOrWant}-item-name-` + itemId).value
+        const unitsDescription = document.getElementById(`${this.needOrWant}-unit-type-` + itemId).value
+        const numberOfUnits = document.getElementById(`${this.needOrWant}-number-of-units-` + itemId).value
         const putOptions = {
             method: 'PUT',
             headers: this.headersForItemApi,
@@ -178,31 +178,31 @@ class Modal {
         const putResponse = await fetch(this.apiUrl, putOptions)
         if (putResponse.ok) {
             // visually update the old item's info on the dashboard and moal
-            const oldDashboardElement = document.getElementById("dashboard-delete-item-" + oldItemName)
+            const oldDashboardElement = document.getElementById(`${this.needOrWant}-dashboard-delete-item-` + oldItemName)
             const newItemInfo = `${numberOfUnits} ${unitsDescription} of ${newItemName}`
-            oldDashboardElement.setAttribute("id", "dashboard-delete-item-" + newItemName)
+            oldDashboardElement.setAttribute("id", `${this.needOrWant}-dashboard-delete-item-` + newItemName)
             oldDashboardElement.innerHTML = newItemInfo
 
             editButton.parentElement.remove()
 
-            const oldModalElement = document.getElementById("delete-item-" + oldItemName)
+            const oldModalElement = document.getElementById(`${this.needOrWant}-delete-item-` + oldItemName)
             oldModalElement.parentElement.remove()
 
             this.modalItemsList.insertAdjacentHTML('beforeend', `
                 <div class="item">
                     ${newItemInfo}
-                    <button data-name="${newItemName}" class="delete-item" id="delete-item-${newItemName}"></button>
-                    <button data-name="${newItemName}" class="edit-item" id="edit-item-${newItemName}"></button>
+                    <button data-name="${newItemName}" class="delete-item" id="${this.needOrWant}-delete-item-${newItemName}"></button>
+                    <button data-name="${newItemName}" class="edit-item" id="${this.needOrWant}-edit-item-${newItemName}"></button>
                 </div>
             `)
 
-            const newDeleteButton = document.getElementById("delete-item-" + newItemName)
-            const newEditButton = document.getElementById("edit-item-" + newItemName)
+            const newDeleteButton = document.getElementById(`${this.needOrWant}-delete-item-` + newItemName)
+            const newEditButton = document.getElementById(`${this.needOrWant}-edit-item-` + newItemName)
             newDeleteButton.onclick = this.deleteItem
             newEditButton.onclick = this.createItemToEdit 
 
             // if there were errors, but the user corrected them...
-            const areErrors = document.getElementById("modal-error-" + itemId)
+            const areErrors = document.getElementById(`${this.needOrWant}-modal-error-` + itemId)
             if (areErrors) {
                 areErrors.remove()
             }
@@ -237,12 +237,12 @@ class Modal {
         for (let error of Object.keys(errors)) {
             displayedErrors += "<li>" + errors[error][0] + "</li>"
         }
-        const isPresentError = document.getElementById("modal-error-" + itemId)
+        const isPresentError = document.getElementById(`${this.needOrWant}-modal-error-` + itemId)
         // if there's not an error present already, do nothing
         if (!isPresentError) {
             const itemWithError = document.getElementById("js-item-" + itemId)
             itemWithError.insertAdjacentHTML('beforebegin', `
-                <ul id="modal-error-${itemId}">
+                <ul id="${this.needOrWant}-modal-error-${itemId}">
                     ${displayedErrors}
                 </ul>
             `)
