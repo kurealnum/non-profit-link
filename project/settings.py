@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "apps.items",
     "django_extensions",
     "rest_framework",
+    "fontawesomefree",
 ]
 
 MIDDLEWARE = [

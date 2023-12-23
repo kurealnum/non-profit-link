@@ -191,6 +191,6 @@ dialog .last-button {
   width: 30px;
   height: 30px;
   background: none;
-  color: var(--secondary);
+  color: var(--accent);
 }
 
