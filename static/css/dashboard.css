@@ -93,6 +93,8 @@ h3 {
   background: var(--secondary);
   color: var(--text);
   font-weight: 400;
+  font-size: 14pt;
+  padding: 3.5px;
 }
 
 dialog {
@@ -184,10 +186,11 @@ dialog .last-button {
   }
 }
 
-.delete-item {
-  width: 10px;
-  height: 10px;
+.edit-item, .delete-item {
   margin: 0;
-  margin-bottom: 0;
+  width: 30px;
+  height: 30px;
+  background: none;
+  color: var(--secondary);
 }
 
