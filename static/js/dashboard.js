@@ -21,25 +21,26 @@ class Modal {
         this.isWant = isWant
         this.needOrWant = needOrWant
         this.itemCounter = 0
-        this.myModal = document.querySelector(`#${needOrWant}-modal`)
-        this.dashboardItemsList = document.getElementById(`${needOrWant}-items-dashboard`)
-        this.modalItemsList = document.getElementById(`${needOrWant}-items-list`)
+        this.myModal = document.querySelector(`#${this.needOrWant}-modal`)
+        this.dashboardItemsList = document.getElementById(`${this.needOrWant}-items-dashboard`)
+        this.modalItemsList = document.getElementById(`${this.needOrWant}-items-list`)
 
-        this.newItemButton = document.getElementById(`${needOrWant}-new-button`)
+        this.newItemButton = document.getElementById(`${this.needOrWant}-new-button`)
         this.newItemButton.onclick = (() => this.createNewItem(this.postItem))
 
-        this.modalCloseButton = document.getElementById(`${needOrWant}-close-button`)
+        this.modalCloseButton = document.getElementById(`${this.needOrWant}-close-button`)
         this.modalCloseButton.onclick = (() => this.hideMyModal(this.myModal))
 
-        this.OpenButton = document.getElementById(`${needOrWant}-button`)
+        this.OpenButton = document.getElementById(`${this.needOrWant}-button`)
         this.OpenButton.onclick = (() => this.showMyModal(this.myModal))
 
-        this.deleteButtons = document.getElementsByClassName("delete-item")
+        this.deleteButtons = document.querySelectorAll(`.${this.needOrWant}.delete-item`)
         for (let button of this.deleteButtons) {
             button.onclick = this.deleteItem
         }  
 
-        this.editButtons = document.getElementsByClassName("edit-item")
+        this.editButtons = document.querySelectorAll(`.${this.needOrWant}.edit-item`)
+        console.log(this.editButtons)
         for (let button of this.editButtons) {
             button.onclick = this.createItemToEdit
         }
@@ -150,11 +151,13 @@ class Modal {
             const deleteRequest = await fetch(this.apiUrl + itemName + "/", deleteOptions)
             if (deleteRequest.ok) {
                 // visually remove the deleted item from the dashboard and modal
+                console.log(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 dashboardItem.remove()
                 deleteButton.parentElement.remove()
                 
                 // we have to do this weird comparison because of the default "add new button" in this.dashboardItemsList
+                console.log(this.dashboardItemsList.children.length)
                 if (this.dashboardItemsList.children.length <= 1) {
                     this.dashboardItemsList.insertAdjacentHTML('afterbegin', `
                         <h3 id="${this.needOrWant}-empty">You don't have any items listed!</h3>

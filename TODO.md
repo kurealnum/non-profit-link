@@ -10,6 +10,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
+- Fix bug with duplicate "You don't have any items listed"
+
 - Add "edit information" logic to the edit information button on the dashboard
 
 - Add a dynamic link to the corresponding homepage on the dashboard button "Check out your homepage!"
