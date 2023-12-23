@@ -117,7 +117,7 @@ class Modal {
                 areErrors.remove()
             }
             // render new items
-            this.dashboardItemsList.insertAdjacentHTML('beforeend', newDashboardItem)
+            this.dashboardItemsList.insertAdjacentHTML('afterbegin', newDashboardItem)
             this.modalItemsList.insertAdjacentHTML('beforeend', newModalItem)
     
             // add functionality to the added buttons
@@ -125,6 +125,11 @@ class Modal {
             const newEditButton = document.getElementById(`${this.needOrWant}-edit-item-` + itemName)
             newDeleteButton.onclick = this.deleteItem
             newEditButton.onclick = this.createItemToEdit
+
+            const isDashboardNotEmpty = document.getElementById(`${this.needOrWant}-empty`)
+            if (isDashboardNotEmpty) {
+                isDashboardNotEmpty.remove()
+            }
         }
         else {
             // render errors
@@ -148,6 +153,13 @@ class Modal {
                 const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-` + itemName)
                 dashboardItem.remove()
                 deleteButton.parentElement.remove()
+                
+                // we have to do this weird comparison because of the default "add new button" in this.dashboardItemsList
+                if (this.dashboardItemsList.children.length <= 1) {
+                    this.dashboardItemsList.insertAdjacentHTML('afterbegin', `
+                        <h3 id="${this.needOrWant}-empty">You don't have any items listed!</h3>
+                    `)
+                }
             }
             else {
                 // this is very unlikely to happen, so we just use an alert instead of rendering errors
@@ -240,7 +252,7 @@ class Modal {
         const isPresentError = document.getElementById(`${this.needOrWant}-modal-error-` + itemId)
         // if there's not an error present already, do nothing
         if (!isPresentError) {
-            const itemWithError = document.getElementById("js-item-" + itemId)
+            const itemWithError = document.getElementById(`${this.needOrWant}-js-item-` + itemId)
             itemWithError.insertAdjacentHTML('beforebegin', `
                 <ul id="${this.needOrWant}-modal-error-${itemId}">
                     ${displayedErrors}

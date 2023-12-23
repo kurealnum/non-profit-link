@@ -10,8 +10,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Add logic to add and remove the "You don't have any items listed" display text on each modal.
-
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 
 - Create the frontend for items/search-items/
