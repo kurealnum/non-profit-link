@@ -14,6 +14,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add a dynamic link to the corresponding homepage on the dashboard button "Check out your homepage!"
 
+- Center the text in modalsd on the dashboard
+
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 
 - Create the frontend for items/search-items/
