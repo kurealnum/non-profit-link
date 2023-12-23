@@ -102,8 +102,8 @@ class Modal {
             const newModalItem = `
                 <div class="item">
                     ${numberOfUnits} ${unitsDescription} of ${itemName}
-                    <button data-name="${itemName}" class="delete-item" id="${this.needOrWant}-delete-item-${itemName}"></button>
-                    <button data-name="${itemName}" class="edit-item" id="${this.needOrWant}-edit-item-${itemName}"></button>
+                    <button data-name="${itemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${itemName}"></button>
+                    <button data-name="${itemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${itemName}"></button>
                 </div>
             `
             const newDashboardItem = `
@@ -150,7 +150,7 @@ class Modal {
             const deleteRequest = await fetch(this.apiUrl + itemName + "/", deleteOptions)
             if (deleteRequest.ok) {
                 // visually remove the deleted item from the dashboard and modal
-                const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-` + itemName)
+                const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 dashboardItem.remove()
                 deleteButton.parentElement.remove()
                 
@@ -203,8 +203,8 @@ class Modal {
             this.modalItemsList.insertAdjacentHTML('beforeend', `
                 <div class="item">
                     ${newItemInfo}
-                    <button data-name="${newItemName}" class="delete-item" id="${this.needOrWant}-delete-item-${newItemName}"></button>
-                    <button data-name="${newItemName}" class="edit-item" id="${this.needOrWant}-edit-item-${newItemName}"></button>
+                    <button data-name="${newItemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${newItemName}"></button>
+                    <button data-name="${newItemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${newItemName}"></button>
                 </div>
             `)
 

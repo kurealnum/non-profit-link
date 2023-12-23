@@ -2,8 +2,8 @@
 <ul id="surplus-items-list" class="items-list">
     {% for item in surplus_org_items %}
         <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}
-            <button data-name="{{ item }}" class="delete-item" id="surplus-delete-item-{{ item }}"><i class="fa-solid fa-trash"></i></button>
-            <button data-name="{{ item }}" class="edit-item"><i class="fa fa-pen"></i></button>
+            <button data-name="{{ item }}" class="delete-item fa-solid fa-trash" id="surplus-delete-item-{{ item }}"></button>
+            <button data-name="{{ item }}" class="edit-item fa fa-pen"></button>
         </div>
     {% endfor %}
 </ul>
