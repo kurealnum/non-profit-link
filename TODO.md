@@ -14,8 +14,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Fix bug with duplicate "You don't have any items listed" on the dashboard
-
 - Add "edit information" logic to the edit information button on the dashboard
 
 - Center the text in modals on the dashboard

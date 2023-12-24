@@ -40,7 +40,6 @@ class Modal {
         }  
 
         this.editButtons = document.querySelectorAll(`.${this.needOrWant}.edit-item`)
-        console.log(this.editButtons)
         for (let button of this.editButtons) {
             button.onclick = this.createItemToEdit
         }
@@ -151,14 +150,12 @@ class Modal {
             const deleteRequest = await fetch(this.apiUrl + itemName + "/", deleteOptions)
             if (deleteRequest.ok) {
                 // visually remove the deleted item from the dashboard and modal
-                console.log(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 dashboardItem.remove()
                 deleteButton.parentElement.remove()
                 
                 // we have to do this weird comparison because of the default "add new button" in this.dashboardItemsList
-                console.log(this.dashboardItemsList.children.length)
-                if (this.dashboardItemsList.children.length <= 1) {
+                if (this.dashboardItemsList.children.length < 1) {
                     this.dashboardItemsList.insertAdjacentHTML('afterbegin', `
                         <h3 id="${this.needOrWant}-empty">You don't have any items listed!</h3>
                     `)
