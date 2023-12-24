@@ -8,15 +8,19 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## TODO List
 
+### Global
+
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- Fix bug with duplicate "You don't have any items listed"
+### Dashboard
+
+- Fix bug with duplicate "You don't have any items listed" on the dashboard
 
 - Add "edit information" logic to the edit information button on the dashboard
 
-- Add a dynamic link to the corresponding homepage on the dashboard button "Check out your homepage!"
+- Center the text in modals on the dashboard
 
-- Center the text in modalsd on the dashboard
+### General stuff
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 
