@@ -29,7 +29,7 @@ class VisualModalFunctionality {
 }
 
 
-class Modal extends VisualModalFunctionality{
+class ItemModal extends VisualModalFunctionality{
     constructor(isWant, needOrWant) {
         super(`${needOrWant}-button`, `${needOrWant}-close-button`, `#${needOrWant}-modal`)
 
@@ -299,8 +299,8 @@ class Modal extends VisualModalFunctionality{
     }  
 }
 
-const needsModal = new Modal(true, "needs")
-const surplusModal = new Modal(false, "surplus")
+const needsModal = new ItemModal(true, "needs")
+const surplusModal = new ItemModal(false, "surplus")
 
 
 
