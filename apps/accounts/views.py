@@ -120,8 +120,9 @@ def register_user(request):
 
 # only accepts POST
 def edit_account(request):
+    print("I'm just a get")
     if request.method == "POST":
-        pass
+        print("I'm editing my account!")
 
 
 def search_non_profits(request):

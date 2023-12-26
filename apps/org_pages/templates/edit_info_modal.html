@@ -1,4 +1,7 @@
-{% for form in edit_account_forms %}
-    {{ form }}
-{% endfor %}
-<button id="close-edit-info"></button>
+<form action="/accounts/edit-account/" method="POST">
+    {% csrf_token %}
+    {% for form in edit_account_forms %}
+        {{ form }}
+    {% endfor %}
+    <button>Save and close</button>
+</form>
