@@ -1,6 +1,6 @@
-class VisualModalFunctionality {
+class BaseModal {
     constructor (openButtonName, closeButtonName, modalName) {
-        this.modalName = document.querySelector(modalName)
+        this.modalName = document.getElementById(modalName)
         this.openButtonName = document.getElementById(openButtonName)
         this.openButtonName.onclick = (() => this.showMyModal(this.modalName))
 
@@ -29,9 +29,9 @@ class VisualModalFunctionality {
 }
 
 
-class ItemModal extends VisualModalFunctionality{
+class ItemModal extends BaseModal {
     constructor(isWant, needOrWant) {
-        super(`${needOrWant}-button`, `${needOrWant}-close-button`, `#${needOrWant}-modal`)
+        super(`${needOrWant}-button`, `${needOrWant}-close-button`, `${needOrWant}-modal`)
 
         this.headersForItemApi = {
             'Content-Type': 'application/json',
@@ -301,6 +301,7 @@ class ItemModal extends VisualModalFunctionality{
 
 const needsModal = new ItemModal(true, "needs")
 const surplusModal = new ItemModal(false, "surplus")
+const editInfoModal = new BaseModal("open-edit-info", "close-edit-info","edit-info-modal")
 
 
 

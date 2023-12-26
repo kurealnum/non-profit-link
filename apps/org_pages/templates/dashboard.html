@@ -16,7 +16,8 @@ present in the desktop size. the mobile version is completely vertical -->
                 <p>Here’s your non-profit’s dashboard! You can edit what you need, what you have to spare, and see some basic information about your non-profit!</p>
             </div>
             <div class="dashboard-buttons">
-                <button class="dashboard-button">Edit Information</button>
+                <button id="open-edit-info" class="dashboard-button">Edit Information</button>
+                <dialog id="edit-info-modal">{% include 'edit_info_modal.html' %}</dialog>
                 <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
             </div>
         </section>
