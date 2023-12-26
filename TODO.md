@@ -16,7 +16,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add "edit information" logic to the edit information button on the dashboard
 
-- Center the text in modals on the dashboard
+- Fix visually leftover item in modals. Recreate by adding or deleting an item
 
 ### General stuff
 

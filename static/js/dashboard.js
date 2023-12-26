@@ -102,8 +102,10 @@ class Modal {
             const newModalItem = `
                 <div class="item">
                     ${numberOfUnits} ${unitsDescription} of ${itemName}
-                    <button data-name="${itemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${itemName}"></button>
-                    <button data-name="${itemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${itemName}"></button>
+                    <div class="item-buttons-wrapper">
+                        <button data-name="${itemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${itemName}"></button>
+                        <button data-name="${itemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${itemName}"></button>
+                    </div>
                 </div>
             `
             const newDashboardItem = `
@@ -203,8 +205,10 @@ class Modal {
             this.modalItemsList.insertAdjacentHTML('beforeend', `
                 <div class="item">
                     ${newItemInfo}
-                    <button data-name="${newItemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${newItemName}"></button>
-                    <button data-name="${newItemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${newItemName}"></button>
+                    <div class="item-buttons-wrapper">
+                        <button data-name="${newItemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${newItemName}"></button>
+                        <button data-name="${newItemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${newItemName}"></button>
+                    </div>
                 </div>
             `)
 
@@ -265,8 +269,7 @@ class Modal {
         return String(string).replace(/[&<>"'`=\/]/g, function (s) {
           return this.entityMap[s];
         });
-    }
-    
+    }  
 }
 
 const needsModal = new Modal(true, "needs")
