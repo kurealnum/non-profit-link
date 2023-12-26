@@ -101,7 +101,7 @@ class Modal {
             // create a basic item field
             const newModalItem = `
                 <div class="item">
-                    ${numberOfUnits} ${unitsDescription} of ${itemName}
+                    <p>${numberOfUnits} ${unitsDescription} of ${itemName}</p>
                     <div class="item-buttons-wrapper">
                         <button data-name="${itemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${itemName}"></button>
                         <button data-name="${itemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${itemName}"></button>
@@ -154,7 +154,8 @@ class Modal {
                 // visually remove the deleted item from the dashboard and modal
                 const dashboardItem = document.getElementById(`${this.needOrWant}-dashboard-delete-item-${itemName}`)
                 dashboardItem.remove()
-                deleteButton.parentElement.remove()
+                // yes we have to go up 2 parents
+                deleteButton.parentElement.parentElement.remove()
                 
                 // we have to do this weird comparison because of the default "add new button" in this.dashboardItemsList
                 if (this.dashboardItemsList.children.length < 1) {
@@ -200,11 +201,11 @@ class Modal {
             editButton.parentElement.remove()
 
             const oldModalElement = document.getElementById(`${this.needOrWant}-delete-item-` + oldItemName)
-            oldModalElement.parentElement.remove()
+            oldModalElement.parentElement.parentElement.remove()
 
             this.modalItemsList.insertAdjacentHTML('beforeend', `
                 <div class="item">
-                    ${newItemInfo}
+                    <p>${newItemInfo}</p>
                     <div class="item-buttons-wrapper">
                         <button data-name="${newItemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${newItemName}"></button>
                         <button data-name="${newItemName}" class="edit-item fa fa-pen" id="${this.needOrWant}-edit-item-${newItemName}"></button>
