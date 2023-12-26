@@ -1,5 +1,38 @@
-class Modal {
+class VisualModalFunctionality {
+    constructor (openButtonName, closeButtonName, modalName) {
+        this.modalName = document.querySelector(modalName)
+        this.openButtonName = document.getElementById(openButtonName)
+        this.openButtonName.onclick = (() => this.showMyModal(this.modalName))
+
+        this.closeButtonName = document.getElementById(closeButtonName)
+        this.closeButtonName.onclick = (() => this.hideMyModal(this.modalName))   
+    }
+
+    showMyModal = (modal) => {
+        modal.showModal()
+        document.body.style.overflow = "hidden"
+    }
+    
+    hideMyModal = (modal) => {
+        modal.setAttribute("closing", "");
+        modal.addEventListener(
+            "animationend",
+            () => {
+                modal.removeAttribute("closing");
+                modal.close();
+                document.body.style.overflow = "auto"
+            },
+            { once: true }
+        )
+    }
+
+}
+
+
+class Modal extends VisualModalFunctionality{
     constructor(isWant, needOrWant) {
+        super(`${needOrWant}-button`, `${needOrWant}-close-button`, `#${needOrWant}-modal`)
+
         this.headersForItemApi = {
             'Content-Type': 'application/json',
             "X-CSRFToken": this.getCookie("csrftoken"),
@@ -21,18 +54,11 @@ class Modal {
         this.isWant = isWant
         this.needOrWant = needOrWant
         this.itemCounter = 0
-        this.myModal = document.querySelector(`#${this.needOrWant}-modal`)
         this.dashboardItemsList = document.getElementById(`${this.needOrWant}-items-dashboard`)
         this.modalItemsList = document.getElementById(`${this.needOrWant}-items-list`)
 
         this.newItemButton = document.getElementById(`${this.needOrWant}-new-button`)
         this.newItemButton.onclick = (() => this.createNewItem(this.postItem))
-
-        this.modalCloseButton = document.getElementById(`${this.needOrWant}-close-button`)
-        this.modalCloseButton.onclick = (() => this.hideMyModal(this.myModal))
-
-        this.OpenButton = document.getElementById(`${this.needOrWant}-button`)
-        this.OpenButton.onclick = (() => this.showMyModal(this.myModal))
 
         this.deleteButtons = document.querySelectorAll(`.${this.needOrWant}.delete-item`)
         for (let button of this.deleteButtons) {
