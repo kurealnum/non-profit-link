@@ -18,8 +18,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 #### Edit Information Modal
 
-- Make sure the edit info modal closes and opens properly
-
 - Create a form for the information in the modal
 
 - Create a URL specifically for editing information with a POST in accounts/views/

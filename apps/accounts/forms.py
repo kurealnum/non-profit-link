@@ -13,7 +13,7 @@ class LoginRegisterForm(forms.Form):
     )
 
 
-class CustomUserCreationForm(forms.ModelForm):
+class OrgForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         label=mark_safe(
@@ -27,31 +27,22 @@ class CustomUserCreationForm(forms.ModelForm):
         fields = ["username"]
 
 
-class CustomUserChangeForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta:
-        model = Org
-        fields = ["username"]
-
-
 # org info forms
-class OrgLocationEditForm(forms.ModelForm):
+class OrgLocationForm(forms.ModelForm):
     class Meta:
         model = OrgLocation
         fields = "__all__"
         widgets = {"org": forms.HiddenInput()}
 
 
-class OrgContactInfoEditForm(forms.ModelForm):
+class OrgContactInfoForm(forms.ModelForm):
     class Meta:
         model = OrgContactInfo
         fields = "__all__"
         widgets = {"org": forms.HiddenInput()}
 
 
-class OrgInfoEditForm(forms.ModelForm):
+class OrgInfoForm(forms.ModelForm):
     class Meta:
         model = OrgInfo
         fields = "__all__"

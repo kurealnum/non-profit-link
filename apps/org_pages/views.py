@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
+from apps.accounts.forms import OrgForm
 from apps.items.models import Item
 
 
@@ -15,6 +16,7 @@ def dashboard(request):
     org_info = OrgInfo.objects.get(org=org)
     wanted_org_items = Item.objects.filter(org=org, want=True)
     surplus_org_items = Item.objects.filter(org=org, want=False)
+    edit_account_forms = [OrgForm]
 
     # if get, just return 2 new forms
     if request.method == "GET":
@@ -28,6 +30,7 @@ def dashboard(request):
                 "org_info": org_info,
                 "wanted_org_items": wanted_org_items,
                 "surplus_org_items": surplus_org_items,
+                "edit_account_forms": edit_account_forms,
             },
         )
 

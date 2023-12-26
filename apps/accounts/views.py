@@ -5,11 +5,11 @@ from django.forms import ValidationError
 from django.shortcuts import redirect, render
 
 from .forms import (
-    CustomUserCreationForm,
+    OrgForm,
     LoginRegisterForm,
-    OrgContactInfoEditForm,
-    OrgInfoEditForm,
-    OrgLocationEditForm,
+    OrgContactInfoForm,
+    OrgInfoForm,
+    OrgLocationForm,
 )
 
 LOGIN_FORM = "login.html"
@@ -55,13 +55,13 @@ def logout_user(request):
 
 
 def register_user(request):
-    user_info_form = CustomUserCreationForm(request.POST or None)
+    user_info_form = OrgForm(request.POST or None)
 
     # init the forms
     input_forms = [
-        OrgLocationEditForm(request.POST or None),
-        OrgContactInfoEditForm(request.POST or None),
-        OrgInfoEditForm(request.POST or None),
+        OrgLocationForm(request.POST or None),
+        OrgContactInfoForm(request.POST or None),
+        OrgInfoForm(request.POST or None),
     ]
 
     # if the user submitted the form and the form is valid
@@ -116,6 +116,12 @@ def register_user(request):
         REGISTER_FORM,
         {"forms": [user_info_form] + input_forms},
     )
+
+
+# only accepts POST
+def edit_account(request):
+    if request.method == "POST":
+        pass
 
 
 def search_non_profits(request):
