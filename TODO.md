@@ -16,7 +16,17 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add "edit information" logic to the edit information button on the dashboard
 
-- Fix visually leftover item in modals. Recreate by adding or deleting an item
+#### Edit Information Modal
+
+- Abstract basic modal logic into separate class
+
+- Create a class for the edit information modal (or something similar)?
+
+- Make sure the modal closes and opens properly
+
+- Create a form for the information in the modal
+
+- Create a URL specifically for editing information with a POST in accounts/views/
 
 ### General stuff
 
