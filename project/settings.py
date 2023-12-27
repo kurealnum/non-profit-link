@@ -19,7 +19,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Loading environment variables
-dotenv_path = join(dirname(__file__), "db_password.env")
+dotenv_path = join(dirname(__file__), "db_info.env")
 load_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
@@ -96,7 +96,7 @@ DATABASES = {
         "USER": "postgres",
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": "127.0.0.1",
-        "PORT": "5433",
+        "PORT": os.environ.get("DB_PORT"),
     }
 }
 
