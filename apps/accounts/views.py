@@ -4,6 +4,10 @@ from django.contrib.auth.password_validation import validate_password
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
 
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .forms import (
     OrgForm,
     LoginRegisterForm,
@@ -14,6 +18,12 @@ from .forms import (
 
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
+
+
+class EditAccountApiView(APIView):
+    def put(self, request):
+        print("Hello world!")
+        return Response(status=status.HTTP_200_OK)
 
 
 def login_user(request):
@@ -116,13 +126,6 @@ def register_user(request):
         REGISTER_FORM,
         {"forms": [user_info_form] + input_forms},
     )
-
-
-# only accepts POST
-def edit_account(request):
-    print("I'm just a get")
-    if request.method == "POST":
-        print("I'm editing my account!")
 
 
 def search_non_profits(request):

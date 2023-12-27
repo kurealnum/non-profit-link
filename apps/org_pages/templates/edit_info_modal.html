@@ -1,7 +1,11 @@
-<form action="/accounts/edit-account/" method="POST">
-    {% csrf_token %}
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+<form>
     {% for form in edit_account_forms %}
         {{ form }}
     {% endfor %}
-    <button>Save and close</button>
 </form>
+<button id="close-edit-info" 
+    hx-put="/accounts/edit-account/" 
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    Save and close
+</button>
