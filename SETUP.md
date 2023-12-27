@@ -12,6 +12,8 @@ If you're working out of Windows CMD instead, the commands should _barely_ be di
 
 - Once your venv is created and running, run `pip install -r requirements.txt`
 
+- Having issues with psycopg2? You can choose to install `psycopg2-binary`, however there are other solutions.
+
 - Double check to make sure you're ready to go by running `python manage.py runserver`. If this doesn't work, retrace your steps, and find out where you went wrong.
 
 - If you'd like to create a superuser, just run `python manage.py createsuperuser`.
