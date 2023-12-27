@@ -18,7 +18,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 #### Edit Information Modal
 
-- Create a URL specifically for editing information with a POST in accounts/views/
+- Add functionality to the PUT request in the Edit Account API View
 
 ### General stuff
 
