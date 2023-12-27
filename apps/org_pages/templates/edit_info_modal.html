@@ -6,6 +6,7 @@
 </form>
 <button id="close-edit-info" 
     hx-put="/accounts/edit-account/" 
-    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+    hx-swap="none">
     Save and close
 </button>
