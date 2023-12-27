@@ -17,9 +17,6 @@ def dashboard(request):
     user = request.user
     username = user.username
     org = Org.objects.get(username=username)
-    org_location = OrgLocation.objects.get(org=org)
-    org_contact_info = OrgContactInfo.objects.get(org=org)
-    org_info = OrgInfo.objects.get(org=org)
     wanted_org_items = Item.objects.filter(org=org, want=True)
     surplus_org_items = Item.objects.filter(org=org, want=False)
 
@@ -49,9 +46,6 @@ def dashboard(request):
             "dashboard.html",
             context={
                 "org": org,
-                "org_location": org_location,
-                "org_contact_info": org_contact_info,
-                "org_info": org_info,
                 "wanted_org_items": wanted_org_items,
                 "surplus_org_items": surplus_org_items,
                 "edit_account_forms": edit_account_forms,
