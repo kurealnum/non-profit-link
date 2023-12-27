@@ -22,6 +22,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add defaults to forms passed into the modal
 
+- Possibly optimize the addittion of defaults into forms?
+
 - Create a URL specifically for editing information with a POST in accounts/views/
 
 ### General stuff

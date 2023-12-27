@@ -15,13 +15,32 @@ from apps.items.models import Item
 def dashboard(request):
     # getting the current user/org info
     user = request.user
-    org = Org.objects.get(username=user.username)
+    username = user.username
+    org = Org.objects.get(username=username)
     org_location = OrgLocation.objects.get(org=org)
     org_contact_info = OrgContactInfo.objects.get(org=org)
     org_info = OrgInfo.objects.get(org=org)
     wanted_org_items = Item.objects.filter(org=org, want=True)
     surplus_org_items = Item.objects.filter(org=org, want=False)
-    edit_account_forms = [OrgForm, OrgContactInfoForm, OrgInfoForm, OrgLocationForm]
+
+    org_form_initial_data = {"username": username}
+    contact_form_initial_data = OrgContactInfo.objects.filter(org=org).values(
+        "email", "phone"
+    )[0]
+    info_form_initial_data = OrgInfo.objects.filter(org=org).values("desc", "website")[
+        0
+    ]
+    location_form_initial_data = OrgLocation.objects.filter(org=org).values(
+        "country", "region", "zip", "city", "street_address"
+    )[0]
+
+    # adding the default values
+    edit_account_forms = [
+        OrgForm(initial=org_form_initial_data),
+        OrgContactInfoForm(initial=contact_form_initial_data),
+        OrgInfoForm(initial=info_form_initial_data),
+        OrgLocationForm(initial=location_form_initial_data),
+    ]
 
     # if get, just return 2 new forms
     if request.method == "GET":
