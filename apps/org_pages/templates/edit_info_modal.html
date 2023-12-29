@@ -1,14 +1,14 @@
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<form 
-    hx-put="/accounts/edit-account/" 
-    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-    hx-swap="none"
-    hx-trigger="submit">
+<form id="info-modal">
     {% for form in edit_account_forms %}
         {{ form }}
     {% endfor %}
-    <button type="submit" id="close-edit-info">
-        Save and close
-    </button>
 </form>
 
+<button hx-put="/accounts/edit-account/" 
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        hx-swap="none"
+        hx-include="#info-modal"
+        type="submit" id="close-edit-info">
+        Save and close
+</button>

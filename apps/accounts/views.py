@@ -22,7 +22,8 @@ REGISTER_FORM = "register.html"
 
 class EditAccountApiView(APIView):
     def put(self, request):
-        print(request.data)
+        # if password, update password
+        # update rest of data
         return Response(status=status.HTTP_200_OK)
 
 
