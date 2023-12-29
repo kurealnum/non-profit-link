@@ -18,9 +18,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 #### Edit Information Modal
 
-- Add functionality to the PUT request in the Edit Account API View
+- Add checks to the PUT request (maybe just use update_or_create?)
 
-- Figure out how to remove duplicate element id's with forms
+- Test the PUT request
 
 ### General stuff
 

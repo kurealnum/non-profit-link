@@ -3,15 +3,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
-
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
+
 from .forms import (
-    OrgForm,
     LoginRegisterForm,
     OrgContactInfoForm,
+    OrgForm,
     OrgInfoForm,
     OrgLocationForm,
 )
@@ -22,8 +23,35 @@ REGISTER_FORM = "register.html"
 
 class EditAccountApiView(APIView):
     def put(self, request):
+        data = request.data
+        user = request.user
+        org = Org.objects.get(username=user.username)
+        org_id = org.id  # type: ignore
+        password = data.get("password")
+        confirm_password = data.get("confirm_password")
+
         # if password, update password
+        if password and confirm_password:
+            Org.objects.filter(username=user.username).update_or_create(
+                password=password
+            )
+
         # update rest of data
+        Org.objects.filter(username=user.username).update(username=data.get("username"))
+        OrgContactInfo.objects.filter(org=org).update(
+            phone=data.get("phone"), email=data.get("email")
+        )
+        OrgInfo.objects.filter(org=org).update(
+            desc=data.get("desc"), website=data.get("website")
+        )
+        OrgLocation.objects.filter(org=org).update(
+            country=data.get("country"),
+            region=data.get("region"),
+            zip=data.get("zip"),
+            city=data.get("city"),
+            street_address=data.get("street_address"),
+        )
+
         return Response(status=status.HTTP_200_OK)
 
 
