@@ -22,7 +22,7 @@ REGISTER_FORM = "register.html"
 
 class EditAccountApiView(APIView):
     def put(self, request):
-        print("Hello world!")
+        print(request.data)
         return Response(status=status.HTTP_200_OK)
 
 

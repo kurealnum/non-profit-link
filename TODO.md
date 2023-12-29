@@ -20,6 +20,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add functionality to the PUT request in the Edit Account API View
 
+- Figure out how to remove duplicate element id's with forms
+
 ### General stuff
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
