@@ -9,6 +9,12 @@ from rest_framework.views import APIView
 
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 
+from .serializers import (
+    OrgContactInfoSerializer,
+    OrgInfoSerializer,
+    OrgLocationSerializer,
+)
+
 from .forms import (
     LoginRegisterForm,
     OrgContactInfoForm,
@@ -29,7 +35,8 @@ class EditAccountApiView(APIView):
         password = data.get("password")
         confirm_password = data.get("confirm_password")
 
-        # if password meets all criteria, update password
+        # validate like this because serializers can't skip a unique field (username)
+        # check and add password out of serializer
         if password and confirm_password and password == confirm_password:
             org.set_password(password)
             org.save()
@@ -37,7 +44,15 @@ class EditAccountApiView(APIView):
             response["HX-Redirect"] = "/accounts/login/"
             return response
 
-        # update rest of data
+        if not data.get("username"):
+            response = Response(
+                {"no_username": ["Your username cannot be empty!"]},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        # info for serializers
+
+        # update or create data
         Org.objects.update_or_create(
             username=user.username, defaults={"username": data.get("username")}
         )

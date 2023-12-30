@@ -16,7 +16,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Test changing/confirming the password on the edit account information modal
+- Add checks to password and confirm_password for the PUT request
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
