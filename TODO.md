@@ -14,9 +14,13 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - More "dynamic" URLs and redirects? I'm not sure if this is a thing, and if it is, I don't know how to do it.
 
+- Fix `Prettier` and `isort` import formatting conflicts
+
 ### Dashboard
 
-- Add checks to password and confirm_password for the PUT request
+- Render any issues with errors in the edit_info modal
+
+- Test the edit_info modal (yet again)
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 

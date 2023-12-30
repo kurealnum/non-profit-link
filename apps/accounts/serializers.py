@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Org, OrgContactInfo, OrgInfo, OrgLocation
+from .models import OrgContactInfo, OrgInfo, OrgLocation
 
 
 class OrgContactInfoSerializer(serializers.ModelSerializer):
