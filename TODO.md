@@ -1,4 +1,4 @@
-cod# TODO
+# TODO
 
 A lot of smaller TODOs will be located with a "# TODO" in files. You can use extensions to easily locate these, or just find them manually.
 
@@ -12,13 +12,13 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
+- More "dynamic" URLs and redirects? I'm not sure if this is a thing, and if it is, I don't know how to do it.
+
 ### Dashboard
 
 - Test changing/confirming the password on the edit account information modal
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
-
-- Look into reusing the logic from `/register` for the edit account information modal
 
 ### General stuff
 

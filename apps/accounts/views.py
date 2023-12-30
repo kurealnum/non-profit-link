@@ -29,11 +29,13 @@ class EditAccountApiView(APIView):
         password = data.get("password")
         confirm_password = data.get("confirm_password")
 
-        # if password, update password
-        if password and confirm_password:
-            Org.objects.filter(username=user.username).update_or_create(
-                password=password
-            )
+        # if password meets all criteria, update password
+        if password and confirm_password and password == confirm_password:
+            org.set_password(password)
+            org.save()
+            response = Response(status=status.HTTP_201_CREATED)
+            response["HX-Redirect"] = "/accounts/login/"
+            return response
 
         # update rest of data
         Org.objects.update_or_create(
