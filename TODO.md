@@ -18,8 +18,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 #### Edit Information Modal
 
-- Add checks to the PUT request (maybe just use update_or_create?)
-
 - Test the PUT request
 
 ### General stuff

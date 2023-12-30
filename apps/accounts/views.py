@@ -37,19 +37,24 @@ class EditAccountApiView(APIView):
             )
 
         # update rest of data
-        Org.objects.filter(username=user.username).update(username=data.get("username"))
-        OrgContactInfo.objects.filter(org=org).update(
-            phone=data.get("phone"), email=data.get("email")
+        Org.objects.update_or_create(
+            username=user.username, defaults={"username": data.get("username")}
         )
-        OrgInfo.objects.filter(org=org).update(
-            desc=data.get("desc"), website=data.get("website")
+        OrgContactInfo.objects.update_or_create(
+            org=org, defaults={"phone": data.get("phone"), "email": data.get("email")}
         )
-        OrgLocation.objects.filter(org=org).update(
-            country=data.get("country"),
-            region=data.get("region"),
-            zip=data.get("zip"),
-            city=data.get("city"),
-            street_address=data.get("street_address"),
+        OrgInfo.objects.update_or_create(
+            org=org, defaults={"desc": data.get("desc"), "website": data.get("website")}
+        )
+        OrgLocation.objects.update_or_create(
+            org=org,
+            defaults={
+                "country": data.get("country"),
+                "region": data.get("region"),
+                "zip": data.get("zip"),
+                "city": data.get("city"),
+                "street_address": data.get("street_address"),
+            },
         )
 
         return Response(status=status.HTTP_200_OK)
