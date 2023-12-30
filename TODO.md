@@ -14,9 +14,11 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Add "edit information" logic to the edit information button on the dashboard
+- Test changing/confirming the password on the edit account information modal
 
-- Styling, styling, styling!
+- Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
+
+- Look into reusing the logic from `/register` for the edit account information modal
 
 ### General stuff
 
