@@ -18,9 +18,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Render any issues with errors in the edit_info modal
-
-- Test the edit_info modal (yet again)
+- Rewrite the edit info modal WITHOUT DRF. Use HTMX for the HTML swapping
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 

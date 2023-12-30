@@ -5,7 +5,7 @@ from .views import (
     logout_user,
     register_user,
     search_non_profits,
-    EditAccountApiView,
+    edit_account,
 )
 
 urlpatterns = [
@@ -13,5 +13,5 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("register/", register_user, name="register"),
     path("search-non-profits/", search_non_profits, name="search_non_profits"),
-    path("edit-account/", EditAccountApiView.as_view(), name="edit_account"),  # type: ignore
+    path("edit-account/", edit_account, name="edit_account"),  # type: ignore
 ]

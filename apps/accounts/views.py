@@ -2,7 +2,7 @@ from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
 from django.forms import ValidationError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -27,85 +27,11 @@ LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
 
 
-class EditAccountApiView(APIView):
-    def put(self, request):
-        data = request.data
-        user = request.user
-        org = Org.objects.get(username=user.username)
-        password = data.get("password")
-        confirm_password = data.get("confirm_password")
-
-        # validate username and passowrd like this because this would be annoying to serialize
-        if password and confirm_password and password == confirm_password:
-            org.set_password(password)
-            org.save()
-            response = Response(status=status.HTTP_201_CREATED)
-            response["HX-Redirect"] = "/accounts/login/"
-            return response
-
-        if not data.get("username"):
-            response = Response(
-                {"no_username": ["Your username cannot be empty!"]},
-                status=status.HTTP_403_FORBIDDEN,
-            )
-
-        # info for serializers
-        contact_info_serializer_data = {
-            "phone": data.get("phone"),
-            "email": data.get("email"),
-        }
-        info_serializer_data = {
-            "desc": data.get("desc"),
-            "website": data.get("website"),
-        }
-        location_serializer_data = {
-            "country": data.get("country"),
-            "region": data.get("region"),
-            "zip": data.get("zip"),
-            "city": data.get("city"),
-            "street_address": data.get("street_address"),
-        }
-
-        # validation for serializers
-        contact_info_serializer = OrgContactInfoSerializer(
-            data=contact_info_serializer_data
-        )
-        info_serializer = OrgInfoSerializer(data=info_serializer_data)
-        location_serializer = OrgLocationSerializer(data=location_serializer_data)
-
-        if not contact_info_serializer.is_valid():
-            return Response(
-                contact_info_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-            )
-        if not info_serializer.is_valid():
-            return Response(info_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        if not location_serializer.is_valid():
-            return Response(
-                location_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-            )
-
-        # update or create data
-        Org.objects.update_or_create(
-            username=user.username, defaults={"username": data.get("username")}
-        )
-        OrgContactInfo.objects.update_or_create(
-            org=org, defaults={"phone": data.get("phone"), "email": data.get("email")}
-        )
-        OrgInfo.objects.update_or_create(
-            org=org, defaults={"desc": data.get("desc"), "website": data.get("website")}
-        )
-        OrgLocation.objects.update_or_create(
-            org=org,
-            defaults={
-                "country": data.get("country"),
-                "region": data.get("region"),
-                "zip": data.get("zip"),
-                "city": data.get("city"),
-                "street_address": data.get("street_address"),
-            },
-        )
-
-        return Response(status=status.HTTP_200_OK)
+def edit_account(request):
+    if request.method == "PUT":
+        org_form = OrgForm(request.POST)
+        if not org_form.is_valid():
+            return HttpResponse(org_form)
 
 
 def login_user(request):

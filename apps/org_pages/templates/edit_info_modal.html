@@ -7,7 +7,8 @@
 
 <button hx-put="/accounts/edit-account/" 
         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        hx-swap="none"
+        hx-swap="innerHTML"
+        hx-target="#info-modal"
         hx-include="#info-modal"
         type="submit" id="close-edit-info">
         Save and close
