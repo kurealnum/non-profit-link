@@ -16,9 +16,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add "edit information" logic to the edit information button on the dashboard
 
-#### Edit Information Modal
-
-- Test the PUT request
+- Styling, styling, styling!
 
 ### General stuff
 

@@ -26,7 +26,6 @@ class EditAccountApiView(APIView):
         data = request.data
         user = request.user
         org = Org.objects.get(username=user.username)
-        org_id = org.id  # type: ignore
         password = data.get("password")
         confirm_password = data.get("confirm_password")
 
