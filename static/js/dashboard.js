@@ -318,7 +318,13 @@ document.addEventListener("htmx:afterRequest", function(event) {
     const editInfoReturn = event.detail.xhr.status
     // have to check for exact code because detail.successful always evaluates to true?    
     if (editInfoReturn == 201) {
-        editOrgInfoModal.hideMyModal(editOrgInfoModal.modalName)
+        const curElement = event.detail.elt.id
+        if (curElement == "info-form") {
+            editOrgInfoModal.hideMyModal(editOrgInfoModal.modalName)
+        }
+        else { // == to account-form
+            editAccountInfoModal.hideMyModal(editAccountInfoModal.modalName)
+        }
     }
 })
 

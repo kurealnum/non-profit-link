@@ -20,8 +20,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Refactor. So much refactoring.
 
-- Finish new modal specifically for editing org name and password (nothing else).
-
 - Figure out why neither of the modals actually update any information
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)

@@ -36,6 +36,8 @@ def edit_org_info(request):
         info_form = OrgInfoForm(request_put, instance=request.user)
         location_form = OrgLocationForm(request_put, instance=request.user)
         edit_org_forms = [contact_form, info_form, location_form]
+        status = 400
+
         if (
             contact_form.is_valid()
             and info_form.is_valid()
@@ -44,42 +46,32 @@ def edit_org_info(request):
             contact_form.save()
             info_form.save()
             location_form.save()
-            return render(
-                request,
-                "edit_info_modal.html",
-                context={"edit_org_forms": edit_org_forms},
-                status=201,
-            )
-        else:
-            return render(
-                request,
-                "edit_info_modal.html",
-                context={"edit_org_forms": edit_org_forms},
-                status=400,
-            )
+            status = 201
+
+        return render(
+            request,
+            "edit_info_modal.html",
+            context={"edit_org_forms": edit_org_forms},
+            status=status,
+        )
 
 
 def edit_account_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
-
         org_form = OrgForm(request_put, instance=request.user)
+        status = 400
 
         if org_form.is_valid():
             org_form.save()
-            return render(
-                request,
-                "edit_account_info_modal.html",
-                context={"edit_info_form": org_form},
-                status=201,
-            )
-        else:
-            return render(
-                request,
-                "edit_account_info_modal.html",
-                context={"edit_info_form": org_form},
-                status=400,
-            )
+            status = 201
+
+        return render(
+            request,
+            "edit_account_info_modal.html",
+            context={"edit_info_form": org_form},
+            status=status,
+        )
 
 
 def login_user(request):
