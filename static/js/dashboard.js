@@ -300,7 +300,8 @@ class ItemModal extends BaseModal {
 
 const needsModal = new ItemModal(true, "needs")
 const surplusModal = new ItemModal(false, "surplus")
-const editInfoModal = new BaseModal("open-edit-info", "default-close-edit-info","edit-info-modal")
+const editOrgInfoModal = new BaseModal("open-edit-info", "default-close-edit-info","edit-info-modal")
+const editAccountInfoModal = new BaseModal("open-edit-account", "default-close-edit-account", "edit-account-modal")
 
 // logic for edit info modal
 // code kindly taken from https://gist.github.com/lysender/a36143c002a84ed2c166bf7567b1a913
@@ -317,7 +318,7 @@ document.addEventListener("htmx:afterRequest", function(event) {
     const editInfoReturn = event.detail.xhr.status
     // have to check for exact code because detail.successful always evaluates to true?    
     if (editInfoReturn == 201) {
-        editInfoModal.hideMyModal(editInfoModal.modalName)
+        editOrgInfoModal.hideMyModal(editOrgInfoModal.modalName)
     }
 })
 

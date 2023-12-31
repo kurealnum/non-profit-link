@@ -6,9 +6,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 `pre_optimized_item_api` is the inital Item API that I created. It was/is incredibly pre-optimized, which just made use of it more painful. I would love to do something with it in the future, but not right now.
 
-## TODO List
+# TODO List
 
-### Global
+## Global
 
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
@@ -16,7 +16,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Fix `Prettier` and `isort` import formatting conflicts
 
-### Dashboard
+## Dashboard
 
 - Finish new modal specifically for editing org name and password (nothing else).
 
@@ -24,7 +24,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
-### General stuff
+## General stuff
 
 - General frontend work, like touching up the dashboard, adding shadows, etc.
 

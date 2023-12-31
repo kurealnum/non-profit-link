@@ -22,9 +22,10 @@ present in the desktop size. the mobile version is completely vertical -->
                     {% include 'edit_info_modal.html' %}
                     <button id="default-close-edit-info">Close</button>
                 </dialog>
-                <button id="openedit-account" class="dashboard-button"> Edit Account Info</button>
+                <button id="open-edit-account" class="dashboard-button"> Edit Account Info</button>
                 <dialog id="edit-account-modal">
                     {% include 'edit_account_info_modal.html' %}
+                    <button id="default-close-edit-account">Close</button>
                 </dialog>
                 <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
             </div>
