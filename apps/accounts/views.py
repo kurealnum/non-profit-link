@@ -65,6 +65,22 @@ def edit_account_info(request):
 
         org_form = OrgForm(request_put, instance=request.user)
 
+        if org_form.is_valid():
+            org_form.save()
+            return render(
+                request,
+                "edit_account_info_modal.html",
+                context={"edit_info_form": org_form},
+                status=201,
+            )
+        else:
+            return render(
+                request,
+                "edit_account_info_modal.html",
+                context={"edit_info_form": org_form},
+                status=400,
+            )
+
 
 def login_user(request):
     if request.method == "POST":
