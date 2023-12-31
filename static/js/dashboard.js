@@ -302,6 +302,12 @@ const needsModal = new ItemModal(true, "needs")
 const surplusModal = new ItemModal(false, "surplus")
 const editInfoModal = new BaseModal("open-edit-info", "close-edit-info","edit-info-modal")
 
+// testing for HTMX
+document.addEventListener("htmx:afterRequest", function(event) {
+    console.log(event)
+    console.log(event.detail.xhr.status)
+})
+
 
 
 

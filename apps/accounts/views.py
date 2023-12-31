@@ -31,12 +31,12 @@ REGISTER_FORM = "register.html"
 def edit_account(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
-        print(request_put)
 
         org_form = OrgForm(request_put)
         contact_form = OrgContactInfoForm(request_put)
         info_form = OrgInfoForm(request_put)
         location_form = OrgLocationForm(request_put)
+        edit_account_forms = [org_form, contact_form, info_form, location_form]
         if (
             org_form.is_valid()
             and contact_form.is_valid()
@@ -47,13 +47,19 @@ def edit_account(request):
             contact_form.save()
             info_form.save()
             location_form.save()
-
-        edit_account_forms = [org_form, contact_form, info_form, location_form]
-        return render(
-            request,
-            "edit_info_modal.html",
-            context={"edit_account_forms": edit_account_forms},
-        )
+            return render(
+                request,
+                "edit_info_modal.html",
+                context={"edit_account_forms": edit_account_forms},
+                status=201,
+            )
+        else:
+            return render(
+                request,
+                "edit_info_modal.html",
+                context={"edit_account_forms": edit_account_forms},
+                status=400,
+            )
 
 
 def login_user(request):

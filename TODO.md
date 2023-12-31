@@ -18,11 +18,11 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Figure out how to validate the OrgForm but ignore duplicates
+- Figure out how to only validate the password if both the password and confirm_password field work. (You can do this by simply adding errors to the form. I just need to do it)
 
-- Figure out how to only validate the password if both the password and confirm_password field work
+- Add password validation
 
-- Change the modal to only close if the form has no errors
+- Change the modal to only close if the form has no errors (Just need to add JS functionality)
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
