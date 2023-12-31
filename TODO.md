@@ -22,8 +22,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add password validation
 
-- Change the modal to only close if the form has no errors (Just need to add JS functionality)
-
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
 ### General stuff

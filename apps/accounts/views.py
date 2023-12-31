@@ -32,10 +32,10 @@ def edit_account(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
 
-        org_form = OrgForm(request_put)
-        contact_form = OrgContactInfoForm(request_put)
-        info_form = OrgInfoForm(request_put)
-        location_form = OrgLocationForm(request_put)
+        org_form = OrgForm(request_put, instance=request.user)
+        contact_form = OrgContactInfoForm(request_put, instance=request.user)
+        info_form = OrgInfoForm(request_put, instance=request.user)
+        location_form = OrgLocationForm(request_put, instance=request.user)
         edit_account_forms = [org_form, contact_form, info_form, location_form]
         if (
             org_form.is_valid()
