@@ -32,8 +32,7 @@ def dashboard(request):
     )[0]
 
     # adding the default values
-    edit_account_forms = [
-        OrgForm(initial=org_form_initial_data),
+    edit_org_forms = [
         OrgContactInfoForm(initial=contact_form_initial_data),
         OrgInfoForm(initial=info_form_initial_data),
         OrgLocationForm(initial=location_form_initial_data),
@@ -48,7 +47,8 @@ def dashboard(request):
                 "org": org,
                 "wanted_org_items": wanted_org_items,
                 "surplus_org_items": surplus_org_items,
-                "edit_account_forms": edit_account_forms,
+                "edit_org_forms": edit_org_forms,
+                "edit_info_form": OrgForm(initial=org_form_initial_data),
             },
         )
 

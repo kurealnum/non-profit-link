@@ -1,9 +1,9 @@
 <div id="info-form">
     <form id="info-modal">
-        {% for form in edit_account_forms %}
+        {% for form in edit_org_forms %}
             {{ form }}
         {% endfor %}
-        <button hx-put="/accounts/edit-account/"
+        <button hx-put="{% url 'edit_org_info' %}"
             hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
             hx-swap="innerHTML"
             hx-target="#info-form"

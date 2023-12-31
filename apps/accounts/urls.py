@@ -5,7 +5,8 @@ from .views import (
     logout_user,
     register_user,
     search_non_profits,
-    edit_account,
+    edit_org_info,
+    edit_account_info,
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("register/", register_user, name="register"),
     path("search-non-profits/", search_non_profits, name="search_non_profits"),
-    path("edit-account/", edit_account, name="edit_account"),  # type: ignore
+    path("edit-org-info/", edit_org_info, name="edit_org_info"),  # type: ignore
+    path("edit-account-info/", edit_account_info, name="edit_account_info"),  # type: ignore
 ]

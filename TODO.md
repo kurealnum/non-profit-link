@@ -18,9 +18,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Figure out how to only validate the password if both the password and confirm_password field work. (You can do this by simply adding errors to the form. I just need to do it)
+- Finish new modal specifically for editing org name and password (nothing else).
 
-- Add password validation
+- Figure out why neither of the modals actually update any information
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
