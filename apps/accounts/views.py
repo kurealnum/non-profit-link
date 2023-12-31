@@ -63,7 +63,10 @@ def edit_account_info(request):
         status = 400
 
         if org_form.is_valid():
-            org_form.save()
+            cleaned_org_form = org_form.cleaned_data
+            cur_user = org_form.save(commit=False)
+            cur_user.set_password(cleaned_org_form["password"])
+            cur_user.save()
             status = 201
 
         return render(

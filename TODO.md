@@ -20,7 +20,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Refactor. So much refactoring.
 
-- Figure out why neither of the modals actually update any information
+- Figure out why neither of the modals actually update any information (except for the username in edit_account_info)
+
+- Add password validation to edit_account_info
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
