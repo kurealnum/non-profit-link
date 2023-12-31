@@ -1,3 +1,4 @@
+from django.http import QueryDict
 from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
@@ -29,9 +30,29 @@ REGISTER_FORM = "register.html"
 
 def edit_account(request):
     if request.method == "PUT":
-        org_form = OrgForm(request.POST)
-        if not org_form.is_valid():
-            return HttpResponse(org_form)
+        request_put = QueryDict(request.body)
+
+        org_form = OrgForm(request_put)
+        contact_form = OrgContactInfoForm(request_put)
+        info_form = OrgInfoForm(request_put)
+        location_form = OrgLocationForm(request_put)
+        if (
+            org_form.is_valid()
+            and contact_form.is_valid()
+            and info_form.is_valid()
+            and location_form.is_valid()
+        ):
+            org_form.save()
+            contact_form.save()
+            info_form.save()
+            location_form.save()
+
+        edit_account_forms = [org_form, contact_form, info_form, location_form]
+        return render(
+            request,
+            "edit_info_modal.html",
+            context={"edit_account_forms": edit_account_forms},
+        )
 
 
 def login_user(request):
