@@ -31,6 +31,7 @@ REGISTER_FORM = "register.html"
 def edit_account(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
+        print(request_put)
 
         org_form = OrgForm(request_put)
         contact_form = OrgContactInfoForm(request_put)

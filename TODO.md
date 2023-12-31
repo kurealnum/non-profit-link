@@ -18,7 +18,11 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ### Dashboard
 
-- Rewrite the edit info modal WITHOUT DRF. Use HTMX for the HTML swapping
+- Figure out how to validate the OrgForm but ignore duplicates
+
+- Figure out how to only validate the password if both the password and confirm_password field work
+
+- Change the modal to only close if the form has no errors
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
