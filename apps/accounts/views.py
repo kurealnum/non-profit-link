@@ -63,8 +63,19 @@ def edit_account_info(request):
         status = 400
 
         if org_form.is_valid():
+            # do this so we can have custom password field in OrgForm
             cleaned_org_form = org_form.cleaned_data
             cur_user = org_form.save(commit=False)
+            password = cleaned_org_form["password"]
+            confirm_password = cleaned_org_form["confirm_password"]
+            try:
+                validate_password(password)
+            except ValidationError:
+                org_form.add_error(
+                    "password", "Your password does not meet the requirements!"
+                )
+            if password != confirm_password:
+                org_form.add_error("password", "Your passwords do not match!")
             cur_user.set_password(cleaned_org_form["password"])
             cur_user.save()
             status = 201

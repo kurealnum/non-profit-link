@@ -24,6 +24,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add password validation to edit_account_info
 
+- Redirect user on password/username change
+
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
 ## General stuff
