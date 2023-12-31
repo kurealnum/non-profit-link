@@ -300,12 +300,14 @@ class ItemModal extends BaseModal {
 
 const needsModal = new ItemModal(true, "needs")
 const surplusModal = new ItemModal(false, "surplus")
-const editInfoModal = new BaseModal("open-edit-info", "close-edit-info","edit-info-modal")
+const editInfoModal = new BaseModal("open-edit-info", "default-close-edit-info","edit-info-modal")
 
-// testing for HTMX
+// logic for edit info modal
 document.addEventListener("htmx:afterRequest", function(event) {
-    console.log(event)
-    console.log(event.detail.xhr.status)
+    const editInfoReturn = event.detail.xhr.status
+    if (editInfoReturn === 201) {
+        editInfoModal.hideMyModal(editInfoModal.modalName)
+    }
 })
 
 

@@ -18,7 +18,10 @@ present in the desktop size. the mobile version is completely vertical -->
             </div>
             <div class="dashboard-buttons">
                 <button id="open-edit-info" class="dashboard-button">Edit Information</button>
-                <dialog id="edit-info-modal">{% include 'edit_info_modal.html' %}</dialog>
+                <dialog id="edit-info-modal">
+                    {% include 'edit_info_modal.html' %}
+                    <button id="default-close-edit-info">Close</button>
+                </dialog>
                 <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
             </div>
         </section>
