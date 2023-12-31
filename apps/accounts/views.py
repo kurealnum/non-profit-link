@@ -2,6 +2,7 @@ from django.http import QueryDict
 from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.decorators import login_required
 from django.forms import ValidationError
 from django.shortcuts import redirect, render, HttpResponse
 from rest_framework import status
@@ -28,6 +29,7 @@ LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
 
 
+@login_required  # type: ignore
 def edit_org_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
@@ -56,6 +58,7 @@ def edit_org_info(request):
         )
 
 
+@login_required  # type: ignore
 def edit_account_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)

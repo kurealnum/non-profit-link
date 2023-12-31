@@ -22,6 +22,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out why neither of the modals actually update any information (except for the username in edit_account_info)
 
+- Add login_required to appropriate views
+
 - Figure out why validators are not validating for password strength
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
