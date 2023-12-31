@@ -322,9 +322,6 @@ document.addEventListener("htmx:afterRequest", function(event) {
         if (curElement == "info-form") {
             editOrgInfoModal.hideMyModal(editOrgInfoModal.modalName)
         }
-        else { // == to account-form
-            editAccountInfoModal.hideMyModal(editAccountInfoModal.modalName)
-        }
     }
 })
 

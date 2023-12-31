@@ -22,7 +22,7 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out why neither of the modals actually update any information (except for the username in edit_account_info)
 
-- Remove the htmx:afterRequest functionality from the edit account modal, as it is redundant
+- Figure out why validators are not validating for password strength
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
