@@ -76,16 +76,23 @@ def edit_account_info(request):
                 )
             if password != confirm_password:
                 org_form.add_error("password", "Your passwords do not match!")
-            cur_user.set_password(cleaned_org_form["password"])
-            cur_user.save()
-            status = 201
 
-        return render(
+            if not org_form.errors:
+                cur_user.set_password(cleaned_org_form["password"])
+                cur_user.save()
+                status = 201
+
+        response = render(
             request,
             "edit_account_info_modal.html",
             context={"edit_info_form": org_form},
             status=status,
         )
+
+        if status == 201:
+            response["HX-Redirect"] = "/accounts/login/"
+
+        return response
 
 
 def login_user(request):
