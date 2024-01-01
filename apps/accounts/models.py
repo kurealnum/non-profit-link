@@ -28,7 +28,9 @@ class Org(AbstractUser):
 
 
 class OrgLocation(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
+    org = models.OneToOneField(
+        Org, primary_key=True, on_delete=models.CASCADE, blank=True
+    )
     country = models.CharField(unique=False, max_length=50)
     region = models.CharField(unique=False, max_length=50)
     zip = models.IntegerField(unique=False)
@@ -44,7 +46,9 @@ class OrgLocation(models.Model):
 
 
 class OrgContactInfo(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
+    org = models.OneToOneField(
+        Org, primary_key=True, on_delete=models.CASCADE, blank=True
+    )
     phone = models.PositiveIntegerField(unique=False)
     email = models.EmailField(unique=False)
 
@@ -57,7 +61,9 @@ class OrgContactInfo(models.Model):
 
 
 class OrgInfo(models.Model):
-    org = models.OneToOneField(Org, on_delete=models.CASCADE, null=True, blank=True)
+    org = models.OneToOneField(
+        Org, primary_key=True, on_delete=models.CASCADE, blank=True
+    )
     desc = models.TextField(max_length=1000, unique=False)
     website = models.URLField(unique=False)
 

@@ -33,10 +33,14 @@ REGISTER_FORM = "register.html"
 def edit_org_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)
+        org = request.user.id
+        existing_contact_form = OrgContactInfo.objects.get(org=org)
+        existing_info_form = OrgInfo.objects.get(org=org)
+        existing_location_form = OrgLocation.objects.get(org=org)
 
-        contact_form = OrgContactInfoForm(request_put, instance=request.user)
-        info_form = OrgInfoForm(request_put, instance=request.user)
-        location_form = OrgLocationForm(request_put, instance=request.user)
+        contact_form = OrgContactInfoForm(request_put, instance=existing_contact_form)
+        info_form = OrgInfoForm(request_put, instance=existing_info_form)
+        location_form = OrgLocationForm(request_put, instance=existing_location_form)
         edit_org_forms = [contact_form, info_form, location_form]
         status = 400
 
@@ -45,9 +49,11 @@ def edit_org_info(request):
             and info_form.is_valid()
             and location_form.is_valid()
         ):
-            contact_form.save()
-            info_form.save()
-            location_form.save()
+            for form in edit_org_forms:
+                new_instance = form.save(commit=False)
+                new_instance.org = request.user
+                new_instance.save()
+
             status = 201
 
         return render(

@@ -20,10 +20,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Refactor. So much refactoring.
 
-- Figure out why neither of the modals actually update any information (except for the username in edit_account_info)
-
-- Add login_required to appropriate views
-
 - Figure out why validators are not validating for password strength
 
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
@@ -35,9 +31,5 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
-
-- Add an edit account URL
-
-- Add logic to edit account URL
 
 FOR FRONTEND WORK: Here's the [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!
