@@ -1,7 +1,8 @@
 <div id="account-form">
     <form id="account-modal">
         {{ edit_info_form }}
-        <button hx-put="{% url 'edit_account_info' %}"
+    </form>
+    <button hx-put="{% url 'edit_account_info' %}"
             hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
             hx-swap="innerHTML"
             hx-target="#account-form"
@@ -10,5 +11,4 @@
             type="submit" id="close-edit-info">
             Save and close
         </button>
-    </form>
 </div>
