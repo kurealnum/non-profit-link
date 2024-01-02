@@ -128,3 +128,36 @@ footer img {
         display: none;
     }
 }
+
+input, textarea {
+    text-align: center;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 100;
+    border-radius: 10px;
+    border-color: transparent;
+    margin-bottom: 6px;
+}
+
+label {
+    font-weight: 100;
+    text-align: center;
+    display: block;
+    width: auto;
+    padding: 6px 0;
+}
+
+form, form>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    color: red;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 100;
+}

@@ -205,11 +205,3 @@ dialog .last-button {
 .item-buttons-wrapper {
   margin-left: auto;
 }
-
-input, textarea {
-  font: inherit;
-  font-size: 13px;
-  font-weight: 100;
-  border-radius: 10px;
-}
-
