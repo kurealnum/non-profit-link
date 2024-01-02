@@ -164,3 +164,8 @@ form ul {
     font-size: 13px;
     font-weight: 100;
 }
+
+#password-specification {
+    color: var(--text);
+    font-style: italic;
+}
