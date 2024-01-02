@@ -4,6 +4,8 @@ Written in Python, HTML, and CSS
 
 Uses Django, DRF (Django Rest Framework), HTMX, and Postgres.
 
+Join the [discord!](https://discord.gg/smTmsCt69W)
+
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the frontend of the project. If you're contributing to the frontend, please _do not worry about making everything exactly like the Figma file_.
 
 **_Some extra diagrams (might be unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
