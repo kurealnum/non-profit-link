@@ -20,11 +20,11 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## Dashboard
 
+- There's a random semicolon on the "Edit Account Info" modal. I have no idea where it's coming from, but I need to fix it.
+
 - Look into rewriting the majority of the logic in `dashboard.js` with HTMX. Not sure how feasible this is.
 
 - Refactor. So much refactoring.
-
-- Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
 ## General stuff
 

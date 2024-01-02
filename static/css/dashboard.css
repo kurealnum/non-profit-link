@@ -29,11 +29,13 @@ h2 {
 }
 
 .dashboard-buttons {
-  margin: 20px;
-  height: 10vh;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  gap: 10px;
 }
 
 .dashboard-body {
@@ -204,4 +206,9 @@ dialog .last-button {
 
 .item-buttons-wrapper {
   margin-left: auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text);
 }
