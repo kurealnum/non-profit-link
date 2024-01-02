@@ -14,9 +14,13 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - More "dynamic" URLs and redirects? I'm not sure if this is a thing, and if it is, I don't know how to do it.
 
-- Fix `Prettier` and `isort` import formatting conflicts
+- Fix `Prettier` and `isort` import formatting conflicts (likely just config files, this is a _very_ low priority)
+
+- Make a new test_data.json (or figure out why the current one can't be loaded)
 
 ## Dashboard
+
+- Look into rewriting the majority of the logic in `dashboard.js` with HTMX. Not sure how feasible this is.
 
 - Refactor. So much refactoring.
 
