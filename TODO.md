@@ -24,8 +24,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Refactor. So much refactoring.
 
-- Figure out why validators are not validating for password strength
-
 - Styling, styling, styling! (Primarily `label`, `input`, and `textarea`)
 
 ## General stuff

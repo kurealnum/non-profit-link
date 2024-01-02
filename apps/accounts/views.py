@@ -29,6 +29,7 @@ LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
 
 
+# I know this function is messy. Not sure how to make it any cleaner
 @login_required  # type: ignore
 def edit_org_info(request):
     if request.method == "PUT":
