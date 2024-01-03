@@ -16,8 +16,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Fix `Prettier` and `isort` import formatting conflicts (likely just config files, this is a _very_ low priority)
 
-- Make a new test_data.json (or figure out why the current one can't be loaded)
-
 ## Dashboard
 
 - There's a random semicolon on the "Edit Account Info" modal. I have no idea where it's coming from, but I need to fix it.
