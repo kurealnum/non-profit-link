@@ -2,32 +2,6 @@
     color: var(--accent);
 }
 
-.search-item-results {
-    background-color: var(--primary);
-    font-weight: 100;
-    margin: 10px;
-    padding: 6px 10px;
-    box-shadow: 5px 5px 5px var(--background);
-    border-left: 2px solid white;
-}
-
-.search-results {
-    background-color: var(--primary);
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
-
-.last-search-result {
-    margin-bottom: 100px;
-}
-
-#homepage-hero {
-    height: 65vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 #hero-title {
     position: relative;
     margin: 0 auto;

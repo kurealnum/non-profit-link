@@ -10,7 +10,8 @@ from .serializers import ItemSerializer
 
 
 def search_items(request):
-    return render(request, "search_items.html")
+    all_items = Item.objects.all()
+    return render(request, "search_items.html", context={"all_items": all_items})
 
 
 # any endpoints that take information from the request itself

@@ -199,9 +199,36 @@ a {
 }
 
 .paragraph-text-img img {
-    filter: drop-shadow(0 2px 3px rgba(200, 200, 200));
+    -webkit-filter: drop-shadow(0 2px 3px rgba(200, 200, 200));
+            filter: drop-shadow(0 2px 3px rgba(200, 200, 200));
 }
 
 .search-results {
     box-shadow: 5px 5px 5px rgba(0,0,0, 0.2)
+}
+
+.search-item-results {
+    background-color: var(--primary);
+    font-weight: 99;
+    margin: 9px;
+    padding: 5px 10px;
+    box-shadow: 4px 5px 5px var(--background);
+    border-left: 1px solid white;
+}
+
+.search-results {
+    background-color: var(--primary);
+    border-radius: 2px;
+    margin-bottom: 19px;
+}
+
+.last-search-result {
+    margin-bottom: 99px;
+}
+
+#homepage-hero {
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

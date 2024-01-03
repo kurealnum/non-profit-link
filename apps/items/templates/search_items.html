@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head-info %}
+    <link rel="stylesheet" href="{% static 'search_items.css' %}">
+    {% endblock %}
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+{% for item in all_items %}
+    {{ item.item_name }} {{ item.want }} {{ item.units_description }} {{ item.org }}
+    <a href="{{ item.org.get_absolute_url }}">TESTURL</a>
+{% endfor %}
+{% endblock %}
