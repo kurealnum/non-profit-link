@@ -15,7 +15,3 @@
 **_These are much less important!_** If you can't use these tools, don't worry about it.
 
 - When writing code, please use the `Prettier` formatter. If for some reason you can't use the formatter, please do your best to format the code in a similar manner.
-
-- When using imports, please use the `isort` formatter. Again, if you can't use the formatter, please do your best to format the code in a similar manner.
-
-**Important**: `Prettier` and `isort` have conflicting formatting for imports, so until I figure out what the best thing to do here is, don't worry about it.
