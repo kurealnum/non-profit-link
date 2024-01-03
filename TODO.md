@@ -10,24 +10,20 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## Global
 
+- Create the frontend for items/search-items/
+
+- Create the frontend for accounts/all-non-profits/
+
+- Scale UI design from mobile to all sizes
+
 - Apparently I have been misspelling "organization" as "orginization". This is the most embarrassing moment of my entire life. If you see a misspelled word, please change it.
 
-- More "dynamic" URLs and redirects? I'm not sure if this is a thing, and if it is, I don't know how to do it.
+- Refactor static URLS to more "dynamic" URLs; for example, don't put "accounts/myurl" as a route, put "{% url 'myurl_name' %}.
 
 ## Dashboard
 
 - There's a random semicolon on the "Edit Account Info" modal. I have no idea where it's coming from, but I need to fix it.
 
-- Look into rewriting the majority of the logic in `dashboard.js` with HTMX. Not sure how feasible this is.
-
 - Refactor. So much refactoring.
-
-## General stuff
-
-- General frontend work, like touching up the dashboard, adding shadows, etc.
-
-- Create the frontend for items/search-items/
-
-- Create the frontend for accounts/all-non-profits/
 
 FOR FRONTEND WORK: Here's the [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!

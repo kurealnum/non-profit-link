@@ -169,3 +169,39 @@ form ul {
     color: var(--text);
     font-style: italic;
 }
+
+.login_form {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.login {
+    width: 60%;
+    margin: 20px auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+#register-option a {
+    color: var(--accent);
+    font-style: italic;
+}
+
+#register-option {
+    font-size: 18px;
+    width: 40%;
+    background: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.paragraph-text-img img {
+    filter: drop-shadow(0 2px 3px rgba(200, 200, 200));
+}
+
+.search-results {
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.2)
+}
