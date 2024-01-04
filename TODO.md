@@ -10,8 +10,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## Global
 
-- Change incredibly confusing names (homepage.css and homepage.html are not the same thing)
-
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
