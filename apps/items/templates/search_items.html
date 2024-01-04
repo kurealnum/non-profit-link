@@ -4,10 +4,31 @@
     <link rel="stylesheet" href="{% static 'search_items.css' %}">
     {% endblock %}
 {% block title %} Dashboard {% endblock %}
-
 {% block body %}
-{% for item in all_items %}
-    {{ item.item_name }} {{ item.want }} {{ item.units_description }} {{ item.org }}
-    <a href="{{ item.org.get_absolute_url }}">TESTURL</a>
-{% endfor %}
+<h1 id="hero-title">Search all items</h1>
+
+<!-- TODO show a maximum of 5 non-profits when searching -->
+<!-- TODO implent a "by want" and "by need" searching categories -->
+<div class="dropdown">
+    <span>By non-profit &#x2B9F;</span>
+</div>
+
+<div id="search-bar">
+    <input value="Search for an item...">
+    <button id="search-button"><img src="{% static 'search_button_icon.svg' %}" alt="Search icon"></button>
+</div>
+
+<section class="items-board">
+    <div class="search-results">
+        {% for item in all_items %}
+           <div class="search-item-results">{{ item.count }} {{ item.units_description }} of {{ item.item_name }}, 
+                {% if item.want == True %}
+                    requested
+                {% else %}
+                    shared
+                {% endif %}
+                by <a href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></div>
+       {% endfor %}
+    </div>
+</section>
 {% endblock %}

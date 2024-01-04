@@ -10,6 +10,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## Global
 
+- Refactor CSS and HTML. There's a lot of repeated work.
+
 - Create the frontend for items/search-items/
 
 - Create the frontend for accounts/all-non-profits/
@@ -27,5 +29,9 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 - There's a random semicolon on the "Edit Account Info" modal. I have no idea where it's coming from, but I need to fix it.
 
 - Refactor. So much refactoring.
+
+## Login
+
+- Figure out a better way to place form errors. Right now it's kinda in the middle of everything.
 
 FOR FRONTEND WORK: Here's the [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!
