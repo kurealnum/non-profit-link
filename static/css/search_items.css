@@ -1,0 +1,29 @@
+.dropdown, .checkbox {
+  display: inline-block;
+  font-size: 14px;
+}
+
+#search-options {
+  gap: 16px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.items-board {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.search-item-results a {
+  color: var(--accent);
+}
+
+#search-bar {
+  display: flex;
+  justify-content: center;
+}
+
+#

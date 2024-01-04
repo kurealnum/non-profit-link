@@ -9,14 +9,27 @@
 
 <!-- TODO show a maximum of 5 non-profits when searching -->
 <!-- TODO implent a "by want" and "by need" searching categories -->
-<div class="dropdown">
-    <span>By non-profit &#x2B9F;</span>
+<div id="search-options">
+    <div class="dropdown">
+        <span>By non-profit &#x2B9F;</span>
+    </div>
+    
+    <label class="checkbox">
+        Shared Items
+        <input type="checkbox">
+    </label>
+    
+    <label class="checkbox">
+        Requested Items
+        <input type="checkbox">
+    </label>   
 </div>
 
-<div id="search-bar">
-    <input value="Search for an item...">
+<label for="search" id="search-bar">
+    <input name="search" value="Search for an item...">
     <button id="search-button"><img src="{% static 'search_button_icon.svg' %}" alt="Search icon"></button>
-</div>
+</label>
+
 
 <section class="items-board">
     <div class="search-results">
