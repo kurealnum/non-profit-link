@@ -12,8 +12,6 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Refactor CSS and HTML. There's a lot of repeated work.
 
-- Create the frontend for items/search-items/
-
 - Create the frontend for accounts/all-non-profits/
 
 - Flesh out nonprofits/homepage/MYORGNAME/. Shouldn't take too much, there's not really any interactivity

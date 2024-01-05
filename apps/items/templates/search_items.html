@@ -7,13 +7,15 @@
 {% block body %}
 <h1 id="hero-title">Search all items</h1>
 
-<!-- TODO show a maximum of 5 non-profits when searching -->
 <!-- TODO implent a "by want" and "by need" searching categories -->
 <form action="">
     <div id="search-options">
-        <div class="dropdown">
-            <span>By non-profit &#x2B9F;</span>
-        </div>
+        <select id="sort-by-dropdown" class="dropdown">
+            <optgroup label="Options">
+                <option value="item">By non-profit</option>
+                <option value="org">By item name</option>
+            </optgroup>
+        </select>
         <label class="checkbox">
             Shared Items
             <input type="checkbox">
