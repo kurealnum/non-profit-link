@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head-info %}
+<link rel="stylesheet" href="{% static 'search_items.css' %}">
+{% endblock %}
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+<h1 id="hero-title">Search all items</h1>
+<form hx-get="{% url 'search_items_results' %}" hx-target="#search-results">
+    <div id="search-options">
+        <select name="org" id="sort-by-dropdown" class="dropdown">
+            <optgroup label="Options">
+                <option value="item">By item name</option>
+                <option value="org">By non-profit</option>
+            </optgroup>
+        </select>
+        <label class="checkbox">
+            Shared Items
+            <input name="is_want" type="checkbox" checked>
+        </label>
+        <label class="checkbox">
+            Requested Items
+            <input name="is_need" type="checkbox" checked>
+        </label>
+    </div>
+    <label for="search" id="search-bar">
+        <input type="text" name="search" placeholder="Search for an item...">
+        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </label>
+</form>
+
+<section class="items-board">
+    <div id="search-results" class="search-results">
+        {% include 'search_items_results.html' %}
+    </div>
+</section>
+{% endblock %}

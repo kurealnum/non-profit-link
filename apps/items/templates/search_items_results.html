@@ -1,0 +1,11 @@
+{% for item in all_items %}
+<div class="search-item-results">{{ item.count }} {{ item.units_description }} of {{ item.item_name }},
+    {% if item.want == True %}
+    requested
+    {% else %}
+    shared
+    {% endif %}
+    by <a href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></div>
+{% empty %}
+<h2>No {{ org }}s are listed with the name {{ search }}</h2>
+{% endfor %}
