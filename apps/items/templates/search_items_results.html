@@ -1,5 +1,5 @@
 {% for item in all_items %}
-<div class="search-item-results">{{ item.count }} {{ item.units_description }} of {{ item.item_name }},
+<div class="item">{{ item.count }} {{ item.units_description }} of {{ item.item_name }},
     {% if item.want == True %}
     requested
     {% else %}

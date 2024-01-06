@@ -203,14 +203,24 @@ a {
             filter: drop-shadow(0 2px 3px rgba(200, 200, 200));
 }
 
-.search-results {
-    box-shadow: 5px 5px 5px rgba(0,0,0, 0.2)
+.items-container {
+  box-shadow: 5px 5px 5px rgba(0,0,0, 0.2);
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 85vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
-.search-item-results {
+.item {
     background-color: var(--primary);
     font-weight: 99;
-    margin: 9px;
+    width: 70vw;
+    margin: 9px auto;
     padding: 5px 10px;
     box-shadow: 4px 5px 5px var(--background);
     border-left: 1px solid white;

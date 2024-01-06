@@ -29,9 +29,7 @@
     </label>
 </form>
 
-<section class="items-board">
-    <div id="search-results" class="search-results">
-        {% include 'search_items_results.html' %}
-    </div>
+<section class="items-container">
+    <ul id="search-results" class="items-list">{% include 'search_items_results.html' %}</ul>
 </section>
 {% endblock %}

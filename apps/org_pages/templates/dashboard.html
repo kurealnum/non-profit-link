@@ -29,7 +29,7 @@ present in the desktop size. the mobile version is completely vertical -->
                 <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
             </div>
         </section>
-        <section class="mid-of-dashboard">
+        <section class="items-container">
             <h2>Your needs</h2>
             <ul id="needs-items-dashboard" class="items-list">
                 {% for item in wanted_org_items %}
@@ -44,7 +44,7 @@ present in the desktop size. the mobile version is completely vertical -->
                 <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
             </div>
         </section>
-        <section class="right-of-dashboard">
+        <section class="items-container">
             <h2>Your surplus</h2>
             <ul id="surplus-items-dashboard" class="items-list">
                 {% for item in surplus_org_items %}

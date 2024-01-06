@@ -47,18 +47,6 @@ h2 {
   margin-bottom: 40px;
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  background-color: var(--primary);
-  word-wrap: break-word;
-  font-weight: 100;
-  padding: 6px 10px;
-  margin: 7px 20px;
-  box-shadow: 5px 5px 5px var(--background);
-  border-left: 2px solid white;
-}
-
 .item p {
   margin: 0;
   padding: 0;
@@ -74,18 +62,6 @@ h2 {
 .item input {
   width:auto;
   max-width: 60px;
-}
-
-.mid-of-dashboard , .right-of-dashboard{
-  background-color: var(--secondary);
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  width: 85vw;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  border-radius: 5px;
 }
 
 h3 {
