@@ -9,15 +9,14 @@ from .models import Item
 from .serializers import ItemSerializer
 
 
-def search_items(request):
-    # if all of these parameters exist, then we need to do something different
+def search_items_results(request):
     search = request.GET.get("search")
     org = request.GET.get("org")
     is_want = True if request.GET.get("is_want") == "on" else False
     is_need = True if request.GET.get("is_need") == "on" else False
     # querysets are lazy so we can do this without querying :0
     all_items = Item.objects.all()
-
+    # really weird looking logic, find a way to clean it up
     if not is_want and not is_need:
         all_items = None
     elif search and org == "item" and is_want and is_need:
@@ -37,9 +36,14 @@ def search_items(request):
         all_items = Item.objects.filter(org__in=possible_orgs)
     return render(
         request,
-        "search_items.html",
+        "search_items_results.html",
         context={"all_items": all_items, "search": search, "org": org},
     )
+
+
+def search_items(request):
+    all_items = Item.objects.all()
+    return render(request, "search_items.html", context={"all_items": all_items})
 
 
 # any endpoints that take information from the request itself

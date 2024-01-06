@@ -6,7 +6,7 @@
 {% block title %} Dashboard {% endblock %}
 {% block body %}
 <h1 id="hero-title">Search all items</h1>
-<form action="{% url 'search_items' %}" method="GET">
+<form hx-get="{% url 'search_items_results' %}" hx-target="#search-results">
     <div id="search-options">
         <select name="org" id="sort-by-dropdown" class="dropdown">
             <optgroup label="Options">
@@ -16,11 +16,11 @@
         </select>
         <label class="checkbox">
             Shared Items
-            <input name="is_want" type="checkbox">
+            <input name="is_want" type="checkbox" checked>
         </label>
         <label class="checkbox">
             Requested Items
-            <input name="is_need" type="checkbox">
+            <input name="is_need" type="checkbox" checked>
         </label>
     </div>
     <label for="search" id="search-bar">
@@ -30,18 +30,8 @@
 </form>
 
 <section class="items-board">
-    <div class="search-results">
-        {% for item in all_items %}
-           <div class="search-item-results">{{ item.count }} {{ item.units_description }} of {{ item.item_name }}, 
-                {% if item.want == True %}
-                    requested
-                {% else %}
-                    shared
-                {% endif %}
-                by <a href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></div>
-        {% empty %}
-            <h2>No {{ org }}s are listed with the name {{ search }}</h2>
-       {% endfor %}
+    <div id="search-results" class="search-results">
+        {% include 'search_items_results.html' %}
     </div>
 </section>
 {% endblock %}
