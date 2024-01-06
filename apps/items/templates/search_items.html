@@ -8,10 +8,10 @@
 <h1 id="hero-title">Search all items</h1>
 <form action="{% url 'search_items' %}" method="GET">
     <div id="search-options">
-        <select id="sort-by-dropdown" class="dropdown">
+        <select name="org" id="sort-by-dropdown" class="dropdown">
             <optgroup label="Options">
-                <option value="item">By non-profit</option>
-                <option value="org">By item name</option>
+                <option value="org">By non-profit</option>
+                <option value="item">By item name</option>
             </optgroup>
         </select>
         <label class="checkbox">
@@ -39,6 +39,8 @@
                     shared
                 {% endif %}
                 by <a href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></div>
+        {% empty %}
+            <h2>No {{ org }}s are listed with the name {{ search }}</h2>
        {% endfor %}
     </div>
 </section>

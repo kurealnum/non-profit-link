@@ -25,3 +25,5 @@ We're using PostgreSQL (pronounced po-st-gree-skewl)! I'm not going to bother wa
 - Create a "db_info.env" file in the `project/` folder, and create two fields like so: DB_PASSWORD="password_here" and DB_PORT=portnumberhere
 
 - Update any required information in the Database section of settings.py.
+
+- However you are going about your database setup, make sure that you have the `pg_trgm` module/extension installed.

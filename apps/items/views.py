@@ -13,13 +13,20 @@ def search_items(request):
     # if all of these parameters exist, then we need to do something different
     search = request.GET.get("search")
     org = request.GET.get("org")
-
-    if search and org:
-        all_items = Item.objects.filter(
-            item_name__unaccent__lower__trigram_similar=search, org=org
-        )
+    # querysets are lazy so we can do this :0
     all_items = Item.objects.all()
-    return render(request, "search_items.html", context={"all_items": all_items})
+
+    if search and org == "item":
+        all_items = Item.objects.filter(item_name__trigram_similar=search)
+    if search and org == "org":
+        # return items related to the search
+        possible_orgs = Org.objects.filter(username__trigram_similar=search)
+        all_items = Item.objects.filter(org__in=possible_orgs)
+    return render(
+        request,
+        "search_items.html",
+        context={"all_items": all_items, "search": search, "org": org},
+    )
 
 
 # any endpoints that take information from the request itself
