@@ -11,33 +11,42 @@ from .serializers import ItemSerializer
 
 def search_items_results(request):
     search = request.GET.get("search")
-    org = request.GET.get("org")
-    is_want = True if request.GET.get("is_want") == "on" else False
+    org_or_item = request.GET.get("org")
+
+    # yes i am aware that this is awful grammar
+    # this is all just logic for the search. REFACTORME
+    is_have = True if request.GET.get("is_want") == "on" else False
     is_need = True if request.GET.get("is_need") == "on" else False
+    want = None
+    if is_have and not is_need:
+        want = False
+    elif not is_have and is_need:
+        want = True
+
     # querysets are lazy so we can do this without querying :0
-    all_items = Item.objects.all()
-    # really weird looking logic, find a way to clean it up
-    if not is_want and not is_need:
-        all_items = None
-    elif search and org == "item" and is_want and is_need:
-        if is_want and is_need:
+    if want == None:
+        all_items = Item.objects.all()
+    else:
+        all_items = Item.objects.filter(want=want)
+
+    if search and org_or_item == "item":
+        if want == None:
             all_items = Item.objects.filter(item_name__trigram_similar=search)
-        elif is_want:
+        else:
             all_items = Item.objects.filter(
-                item_name__trigram_similar=search, want=True
+                item_name__trigram_similar=search, want=want
             )
-        elif is_need:
-            all_items = Item.objects.filter(
-                item_name__trigram_similar=search, want=False
-            )
-    elif search and org == "org":
-        # return items related to the search
+    elif search and org_or_item == "org":
         possible_orgs = Org.objects.filter(username__trigram_similar=search)
-        all_items = Item.objects.filter(org__in=possible_orgs)
+        if want == None:
+            all_items = Item.objects.filter(org__in=possible_orgs)
+        else:
+            all_items = Item.objects.filter(want=want, org__in=possible_orgs)
+
     return render(
         request,
         "search_items_results.html",
-        context={"all_items": all_items, "search": search, "org": org},
+        context={"all_items": all_items, "search": search, "org": org_or_item},
     )
 
 
