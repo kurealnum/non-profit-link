@@ -10,6 +10,14 @@ from .serializers import ItemSerializer
 
 
 def search_items(request):
+    # if all of these parameters exist, then we need to do something different
+    search = request.GET.get("search")
+    org = request.GET.get("org")
+
+    if search and org:
+        all_items = Item.objects.filter(
+            item_name__unaccent__lower__trigram_similar=search, org=org
+        )
     all_items = Item.objects.all()
     return render(request, "search_items.html", context={"all_items": all_items})
 

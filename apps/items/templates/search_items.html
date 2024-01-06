@@ -6,9 +6,7 @@
 {% block title %} Dashboard {% endblock %}
 {% block body %}
 <h1 id="hero-title">Search all items</h1>
-
-<!-- TODO implent a "by want" and "by need" searching categories -->
-<form action="">
+<form action="{% url 'search_items' %}" method="GET">
     <div id="search-options">
         <select id="sort-by-dropdown" class="dropdown">
             <optgroup label="Options">
@@ -27,7 +25,7 @@
     </div>
     <label for="search" id="search-bar">
         <input type="text" name="search" placeholder="Search for an item...">
-        <button id="search-button"><i class="fa fa-search"></i></button>
+        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
     </label>
 </form>
 
