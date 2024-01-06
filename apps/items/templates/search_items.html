@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block head-info %}
-    <link rel="stylesheet" href="{% static 'search_items.css' %}">
-    {% endblock %}
+<link rel="stylesheet" href="{% static 'search_items.css' %}">
+{% endblock %}
 {% block title %} Dashboard {% endblock %}
 {% block body %}
 <h1 id="hero-title">Search all items</h1>
@@ -10,17 +10,17 @@
     <div id="search-options">
         <select name="org" id="sort-by-dropdown" class="dropdown">
             <optgroup label="Options">
-                <option value="org">By non-profit</option>
                 <option value="item">By item name</option>
+                <option value="org">By non-profit</option>
             </optgroup>
         </select>
         <label class="checkbox">
             Shared Items
-            <input type="checkbox">
+            <input name="is_want" type="checkbox">
         </label>
         <label class="checkbox">
             Requested Items
-            <input type="checkbox">
+            <input name="is_need" type="checkbox">
         </label>
     </div>
     <label for="search" id="search-bar">

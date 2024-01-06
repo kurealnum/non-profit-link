@@ -10,6 +10,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 ## Global
 
+- Add defaults to the "search_all_items" view. Or just do it with HTMX so the whole page doesn't have to refresh.
+
 - Refactor CSS and HTML. There's a lot of repeated work.
 
 - Create the frontend for accounts/all-non-profits/

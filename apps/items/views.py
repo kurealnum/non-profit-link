@@ -13,12 +13,25 @@ def search_items(request):
     # if all of these parameters exist, then we need to do something different
     search = request.GET.get("search")
     org = request.GET.get("org")
-    # querysets are lazy so we can do this :0
+    is_want = True if request.GET.get("is_want") == "on" else False
+    is_need = True if request.GET.get("is_need") == "on" else False
+    # querysets are lazy so we can do this without querying :0
     all_items = Item.objects.all()
 
-    if search and org == "item":
-        all_items = Item.objects.filter(item_name__trigram_similar=search)
-    if search and org == "org":
+    if not is_want and not is_need:
+        all_items = None
+    elif search and org == "item" and is_want and is_need:
+        if is_want and is_need:
+            all_items = Item.objects.filter(item_name__trigram_similar=search)
+        elif is_want:
+            all_items = Item.objects.filter(
+                item_name__trigram_similar=search, want=True
+            )
+        elif is_need:
+            all_items = Item.objects.filter(
+                item_name__trigram_similar=search, want=False
+            )
+    elif search and org == "org":
         # return items related to the search
         possible_orgs = Org.objects.filter(username__trigram_similar=search)
         all_items = Item.objects.filter(org__in=possible_orgs)
