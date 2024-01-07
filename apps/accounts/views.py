@@ -208,4 +208,6 @@ def register_user(request):
 
 
 def search_non_profits(request):
-    return render(request, "search_non_profits.html")
+    orgs = Org.objects.all().select_related("orglocation")
+    print(orgs)
+    return render(request, "search_non_profits.html", context={"orgs": orgs})

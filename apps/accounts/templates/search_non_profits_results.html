@@ -1,6 +1,6 @@
 {% for org_info in orgs %}
     <div class="item">
-        <span><a href="{{ org_info.0.get_absolute_url }}" class="highlight-word"></a></span>
-        Located in {{ org_info.1 }}, {{ org_info.2 }}
+        <span><a href="{{ org_info.get_absolute_url }}" class="highlight-word">{{ org_info.username }}:</a></span>
+        Located in {{ org_info.orglocation.city }}, {{ org_info.orglocation.region }} 
     </div>
 {% endfor %}

@@ -36,4 +36,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Add links to button
 
+## Homepage
+
+- Add a check to simply add none if a model does not exist. Not necesarry but probably a good idea.
+
 FOR FRONTEND WORK: Here's the [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!
