@@ -208,4 +208,4 @@ def register_user(request):
 
 
 def search_non_profits(request):
-    return render(request, "non_profits.html")
+    return render(request, "search_non_profits.html")
