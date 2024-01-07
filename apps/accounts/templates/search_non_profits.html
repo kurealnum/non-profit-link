@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head-info %}
+<link rel="stylesheet" href="{% static 'search_non_profits.css' %}">
+{% endblock %}
+{% block title %} Search orgs on Non-Profit Link {% endblock %}
+
+{% block body %}
+<h1 id="hero-title">Search all items</h1>
+<form>
+    <label for="search" class="search-bar">
+        <input type="text" name="search" placeholder="Search for an item...">
+        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </label>
+</form>
+
+<!-- yes everything here has a class relating to item, even though they aren't items... -->
+<section class="items-container">
+    <ul id="search-results" class="items-list normal-margin">{% include 'search_non_profits_results.html' %}</ul>
+</section>
+{% endblock %}
