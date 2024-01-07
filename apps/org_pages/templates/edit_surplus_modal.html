@@ -1,7 +1,7 @@
 <h1>Edit your listed surplus</h1>
 <ul id="surplus-items-list" class="items-list">
     {% for item in surplus_org_items %}
-        <div class="item">{{item.count}} {{ item.units_description }} of {{ item }}
+        <div class="item modal-item">{{item.count}} {{ item.units_description }} of {{ item }}
             <div class="item-buttons-wrapper">
                 <button data-name="{{ item }}" class="surplus delete-item fa-solid fa-trash" id="surplus-delete-item-{{ item }}"></button>
                 <button data-name="{{ item }}" class="surplus edit-item fa fa-pen"></button>

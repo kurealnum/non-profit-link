@@ -242,3 +242,10 @@ a {
     justify-content: center;
     flex-direction: column;
 }
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-bottom: 0;
+}

@@ -12,14 +12,8 @@
   margin: 20px 0;
 }
 
-.items-board {
-  display: flex;
-  flex-direction: column;
-  width: 80vw;
-  margin: 0 auto;
-}
-
-.search-item-results a {
+span a {
+  display: inline-block;
   color: var(--accent);
 }
 
@@ -70,4 +64,8 @@
 
 optgroup {
   font-family: "Poppins", "Arial";
+}
+
+.normal-margin {
+  margin: 18px;
 }

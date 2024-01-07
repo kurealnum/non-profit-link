@@ -1,7 +1,7 @@
 <h1>Edit your listed needs</h1>
 <ul id="needs-items-list" class="items-list">
     {% for item in wanted_org_items %}
-        <div class="item"><p>{{item.count}} {{ item.units_description }} of {{ item }}</p>
+        <div class="item modal-item"><p>{{item.count}} {{ item.units_description }} of {{ item }}</p>
             <div class="item-buttons-wrapper">
                 <button data-name="{{ item }}" class="needs delete-item fa-solid fa-trash" id="needs-delete-item-{{ item }}"></button>
                 <button data-name="{{ item }}" class="needs edit-item fa fa-pen"></button>

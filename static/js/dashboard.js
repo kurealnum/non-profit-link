@@ -96,7 +96,7 @@ class ItemModal extends BaseModal {
             oldNameData = "data-old_name=" + oldName
         }
         this.modalItemsList.insertAdjacentHTML('beforeend', `
-        <div id='${this.needOrWant}-js-item-${this.itemCounter}' class="item">
+        <div id='${this.needOrWant}-js-item-${this.itemCounter}' class="item modal-item">
             <input id='${this.needOrWant}-number-of-units-${this.itemCounter}'type='number' value='0'>
             <input id='${this.needOrWant}-unit-type-${this.itemCounter}' type='text' value='units'> of 
             <input id='${this.needOrWant}-item-name-${this.itemCounter}' type='text' value='item'>
@@ -125,7 +125,7 @@ class ItemModal extends BaseModal {
             toRemove.remove()
             // create a basic item field
             const newModalItem = `
-                <div class="item">
+                <div class="item modal-item">
                     <p>${numberOfUnits} ${unitsDescription} of ${itemName}</p>
                     <div class="item-buttons-wrapper">
                         <button data-name="${itemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${itemName}"></button>
@@ -134,7 +134,7 @@ class ItemModal extends BaseModal {
                 </div>
             `
             const newDashboardItem = `
-                <div class="item" id="${this.needOrWant}-dashboard-delete-item-${itemName}">
+                <div class="item modal-item" id="${this.needOrWant}-dashboard-delete-item-${itemName}">
                     ${numberOfUnits} ${unitsDescription} of ${itemName}
                 </div>
             `
@@ -229,7 +229,7 @@ class ItemModal extends BaseModal {
             oldModalElement.parentElement.parentElement.remove()
 
             this.modalItemsList.insertAdjacentHTML('beforeend', `
-                <div class="item">
+                <div class="item modal-item">
                     <p>${newItemInfo}</p>
                     <div class="item-buttons-wrapper">
                         <button data-name="${newItemName}" class="delete-item fa-solid fa-trash" id="${this.needOrWant}-delete-item-${newItemName}"></button>

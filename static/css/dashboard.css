@@ -52,13 +52,6 @@ h2 {
   padding: 0;
 }
 
-.items-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin-bottom: 0;
-}
-
 .item input {
   width:auto;
   max-width: 60px;
@@ -184,3 +177,7 @@ dialog .last-button {
   margin-left: auto;
 }
 
+.modal-item {
+  display: flex;
+  align-items: center;
+}
