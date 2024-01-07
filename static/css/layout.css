@@ -211,8 +211,7 @@ a {
   align-content: center;
   width: 85vw;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   border-radius: 5px;
 }
 
@@ -248,4 +247,8 @@ a {
   flex-direction: column;
   padding: 0;
   margin-bottom: 0;
+}
+
+.normal-margin {
+  margin: 18px;
 }

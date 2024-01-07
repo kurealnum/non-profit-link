@@ -20,7 +20,6 @@
 .homepage-search {
     display: flex;
     flex-direction: column;
-    margin: 50px; 
 }
 
 .paragraph-text-img img {

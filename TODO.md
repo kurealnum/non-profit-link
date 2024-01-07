@@ -32,4 +32,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Figure out a better way to place form errors. Right now it's kinda in the middle of everything.
 
+## Index page
+
+- Add links to button
+
 FOR FRONTEND WORK: Here's the [Figma Template](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) to work off of. Make sure to design mobile first!

@@ -20,22 +20,26 @@
         <button>Search non-profits</button>
         <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
     </div>
-    <div class="search-results">
-        {% for org_info in random_5_orgs %}
-            <div class="search-item-results">{{ org_info.0 }}: Located in {{ org_info.1 }}, {{ org_info.2 }}</div>
-        {% endfor %}
-    </div>
+    <section class="items-container">
+        <div class="items-list normal-margin">
+            {% for org_info in random_5_orgs %}
+                <div class="item">{{ org_info.0 }}: Located in {{ org_info.1 }}, {{ org_info.2 }}</div>
+            {% endfor %}
+        </div>
+    </section>
 </div>
-<div class="homepage-search">
+<div class="homepage-search last-search-result">
     <div class="button">
         <button>Search items</button>
         <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
     </div>
-    <div class="search-results last-search-result">
-        {% for item in top_5_items %}
-            <div class="search-item-results">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
-        {% endfor %}
-    </div>
+    <section class="items-container">
+        <ul class="items-list normal-margin">
+            {% for item in top_5_items %}
+                <div class="item">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
+            {% endfor %}
+        </ul>
+    </section>
 </div>
 <!-- paragraph info is filled in with index.js -->
 <div class="paragraph">
