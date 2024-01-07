@@ -20,6 +20,7 @@ class OrgForm(forms.ModelForm):
             'Your password must: <ul id="password-specification"><li>Be longer than 8 characters</li><li>Have an uppercase and lowercase characters</li><li>Use a special character/number</li></ul>'
         ),
     )
+    password.label_suffix = ""
     confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
