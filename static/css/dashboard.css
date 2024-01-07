@@ -63,11 +63,6 @@ h3 {
   font-weight: 500;
 }
 
-.react-button {
-  width: 65%;
-  margin: 0 auto;
-}
-
 .dashboard-button {
   background: var(--secondary);
   color: var(--text);
@@ -76,93 +71,8 @@ h3 {
   padding: 3.5px;
 }
 
-dialog {
-  box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
-  position: fixed;
-  white-space: normal;
-  flex-direction: column;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80vw;
-  height: 40vh;
-  background: var(--secondary);
-  color: var(--text);
-  height:-webkit-fit-content;
-  height:-moz-fit-content;
-  height:fit-content;
-  gap: 10px;
-  border-radius: 5px;
-}
-
-dialog[open] {
-  display: flex;
-  -webkit-animation: fade-in 250ms forwards;
-          animation: fade-in 250ms forwards;
-}
-
-dialog[closing] {
-  pointer-events: none;
-  -webkit-animation: fade-out 240ms forwards;
-          animation: fade-out 240ms forwards;
-}
-
-dialog h1 {
-  padding: 20px 0;
-  border-bottom: 2px solid white;
-} 
-
-dialog button {
-  margin: 0 30px;
-}
-
-dialog .last-button {
-  margin-bottom: 25px;
-}
-
 .button {
   margin-bottom: 20px;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 .edit-item, .delete-item {

@@ -5,7 +5,7 @@
     {% else %}
     shared
     {% endif %}
-    by <span><a href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></span></div>
+    by <span><a class="highlight-word" href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></span></div>
 {% empty %}
 <h2>No {{ org }}s are listed with the name {{ search }}</h2>
 {% endfor %}
