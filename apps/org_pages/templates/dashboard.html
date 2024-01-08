@@ -11,25 +11,25 @@ present in the desktop size. the mobile version is completely vertical -->
 {% block body %}
 <div class="info-body">
     <section class="text-body">
-        <div class="dashboard-text">
+        <div class="text-container">
             <h2>{{ org.username }}'s dashboard</h2>
-            <p>Here’s your non-profit’s dashboard! You can edit what you need, what you have to spare, and see some
-                basic information about your non-profit!</p>
-        </div>
-        <div class="dashboard-buttons">
-            <button id="open-edit-info" class="dashboard-button">Edit Org Info</button>
-            <dialog id="edit-info-modal">
-                {% include 'edit_info_modal.html' %}
-                <button id="default-close-edit-info">Close</button>
-            </dialog>
-            <button id="open-edit-account" class="dashboard-button"> Edit Account Info</button>
-            <dialog id="edit-account-modal">
-                {% include 'edit_account_info_modal.html' %}
-                <button id="default-close-edit-account">Close</button>
-            </dialog>
-            <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
+            <p2>Here’s your non-profit’s dashboard! You can edit what you need, what you have to spare, and see some
+                basic information about your non-profit!</p2>
         </div>
     </section>
+    <div class="dashboard-buttons">
+        <button id="open-edit-info" class="dashboard-button">Edit Org Info</button>
+        <dialog id="edit-info-modal">
+            {% include 'edit_info_modal.html' %}
+            <button id="default-close-edit-info">Close</button>
+        </dialog>
+        <button id="open-edit-account" class="dashboard-button"> Edit Account Info</button>
+        <dialog id="edit-account-modal">
+            {% include 'edit_account_info_modal.html' %}
+            <button id="default-close-edit-account">Close</button>
+        </dialog>
+        <button class="dashboard-button"><a href="{{ org.get_absolute_url }}">Check out your homepage!</a></button>
+    </div>
     <section class="items-container">
         <h2>Your needs</h2>
         <ul id="needs-items-dashboard" class="items-list">
@@ -53,15 +53,15 @@ present in the desktop size. the mobile version is completely vertical -->
             <div class="item" id="surplus-dashboard-delete-item-{{ item }}">{{item.count}} {{ item.units_description }}
                 of {{ item }}</div>
             {% empty %}
-                <h3 id="surplus-empty">You don't have any items listed!</h3>
+            <h3 id="surplus-empty">You don't have any items listed!</h3>
             {% endfor %}
         </ul>
-            <div class="button">
-                <button id="surplus-button">Edit your surplus</button>
-                <dialog id="surplus-modal">{% include 'edit_surplus_modal.html' %}</dialog>
-                <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
-            </div>
-        </section>
-    </div>
+        <div class="button">
+            <button id="surplus-button">Edit your surplus</button>
+            <dialog id="surplus-modal">{% include 'edit_surplus_modal.html' %}</dialog>
+            <img src="{% static 'edit_icon.svg' %}" alt="Edit button">
+        </div>
+    </section>
+</div>
 <script type="module" src="{% static 'dashboard.js' %}"></script>
 {% endblock %}

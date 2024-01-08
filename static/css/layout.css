@@ -96,6 +96,12 @@ p {
     border-radius: 5px;
 }
 
+p2 {
+  margin: 12px auto;
+  padding: 0 24px;
+  padding-bottom: 12px;
+}
+
 footer {
     display: flex;
     justify-content: space-around;
@@ -417,10 +423,11 @@ optgroup {
 /* for a body with a header and p elements */
 .text-body {
   display: flex;
+  background: var(--secondary);
   flex-direction: column;
   width: 85vw;
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: 50px auto;
+  border-radius: 5px;
 }
 
 .text-container {
@@ -437,4 +444,9 @@ h2 {
 
 .items-list-spacing {
   margin-bottom: 20px;
+}
+
+h3 {
+  margin: 12px auto;
+  font-weight: 500;
 }

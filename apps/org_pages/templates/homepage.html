@@ -13,20 +13,20 @@ present in the desktop size. the mobile version is completely vertical -->
         <section class="text-body">
             <div class="text-container">
                 <h2>{{ org.username }}</h2>
-                <p>{{ org_info.desc }}</p>
+                <p2>{{ org_info.desc }}</p2>
                 <h3>Address:</h3>
-                <p>{{ org_location.street_address }},
+                <p2>{{ org_location.street_address }},
                     {{ org_location.zip }},
                     {{ org_location.city }},
                     {{ org_location.region }}
-                </p>
+                </p2>
             </div>
         </section>
         <section class="items-container">
             <h2 class="highlight-word">Our needs</h2>
             <ul class="items-list items-list-spacing">
                 {% for item in wanted_org_items %}
-                    <div class="item">{{ item.count }} {{ item.description }} of {{ item.item_name }}</div>
+                    <div class="item">{{ item.count }} {{ item.unit_description }} of {{ item.item_name }}</div>
                 {% empty %}
             </ul>
                 <h2>This org doesn't have any needed items listed :(</h2>
@@ -35,8 +35,8 @@ present in the desktop size. the mobile version is completely vertical -->
         <section class="items-container">
             <h2 class="highlight-word">Our surplus</h2>
             <ul class="items-list items-list-spacing">
-                {% for items in shared_org_items %}
-                    <div class="item">{{ item.count }} {{ item.description }} of {{ item.item_name }}</div>
+                {% for item in shared_org_items %}
+                    <div class="item">{{ item.count }} {{ item.units_description }} of {{ item.item_name }}</div>
                 {% empty %}
             </ul>
                 <h2>This org doesn't have any wanted items listed :(</h2>
