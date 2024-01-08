@@ -3,4 +3,10 @@
         <span><a href="{{ org_info.get_absolute_url }}" class="highlight-word">{{ org_info.username }}:</a></span>
         Located in {{ org_info.orglocation.city }}, {{ org_info.orglocation.region }} 
     </div>
+    {% empty %}
+        {% if org == "org" %}
+            <h2>No orgs with the name {{ search }} were found</h2>
+        {% else %}
+            <h2>No orgs with the location {{ search }} were found</h2>
+        {% endif %}
 {% endfor %}

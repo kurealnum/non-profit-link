@@ -213,5 +213,23 @@ def search_non_profits(request):
 
 
 def search_non_profits_results(request):
-    orgs = None
-    return render(request, "search_non_profits_result.html", context={"orgs": orgs})
+    is_org = request.GET.get("org")
+    search = request.GET.get("search")
+
+    if is_org == "org":
+        orgs = Org.objects.filter(username__trigram_similar=search).select_related(
+            "orglocation"
+        )
+
+    else:
+        orgs = (
+            Org.objects.all()
+            .select_related("orglocation")
+            .filter(orglocation__region__trigram_similar=search)
+        )
+
+    return render(
+        request,
+        "search_non_profits_results.html",
+        context={"orgs": orgs, "search": search, "org": is_org},
+    )
