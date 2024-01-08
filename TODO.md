@@ -12,6 +12,8 @@ A lot of smaller TODOs will be located with a "# TODO" in files. You can use ext
 
 - Update page titles (the block title). I think a lot of them are incorrect.
 
+- Move all of these TODOs to GitHub issues
+
 - Create the frontend for accounts/search-non-profits/
 
 - Flesh out nonprofits/homepage/MYORGNAME/. Shouldn't take too much, there's not really any interactivity
