@@ -372,3 +372,35 @@ dialog .last-button {
     opacity: 0;
   }
 }
+
+.dropdown, .checkbox {
+  display: inline-block;
+  font-size: 14px;
+}
+
+#search-options {
+  gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: row;
+  margin: 20px 0;
+}
+
+#sort-by-dropdown {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: var(--secondary);
+  display: flex;
+  padding: 8px;
+  border-radius: 50px;
+  color: var(--text);
+  border: 0px;
+  font-family: "Poppins", "Arial";
+}
+
+optgroup {
+  font-family: "Poppins", "Arial";
+}

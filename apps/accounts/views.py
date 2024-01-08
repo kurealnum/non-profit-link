@@ -209,5 +209,9 @@ def register_user(request):
 
 def search_non_profits(request):
     orgs = Org.objects.all().select_related("orglocation")
-    print(orgs)
     return render(request, "search_non_profits.html", context={"orgs": orgs})
+
+
+def search_non_profits_results(request):
+    orgs = None
+    return render(request, "search_non_profits_result.html", context={"orgs": orgs})

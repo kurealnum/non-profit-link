@@ -7,11 +7,19 @@
 
 {% block body %}
 <h1 id="hero-title">Search all items</h1>
-<form>
-    <label for="search" class="search-bar">
-        <input type="text" name="search" placeholder="Search for an item...">
-        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
-    </label>
+<form hx-get="{% url 'search_non_profits_results' %}" hx-target="#search-results">
+    <div id="search-options" class="center-search-options">
+        <label for="search" class="search-bar">
+            <input type="text" name="search" placeholder="Search for an item...">
+            <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+        </label>
+        <select name="org" id="sort-by-dropdown" class="dropdown">
+            <optgroup label="Options">
+                <option value="location">By location</option>
+                <option value="org">By non-profit</option>
+            </optgroup>
+        </select>
+    </div>
 </form>
 
 <!-- yes everything here has a class relating to item, even though they aren't items... -->
