@@ -62,7 +62,8 @@ def homepage(request, org_name):
     org_location = OrgLocation.objects.get(org=org)
     org_contact_info = OrgContactInfo.objects.get(org=org)
     org_info = OrgInfo.objects.get(org=org)
-    org_items = Item.objects.filter(org=org)
+    wanted_org_items = Item.objects.filter(org=org, want=True)
+    shared_org_items = Item.objects.filter(org=org, want=False)
 
     return render(
         request,
@@ -72,7 +73,8 @@ def homepage(request, org_name):
             "org_location": org_location,
             "org_contact_info": org_contact_info,
             "org_info": org_info,
-            "org_items": org_items,
+            "wanted_org_items": wanted_org_items,
+            "shared_org_items": shared_org_items,
         },
     )
 

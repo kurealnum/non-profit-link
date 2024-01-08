@@ -3,31 +3,42 @@
 {% block head-info %}
     <link rel="stylesheet" href="{% static 'homepage.css' %}">
 {% endblock %}
-{% block title %} Dashboard {% endblock %}
+{% block title %} {{ org.username }}'s Homepage {% endblock %}
 
 <!-- just for future notice, the left, mid, and right of dashboard are only
 present in the desktop size. the mobile version is completely vertical -->
 
 {% block body %}
-    <section id="left-of-dashboard">
-        <h2>{{ org.username }}</h2>
-        <p>{{ org_info.desc }}</p>
-        <h3>Address:</h3>
-        <p>{{ org_location.street_address }}, 
-            {{ org_location.zip }}, 
-            {{ org_location.city }}, 
-            {{ org_location.region }}
-        </p>
-    </section>
-    <section class="mid-of-dashboard">
-        <ul class="items-list">
-            {% for item in org_items %}
-                {{ item }}
-            {% empty %}
-        </ul>
-            <h2>This org doesn't have any items listed :(</h2>
-        {% endfor %}
-    </section>
-    <section class="right-of-dashboard">
-    </section>
+    <div class="info-body">
+        <section class="left-of-dashboard">
+            <h2>{{ org.username }}</h2>
+            <p>{{ org_info.desc }}</p>
+            <h3>Address:</h3>
+            <p>{{ org_location.street_address }},
+                {{ org_location.zip }},
+                {{ org_location.city }},
+                {{ org_location.region }}
+            </p>
+        </section>
+        <section class="items-container">
+            <h2 class="highlight-word">Our needs</h2>
+            <ul class="items-list">
+                {% for item in wanted_org_items %}
+                    {{ item }}
+                {% empty %}
+            </ul>
+                <h2>This org doesn't have any needed items listed :(</h2>
+            {% endfor %}
+        </section>
+        <section class="items-container">
+            <h2 class="highlight-word">Our surplus</h2>
+            <ul class="items-list">
+                {% for items in shared_org_items %}
+                    {{ item }}
+                {% empty %}
+            </ul>
+                <h2>This org doesn't have any wanted items listed :(</h2>
+            {% endfor %}
+        </section>
+    </div>
 {% endblock %}

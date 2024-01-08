@@ -39,15 +39,6 @@ h2 {
   gap: 10px;
 }
 
-.dashboard-body {
-  background: var(--primary);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 0 16px;
-  margin-bottom: 40px;
-}
-
 .item p {
   margin: 0;
   padding: 0;
