@@ -413,3 +413,28 @@ optgroup {
   margin: 0 16px;
   margin-bottom: 40px;
 }
+
+/* for a body with a header and p elements */
+.text-body {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 25px;
+  font-size: 28px;
+}
+
+.items-list-spacing {
+  margin-bottom: 20px;
+}

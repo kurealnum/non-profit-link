@@ -1,18 +1,3 @@
-.left-of-dashboard {
-  display: flex;
-  flex-direction: column;
-  width: 85vw;
-  margin: 0 auto;
-  margin-bottom: 50px;
-}
-
-h2 {
-  margin: 0 auto;
-  text-align: center;
-  padding-top: 25px;
-  font-size: 28px;
-}
-
 .left-of-dashboard p {
   background: none;
   margin: 0 auto;
@@ -23,7 +8,7 @@ h2 {
   margin: 0 auto;
 }
 
-.dashboard-text {
+.dashboard-text, .dashboard-text p {
   background-color: var(--secondary);
   margin-top: 20px;
   border-radius: 5px;
