@@ -17,8 +17,10 @@
 </div>
 <div class="homepage-search">
     <div class="button">
-        <button>Search non-profits</button>
-        <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+        <a href="{%url 'search_non_profits' %}">
+            <button>Search non-profits</button>
+            <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+        </a>
     </div>
     <section class="items-container">
         <div class="items-list normal-margin">
@@ -30,8 +32,10 @@
 </div>
 <div class="homepage-search last-search-result">
     <div class="button">
-        <button>Search items</button>
-        <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+        <a href="{% url 'search_items' %}">
+           <button >Search items</button>
+           <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
+        </a>
     </div>
     <section class="items-container">
         <ul class="items-list normal-margin">
