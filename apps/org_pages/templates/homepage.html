@@ -1,9 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block head-info %}
-    <link rel="stylesheet" href="{% static 'homepage.css' %}">
-{% endblock %}
-{% block title %} {{ org.username }}'s Homepage {% endblock %}
+{% block title %} Dashboard {% endblock %}
 
 <!-- just for future notice, the left, mid, and right of dashboard are only
 present in the desktop size. the mobile version is completely vertical -->
@@ -12,16 +9,23 @@ present in the desktop size. the mobile version is completely vertical -->
     <div class="info-body">
         <section class="text-body">
             <div class="text-container">
-                <h2>{{ org.username }}</h2>
+                <h2 class="highlight-word">{{ org.username }}</h2>
                 <p2>{{ org_info.desc }}</p2>
-                <h3>Address:</h3>
-                <p2>{{ org_location.street_address }},
-                    {{ org_location.zip }},
-                    {{ org_location.city }},
-                    {{ org_location.region }}
-                </p2>
+                <div id="specific-org-info-wrapper">
+                    <div id="specific-org-info-container">
+                        <p3>{{ org_contact_info.phone }}</p3>
+                        <p3>{{ org_contact_info.email }}</p3>
+                        <p3><a class="highlight-word" href="{{ org_info.website }}">Website</a></p3>
+                    </div>
+                    <address>
+                        {{ org_location.street_address }},
+                        {{ org_location.zip }},
+                        {{ org_location.city }},
+                        {{ org_location.region }}
+                    </address>
+                </div>
             </div>
-        </section>
+        </section> 
         <section class="items-container">
             <h2 class="highlight-word">Our needs</h2>
             <ul class="items-list items-list-spacing">

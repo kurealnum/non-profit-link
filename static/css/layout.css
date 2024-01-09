@@ -100,6 +100,7 @@ p2 {
   margin: 12px auto;
   padding: 0 24px;
   padding-bottom: 12px;
+  font-weight: 100;
 }
 
 footer {
@@ -125,8 +126,8 @@ footer a {
 
 footer img {
     color: var(--primary);
-    width: 75%;
-    height: 75%;
+    width: 65%;
+    height: 65%;
 }
 
 @media (max-width: 500px) {
@@ -433,6 +434,7 @@ optgroup {
 .text-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 25px;
 }
 
 h2 {
@@ -446,7 +448,43 @@ h2 {
   margin-bottom: 20px;
 }
 
+.extra-bottom-margin {
+  margin-bottom: 50px;
+}
+
+.custom-button-spacing {
+  width: 40vw;
+}
+
 h3 {
   margin: 12px auto;
   font-weight: 500;
+}
+
+#specific-org-info-container {
+  padding: 20px;
+  padding-top: 0;
+  display: flex;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+#specific-org-info-wrapper {
+  background: var(--background);
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+p3 {
+  font-size: 12px;
+  font-weight: 100;
+  display: block;
+}
+
+address {
+  font-size: 12px;
+  font-weight: 100;
+  margin: 0 auto;
 }
