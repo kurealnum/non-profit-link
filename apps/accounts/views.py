@@ -1,21 +1,11 @@
-from django.http import QueryDict
 from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.decorators import login_required
-from django.forms import ValidationError
-from django.shortcuts import redirect, render, HttpResponse
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from django.http import QueryDict
+from django.shortcuts import redirect, render
 
+from .helpers import add_errors_to_password
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
-
-from .serializers import (
-    OrgContactInfoSerializer,
-    OrgInfoSerializer,
-    OrgLocationSerializer,
-)
 
 from .forms import (
     LoginRegisterForm,
@@ -25,11 +15,15 @@ from .forms import (
     OrgLocationForm,
 )
 
+# constants
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
+EDIT_ORG_INFO_MODAL = "edit_info_modal.html"
+EDIT_ACCOUNT_INFO_MODAL = "edit_account_info_modal.html"
+SEARCH_NON_PROFITS_TEMPLATE = "search_non_profits.html"
+SEARCH_NON_PROFITS_RESULTS = "search_non_profits_results.html"
 
 
-# I know this function is messy. Not sure how to make it any cleaner
 @login_required  # type: ignore
 def edit_org_info(request):
     if request.method == "PUT":
@@ -42,24 +36,22 @@ def edit_org_info(request):
         contact_form = OrgContactInfoForm(request_put, instance=existing_contact_form)
         info_form = OrgInfoForm(request_put, instance=existing_info_form)
         location_form = OrgLocationForm(request_put, instance=existing_location_form)
+
         edit_org_forms = [contact_form, info_form, location_form]
         status = 400
 
-        if (
-            contact_form.is_valid()
-            and info_form.is_valid()
-            and location_form.is_valid()
-        ):
+        if all([form.is_valid() for form in edit_org_forms]):
             for form in edit_org_forms:
                 new_instance = form.save(commit=False)
                 new_instance.org = request.user
                 new_instance.save()
 
+            # status defaults to 400, but if everything is valid, then set it to 201
             status = 201
 
         return render(
             request,
-            "edit_info_modal.html",
+            EDIT_ORG_INFO_MODAL,
             context={"edit_org_forms": edit_org_forms},
             status=status,
         )
@@ -73,28 +65,25 @@ def edit_account_info(request):
         status = 400
 
         if org_form.is_valid():
-            # do this so we can have custom password field in OrgForm
             cleaned_org_form = org_form.cleaned_data
             cur_user = org_form.save(commit=False)
-            password = cleaned_org_form["password"]
-            confirm_password = cleaned_org_form["confirm_password"]
-            try:
-                validate_password(password)
-            except ValidationError:
-                org_form.add_error(
-                    "password", "Your password does not meet the requirements!"
-                )
-            if password != confirm_password:
-                org_form.add_error("password", "Your passwords do not match!")
 
-            if not org_form.errors:
+            is_pass_invalid = add_errors_to_password(
+                cleaned_org_form["password"], cleaned_org_form["confirm_password"]
+            )
+
+            if is_pass_invalid:
+                org_form.add_error("password", is_pass_invalid)
+
+            else:
+                # status defaults to 400, but if everything is valid, then set it to 201
                 cur_user.set_password(cleaned_org_form["password"])
                 cur_user.save()
                 status = 201
 
         response = render(
             request,
-            "edit_account_info_modal.html",
+            EDIT_ACCOUNT_INFO_MODAL,
             context={"edit_info_form": org_form},
             status=status,
         )
@@ -155,38 +144,18 @@ def register_user(request):
 
     # if the user submitted the form and the form is valid
     if request.method == "POST" and user_info_form.is_valid():
-        # validating forms
         validated_forms_count = [form.is_valid() for form in input_forms]
-
-        # check if password is valid
         cleaned_user_info_form = user_info_form.cleaned_data
 
-        # attempt to validate the password
-        try:
-            validate_password(cleaned_user_info_form["password"])
-        except ValidationError:
-            user_info_form.add_error(
-                "password", "Your password does not meet the requirements!"
-            )
-            return render(
-                request,
-                REGISTER_FORM,
-                {"forms": [user_info_form] + input_forms},
-            )
+        is_pass_invalid = add_errors_to_password(
+            cleaned_user_info_form["password"],
+            cleaned_user_info_form["confirm_password"],
+        )
 
-        # check if password = confirm password
-        if (
-            cleaned_user_info_form["password"]
-            != cleaned_user_info_form["confirm_password"]
-        ):
-            user_info_form.add_error("password", "Your passwords do not match!")
-            return render(
-                request,
-                REGISTER_FORM,
-                {"forms": [user_info_form] + input_forms},
-            )
+        if is_pass_invalid:
+            user_info_form.add_error("password", is_pass_invalid)
 
-        if all(validated_forms_count):
+        if all(validated_forms_count) and not is_pass_invalid:
             # inital save on the new user
             new_user = user_info_form.save(commit=False)
             new_user.set_password(cleaned_user_info_form["password"])
@@ -209,7 +178,7 @@ def register_user(request):
 
 def search_non_profits(request):
     orgs = Org.objects.all().select_related("orglocation")
-    return render(request, "search_non_profits.html", context={"orgs": orgs})
+    return render(request, SEARCH_NON_PROFITS_TEMPLATE, context={"orgs": orgs})
 
 
 def search_non_profits_results(request):
@@ -230,6 +199,6 @@ def search_non_profits_results(request):
 
     return render(
         request,
-        "search_non_profits_results.html",
+        SEARCH_NON_PROFITS_RESULTS,
         context={"orgs": orgs, "search": search, "org": is_org},
     )
