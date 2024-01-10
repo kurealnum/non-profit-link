@@ -46,4 +46,5 @@ See [this](#so-react). Django doesn't play well with frontend JS frameworks. The
 - **diagrams**: Draw.io files. Just a database diagram at the moment
 - **static**: Static files
 - **project**: Project folder for Django
+- **tests**: Unit tests for Django
 - **templates**: Templates for Django
