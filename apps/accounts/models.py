@@ -9,7 +9,7 @@ class Org(AbstractUser):
         unique=True,
         max_length=100,
         null=False,
-        error_messages={"unique": "Orginization with this name already exists"},
+        error_messages={"unique": "Organization with this name already exists"},
         verbose_name="org name",
     )
 
