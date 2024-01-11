@@ -1,7 +1,7 @@
 from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import QueryDict
+from django.http import QueryDict, HttpResponse
 from django.shortcuts import redirect, render
 
 from .helpers import add_errors_to_password
@@ -55,6 +55,8 @@ def edit_org_info(request):
             context={"edit_org_forms": edit_org_forms},
             status=status,
         )
+
+    return HttpResponse(status=405)
 
 
 @login_required  # type: ignore
