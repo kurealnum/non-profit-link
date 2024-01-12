@@ -99,6 +99,8 @@ def edit_account_info(request):
 
 
 def login_user(request):
+    login_register_form = LoginRegisterForm()
+
     if request.method == "POST":
         login_register_form = LoginRegisterForm(request.POST)
 
@@ -120,13 +122,8 @@ def login_user(request):
             # else error with the form
             else:
                 login_register_form.add_error(None, "Username or password is incorrect")
-                return render(request, LOGIN_FORM, {"form": login_register_form})
 
-    # else is a GET request
-    else:
-        login_register_form = LoginRegisterForm()
-
-        return render(request, LOGIN_FORM, {"form": login_register_form})
+    return render(request, LOGIN_FORM, {"form": login_register_form})
 
 
 def logout_user(request):
