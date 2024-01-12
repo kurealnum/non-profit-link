@@ -95,6 +95,8 @@ def edit_account_info(request):
 
         return response
 
+    return HttpResponse(status=405)
+
 
 def login_user(request):
     if request.method == "POST":
