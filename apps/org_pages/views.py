@@ -23,13 +23,25 @@ def dashboard(request):
     org_form_initial_data = {"username": username}
     contact_form_initial_data = OrgContactInfo.objects.filter(org=org).values(
         "email", "phone"
-    )[0]
-    info_form_initial_data = OrgInfo.objects.filter(org=org).values("desc", "website")[
-        0
-    ]
+    )
+    if contact_form_initial_data:
+        contact_form_initial_data = contact_form_initial_data[0]
+    else:
+        contact_form_initial_data = None
+    info_form_initial_data = OrgInfo.objects.filter(org=org).values("desc", "website")
+
+    if info_form_initial_data:
+        info_form_initial_data = info_form_initial_data[0]
+    else:
+        info_form_initial_data = None
+
     location_form_initial_data = OrgLocation.objects.filter(org=org).values(
         "country", "region", "zip", "city", "street_address"
-    )[0]
+    )
+    if location_form_initial_data:
+        location_form_initial_data = location_form_initial_data[0]
+    else:
+        location_form_initial_data = None
 
     # adding the default values
     edit_org_forms = [

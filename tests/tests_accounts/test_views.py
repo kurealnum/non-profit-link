@@ -120,17 +120,24 @@ class LoginUserTests(TestCase):
 
     def test_method_request_type(self):
         # tests to make sure the method returns the appropriate value for the request type
-        # TODO possibly differnet response for redirect?
         get_response = self.client.get(self.url)
-        post_response = self.client.post(self.url)
-        expected_get_response = 201
-        expected_post_response = 201
+        post_response_no_credentials = self.client.post(self.url)
+        expected_get_response = 200
+        expected_post_response_no_credentials = 200
         self.assertEqual(get_response.status_code, expected_get_response)
-        self.assertEqual(post_response.status_code, expected_post_response)
+        self.assertEqual(
+            post_response_no_credentials.status_code,
+            expected_post_response_no_credentials,
+        )
+
+    def test_redirects_on_correct_credentials(self):
+        credentials = {"username": "MyOrg", "password": "THISismyAMAZINGPa$$sword"}
+        post_response = self.client.post(self.url, data=credentials)
+        expected_url = "/nonprofits/dashboard/"
+        self.assertRedirects(post_response, expected_url)
 
     def test_is_correct_tempate(self):
         # checks if the correct template is being used
-        # TODO add checks for redirect
         response = self.client.get(self.url)
         expected_template = "login.html"
         self.assertTemplateUsed(response, expected_template)
@@ -140,15 +147,6 @@ class LoginUserTests(TestCase):
         response = self.client.get(self.url)
         expected_response = "form"
         self.assertIn(expected_response, response.context)
-
-    def test_redirect_if_not_logged_in(self):
-        # checks that the redirect is working
-        # TODO this view is not a login required view, so
-        # we just need to check that it redirects on successful login
-        test_client = Client()
-        response = test_client.get(self.url)
-        expected_url = "/accounts/login/?next=/accounts/edit-account-info/"
-        self.assertRedirects(response, expected_url)
 
     def test_context_content(self):
         # check if the *content* of the context is correct
