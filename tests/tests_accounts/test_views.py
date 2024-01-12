@@ -131,6 +131,7 @@ class LoginUserTests(TestCase):
         )
 
     def test_redirects_on_correct_credentials(self):
+        # tests if the view redirects the user when they have the correct credentials
         credentials = {"username": "MyOrg", "password": "THISismyAMAZINGPa$$sword"}
         post_response = self.client.post(self.url, data=credentials)
         expected_url = "/nonprofits/dashboard/"
@@ -154,3 +155,61 @@ class LoginUserTests(TestCase):
         expected_result = LoginRegisterForm
         result = response.context["form"].__class__
         self.assertEqual(result, expected_result)
+
+
+class RegisterUserTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse("register")
+        user = Org.objects.create(username="MyOrg")
+        user.set_password("THISismyAMAZINGPa$$sword")
+        user.save()
+        self.client.login(username="MyOrg", password="THISismyAMAZINGPa$$sword")
+
+    def test_valid_response_status(self):
+        post_response = self.client.get(self.url)
+        get_response = self.client.get(self.url)
+        expected_post_response = 200
+        expected_get_response = 200
+        self.assertEqual(expected_post_response, post_response.status_code)
+        self.assertEqual(expected_get_response, get_response.status_code)
+
+    def test_is_correct_tempate(self):
+        # checks if the correct template is being used
+        response = self.client.get(self.url)
+        expected_template = "register.html"
+        self.assertTemplateUsed(response, expected_template)
+
+    def test_correct_context(self):
+        # checks if the context is correct
+        response = self.client.get(self.url)
+        expected_response = "forms"
+        self.assertIn(expected_response, response.context)
+
+    def test_context_content(self):
+        # check if the *content* of the context is correct
+        response = self.client.get(self.url)
+        expected_result = [OrgForm, OrgLocationForm, OrgContactInfoForm, OrgInfoForm]
+        result = [i.__class__ for i in response.context["forms"]]
+        self.assertEqual(result, expected_result)
+
+    def test_redirect(self):
+        # tests that the redirect works when the register information is correct
+        test_client = Client()
+        register_data = {
+            "username": "TestOrg",
+            "password": "myAWESOME1133!@",
+            "confirm_password": "myAWESOME1133!@",
+            "country": "USA",
+            "region": "Florida",
+            "zip": 12345,
+            "city": "Florida man",
+            "street_address": "12345 Awesome Lane",
+            "phone": 123456,
+            "email": "myemail@gmail.com",
+            "desc": "We are awesome!",
+            "website": "google.com",
+        }
+        response = test_client.post(self.url, data=register_data)
+        expected_redirect = reverse("login")
+        self.assertRedirects(response, expected_redirect)
