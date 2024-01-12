@@ -1,4 +1,5 @@
 from django.test import TestCase, Client
+from django.db.models.query import QuerySet
 from django.urls import reverse
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 from apps.accounts.forms import (
@@ -213,3 +214,33 @@ class RegisterUserTests(TestCase):
         response = test_client.post(self.url, data=register_data)
         expected_redirect = reverse("login")
         self.assertRedirects(response, expected_redirect)
+
+
+class SearchNonProfitsTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse("search_non_profits")
+
+    def test_valid_response_status(self):
+        # tests that the response status code being returned is correct
+        response = self.client.get(self.url)
+        expected_response = 200
+        self.assertEqual(response.status_code, expected_response)
+
+    def test_correct_tempate(self):
+        # tests that the correct template is being used to render
+        response = self.client.get(self.url)
+        expected_template = "search_non_profits.html"
+        self.assertTemplateUsed(response, expected_template)
+
+    def test_correct_context(self):
+        # tests that context is correct
+        response = self.client.get(self.url)
+        expected_context = "orgs"
+        self.assertIn(expected_context, response.context)
+
+    def test_context_content(self):
+        # check if the *content* of the context is correct
+        response = self.client.get(self.url)
+        expected_content = QuerySet[OrgLocation]
+        self.assertEqual(type(response.context["orgs"]), expected_content)
