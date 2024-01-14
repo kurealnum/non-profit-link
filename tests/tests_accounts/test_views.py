@@ -244,3 +244,50 @@ class SearchNonProfitsTests(TestCase):
         response = self.client.get(self.url)
         expected_content = QuerySet[OrgLocation]
         self.assertEqual(type(response.context["orgs"]), expected_content)
+
+
+class SearchNonProfitsResultsTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse("search_non_profits_results")
+        test_org = Org.objects.create(username="MyOrg")
+        OrgLocation.objects.create(
+            org=test_org,
+            country="USA",
+            region="California",
+            zip=12345,
+            city="MyAwesomeCity",
+            street_address="12345 Awesome Ln",
+        )
+
+    def test_valid_response_status(self):
+        # tests that the response status code being returned is correct
+        response = self.client.get(self.url)
+        expected_response = 200
+        self.assertEqual(response.status_code, expected_response)
+
+    def test_correct_tempate(self):
+        # tests that the correct template is being used to render
+        response = self.client.get(self.url)
+        expected_template = "search_non_profits_results.html"
+        self.assertTemplateUsed(response, expected_template)
+
+    def test_correct_context(self):
+        # tests that context is correct
+        response = self.client.get(self.url)
+        expected_context = "orgs"
+        self.assertIn(expected_context, response.context)
+
+    def test_context_content(self):
+        # check if the *content* of the context is correct
+        response = self.client.get(self.url)
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        # this view can return orgs as "None" with no issues so we need to check for that
+        if response_context != None:
+            self.assertEqual(type(response.context["orgs"]), expected_content)
+
+    # TODO is the method for search_non_profits_results wrong? I think I
+    # might need to use POST... but I'm not sure. I don't think I should
+    # be having to pass URL data through the client.

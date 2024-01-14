@@ -186,12 +186,14 @@ def search_non_profits_results(request):
     is_org = request.GET.get("org")
     search = request.GET.get("search")
 
+    orgs = None
+
     if is_org == "org":
         orgs = Org.objects.filter(username__trigram_similar=search).select_related(
             "orglocation"
         )
 
-    else:
+    if is_org == "location":
         orgs = (
             Org.objects.all()
             .select_related("orglocation")
