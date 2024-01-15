@@ -8,3 +8,6 @@ __pycache__/
 flask_session/
 *.sqlite3
 node_modules/
+*.bat
+*.ps1
+*.sh
