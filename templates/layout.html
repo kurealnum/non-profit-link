@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'layout.css' %}">
   <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10"
+    integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+    crossorigin="anonymous"></script>
   <script>
     /*to prevent Firefox FOUC, this must be here*/
     let FF_FOUC_FIX;
@@ -16,33 +18,37 @@
   <title>Non-Profit Link - {% block title %}{% endblock %}</title>
   {% block head-info %}{% endblock %}
 </head>
-  <header>
-    <nav>
-      <ul>
-        <li class="nav-title"><a href="{% url 'index' %}">Non-Profit Link</a></li>
-        <div class="nav-links">
-          {% if request.user.is_authenticated %}
-          <li><a href="{% url 'dashboard' %}">My non-profit</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">My non-profit</a></li>
-          {% endif %}
-          <li><a href="{% url 'search_items' %}">Contributable items</a></li>
-          <li class="desktop"><a href="{% url 'search_non_profits' %}">Non-profits</a></li>
-          {% if request.user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% endif %}
-        </div>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <ul>
+      <li class="nav-title"><a href="{% url 'index' %}">Non-Profit Link</a></li>
+      <div class="nav-links">
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}">My non-profit</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">My non-profit</a></li>
+        {% endif %}
+        <li><a href="{% url 'search_items' %}">Contributable items</a></li>
+        <li class="desktop"><a href="{% url 'search_non_profits' %}">Non-profits</a></li>
+        {% if request.user.is_authenticated %}
+        <form id="logoutForm" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <li><a href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a></li>
+        </form>
 
-  {% if messages %}
-  <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-  </ul>
-  {% endif %}
+        {% endif %}
+      </div>
+    </ul>
+  </nav>
+</header>
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <body>
   {% block body %}{% endblock %}
