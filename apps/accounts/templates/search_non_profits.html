@@ -7,7 +7,8 @@
 
 {% block body %}
 <h1 id="hero-title">Search all organizations</h1>
-<form hx-get="{% url 'search_non_profits_results' %}" hx-target="#search-results">
+<form hx-post="{% url 'search_non_profits_results' %}" hx-target="#search-results">
+	{% csrf_token %}
     <div id="search-options" class="center-search-options">
         <label for="search" class="search-bar">
             <input type="text" name="search" placeholder="Search for an item...">

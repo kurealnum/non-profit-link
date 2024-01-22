@@ -27,7 +27,7 @@ SEARCH_NON_PROFITS_RESULTS = "search_non_profits_results.html"
 @login_required  # type: ignore
 def edit_org_info(request):
     if request.method == "PUT":
-        request_put = QueryDict(request.body)
+        request_put = QueryDict(request.body) #type: ignore
         org = request.user.id
         existing_contact_form = OrgContactInfo.objects.get(org=org)
         existing_info_form = OrgInfo.objects.get(org=org)
@@ -62,7 +62,7 @@ def edit_org_info(request):
 @login_required  # type: ignore
 def edit_account_info(request):
     if request.method == "PUT":
-        request_put = QueryDict(request.body)
+        request_put = QueryDict(request.body) # type: ignore
         org_form = OrgForm(request_put, instance=request.user)
         status = 400
 
@@ -183,8 +183,8 @@ def search_non_profits(request):
 
 
 def search_non_profits_results(request):
-    is_org = request.GET.get("org")
-    search = request.GET.get("search")
+    is_org = request.POST.get("org")
+    search = request.POST.get("search")
 
     orgs = None
 
