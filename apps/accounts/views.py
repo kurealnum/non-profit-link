@@ -111,7 +111,7 @@ def login_user(request):
             # inputted data
             username = login_register["username"]
             password = login_register["password"]
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
 
             # if authenticate returns a user object, the user is valid
             if user:
