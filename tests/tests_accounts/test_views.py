@@ -1,4 +1,6 @@
 from django.test import TestCase, Client
+from django.db.migrations import Migration
+from django.contrib.postgres.operations import TrigramExtension
 from django.db.models.query import QuerySet
 from django.urls import reverse
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
@@ -228,6 +230,7 @@ class SearchNonProfitsTests(TestCase):
 
 class SearchNonProfitsResultsTests(TestCase):
     def setUp(self):
+        TrigramExtension()
         self.client = Client()
         self.url = reverse("search_non_profits_results")
         test_org = Org.objects.create(username="MyOrg")
