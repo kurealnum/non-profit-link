@@ -58,7 +58,7 @@ class EditOrgInfoTests(TestCase):
         expected_result = [OrgContactInfoForm, OrgInfoForm, OrgLocationForm]
         result = [i.__class__ for i in response.context["edit_org_forms"]]
         self.assertEqual(result, expected_result)
-        
+
 
 class EditAccountInfoTests(TestCase):
     def setUp(self):
@@ -251,4 +251,3 @@ class SearchNonProfitsResultsTests(TestCase):
         # this view can return orgs as "None" with no issues so we need to check for that
         if response_context != None:
             self.assertEqual(type(response.context["orgs"]), expected_content)
-

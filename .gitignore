@@ -12,3 +12,4 @@ node_modules/
 *.ps1
 *.sh
 htmlcov/
+.coverage
