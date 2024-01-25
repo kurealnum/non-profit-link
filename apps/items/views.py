@@ -57,6 +57,7 @@ def search_items(request):
     return render(request, "search_items.html", context={"all_items": all_items})
 
 
+# TODO: make me login_required
 # any endpoints that take information from the request itself
 class RequestDataApiView(APIView):
     def post(self, request):
