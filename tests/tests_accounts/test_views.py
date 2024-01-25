@@ -212,5 +212,6 @@ class SearchNonProfitsResultsTests(TestCase):
         response_context = response.context["orgs"]
         expected_content = QuerySet[OrgLocation]
 
-        # this view can return orgs as "None" with no issues so we need to check for that
-        self.assertEqual(type(response.context["orgs"]), expected_content)
+        self.assertTrue(
+            response_context == None or type(response_context) == expected_content
+        )
