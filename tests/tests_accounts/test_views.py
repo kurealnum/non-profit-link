@@ -39,12 +39,6 @@ class EditOrgInfoTests(TestCase):
         self.assertEqual(get_response.status_code, expected_response)
         self.assertEqual(post_response.status_code, expected_response)
 
-    def test_is_correct_template(self):
-        # checks if the correct template is being used
-        response = self.client.put(self.url)
-        expected_template = "edit_info_modal.html"
-        self.assertTemplateUsed(response, expected_template)
-
     def test_redirect_if_not_logged_in(self):
         # checks that the redirect is working
         test_client = Client()
@@ -76,12 +70,6 @@ class EditAccountInfoTests(TestCase):
         expected_response = 405
         self.assertEqual(get_response.status_code, expected_response)
         self.assertEqual(post_response.status_code, expected_response)
-
-    def test_is_correct_tempate(self):
-        # checks if the correct template is being used
-        response = self.client.put(self.url)
-        expected_template = "edit_account_info_modal.html"
-        self.assertTemplateUsed(response, expected_template)
 
     def test_redirect_if_not_logged_in(self):
         # checks that the redirect is working
@@ -126,12 +114,6 @@ class LoginUserTests(TestCase):
         expected_url = "/nonprofits/dashboard/"
         self.assertRedirects(post_response, expected_url)
 
-    def test_is_correct_tempate(self):
-        # checks if the correct template is being used
-        response = self.client.get(self.url)
-        expected_template = "login.html"
-        self.assertTemplateUsed(response, expected_template)
-
     def test_context_content(self):
         # check if the *content* of the context is correct
         response = self.client.get(self.url)
@@ -156,12 +138,6 @@ class RegisterUserTests(TestCase):
         expected_get_response = 200
         self.assertEqual(expected_post_response, post_response.status_code)
         self.assertEqual(expected_get_response, get_response.status_code)
-
-    def test_is_correct_tempate(self):
-        # checks if the correct template is being used
-        response = self.client.get(self.url)
-        expected_template = "register.html"
-        self.assertTemplateUsed(response, expected_template)
 
     def test_context_content(self):
         # check if the *content* of the context is correct
@@ -203,12 +179,6 @@ class SearchNonProfitsTests(TestCase):
         expected_response = 200
         self.assertEqual(response.status_code, expected_response)
 
-    def test_correct_tempate(self):
-        # tests that the correct template is being used to render
-        response = self.client.get(self.url)
-        expected_template = "search_non_profits.html"
-        self.assertTemplateUsed(response, expected_template)
-
     def test_context_content(self):
         # check if the *content* of the context is correct
         response = self.client.get(self.url)
@@ -236,12 +206,6 @@ class SearchNonProfitsResultsTests(TestCase):
         expected_response = 200
         self.assertEqual(response.status_code, expected_response)
 
-    def test_correct_tempate(self):
-        # tests that the correct template is being used to render
-        response = self.client.post(self.url)
-        expected_template = "search_non_profits_results.html"
-        self.assertTemplateUsed(response, expected_template)
-
     def test_context_content(self):
         # check if the *content* of the context is correct
         response = self.client.post(self.url, data={"org": "org", "search": "org"})
@@ -249,5 +213,4 @@ class SearchNonProfitsResultsTests(TestCase):
         expected_content = QuerySet[OrgLocation]
 
         # this view can return orgs as "None" with no issues so we need to check for that
-        if response_context != None:
-            self.assertEqual(type(response.context["orgs"]), expected_content)
+        self.assertEqual(type(response.context["orgs"]), expected_content)

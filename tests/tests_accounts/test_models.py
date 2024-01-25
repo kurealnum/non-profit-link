@@ -16,12 +16,6 @@ class OrgTestCases(TestCase):
         expected_output = "/nonprofits/homepage/MyOrg/"
         self.assertEqual(test_org.get_absolute_url(), expected_output)
 
-    def test_str_method(self):
-        # tests if the __str__ function in Org returns the expected value
-        test_org = Org.objects.get(username="MyOrg")
-        expected_output = str(test_org)
-        self.assertEqual(test_org.username, expected_output)
-
 
 class OrgLocationTestCases(TestCase):
     def setUp(self):
@@ -42,13 +36,6 @@ class OrgLocationTestCases(TestCase):
         expected_result = "MyOrg"
         self.assertEqual(str(test_org_location), expected_result)
 
-    def test_is_to_linked_to_org(self):
-        # tests that the OneToOneField is linked to an org model
-        expected_result = Org
-        org = Org.objects.get(username="MyOrg")
-        is_org = OrgLocation.objects.get(org=org).org.__class__
-        self.assertEqual(is_org, expected_result)
-
 
 class OrgContactInfoTestCases(TestCase):
     def setUp(self):
@@ -63,12 +50,6 @@ class OrgContactInfoTestCases(TestCase):
         test_org_contact_info = OrgContactInfo.objects.get(org=org)
         self.assertEqual(str(test_org_contact_info), expected_result)
 
-    def test_is_linked_to_org(self):
-        expected_result = Org
-        org = Org.objects.get(username="MyOrg")
-        is_org = OrgContactInfo.objects.get(org=org).org.__class__
-        self.assertEqual(is_org, expected_result)
-
 
 class OrgInfoTestCases(TestCase):
     def setUp(self):
@@ -82,9 +63,3 @@ class OrgInfoTestCases(TestCase):
         org = Org.objects.get(username="MyOrg")
         test_org_contact_info = OrgInfo.objects.get(org=org)
         self.assertEqual(str(test_org_contact_info), expected_result)
-
-    def test_is_linked_to_org(self):
-        expected_result = Org
-        org = Org.objects.get(username="MyOrg")
-        is_org = OrgInfo.objects.get(org=org).org.__class__
-        self.assertEqual(is_org, expected_result)

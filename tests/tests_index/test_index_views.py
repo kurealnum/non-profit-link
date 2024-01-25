@@ -4,8 +4,8 @@ from apps.items.models import Item
 from apps.accounts.models import Org, OrgLocation
 
 
-class IndexTest(TestCase):
-    def setUp(self) -> None:
+class IndexTestCase(TestCase):
+    def setUp(self):
         self.client = Client()
         self.url = reverse("index")
 
@@ -22,7 +22,7 @@ class IndexTest(TestCase):
                 street_address=f"street{i}",
             )
 
-    # yes, these two methods should proably return model instances
+    # yes, these two methods should probably return model instances
     def test_items_return(self):
         # tests that the 'top_5_items' key in the context returns the correct stuff
         response = self.client.get(self.url)
