@@ -127,12 +127,6 @@ def login_user(request):
     return render(request, LOGIN_FORM, {"form": login_register_form})
 
 
-def logout_user(request):
-    # super simple view :)
-    logout(request)
-
-    return redirect("/")
-
 
 def register_user(request):
     user_info_form = OrgForm(request.POST or None)
