@@ -27,7 +27,7 @@ SEARCH_NON_PROFITS_RESULTS = "search_non_profits_results.html"
 @login_required  # type: ignore
 def edit_org_info(request):
     if request.method == "PUT":
-        request_put = QueryDict(request.body) #type: ignore
+        request_put = QueryDict(request.body)  # type: ignore
         org = request.user.id
         existing_contact_form = OrgContactInfo.objects.get(org=org)
         existing_info_form = OrgInfo.objects.get(org=org)
@@ -39,8 +39,9 @@ def edit_org_info(request):
 
         edit_org_forms = [contact_form, info_form, location_form]
         status = 400
+        valid_forms = [form.is_valid() for form in edit_org_forms]
 
-        if all([form.is_valid() for form in edit_org_forms]):
+        if all(valid_forms):
             for form in edit_org_forms:
                 new_instance = form.save(commit=False)
                 new_instance.org = request.user
@@ -62,7 +63,7 @@ def edit_org_info(request):
 @login_required  # type: ignore
 def edit_account_info(request):
     if request.method == "PUT":
-        request_put = QueryDict(request.body) # type: ignore
+        request_put = QueryDict(request.body)  # type: ignore
         org_form = OrgForm(request_put, instance=request.user)
         status = 400
 

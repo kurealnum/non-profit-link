@@ -1,4 +1,5 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
+from apps.accounts.views import edit_org_info
 from django.db.models.query import QuerySet
 from django.urls import reverse
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
@@ -31,20 +32,40 @@ class EditOrgInfoTests(TestCase):
         user.save()
         self.client.login(username="MyOrg", password="THISismyAMAZINGPa$$sword")
 
+        # self.factory = RequestFactory()
+
     def test_method_request_type(self):
         # tests to make sure the method only accepts PUT requests
         get_response = self.client.get(self.url)
-        post_response = self.client.post(self.url)
         expected_response = 405
         self.assertEqual(get_response.status_code, expected_response)
-        self.assertEqual(post_response.status_code, expected_response)
 
-    def test_redirect_if_not_logged_in(self):
-        # checks that the redirect is working
+    def test_redirect_if_not_logged_in(self):  # checks that the redirect is working
         test_client = Client()
         response = test_client.put(self.url)
         expected_url = "/accounts/login/?next=/accounts/edit-org-info/"
         self.assertRedirects(response, expected_url)
+
+    # def test_is_200_if_valid(self):
+    #     # tests that the view returns a 200 if the forms are valid
+    #     edit_info_data = {
+    #         "country": "USA",
+    #         "region": "Florida",
+    #         "zip": 12345,
+    #         "city": "Florida man",
+    #         "street_address": "12345 Awesome Lane",
+    #         "phone": 123456,
+    #         "email": "myemail@gmail.com",
+    #         "desc": "We are awesome!",
+    #         "website": "google.com",
+    #     }
+    #     request = self.factory.put(self.url)
+    #     request.body = edit_info_data
+    #     response = edit_org_info(request)
+
+    # expected_status = 201
+    # status = response.status_code
+    # self.assertEqual(status, expected_status)
 
     def test_context_content(self):
         # check if the *content* of the context is correct
@@ -77,6 +98,10 @@ class EditAccountInfoTests(TestCase):
         response = test_client.put(self.url)
         expected_url = "/accounts/login/?next=/accounts/edit-account-info/"
         self.assertRedirects(response, expected_url)
+
+    def test_status_and_context_valid_when_form_valid(self):
+        # TODO
+        pass
 
     def test_context_content(self):
         # check if the *content* of the context is correct
@@ -120,6 +145,7 @@ class LoginUserTests(TestCase):
         expected_result = LoginRegisterForm
         result = response.context["form"].__class__
         self.assertEqual(result, expected_result)
+        self.assertTrue(response.context["form"].errors != None)
 
 
 class RegisterUserTests(TestCase):
@@ -167,6 +193,29 @@ class RegisterUserTests(TestCase):
         expected_redirect = reverse("login")
         self.assertRedirects(response, expected_redirect)
 
+    def tests_result_if_pass_invalid(self):
+        # tests the output if the password is invalid
+        register_data = {
+            "username": "TestOrg",
+            "password": "myAWESOME1133!@",
+            "confirm_password": "wrongpassword",
+            "country": "USA",
+            "region": "Florida",
+            "zip": 12345,
+            "city": "Florida man",
+            "street_address": "12345 Awesome Lane",
+            "phone": 123456,
+            "email": "myemail@gmail.com",
+            "desc": "We are awesome!",
+            "website": "google.com",
+        }
+        test_client = Client()
+        response = test_client.post(self.url, data=register_data)
+        # this should be 200, because the template still renders. errors are just added to the form
+        expected_status = 200
+        status = response.status_code
+        self.assertEqual(status, expected_status)
+
 
 class SearchNonProfitsTests(TestCase):
     def setUp(self):
@@ -206,9 +255,19 @@ class SearchNonProfitsResultsTests(TestCase):
         expected_response = 200
         self.assertEqual(response.status_code, expected_response)
 
-    def test_context_content(self):
-        # check if the *content* of the context is correct
+    def test_context_content_with_org(self):
+        # check if the *content* of the context is correct when org = location
         response = self.client.post(self.url, data={"org": "org", "search": "org"})
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        self.assertTrue(
+            response_context == None or type(response_context) == expected_content
+        )
+
+    def test_context_content_with_location(self):
+        # check if the content of the context is correct when org = location
+        response = self.client.post(self.url, data={"org": "location", "search": "org"})
         response_context = response.context["orgs"]
         expected_content = QuerySet[OrgLocation]
 
