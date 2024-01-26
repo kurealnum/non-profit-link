@@ -44,18 +44,17 @@ def dashboard(request):
     ]
 
     # if get, just return 2 new forms
-    if request.method == "GET":
-        return render(
-            request,
-            "dashboard.html",
-            context={
-                "org": org,
-                "wanted_org_items": wanted_org_items,
-                "surplus_org_items": surplus_org_items,
-                "edit_org_forms": edit_org_forms,
-                "edit_info_form": OrgForm(initial=org_form_initial_data),
-            },
-        )
+    return render(
+        request,
+        "dashboard.html",
+        context={
+            "org": org,
+            "wanted_org_items": wanted_org_items,
+            "surplus_org_items": surplus_org_items,
+            "edit_org_forms": edit_org_forms,
+            "edit_info_form": OrgForm(initial=org_form_initial_data),
+        },
+    )
 
 
 def homepage(request, org_name):
