@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from django.db import models
 
 # for more info on models, see the database diagram in diagrams/
@@ -20,7 +21,7 @@ class Org(AbstractUser):
         return self.username
 
     def get_absolute_url(self):
-        return f"/nonprofits/homepage/{self.username}/"
+        return reverse("homepage", args=(self.username,))
 
     class Meta:
         verbose_name = "Org"

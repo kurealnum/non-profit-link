@@ -2,6 +2,7 @@ from django import forms as forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import QueryDict, HttpResponse
+from django.urls import reverse
 from django.shortcuts import redirect, render
 
 from .helpers import add_errors_to_password
@@ -28,6 +29,7 @@ SEARCH_NON_PROFITS_RESULTS = "search_non_profits_results.html"
 def edit_org_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)  # type: ignore
+        print(request.body, request_put)
         org = request.user.id
         existing_contact_form = OrgContactInfo.objects.get(org=org)
         existing_info_form = OrgInfo.objects.get(org=org)
@@ -40,6 +42,7 @@ def edit_org_info(request):
         edit_org_forms = [contact_form, info_form, location_form]
         status = 400
         valid_forms = [form.is_valid() for form in edit_org_forms]
+        print(valid_forms)
 
         if all(valid_forms):
             for form in edit_org_forms:
@@ -92,7 +95,7 @@ def edit_account_info(request):
         )
 
         if status == 201:
-            response["HX-Redirect"] = "/accounts/login/"
+            response["HX-Redirect"] = reverse("login")
 
         return response
 
@@ -126,6 +129,12 @@ def login_user(request):
 
     return render(request, LOGIN_FORM, {"form": login_register_form})
 
+
+def logout_user(request):
+    # super simple view :)
+    logout(request)
+
+    return redirect("/")
 
 
 def register_user(request):
@@ -163,7 +172,7 @@ def register_user(request):
                 newform.org = new_user
                 newform.save()
 
-            return redirect("/accounts/login/")
+            return redirect(reverse("login"))
 
     return render(
         request,

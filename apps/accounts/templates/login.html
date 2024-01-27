@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-<form action="/accounts/login/" method="post" class="login_form">
+<form action="{% url 'login' %}" method="post" class="login_form">
 
     {% csrf_token %}
     {{ form }}
