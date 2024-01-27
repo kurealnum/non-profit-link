@@ -200,14 +200,26 @@ def search_non_profits_results(request):
         )
 
     if is_org == "location":
-        orgs = (
-            Org.objects.all()
-            .select_related("orglocation")
-            .filter(orglocation__region__trigram_similar=search)
-        )
+        orgs = Org.objects.all().select_related("orglocation")
+        match location_options:
+            case "country":
+                orgs = orgs.filter(orglocation__country__trigram_similar=search)
+            case "region":
+                orgs = orgs.filter(orglocation__region__trigram_similar=search)
+            case "city":
+                orgs = orgs.filter(orglocation__city__trigram_similar=search)
+            case "zipcode":
+                orgs = orgs.filter(orglocation__zip__contains=search)
+            case "street-address":
+                orgs = orgs.filter(orglocation__street_address__trigram_similar=search)
 
     return render(
         request,
         SEARCH_NON_PROFITS_RESULTS,
-        context={"orgs": orgs, "search": search, "org": is_org},
+        context={
+            "orgs": orgs,
+            "search": search,
+            "org": is_org,
+            "location_options": location_options,
+        },
     )

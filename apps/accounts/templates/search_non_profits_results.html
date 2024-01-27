@@ -7,6 +7,6 @@
         {% if org == "org" %}
             <h2>No orgs with the name {{ search }} were found</h2>
         {% else %}
-            <h2>No orgs with the location {{ search }} were found</h2>
+		<h2>No orgs with the with/in {{ location_options }} {{ search }} were found</h2>
         {% endif %}
 {% endfor %}
