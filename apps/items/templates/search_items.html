@@ -5,7 +5,7 @@
 <h1 id="hero-title">Search all items</h1>
 <form hx-get="{% url 'search_items_results' %}" hx-target="#search-results">
     <div id="search-options">
-        <select name="org" id="sort-by-dropdown" class="dropdown">
+        <select name="org" class="dropdown sort-by-dropdown">
             <optgroup label="Options">
                 <option value="item">By item name</option>
                 <option value="org">By non-profit</option>
