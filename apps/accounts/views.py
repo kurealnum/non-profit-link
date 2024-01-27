@@ -189,6 +189,8 @@ def search_non_profits(request):
 def search_non_profits_results(request):
     is_org = request.POST.get("org")
     search = request.POST.get("search")
+    # either country, region, zipcode, city, or street-address
+    location_options = request.POST.get("location-options")
 
     orgs = None
 
