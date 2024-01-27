@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
 from apps.accounts.forms import (
@@ -63,9 +63,9 @@ def homepage(request, org_name):
         return redirect("org_does_not_exist")
 
     org = Org.objects.get(username=org_name)
-    org_location = OrgLocation.objects.get(org=org)
-    org_contact_info = OrgContactInfo.objects.get(org=org)
-    org_info = OrgInfo.objects.get(org=org)
+    org_location = get_object_or_404(OrgLocation, org=org)
+    org_contact_info = get_object_or_404(OrgContactInfo, org=org)
+    org_info = get_object_or_404(OrgInfo, org=org)
     wanted_org_items = Item.objects.filter(org=org, want=True)
     shared_org_items = Item.objects.filter(org=org, want=False)
 
