@@ -14,5 +14,3 @@ node_modules/
 htmlcov/
 .coverage
 .coveragerc
-pyrightconfig.json
-.prettierrc.json
