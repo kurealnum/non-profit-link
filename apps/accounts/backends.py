@@ -1,14 +1,24 @@
-from django.contrib.auth import get_user_model
+
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 class OrgBackend(ModelBackend):
-    def authenticate(self, username=None, password=None): # type: ignore figure out overrides with pyright here
+    def authenticate(self, request, username=None, password=None, **kwargs):
         UserModel = get_user_model()
         try:
             user = UserModel.objects.get(username=username)
         except UserModel.DoesNotExist:
-            return None
+            raise ValidationError("Invalid Username")
         else:
-            if password and user.check_password(password):
+            if user.check_password(password):
                 return user
-        return None
+            else:
+                raise ValidationError("Invalid Password")
+
+    def get_user(self, user_id):
+        UserModel = get_user_model()
+        try:
+            return UserModel.objects.get(id=user_id)
+        except UserModel.DoesNotExist:
+            return None
