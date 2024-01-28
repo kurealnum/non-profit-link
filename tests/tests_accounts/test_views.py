@@ -1,5 +1,4 @@
-from django.test import TestCase, Client, RequestFactory
-from apps.accounts.views import edit_org_info
+from django.test import TestCase, Client
 from django.db.models.query import QuerySet
 from django.urls import reverse
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
@@ -265,12 +264,69 @@ class SearchNonProfitsResultsTests(TestCase):
             response_context == None or type(response_context) == expected_content
         )
 
-    def test_context_content_with_location(self):
+    def test_context_content_with_location_country(self):
         # check if the content of the context is correct when org = location
-        response = self.client.post(self.url, data={"org": "location", "search": "org"})
+        response = self.client.post(
+            self.url,
+            data={"org": "location", "search": "USA", "location-options": "country"},
+        )
         response_context = response.context["orgs"]
         expected_content = QuerySet[OrgLocation]
 
-        self.assertTrue(
-            response_context == None or type(response_context) == expected_content
+        self.assertTrue(type(response_context) == expected_content)
+
+    def test_context_content_with_location_region(self):
+        # check if the content of the context is correct when org = location
+        response = self.client.post(
+            self.url,
+            data={
+                "org": "location",
+                "search": "California",
+                "location-options": "region",
+            },
         )
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        self.assertTrue(type(response_context) == expected_content)
+
+    def test_context_content_with_location_zipcode(self):
+        # check if the content of the context is correct when org = location
+        response = self.client.post(
+            self.url,
+            data={"org": "location", "search": "12345", "location-options": "zipcode"},
+        )
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        self.assertTrue(type(response_context) == expected_content)
+
+    def test_context_content_with_location_city(self):
+        # check if the content of the context is correct when org = location
+        response = self.client.post(
+            self.url,
+            data={
+                "org": "location",
+                "search": "MyAwesomeCity",
+                "location-options": "city",
+            },
+        )
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        self.assertTrue(type(response_context) == expected_content)
+
+    def test_context_content_with_location_street_address(self):
+        # check if the content of the context is correct when org = location
+        response = self.client.post(
+            self.url,
+            data={
+                "org": "location",
+                "search": "12345 Awesome Ln",
+                "location-options": "street-address",
+            },
+        )
+        response_context = response.context["orgs"]
+        expected_content = QuerySet[OrgLocation]
+
+        self.assertTrue(type(response_context) == expected_content)
