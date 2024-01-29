@@ -16,9 +16,7 @@ def search_items_results(request):
     # yes i am aware that this is awful grammar
     # this is all just logic for the search. REFACTORME
     is_have = True if request.GET.get("is_want") == "on" else False
-    is_need = (
-        True if request.GET.get("is_need") == "on" else False
-    )  # this is shit variable name
+    is_need = True if request.GET.get("is_need") == "on" else False
     want = None
     if is_have and not is_need:
         want = False
