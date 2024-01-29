@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import QueryDict, HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect, render
+from django.core.exceptions import ValidationError
 
 from .helpers import add_errors_to_password
 from apps.accounts.models import Org, OrgContactInfo, OrgInfo, OrgLocation
@@ -113,19 +114,22 @@ def login_user(request):
             # inputted data
             username = login_register["username"]
             password = login_register["password"]
-            user = authenticate(username=username, password=password)
-
-            # if authenticate returns a user object, the user is valid
-            if user:
+            
+            try:
+                user = authenticate(username=username, password=password)
+            except ValidationError as e: # ValidationError is raised from backends.py. This is done to see which of the credentials is invalid
+                if e.message == "Invalid Username":
+                    login_register_form.add_error('username', e.message)
+                else:
+                    login_register_form.add_error('password', e.message)
+                
+            else:
                 login(request, user)
 
                 return redirect("dashboard")
-
-            # else error with the form
-            else:
-                login_register_form.add_error(None, "Username or password is incorrect")
-
+            
     return render(request, LOGIN_FORM, {"form": login_register_form})
+
 
 
 def logout_user(request):
