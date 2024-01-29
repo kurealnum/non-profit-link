@@ -114,29 +114,23 @@ def login_user(request):
             # inputted data
             username = login_register["username"]
             password = login_register["password"]
-            
+
             try:
                 user = authenticate(username=username, password=password)
-            except ValidationError as e: # ValidationError is raised from backends.py. This is done to see which of the credentials is invalid
+            except (
+                ValidationError
+            ) as e:  # ValidationError is raised from backends.py. This is done to see which of the credentials is invalid
                 if e.message == "Invalid Username":
-                    login_register_form.add_error('username', e.message)
+                    login_register_form.add_error("username", e.message)
                 else:
-                    login_register_form.add_error('password', e.message)
-                
+                    login_register_form.add_error("password", e.message)
+
             else:
                 login(request, user)
 
                 return redirect("dashboard")
-            
+
     return render(request, LOGIN_FORM, {"form": login_register_form})
-
-
-
-def logout_user(request):
-    # super simple view :)
-    logout(request)
-
-    return redirect("/")
 
 
 def register_user(request):

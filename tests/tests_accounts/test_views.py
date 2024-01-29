@@ -138,6 +138,16 @@ class LoginUserTests(TestCase):
         expected_url = "/nonprofits/dashboard/"
         self.assertRedirects(post_response, expected_url)
 
+    def test_issue_with_username(self):
+        credentials = {"username": "wrongname", "password": "THISismyAMAZINGPa$$sword"}
+        post_response = self.client.post(self.url, data=credentials)
+        self.assertTrue(post_response.context["form"].errors != None)
+
+    def test_issue_with_password(self):
+        credentials = {"username": "MyOrg", "password": "wrongpassword"}
+        post_response = self.client.post(self.url, data=credentials)
+        self.assertTrue(post_response.context["form"].errors != None)
+
     def test_context_content(self):
         # check if the *content* of the context is correct
         response = self.client.get(self.url)
