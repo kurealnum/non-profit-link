@@ -1,18 +1,21 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %} Home {% endblock %}
-
+{% block title %}Home{% endblock %}
 {% block head-info %}
-<link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
 {% endblock %}
-
 {% block body %}
-<div id="homepage-hero">
-    <h1 id="hero-title">
-        Helping <span class="highlight-word">non-profits</span> share their resources since 2023
-        
-    </h1>
-    
-</div>
-<script type="module" src="{% static 'index.js' %}"></script>
+    <div id="homepage-hero">
+        <h1 id="hero-title">
+            Helping <span class="highlight-word">non-profits</span> share their resources since 2023
+        </h1>
+        <section class="buttons-group">
+            <form action='{% url 'register' %}'>
+                <button>Make an account</button>
+            </form>
+            <form action='{% url 'faq' %}'>
+                <button class="accent-color">Learn more about us</button>
+            </form>
+        </section>
+    </div>
 {% endblock %}

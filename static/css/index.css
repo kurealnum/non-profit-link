@@ -4,26 +4,6 @@
     width: 96%;
 }
 
-#title-background {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 96%;
-    z-index: -1;
-}
-
-.homepage-search {
-    display: flex;
-    flex-direction: column;
-}
-
-.paragraph-text-img img {
-    position: relative;
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 50px;
-    bottom: 100px;
-    z-index: -1;
+#homepage-hero {
+    height: 85vh;
 }
