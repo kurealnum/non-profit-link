@@ -54,4 +54,20 @@
   {% block body %}{% endblock %}
 </body>
 
+<footer>
+	<img>
+	<ul class="footer-text">
+		<li><a href="https://kureal.pythonanywhere.com/home/">Who made this?</a></li>
+		<li><a href="mailto:oscar.gaske.cs@gmail.com">Report an issue/bug</a></li>
+		<li><a href="https://github.com/kurealnum/non-profit-link/issues">Make a feature request</a></li>
+		<li><a href="https://github.com/kurealnum/non-profit-link">Source Code (Github)</a></li>
+	</ul>
+	<ul>
+		<li><a href="{% url 'register' %}">Make an account</a></li>
+		<li><a href="{% url 'about_us' %}">More about us</a></li>
+		<li><a href="{% url 'faq' %}">F.A.Q.</a></li>
+		<li><a href="{% url 'dashboard' %}">View your dashboard</a></li>
+	</ul>
+</footer>
+
 </html>

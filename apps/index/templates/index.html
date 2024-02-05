@@ -8,72 +8,11 @@
 
 {% block body %}
 <div id="homepage-hero">
-    <img src="{% static 'imgs/TitleBlob.svg' %}" alt="Title blob SVG" id="title-background">
     <h1 id="hero-title">
         Helping <span class="highlight-word">non-profits</span> share their resources since 2023
         
     </h1>
     
 </div>
-<div class="homepage-search">
-    <div class="button">
-        <a href="{%url 'search_non_profits' %}">
-            <button>Search non-profits</button>
-            <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
-        </a>
-    </div>
-    <section class="items-container">
-        <div class="items-list normal-margin">
-            {% for org_info in random_5_orgs %}
-                <div class="item">{{ org_info.0 }}: Located in {{ org_info.1 }}, {{ org_info.2 }}</div>
-            {% endfor %}
-        </div>
-    </section>
-</div>
-<div class="homepage-search last-search-result">
-    <div class="button">
-        <a href="{% url 'search_items' %}">
-           <button >Search items</button>
-           <img src="{% static 'search_button_icon.svg' %}" alt="Search icon">
-        </a>
-    </div>
-    <section class="items-container">
-        <ul class="items-list normal-margin">
-            {% for item in top_5_items %}
-                <div class="item">{{ item.0|capfirst }}: {{ item.1}} items wanted, from {{ item.2 }} non-profit(s)</div>
-            {% endfor %}
-        </ul>
-    </section>
-</div>
-<!-- paragraph info is filled in with index.js -->
-<div class="paragraph">
-    <h1 class="js-header"></h1>
-    <div class="paragraph-text-img">
-        <p class="js-paragraph"></p>
-        <img src="{% static 'first_paragraph_blob.svg' %}">
-    </div>
-</div>
-<div class="paragraph">
-    <h1 class="js-header"></h1>
-    <div class="paragraph-text-img">
-        <p class="js-paragraph"></p>
-        <img src="{% static 'second_paragraph_blob.svg' %}">
-    </div>
-</div>
-
-<footer>
-    <a href="oscar.gaske.cs@gmail.com">
-        <img src="{% static 'email_icon.svg' %}" alt="An email icon">
-    </a>
-    <a href="IFORGETWHERETHISGOES">
-        <img src="{% static 'browser_window.svg' %}" alt="A browser icon">
-    </a>
-    <a href="https://github.com/kurealnum/non-profit-link">
-        <img src="{% static 'github_icon.svg' %}" alt="A github icon">
-    </a>
-    <a href="IFORGETWHERETHISGOES">
-        <img src="{% static 'question_mark_icon.svg' %}" alt="A question mark icon">
-    </a>
-</footer>
 <script type="module" src="{% static 'index.js' %}"></script>
 {% endblock %}
