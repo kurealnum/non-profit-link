@@ -29,6 +29,7 @@ nav {
 }
 
 nav ul {
+    margin-top: 10px;
     width: 100%;
     display: flex;
     list-style: none;
@@ -36,13 +37,13 @@ nav ul {
 }
 
 nav li {
-    padding: 10px;
+    padding: 6px;
 }
 
 nav a {
     color: var(--text);
     text-decoration: none;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .nav-title a {
@@ -70,7 +71,7 @@ button {
     background-color: var(--secondary);
     font-family: "Poppins", "Arial";
     border: none;
-    padding: 4px 10px;
+    padding: 4px 14px;
     border-radius: 20px;
     font-weight: 500;
     font-size: 16px;

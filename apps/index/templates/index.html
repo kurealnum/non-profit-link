@@ -10,12 +10,9 @@
             Helping <span class="highlight-word">non-profits</span> share their resources since 2023
         </h1>
         <section class="buttons-group">
-            <form action='{% url 'register' %}'>
-                <button>Make an account</button>
-            </form>
-            <form action='{% url 'faq' %}'>
-                <button class="accent-color">Learn more about us</button>
-            </form>
+            <button data-url="{% url 'register' %}" id="make-an-account">Make an account</button>
+            <button data-url="{% url 'faq' %}"  class="accent-color" id="faq-button">Learn more about us</button>
         </section>
     </div>
+    <script src='{% static 'js/index.js' %}'></script>
 {% endblock %}
