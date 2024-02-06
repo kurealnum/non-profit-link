@@ -1,0 +1,15 @@
+This is just a file that provides all of the URLs/pages that I'd like to have in the navbar.
+
+Learn More
+- About us
+- FAQ
+
+Search ...
+- Search non-profits
+
+My Account
+- Register
+- Login
+- "My" dashboard
+- "My" homepage
+- Logout

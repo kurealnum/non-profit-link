@@ -7,3 +7,7 @@
 #homepage-hero {
     height: 85vh;
 }
+
+#logout-button {
+    display: none;
+}
