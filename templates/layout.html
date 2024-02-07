@@ -29,7 +29,7 @@
                 </li>
                 <div class="nav-links">
                     <div class="dropdown">
-                        <span>Learn More</span>
+                        <span>My Account</span>
                         <div class="dropdown-content">
                             {% if request.user.is_authenticated %}
                                 <li>
@@ -56,12 +56,28 @@
                             {% endif %}
                         </div>
                     </div>
-                    <li>
-                        <a href="{% url 'search_items' %}">Contributable items</a>
-                    </li>
-                    <li class="desktop">
-                        <a href="{% url 'search_non_profits' %}">Non-profits</a>
-                    </li>
+                    <div class="dropdown">
+                        <span>Search</span>
+                        <div class="dropdown-content">
+                            <li>
+                                <a href="{% url 'search_items' %}">Contributable items</a>
+                            </li>
+                            <li class="desktop">
+                                <a href="{% url 'search_non_profits' %}">Non-profits</a>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <span>Learn More</span>
+                        <div class="dropdown-content">
+                            <li>
+                                <a href="{% url 'about_us' %}">About Us</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'faq' %}">FAQ</a>
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </ul>
         </nav>
