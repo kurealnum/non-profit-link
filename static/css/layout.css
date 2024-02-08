@@ -605,16 +605,43 @@ address {
 
 .body-text h3 {
     font-style: italic;
-    width: 90%;
+    padding-left: 20px;
+    max-width: 90%;
     margin: 0 auto;
 }
 
 .body-text p {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 90%;
     padding-top: 0px;
+    padding-left: 20px;
     background: none;
     text-align: left;
 }
 
 .body-text:last-of-type {
     margin-bottom: 30px;
+}
+
+.img-and-text {
+    align-items: center;
+    justify-content: left;
+    display: flex;
+}
+
+.img-and-text img {
+    width: 120px;
+    height: 120px;
+}
+
+/* no images until media query */
+@media (max-width: 500px) {
+    .img-and-text-img {
+        display: none;
+    }
+}
+
+.about-us-header {
+    padding: 25px 0;
 }
