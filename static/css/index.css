@@ -4,4 +4,10 @@
     width: 96%;
 }
 
+.body-container {
+/*  this is the epitomy of "no touch. it works"    */
+    flex-direction: row;
+    align-items: center;
+}
+
 
