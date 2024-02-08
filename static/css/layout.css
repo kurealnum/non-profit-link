@@ -42,7 +42,7 @@ nav span {
     padding: 6px;
 }
 
-.dropdown-content li {
+.nav-dropdown-content li {
     display: flex;
 }
 
@@ -118,14 +118,14 @@ button {
     flex-direction: row;
 }
 
-.dropdown {
+.nav-dropdown {
     position: relative;
-    display: flex;
+    display: inline-block;
     margin-left: auto;
     margin-right: 0;
 }
 
-.dropdown-content {
+.nav-dropdown-content {
     display: none;
     position: absolute;
     margin: 0 auto;
@@ -137,8 +137,8 @@ button {
     z-index: 1;
 }
 
-.dropdown:hover .dropdown-content{
-    display:flex;
+.nav-dropdown:hover .nav-dropdown-content {
+    display: flex;
     flex-direction: column;
 }
 
@@ -161,6 +161,8 @@ p2 {
 
 footer {
     display: flex;
+    position: relative;
+    bottom: 0;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
@@ -285,14 +287,12 @@ a {
 }
 
 .items-container {
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    background-color: var(--secondary);
+    background-color: none;
     display: flex;
     flex-direction: column;
     align-content: center;
     width: 85vw;
-    margin: 0 auto;
-    margin-bottom: 50px;
+    margin: 50px auto;
     border-radius: 5px;
 }
 
@@ -302,12 +302,9 @@ a {
     width: 70vw;
     margin: 9px auto;
     padding: 5px 10px;
-    box-shadow: 4px 5px 5px var(--background);
-    border-left: 1px solid white;
 }
 
 .search-results {
-    background-color: var(--primary);
     border-radius: 2px;
     margin-bottom: 19px;
 }
@@ -463,10 +460,12 @@ dialog .last-button {
 .center-search-options {
     gap: 16px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: baseline;
     flex-direction: row;
     margin: 20px 0;
+    margin-bottom: 0px;
 }
 
 .sort-by-dropdown {
@@ -474,11 +473,11 @@ dialog .last-button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: var(--secondary);
+    background: var(--darker-secondary);
     display: flex;
-    padding: 8px;
+    padding: 5px;
     border-radius: 50px;
-    color: var(--text);
+    color: var(--background);
     border: 0px;
     font-family: "Poppins", "Arial";
 }

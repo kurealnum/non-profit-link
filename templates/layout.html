@@ -16,6 +16,7 @@
             /*to prevent Firefox FOUC, this must be here*/
             let FF_FOUC_FIX;
         </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Non-Profit Link -
             {% block title %}{% endblock %}
         </title>
@@ -28,9 +29,9 @@
                     <a href="{% url 'index' %}">Non-Profit Link</a>
                 </li>
                 <div class="nav-links">
-                    <div class="dropdown">
+                    <div class="nav-dropdown">
                         <span>My Account</span>
-                        <div class="dropdown-content">
+                        <div class="nav-dropdown-content">
                             {% if request.user.is_authenticated %}
                                 <li>
                                     <a href="{% url 'dashboard' %}">Your non-profit</a>
@@ -56,9 +57,9 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="nav-dropdown">
                         <span>Search</span>
-                        <div class="dropdown-content">
+                        <div class="nav-dropdown-content">
                             <li>
                                 <a href="{% url 'search_items' %}">Contributable items</a>
                             </li>
@@ -67,9 +68,9 @@
                             </li>
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="nav-dropdown">
                         <span>Learn More</span>
-                        <div class="dropdown-content">
+                        <div class="nav-dropdown-content">
                             <li>
                                 <a href="{% url 'about_us' %}">About Us</a>
                             </li>
