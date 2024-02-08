@@ -231,7 +231,6 @@ label {
     text-align: center;
     display: block;
     width: auto;
-    padding-bottom: 6px;
 }
 
 #close-edit-info {
@@ -296,12 +295,13 @@ a {
 }
 
 .items-container {
-    background-color: none;
+    background-color: var(--background);
     display: flex;
     flex-direction: column;
     align-content: center;
     width: 85vw;
     margin: 50px auto;
+    margin-top: 20px;
     border-radius: 5px;
 }
 
@@ -390,7 +390,7 @@ dialog {
     margin-right: auto;
     width: 80vw;
     height: 40vh;
-    background: var(--secondary);
+    background: var(--background);
     color: var(--text);
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -463,7 +463,7 @@ dialog .last-button {
 .dropdown,
 .checkbox {
     display: inline-block;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .center-search-options {
@@ -482,7 +482,7 @@ dialog .last-button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: var(--darker-secondary);
+    background: var(--accent);
     display: flex;
     padding: 5px;
     border-radius: 50px;
@@ -500,14 +500,13 @@ optgroup {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 0 16px;
-    margin-bottom: 40px;
+    margin: 40px 16px;
 }
 
 /* for a body with a header and p elements */
 .text-body {
     display: flex;
-    background: var(--secondary);
+    background: var(--background);
     flex-direction: column;
     width: 85vw;
     margin: 50px auto;
@@ -570,4 +569,15 @@ address {
     font-size: 12px;
     font-weight: 100;
     margin: 0 auto;
+}
+
+#search-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+#hero-title {
+    padding-bottom: 15px;
 }
