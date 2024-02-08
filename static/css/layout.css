@@ -377,6 +377,10 @@ a {
     color: var(--secondary);
 }
 
+.highlight-word-accent {
+    color: var(--accent);
+}
+
 dialog {
     box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
     position: fixed;
@@ -592,4 +596,25 @@ address {
 #hero-title {
     margin-top: 15px;
     padding-bottom: 15px;
+}
+
+/* good for left aligned general text */
+.body-text {
+    margin: 30px 0;
+}
+
+.body-text h3 {
+    font-style: italic;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.body-text p {
+    padding-top: 0px;
+    background: none;
+    text-align: left;
+}
+
+.body-text:last-of-type {
+    margin-bottom: 30px;
 }
