@@ -22,7 +22,14 @@
         </title>
         {% block head-info %}{% endblock %}
     </head>
-    <header>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <body>
         <nav>
             <ul>
                 <li class="nav-title">
@@ -82,50 +89,43 @@
                 </div>
             </ul>
         </nav>
-    </header>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-    <footer>
-        <a class="img-url" href="{% url 'index' %}">
-            <img src="{% static 'imgs/NPL Logo.png' %}">
-        </a>
-        <div class="footer-text-wrapper">
-            <ul class="footer-text">
-                <li>
-                    <a href="https://kureal.pythonanywhere.com/home/">Who made this?</a>
-                </li>
-                <li>
-                    <a href="mailto:oscar.gaske.cs@gmail.com">Report an issue/bug</a>
-                </li>
-                <li>
-                    <a href="https://github.com/kurealnum/non-profit-link/issues">Make a feature request</a>
-                </li>
-                <li>
-                    <a href="https://github.com/kurealnum/non-profit-link">Source Code (Github)</a>
-                </li>
-            </ul>
-            <ul class="footer-text no-padding">
-                <li>
-                    <a href="{% url 'register' %}">Make an account</a>
-                </li>
-                <li>
-                    <a href="{% url 'about_us' %}">More about us</a>
-                </li>
-                <li>
-                    <a href="{% url 'faq' %}">F.A.Q.</a>
-                </li>
-                <li>
-                    <a href="{% url 'dashboard' %}">View your dashboard</a>
-                </li>
-            </ul>
+        <div class="body-container">
+            {% block body %}{% endblock %}
         </div>
-    </footer>
+        <footer>
+            <a class="img-url" href="{% url 'index' %}">
+                <img src="{% static 'imgs/NPL Logo.png' %}">
+            </a>
+            <div class="footer-text-wrapper">
+                <ul class="footer-text">
+                    <li>
+                        <a href="https://kureal.pythonanywhere.com/home/">Who made this?</a>
+                    </li>
+                    <li>
+                        <a href="mailto:oscar.gaske.cs@gmail.com">Report an issue/bug</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/kurealnum/non-profit-link/issues">Make a feature request</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/kurealnum/non-profit-link">Source Code (Github)</a>
+                    </li>
+                </ul>
+                <ul class="footer-text no-padding">
+                    <li>
+                        <a href="{% url 'register' %}">Make an account</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about_us' %}">More about us</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'faq' %}">F.A.Q.</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard' %}">View your dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
 </html>
