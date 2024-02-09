@@ -470,7 +470,7 @@ dialog .last-button {
 .checkbox {
     padding: 5px 7px;
     border-radius: 50px;
-    background: var(--accent);
+    background: var(--secondary);
     color: var(--background);
     display: inline-block;
     font-size: 12px;
@@ -492,7 +492,7 @@ dialog .last-button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: var(--accent);
+    background: var(--secondary);
     display: flex;
     padding: 5px;
     border-radius: 50px;
@@ -644,4 +644,18 @@ address {
 
 .about-us-header {
     padding: 25px 0;
+}
+
+.italics {
+    font-style: italic;
+}
+
+.body-small-font {
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.body-small-font p {
+    padding-top: 0;
+    padding-bottom: 0;
 }
