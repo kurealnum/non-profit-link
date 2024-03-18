@@ -37,7 +37,8 @@
                 </li>
                 <div class="nav-links">
                     <div class="nav-dropdown">
-                        <span>My Account</span>
+                        <input id="my-account" type="checkbox">
+                        <label for="my-account">My Account</label>
                         <div class="nav-dropdown-content">
                             {% if request.user.is_authenticated %}
                                 <li>
@@ -65,7 +66,8 @@
                         </div>
                     </div>
                     <div class="nav-dropdown">
-                        <span>Search</span>
+                        <input id="search" type="checkbox">
+                        <label for="search">Search</label>
                         <div class="nav-dropdown-content">
                             <li>
                                 <a href="{% url 'search_items' %}">Contributable items</a>
@@ -76,7 +78,8 @@
                         </div>
                     </div>
                     <div class="nav-dropdown">
-                        <span>Learn More</span>
+                        <input id="learn-more" type="checkbox">
+                        <label for="learn-more">Learn More</label>
                         <div class="nav-dropdown-content">
                             <li>
                                 <a href="{% url 'about_us' %}">About Us</a>
