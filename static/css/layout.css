@@ -637,6 +637,7 @@ address {
 .img-and-text img {
     width: 120px;
     height: 120px;
+    padding: 0 30px;
 }
 
 .about-us-header {
