@@ -174,7 +174,6 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    margin: 0 auto;
     max-width: 100%;
     padding: 6px 10px;
     background: var(--primary);
@@ -328,6 +327,7 @@ a {
     height: 65vh;
     display: flex;
     justify-content: center;
+    margin: 0 auto;
     flex-direction: column;
 }
 
@@ -635,13 +635,6 @@ address {
     height: 120px;
 }
 
-/* no images until media query */
-@media (max-width: 500px) {
-    .img-and-text-img {
-        display: none;
-    }
-}
-
 .about-us-header {
     padding: 25px 0;
 }
@@ -658,4 +651,40 @@ address {
 .body-small-font p {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+/* no images until media query */
+@media (max-width: 500px) {
+    .img-and-text-img {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) {
+            footer {
+        height: 12vw;
+    }
+    footer img {
+        width: 60%;
+    }
+}
+
+@media (min-width: 600px) {
+    footer {
+        height: 14vw;
+    }
+    footer img {
+        width: 70%;
+    }
+}
+
+@media (min-width: 800px) {
+    footer {
+        height: 10vw;
+        max-height: 100px;
+    }
+    footer img {
+        width: 50%;
+        max-width: 100px;
+    }
 }
