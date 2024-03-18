@@ -672,6 +672,10 @@ address {
     footer img {
         width: 60%;
     }
+    #search-items-form {
+        width: 450px;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 600px) {
@@ -694,5 +698,8 @@ address {
     footer img {
         width: 50%;
         max-width: 100px;
+    }
+    .item {
+        width: 570px;
     }
 }
