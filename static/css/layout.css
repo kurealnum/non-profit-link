@@ -683,6 +683,9 @@ address {
 }
 
 @media (min-width: 800px) {
+    #hero-title {
+        font-size: 48px;
+    }
     footer {
         height: 10vw;
         max-height: 100px;
