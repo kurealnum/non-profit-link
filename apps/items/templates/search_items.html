@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block title %}Search items on Non-Profit Link{% endblock %}
+{% block head-info %}
+    <link rel="stylesheet" href="{% static 'search_items.css' %}">
+{% endblock %}
 {% block body %}
     <h1 id="hero-title">Search all items</h1>
     <form hx-get="{% url 'search_items_results' %}"

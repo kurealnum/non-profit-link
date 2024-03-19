@@ -1,17 +1,9 @@
 {% extends 'layout.html' %}
-
-{% block title %}
-    Register
-{% endblock %}
-
+{% block title %}Register{% endblock %}
 {% block body %}
-<form action="{% url 'register' %}" method="post" class="login_form">
-
-    {% csrf_token %}
-    {% for form in forms %}
-        {{ form }}
-    {% endfor %}
-
-    <button type="submit" class="login">Register</button>
-</form>
+    <form action="{% url 'register' %}" method="post" class="login-form">
+        {% csrf_token %}
+        {% for form in forms %}{{ form }}{% endfor %}
+        <button type="submit" class="login">Register</button>
+    </form>
 {% endblock %}

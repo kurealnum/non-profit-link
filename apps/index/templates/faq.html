@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 {% block title %}FAQ{% endblock %}
+{% load static %}
+{% block head-info %}
+    <link rel="stylesheet" href='{% static "faq.css" %}'>
+{% endblock %}
 {% block body %}
     <h1 id="hero-title">Frequently Asked Questions</h1>
     <div class="body-text">

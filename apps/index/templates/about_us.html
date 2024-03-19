@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block title %}FAQ{% endblock %}
+{% block head-info %}
+    <link rel="stylesheet" href="{% static 'about_us.css' %}">
+{% endblock %}
 {% block body %}
     <h1 id="hero-title">
         A little bit <span class="highlight-word">about us</span>

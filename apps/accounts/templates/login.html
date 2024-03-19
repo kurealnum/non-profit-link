@@ -1,27 +1,23 @@
 {% extends 'layout.html' %}
 {% load static %}
-
-{% block title %}
-    Login
-{% endblock %}
-
+{% block title %}Login{% endblock %}
 {% block body %}
-<form action="{% url 'login' %}" method="post" class="login_form">
-
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div>
-        {{ form.username.label_tag }}
-        {{ form.username.errors }}
-        {{ form.username }}
-    </div>
-    <div>
-        {{ form.password.label_tag }}
-        {{ form.password.errors }}
-        {{ form.password }}
-    </div>
-    <button type="submit" class="login">Login</button>
-</form>
-
-<p id="register-option">Or <a href="{% url 'register' %}">register</a></p>
+    <form action="{% url 'login' %}" method="post" class="login-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            {{ form.username.label_tag }}
+            {{ form.username.errors }}
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.password.label_tag }}
+            {{ form.password.errors }}
+            {{ form.password }}
+        </div>
+        <button type="submit" class="login">Login</button>
+    </form>
+    <p id="register-option">
+        Or <a href="{% url 'register' %}">register</a>
+    </p>
 {% endblock %}
