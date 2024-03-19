@@ -265,7 +265,7 @@ form ul {
     font-style: italic;
 }
 
-.login-form {
+.login-form,.register-form {
     padding-top: 40px;
     width: 80%;
     margin: 0 auto;
@@ -658,6 +658,10 @@ address {
 .body-small-font p {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.register-forms input, .register-forms textarea {
+    width: 100%;
 }
 
 /* no images until media query */

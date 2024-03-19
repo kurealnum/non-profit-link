@@ -1,0 +1,14 @@
+.register-forms input {
+    width: 100%;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.register-forms {
+    margin: auto;
+}

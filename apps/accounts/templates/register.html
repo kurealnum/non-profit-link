@@ -1,9 +1,11 @@
 {% extends 'layout.html' %}
 {% block title %}Register{% endblock %}
-{% block body %}
-    <form action="{% url 'register' %}" method="post" class="login-form">
-        {% csrf_token %}
-        {% for form in forms %}{{ form }}{% endfor %}
-        <button type="submit" class="login">Register</button>
-    </form>
-{% endblock %}
+{% load static %}
+{% block head-info %}
+    <link rel="stylesheet" href="{% static 'register.css' %}" {% endblock %} {% block body %}
+        <form action="{% url 'register' %}" method="post" class="register-form">
+            {% csrf_token %}
+            {% for form in forms %}<div class="register-forms">{{ form }}</div>{% endfor %}
+            <button type="submit" class="login">Register</button>
+        </form>
+    {% endblock %}
