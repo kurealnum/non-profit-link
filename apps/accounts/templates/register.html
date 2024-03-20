@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'register.css' %}" {% endblock %} {% block body %}
         <form action="{% url 'register' %}" method="post" class="register-form">
             {% csrf_token %}
-            {% for form in forms %}<div class="register-forms">{{ form }}</div>{% endfor %}
+            {% for form in forms %}<div class="register-forms register-form-{{ forloop.counter }}">{{ form }}</div>{% endfor %}
             <button type="submit" class="login">Register</button>
         </form>
     {% endblock %}

@@ -12,3 +12,8 @@
 .register-forms {
     margin: auto;
 }
+
+.register-form button {
+    width: 25%;
+    margin: 0 30vw;
+}
