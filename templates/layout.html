@@ -22,13 +22,6 @@
         </title>
         {% block head-info %}{% endblock %}
     </head>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
     <body>
         <nav>
             <ul>
@@ -95,6 +88,13 @@
                 </div>
             </ul>
         </nav>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <div class="body-container">
             {% block body %}{% endblock %}
         </div>

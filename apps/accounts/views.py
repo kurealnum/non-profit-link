@@ -1,5 +1,6 @@
 from django import forms as forms
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import QueryDict, HttpResponse
 from django.urls import reverse
@@ -168,6 +169,9 @@ def register_user(request):
                 newform.org = new_user
                 newform.save()
 
+            messages.add_message(
+                request, messages.SUCCESS, "You have been successfully registered!"
+            )
             return redirect(reverse("login"))
 
     return render(
