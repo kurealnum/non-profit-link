@@ -9,5 +9,3 @@ const faqURL = faqButton.dataset.url;
 faqButton.onclick = function () {
     location.href = faqURL;
 };
-
-console.log(faqURL, makeAnAccountURL);
