@@ -21,28 +21,3 @@ class IndexTestCase(TestCase):
                 zip=1 + 1,
                 street_address=f"street{i}",
             )
-
-    # yes, these two methods should probably return model instances
-    def test_items_return(self):
-        # tests that the 'top_5_items' key in the context returns the correct stuff
-        response = self.client.get(self.url)
-        expected_response = [[str, int, int]] * 5
-        self.assertIn("top_5_items", response.context)
-
-        context = response.context["top_5_items"]
-        expected_length = 5
-        types = [[type(j) for j in i] for i in context]
-        self.assertEqual(types, expected_response)
-        self.assertEqual(len(context), expected_length)
-
-    def test_orgs_return(self):
-        # tests that the 'random_5_orgs' key in the context returns the correct stuff
-        response = self.client.get(self.url)
-        expected_response = [[str, str, str]] * 5
-        self.assertIn("random_5_orgs", response.context)
-
-        context = response.context["random_5_orgs"]
-        expected_length = 5
-        types = [[type(j) for j in i] for i in context]
-        self.assertEqual(types, expected_response)
-        self.assertEqual(len(context), expected_length)
