@@ -17,7 +17,7 @@ class OrgForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         label=mark_safe(
-            'Password<ul id="password-specification"><li>Password requirements:</li><li>Be longer than 8 characters</li><li>Have an uppercase and lowercase characters</li><li>Use a special character/number</li></ul>'
+            'Password:<ul id="password-specification"><li>Must be 8 characters or longer</li><li>Must use a special character/number</li><li>Must not be similar to your organizations name</li></ul>'
         ),
     )
     password.label_suffix = ""
