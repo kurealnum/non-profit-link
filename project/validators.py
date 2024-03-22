@@ -12,8 +12,8 @@ class UniqueCharacterValidator:
         for c in password:
             if (
                 not (47 < ord(c) < 58)
-                or not (64 < ord(c) < 91)
-                or not (96 < ord(c) < 123)
+                and not (64 < ord(c) < 91)
+                and not (96 < ord(c) < 123)
             ):
                 password_has_unique_chars = True
 
