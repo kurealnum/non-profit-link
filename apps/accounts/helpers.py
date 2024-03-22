@@ -6,8 +6,8 @@ def add_errors_to_password(password, confirm_password):
     # check if password is even valid
     try:
         validate_password(password)
-    except ValidationError:
-        return "Your password does not meet the requirements!"
+    except ValidationError as e:
+        return e
 
     # check if password = confirm password
     if password != confirm_password:
