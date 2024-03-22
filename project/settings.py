@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os
+import os, sys
+import dj_database_url
 from os.path import join, dirname
 from dotenv import load_dotenv
 from pathlib import Path
@@ -26,10 +27,11 @@ load_dotenv(dotenv_path)
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-y3h0&y=f5d3xxf+#fwzz1@lojkuzi(4k(vd7qn27*19gu99qp6"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -90,16 +92,23 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "main",
-        "USER": os.environ.get("DB_USERNAME"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": "127.0.0.1",
-        "PORT": os.environ.get("DB_PORT"),
+if DEVELOPMENT_MODE is True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "main",
+            "USER": os.environ.get("DB_USERNAME"),
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": "127.0.0.1",
+            "PORT": os.environ.get("DB_PORT"),
+        }
     }
-}
+elif len(sys.argv) > 0 and sys.argv[1] != "collectstatic":
+    if os.getenv("DATABASEURL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 
 AUTH_USER_MODEL = "accounts.org"
 
@@ -145,6 +154,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
