@@ -115,6 +115,10 @@ button {
     white-space: nowrap;
 }
 
+.items-container h3 {
+    padding: 20px 0;
+}
+
 .accent-color {
     background-color: var(--accent);
 }
@@ -727,6 +731,10 @@ address {
     .info-body {
         width: 60%;
     }
+        dialog {
+        width: 450px;
+    }
+}
 }
 
 @media (min-width: 800px) {

@@ -1,10 +1,8 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %} {{ org.username }} {% endblock %}
-
+{% block title %}{{ org.username }}{% endblock %}
 <!-- just for future notice, the left, mid, and right of dashboard are only
 present in the desktop size. the mobile version is completely vertical -->
-
 {% block body %}
     <div class="info-body">
         <section class="text-body">
@@ -25,15 +23,15 @@ present in the desktop size. the mobile version is completely vertical -->
                     </address>
                 </div>
             </div>
-        </section> 
+        </section>
         <section class="items-container">
             <h2 class="highlight-word">Our needs</h2>
             <ul class="items-list items-list-spacing">
                 {% for item in wanted_org_items %}
                     <div class="item">{{ item.count }} {{ item.unit_description }} of {{ item.item_name }}</div>
                 {% empty %}
-            </ul>
-                <h2>This org doesn't have any needed items listed :(</h2>
+                </ul>
+                <h3>This org doesn't have any needed items listed :(</h3>
             {% endfor %}
         </section>
         <section class="items-container">
@@ -42,8 +40,8 @@ present in the desktop size. the mobile version is completely vertical -->
                 {% for item in shared_org_items %}
                     <div class="item">{{ item.count }} {{ item.units_description }} of {{ item.item_name }}</div>
                 {% empty %}
-            </ul>
-                <h2>This org doesn't have any wanted items listed :(</h2>
+                </ul>
+                <h3>This org doesn't have any wanted items listed :(</h3>
             {% endfor %}
         </section>
     </div>
