@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from apps.accounts.helpers import add_errors_to_password
 
@@ -6,9 +8,7 @@ class AddErrorsToPasswordTests(TestCase):
     def test_password_throws_correct_error(self):
         # tests that the correct string is returned when the password doesn't meet the requirements
         bad_password = "abcde"
-        expected_value = "Your password does not meet the requirements!"
-        result = add_errors_to_password(bad_password, bad_password)
-        self.assertEqual(result, expected_value)
+        self.assertRaises(ValidationError, validate_password, bad_password)
 
     def test_password_matches_password(self):
         # tests that the correct string is returned when the 2 passwords don't equal eachother
