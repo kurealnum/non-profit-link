@@ -9,6 +9,18 @@
         <link href="{% static 'fontawesomefree/css/all.min.css' %}"
               rel="stylesheet"
               type="text/css">
+        <link rel="apple-touch-icon"
+              sizes="180x180"
+              href="{% static 'icos/apple-touch-icon.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="{% static 'icos/favicon-32x32.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="{% static 'icos/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'icos/site.webmanifest' %}">
         <script src="https://unpkg.com/htmx.org@1.9.10"
                 integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
                 crossorigin="anonymous"></script>
@@ -17,6 +29,19 @@
             let FF_FOUC_FIX;
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Primary Meta Tags -->
+        <title>Non-Profit Link</title>
+        <!-- Open Graph / Facebook -->
+        <meta name="title" content="Non-Profit Link">
+        <meta name="description"
+              content="A platform for communication between non-profits!">
+        <meta name="keywords"
+              content="non profits, organizations, donations, non-profits, volunteering">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content="1 days">
+        <meta name="author" content="Oscar Gaske">
         <title>Non-Profit Link -
             {% block title %}{% endblock %}
         </title>
