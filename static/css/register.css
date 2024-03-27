@@ -17,3 +17,10 @@
     width: 25%;
     margin: 0 30vw;
 }
+
+h3 {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 85%;
+}

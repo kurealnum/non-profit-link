@@ -3,9 +3,13 @@
 {% load static %}
 {% block head-info %}
     <link rel="stylesheet" href="{% static 'register.css' %}" {% endblock %} {% block body %}
+        <h3>Please don't make an account if you aren't an organization!</h3>
         <form action="{% url 'register' %}" method="post" class="register-form">
             {% csrf_token %}
             {% for form in forms %}<div class="register-forms register-form-{{ forloop.counter }}">{{ form }}</div>{% endfor %}
+            <h3>
+                Hey! Did you read the <a class="highlight-word-accent" href={% url 'faq' %}>FAQ</a>?
+            </h3>
             <button type="submit" class="login">Register</button>
         </form>
     {% endblock %}
