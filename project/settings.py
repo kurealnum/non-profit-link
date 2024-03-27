@@ -10,8 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os, sys
-import dj_database_url
+import os, sys, json
 from os.path import join, dirname
 from dotenv import load_dotenv
 from pathlib import Path
@@ -31,10 +30,8 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", []))
 
 # Application definition
 
@@ -92,23 +89,16 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "main",
-            "USER": os.environ.get("DB_USERNAME"),
-            "PASSWORD": os.environ.get("DB_PASSWORD"),
-            "HOST": "127.0.0.1",
-            "PORT": os.environ.get("DB_PORT"),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "main",
+        "USER": os.environ.get("DB_USERNAME"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "127.0.0.1",
+        "PORT": os.environ.get("DB_PORT"),
     }
-elif len(sys.argv) > 0 and sys.argv[1] != "collectstatic":
-    if os.getenv("DATABASEURL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+}
 
 AUTH_USER_MODEL = "accounts.org"
 
@@ -168,3 +158,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGOUT_REDIRECT_URL = "/"
+
+# DO NOT RUN WITH THESE SETTINGS SET TO TRUE IN PRODUCTION!!!
+CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False") == "True"
+SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False") == "True"
