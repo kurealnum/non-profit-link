@@ -1,40 +1,45 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block head-info %}
-<link rel="stylesheet" href="{% static 'search_non_profits.css' %}">
+    <link rel="stylesheet" href="{% static 'search_non_profits.css' %}">
 {% endblock %}
-{% block title %} Search orgs on Non-Profit Link {% endblock %}
-
+{% block title %}Search orgs on Non-Profit Link{% endblock %}
 {% block body %}
-<h1 id="hero-title">Search all organizations</h1>
-<form hx-post="{% url 'search_non_profits_results' %}" hx-target="#search-results">
-	{% csrf_token %}
-    <div id="search-options" class="center-search-options">
-        <label for="search" class="search-bar">
-            <input type="text" name="search" placeholder="Search for an item...">
-            <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
-        </label>
-        <select id="org" name="org" class="dropdown sort-by-dropdown">
-            <optgroup label="Options">
-                <option value="location">By location</option>
-                <option value="org">By non-profit</option>
-            </optgroup>
-        </select>
-        <select id="location-options" name="location-options" class="dropdown sort-by-dropdown">
-            <optgroup label="Options">
-                <option value="country">By country</option>
-                <option value="region">By region</option>
-                <option value="zipcode">By zipcode</option>
-                <option value="city">By city</option>
-                <option value="street-address">By street address</option>
-            </optgroup>
-        </select>
-    </div>
-</form>
-
-<!-- yes everything here has a class relating to item, even though they aren't items... -->
-<section class="items-container">
-    <ul id="search-results" class="items-list normal-margin">{% include 'search_non_profits_results.html' %}</ul>
-</section>
-<script src="{% static 'js/searchNonProfits.js' %}"></script>
+    <h1 id="hero-title">Search all organizations</h1>
+    <form hx-post="{% url 'search_non_profits_results' %}"
+          hx-target="#search-results">
+        {% csrf_token %}
+        <div id="search-options" class="center-search-options">
+            <label for="search" class="search-bar">
+                <input type="text" name="search" placeholder="Search for an organization...">
+                <button id="search-button" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </label>
+            <select id="org" name="org" class="dropdown sort-by-dropdown">
+                <optgroup label="Options">
+                    <option value="location">By location</option>
+                    <option value="org">By non-profit</option>
+                </optgroup>
+            </select>
+            <select id="location-options"
+                    name="location-options"
+                    class="dropdown sort-by-dropdown">
+                <optgroup label="Options">
+                    <option value="country">By country</option>
+                    <option value="region">By region</option>
+                    <option value="zipcode">By zipcode</option>
+                    <option value="city">By city</option>
+                    <option value="street-address">By street address</option>
+                </optgroup>
+            </select>
+        </div>
+    </form>
+    <!-- yes everything here has a class relating to item, even though they aren't items... -->
+    <section class="items-container">
+        <ul id="search-results" class="items-list normal-margin">
+            {% include 'search_non_profits_results.html' %}
+        </ul>
+    </section>
+    <script src="{% static 'js/searchNonProfits.js' %}"></script>
 {% endblock %}
