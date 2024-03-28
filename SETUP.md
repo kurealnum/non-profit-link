@@ -28,8 +28,4 @@ We're using PostgreSQL (pronounced po-st-gree-skewl)! I'm not going to bother wa
 
 -   However you are going about your database setup, make sure that you have the `pg_trgm` module/extension installed to **both your main database and the template1 database.**
 
-## Deployment Setup (WIP)
 
-staticfiles/ is the folder that `collectstatic` moves static files to. It's a massive folder, hence why it's in the .gitignore.
-
--   Run `py manage.py collectstatic`
