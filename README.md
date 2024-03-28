@@ -1,5 +1,13 @@
 # NPL (Non Profit Link)
 
+## Check out the site
+
+_**The site is live! Woo hoo! Check it out [here](https://non-profit-link.xyz/).**_
+
+If you'd like to make a feature request, please do so! I'd be happy to look into it. 
+
+## Info
+
 Written in Python, HTML, and CSS
 
 Uses Django, DRF (Django Rest Framework), HTMX, and Postgres.
@@ -8,7 +16,7 @@ Join the [discord!](https://discord.gg/smTmsCt69W)
 
 **_Layout/Design:_** Look over [this](https://www.figma.com/file/pKaku2N7xVPbCGQb1p6LIJ/NPL?type=design&node-id=0-1&mode=design&t=mc7YWpRIbtvPRkHG-11) if you're trying to understand the frontend of the project. If you're contributing to the frontend, please _do not worry about making everything exactly like the Figma file_.
 
-**_Some extra diagrams (might be unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
+**_Some extra diagrams (generally unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
 
 # Contact information
 
@@ -39,9 +47,11 @@ PostgreSQL (pronounced "post - gree - skew - l")
 
 See [this](#so-react). Django doesn't play well with frontend JS frameworks. The only framework that works _really_ well is HTMX, or something on the same level of minimalistic as HTMX.
 
+## How are you hosting this?
+Nginx and Gunicorn through a VPS. 
+
 ## Folders
 
-- **.vscode**: Just VSCode settings
 - **apps**: All apps, future and present
 - **diagrams**: Draw.io files. Just a database diagram at the moment
 - **static**: Static files
