@@ -33,6 +33,30 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", []))
 
+# Logging
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "general.log",
+        },
+    },
+    "loggers": {"django": {"handlers": ["file"], "level": "INFO"}},
+}
 # Application definition
 
 INSTALLED_APPS = [
