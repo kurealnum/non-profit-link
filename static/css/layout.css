@@ -720,7 +720,7 @@ address {
         max-width: 70px;
     }
     .login-form {
-        width: 50%;
+        width: 35%;
     }
     .info-body {
         width: 65%;
@@ -734,7 +734,6 @@ address {
         dialog {
         width: 450px;
     }
-}
 }
 
 @media (min-width: 800px) {

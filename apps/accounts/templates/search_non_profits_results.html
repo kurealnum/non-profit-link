@@ -1,12 +1,13 @@
 {% for org_info in orgs %}
     <div class="item">
         <span><a href="{{ org_info.get_absolute_url }}" class="highlight-word">{{ org_info.username }}:</a></span>
-        Located in {{ org_info.orglocation.city }}, {{ org_info.orglocation.region }} 
+        Located in {{ org_info.orglocation.city }}, {{ org_info.orglocation.region
+        }}
     </div>
-    {% empty %}
-        {% if org == "org" %}
-            <h2>No orgs with the name {{ search }} were found</h2>
-        {% else %}
-		<h2>No orgs with the with/in {{ location_options }} {{ search }} were found</h2>
-        {% endif %}
+{% empty %}
+    {% if org == "org" %}
+        <h2>There are no orgs with that name!</h2>
+    {% else %}
+        <h2>No orgs were found within the specified location!</h2>
+    {% endif %}
 {% endfor %}

@@ -1,11 +1,14 @@
 {% for item in all_items %}
-<div class="item">{{ item.count }} {{ item.units_description }} of {{ item.item_name }},
-    {% if item.want == True %}
-    requested
-    {% else %}
-    shared
-    {% endif %}
-    by <span><a class="highlight-word" href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></span></div>
+    <div class="item">
+        {{ item.count }} {{ item.units_description }} of {{ item.item_name }},
+        {% if item.want == True %}
+            requested
+        {% else %}
+            shared
+        {% endif %}
+        by
+        <span><a class="highlight-word" href="{{ item.org.get_absolute_url }}">{{ item.org }}</a></span>
+    </div>
 {% empty %}
-<h2>No {{ org }}s are listed with the name {{ search }}</h2>
+    <h2>No items are listed with that name!</h2>
 {% endfor %}
