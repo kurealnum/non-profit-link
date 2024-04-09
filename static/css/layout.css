@@ -193,23 +193,15 @@ footer img {
 
 .footer-text-wrapper {
     display: flex;
-    flex-direction: row;
-}
-
-.footer-text {
-    font-size: 8px;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
     list-style: none;
-    padding: 10x;
-    margin-left: auto;
-    padding-right: 15px;
+    font-size: 12px;
 }
 
-.no-padding {
-    padding: 0px;
-    padding-bottom: 0px;
-}
-
-.footer-text li {
+.footer-text-wrapper li {
     padding-bottom: 4px;
 }
 
@@ -731,7 +723,7 @@ address {
     .info-body {
         width: 60%;
     }
-        dialog {
+    dialog {
         width: 450px;
     }
 }

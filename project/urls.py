@@ -30,6 +30,10 @@ urlpatterns = [
     # django urls
     path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

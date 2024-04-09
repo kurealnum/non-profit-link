@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://non-profit-link.xyz/sitemap.xml
