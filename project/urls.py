@@ -16,9 +16,16 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from apps.accounts.models import Org
+
+info_dict = {
+    "queryset": Org.objects.all(),
+}
 
 urlpatterns = [
     # my urls
@@ -33,6 +40,12 @@ urlpatterns = [
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": {"org": GenericSitemap(info_dict, priority=0.6)}},
+        name="django.contrib.sitemaps.views.sitemap",
     ),
 ]
 
