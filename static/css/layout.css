@@ -192,8 +192,9 @@ footer img {
 }
 
 .footer-text-wrapper {
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    position: relative;
     flex-direction: column;
     flex-wrap: wrap;
     height: 100%;
@@ -203,6 +204,7 @@ footer img {
 
 .footer-text-wrapper li {
     padding-bottom: 4px;
+    padding-left: 10px;
 }
 
 footer img {

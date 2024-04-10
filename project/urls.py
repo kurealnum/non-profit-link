@@ -21,11 +21,9 @@ from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
-from apps.accounts.models import Org
+from .sitemaps import StaticSitemap, DynamicSitemap
 
-info_dict = {
-    "queryset": Org.objects.all(),
-}
+sitemaps = {"static": StaticSitemap, "dynamic": DynamicSitemap}
 
 urlpatterns = [
     # my urls
@@ -44,7 +42,7 @@ urlpatterns = [
     path(
         "sitemap.xml",
         sitemap,
-        {"sitemaps": {"org": GenericSitemap(info_dict, priority=0.6)}},
+        {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
 ]
