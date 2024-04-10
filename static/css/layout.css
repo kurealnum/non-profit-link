@@ -192,19 +192,25 @@ footer img {
 }
 
 .footer-text-wrapper {
-    margin: 0 auto;
     display: flex;
-    position: relative;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 100%;
-    list-style: none;
-    font-size: 12px;
+    flex-direction: row;
 }
 
-.footer-text-wrapper li {
+.footer-text {
+    font-size: 8px;
+    list-style: none;
+    padding: 10x;
+    margin-left: auto;
+    padding-right: 15px;
+}
+
+.no-padding {
+    padding: 0px;
+    padding-bottom: 0px;
+}
+
+.footer-text li {
     padding-bottom: 4px;
-    padding-left: 10px;
 }
 
 footer img {
