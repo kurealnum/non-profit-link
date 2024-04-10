@@ -16,9 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticSitemap, DynamicSitemap
+
+sitemaps = {"static": StaticSitemap, "dynamic": DynamicSitemap}
 
 urlpatterns = [
     # my urls
@@ -30,6 +35,16 @@ urlpatterns = [
     # django urls
     path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

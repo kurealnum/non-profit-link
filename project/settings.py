@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     "apps.accounts",
     "apps.index",
     "apps.org_pages",
@@ -75,6 +77,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "fontawesomefree",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
