@@ -28,4 +28,4 @@ class DynamicSitemap(Sitemap):
     priority = 0.7
 
     def items(self):
-        return Org.objects.all()
+        return Org.objects.all().order_by("username")
