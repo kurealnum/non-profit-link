@@ -28,6 +28,12 @@ body {
     flex-direction: column;
 }
 
+svg {
+    display: flex;
+    width: 20px;
+    margin: 1px 0;
+}
+
 header {
     height: 10vh;
     z-index: -1;
