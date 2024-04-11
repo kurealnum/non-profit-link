@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     "apps.items",
     "django_extensions",
     "rest_framework",
-    "fontawesomefree",
+    "pipeline",
 ]
 
 SITE_ID = 1
@@ -190,3 +190,27 @@ LOGOUT_REDIRECT_URL = "/"
 # DO NOT RUN WITH THESE SETTINGS SET TO TRUE IN PRODUCTION!!!
 CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False") == "True"
 SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False") == "True"
+
+# For django-pipeline
+STATICFILES_STORAGE = "pipeline.storage.PipelineManifestStorage"
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "pipeline.finders.PipelineFinder",
+)
+
+PIPELINE = {
+    "PIPELINE_ENABLED": True,
+    "JAVASCRIPT": {
+        "main_js": {
+            "source_filenames": ("js/dashboard.js",),
+            "output_filename": "js/dashboard_compressed.js",
+        }
+    },
+    "STYLESHEETS": {
+        "main": {
+            "source_filenames": ("css/layout.css",),
+            "output_filename": "css/layout_compressed.css",
+        }
+    },
+}
