@@ -684,6 +684,12 @@ address {
     font-style: italic;
 }
 
+svg {
+    display: flex;
+    width: 20px;
+    margin: 1px 0;
+}
+
 /* no images until media query */
 @media (max-width: 500px) {
     .img-and-text-img {
