@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load pipeline %}
+        {% stylesheet 'main' %}
+        {% javascript 'main_js' %}
         <meta charset="utf-8">
         <link rel="stylesheet" href="{% static 'layout.css' %}">
-        <link href="{% static 'fontawesomefree/css/solid.css' %}"
-              rel="stylesheet"
-              type="text/css">
         <link rel="apple-touch-icon"
               sizes="180x180"
               href="{% static 'icos/apple-touch-icon.png' %}">
