@@ -1,15 +1,22 @@
-<h1>Edit your listed needs</h1>
+<h2>Edit your listed needs</h2>
 <ul id="needs-items-list" class="items-list">
     {% for item in wanted_org_items %}
-        <div class="item modal-item"><p>{{item.count}} {{ item.units_description }} of {{ item }}</p>
-            <div class="item-buttons-wrapper">
-                <button data-name="{{ item }}" class="needs delete-item fa-solid fa-trash" id="needs-delete-item-{{ item }}"></button>
-                <button data-name="{{ item }}" class="needs edit-item fa fa-pen"></button>
-            </div>
+    <div class="item modal-item">
+        <p>{{item.count}} {{ item.units_description }} of {{ item }}</p>
+        <div class="item-buttons-wrapper">
+            <button
+                data-name="{{ item }}"
+                class="needs delete-item fa-solid fa-trash"
+                id="needs-delete-item-{{ item }}"
+            ></button>
+            <button
+                data-name="{{ item }}"
+                class="needs edit-item fa fa-pen"
+            ></button>
         </div>
+    </div>
     {% endfor %}
 </ul>
 
 <button id="needs-new-button">Add new item &plus;</button>
 <button class="last-button" id="needs-close-button">Close</button>
-

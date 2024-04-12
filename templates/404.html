@@ -4,7 +4,9 @@
     <h1>We couldn't find what you were looking for!</h1>
     <div class="body-text">
         <h2>
-            <a class="highlight-word-accent" href={% url 'index' %}>Go home</a>
+            <a aria-label="Go to the home page"
+               class="highlight-word-accent"
+               href="{% url 'index' %}">Go home</a>
         </h2>
     </div>
 {% endblock %}

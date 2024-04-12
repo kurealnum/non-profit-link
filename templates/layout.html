@@ -30,7 +30,7 @@
         <meta name="keywords"
               content="non profits, organizations, donations, non-profits, volunteering, 501(c)(3)">
         <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Type" content="text/html">
         <meta name="language" content="English">
         <meta name="revisit-after" content="1 days">
         <meta name="author" content="Oscar Gaske">
@@ -126,12 +126,12 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <div class="body-container">
+        <main class="body-container">
             {% block body %}{% endblock %}
-        </div>
+        </main>
         <footer>
             <a class="img-url" href="{% url 'index' %}">
-                <img src="{% static 'imgs/NPL Logo.png' %}">
+                <img alt="Logo for Non-Profit Link" src="{% static 'imgs/NPL Logo.png' %}">
             </a>
             <div class="footer-text-wrapper">
                 <ul class="footer-text">
