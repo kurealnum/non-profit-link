@@ -699,7 +699,7 @@ address {
 
 @media (min-width: 500px) {
     footer {
-        height: 12vw;
+        height: 16vw;
     }
     footer img {
         width: 60%;
