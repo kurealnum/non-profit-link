@@ -65,7 +65,7 @@ nav a,
 nav label {
     color: var(--text);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .nav-title a {
@@ -198,16 +198,14 @@ footer img {
 }
 
 .footer-text-wrapper {
+    list-style: none;
+    font-size: 12px;
     display: flex;
-    flex-direction: row;
 }
 
 .footer-text {
-    font-size: 8px;
-    list-style: none;
-    padding: 10x;
-    margin-left: auto;
-    padding-right: 15px;
+    padding-right: 10px;
+    margin: auto;
 }
 
 .no-padding {
@@ -216,7 +214,7 @@ footer img {
 }
 
 .footer-text li {
-    padding-bottom: 4px;
+    padding-bottom: 5px;
 }
 
 footer img {
@@ -228,6 +226,7 @@ footer img {
     display: flex;
     justify-items: center;
     width: 20%;
+    padding-right: 10px;
 }
 
 input,
