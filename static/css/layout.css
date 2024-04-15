@@ -532,6 +532,7 @@ optgroup {
     flex-direction: column;
     justify-content: space-around;
     margin: 40px auto;
+    width: 90%;
 }
 
 /* for a body with a header and p elements */

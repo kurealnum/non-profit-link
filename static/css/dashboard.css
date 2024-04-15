@@ -78,3 +78,8 @@ h3 {
   width: 80%;
   text-align: center;
 }
+
+h2 {
+  max-width: 90%;
+  overflow-wrap: break-word;
+}
