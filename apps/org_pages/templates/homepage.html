@@ -1,8 +1,12 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load jsonld %}
 {% block title %}{{ org.username }}{% endblock %}
 <!-- just for future notice, the left, mid, and right of dashboard are only
 present in the desktop size. the mobile version is completely vertical -->
+{% block head-info %}
+    {% json_ld_for Org %}
+{% endblock %}
 {% block body %}
     <div class="info-body">
         <section class="text-body">
