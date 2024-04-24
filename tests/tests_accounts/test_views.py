@@ -98,10 +98,6 @@ class EditAccountInfoTests(TestCase):
         expected_url = "/accounts/login/?next=/accounts/edit-account-info/"
         self.assertRedirects(response, expected_url)
 
-    def test_status_and_context_valid_when_form_valid(self):
-        # TODO
-        pass
-
     def test_context_content(self):
         # check if the *content* of the context is correct
         response = self.client.put(self.url)
