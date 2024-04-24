@@ -34,8 +34,8 @@ class Org(AbstractUser):
             "@type": "Organization",
             "organization": self.username,
             "location": OrgLocation.objects.get(org=self.pk).city,
-            "contactInfo": "???",
-            "itemsListed": "???",
+            "contactInfo": OrgContactInfo.objects.get(org=self.pk).email,
+            "itemsListed": self.item_set.count(),  # type: ignore (for item_set, doesn't work for some reason)
         }
         return data
 
