@@ -33,7 +33,7 @@ class Org(AbstractUser):
             "@context": "https://schema.org/",
             "@type": "Organization",
             "organization": self.username,
-            "location": OrgLocation.get_location(self.username),
+            "location": OrgLocation.objects.get(org=self.pk).city,
             "contactInfo": "???",
             "itemsListed": "???",
         }
