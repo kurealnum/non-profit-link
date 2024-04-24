@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "apps.items",
     "django_extensions",
     "rest_framework",
+    "structured_data",
 ]
 
 SITE_ID = 1
