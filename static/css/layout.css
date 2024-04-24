@@ -28,6 +28,12 @@ body {
     flex-direction: column;
 }
 
+svg {
+    display: flex;
+    width: 20px;
+    margin: 1px 0;
+}
+
 header {
     height: 10vh;
     z-index: -1;
@@ -59,7 +65,7 @@ nav a,
 nav label {
     color: var(--text);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .nav-title a {
@@ -192,16 +198,14 @@ footer img {
 }
 
 .footer-text-wrapper {
+    list-style: none;
+    font-size: 12px;
     display: flex;
-    flex-direction: row;
 }
 
 .footer-text {
-    font-size: 8px;
-    list-style: none;
-    padding: 10x;
-    margin-left: auto;
-    padding-right: 15px;
+    padding-right: 10px;
+    margin: auto;
 }
 
 .no-padding {
@@ -210,7 +214,7 @@ footer img {
 }
 
 .footer-text li {
-    padding-bottom: 4px;
+    padding-bottom: 5px;
 }
 
 footer img {
@@ -222,6 +226,7 @@ footer img {
     display: flex;
     justify-items: center;
     width: 20%;
+    padding-right: 10px;
 }
 
 input,
@@ -527,6 +532,7 @@ optgroup {
     flex-direction: column;
     justify-content: space-around;
     margin: 40px auto;
+    width: 90%;
 }
 
 /* for a body with a header and p elements */
@@ -693,7 +699,7 @@ address {
 
 @media (min-width: 500px) {
     footer {
-        height: 12vw;
+        height: 16vw;
     }
     footer img {
         width: 60%;

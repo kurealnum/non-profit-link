@@ -12,6 +12,16 @@
 
 ## Extra Information
 
-**_These are much less important!_** If you can't use these tools, don't worry about it.
+**_These are much less important!_** If you can't use these tools, don't worry about it. 
 
-- When writing code, please use the `black` formatter. If for some reason you can't use the formatter, please do your best to format the code in a similar manner.
+### Formatters
+
+If for some reason you can't use a certain formatter, please do your best to format the code in a similar manner.
+
+- Python: `black` 
+
+- JavaScript: `prettier` 
+
+- HTML-Django files (template files): `DJLint`
+
+- Unspecified files: `prettier`

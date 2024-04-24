@@ -33,6 +33,30 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS", []))
 
+# Logging
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "general.log",
+        },
+    },
+    "loggers": {"django": {"handlers": ["file"], "level": "INFO"}},
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,7 +75,7 @@ INSTALLED_APPS = [
     "apps.items",
     "django_extensions",
     "rest_framework",
-    "fontawesomefree",
+    "structured_data",
 ]
 
 SITE_ID = 1
@@ -166,3 +190,9 @@ LOGOUT_REDIRECT_URL = "/"
 # DO NOT RUN WITH THESE SETTINGS SET TO TRUE IN PRODUCTION!!!
 CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False") == "True"
 SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False") == "True"
+SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False") == "True"
+SECURE_HSTS_SECONDS = os.environ.get("SESSION_COOKIE_SECURE")
+SECURE_HSTS_INCLUDE_SUBDOMAINS = (
+    os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False") == "True"
+)
+SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False") == "True"

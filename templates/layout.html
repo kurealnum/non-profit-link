@@ -3,12 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'layout.css' %}">
-        <link href="{% static 'fontawesomefree/css/all.min.css' %}"
-              rel="stylesheet"
-              type="text/css">
         <link rel="apple-touch-icon"
               sizes="180x180"
               href="{% static 'icos/apple-touch-icon.png' %}">
@@ -29,17 +24,13 @@
             let FF_FOUC_FIX;
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!-- Primary Meta Tags -->
-        <title>Non-Profit Link</title>
-        <!-- Open Graph / Facebook -->
         <meta name="title" content="Non-Profit Link">
         <meta name="description"
-              content="A platform for distributing resources between non-profits! Register your organization today and start sharing.">
+              content="A platform for linking non-profits together! Register your organization today and start sharing. Use Non-Profit Link to figure out which non-profits you can donate to.">
         <meta name="keywords"
-              content="non profits, organizations, donations, non-profits, volunteering, 501(c)(3)">
+              content="nonprofitlink, donate, non profits, organizations, donations, non-profits, volunteering, 501(c)(3), where can I donate">
         <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
+        <meta http-equiv="Content-Type" content="text/html">
         <meta name="revisit-after" content="1 days">
         <meta name="author" content="Oscar Gaske">
         <!-- Open Graph / Facebook -->
@@ -47,14 +38,14 @@
         <meta property="og:url" content="https://non-profit-link.xyz" />
         <meta property="og:title" content="Non-Profit Link" />
         <meta property="og:description"
-              content="A platform for distributing resources between non-profits! Register your organization today and start sharing." />
+              content="A platform for linking non-profits together! Register your organization today and start sharing. Use Non-Profit Link to figure out which non-profits you can donate to." />
         <meta property="og:image" content="{% static 'NPL Logo.png' %}" />
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://non-profit-link.xyz" />
         <meta property="twitter:title" content="Non-Profit Link" />
         <meta property="twitter:description"
-              content="A platform for distributing resources between non-profits! Register your organization today and start sharing." />
+              content="A platform for distributing resources between non-profits! Register your organization today and start sharing. Use Non-Profit Link to figure out which non-profits you can donate to." />
         <meta property="twitter:image" content="{% static 'NPL Logo.png' %}" />
         <title>Non-Profit Link -
             {% block title %}{% endblock %}
@@ -134,15 +125,15 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <div class="body-container">
+        <main class="body-container">
             {% block body %}{% endblock %}
-        </div>
+        </main>
         <footer>
             <a class="img-url" href="{% url 'index' %}">
-                <img src="{% static 'imgs/NPL Logo.png' %}">
+                <img alt="Logo for Non-Profit Link" src="{% static 'imgs/NPL Logo.png' %}">
             </a>
             <div class="footer-text-wrapper">
-                <ul class="footer-text">
+                <div class="footer-text">
                     <li>
                         <a href="https://kureal.pythonanywhere.com/home/">Who made this?</a>
                     </li>
@@ -152,24 +143,26 @@
                     <li>
                         <a href="https://github.com/kurealnum/non-profit-link/issues">Make a feature request</a>
                     </li>
+                </div>
+                <div class="footer-text">
                     <li>
                         <a href="https://github.com/kurealnum/non-profit-link">Source Code (Github)</a>
                     </li>
-                </ul>
-                <ul class="footer-text no-padding">
                     <li>
                         <a href="{% url 'register' %}">Make an account</a>
                     </li>
                     <li>
                         <a href="{% url 'about_us' %}">More about us</a>
                     </li>
+                </div>
+                <div class="footer-text">
                     <li>
                         <a href="{% url 'faq' %}">F.A.Q.</a>
                     </li>
                     <li>
                         <a href="{% url 'dashboard' %}">View your dashboard</a>
                     </li>
-                </ul>
+                </div>
             </div>
         </footer>
         <script src="{% static 'navbar.js' %}"></script>

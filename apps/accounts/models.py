@@ -18,7 +18,7 @@ class Org(AbstractUser):
     last_name = None
 
     def __str__(self) -> str:
-        return self.username
+        return str(self.username)
 
     def get_absolute_url(self):
         return reverse("homepage", args=(self.username,))
@@ -26,6 +26,18 @@ class Org(AbstractUser):
     class Meta:
         verbose_name = "Org"
         verbose_name_plural = "Orgs"
+
+    @property
+    def structured_data(self):
+        data = {
+            "@context": "https://schema.org/",
+            "@type": "Organization",
+            "organization": self.username,
+            "location": OrgLocation.objects.get(org=self.pk).city,
+            "contactInfo": OrgContactInfo.objects.get(org=self.pk).email,
+            "itemsListed": self.item_set.count(),  # type: ignore (for item_set, doesn't work for some reason)
+        }
+        return data
 
 
 class OrgLocation(models.Model):

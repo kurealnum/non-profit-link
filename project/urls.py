@@ -34,7 +34,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     # django urls
     path("accounts/", include("django.contrib.auth.urls")),
-    path("admin/", admin.site.urls),
+    path("woah-is-that-an-ostrich/", admin.site.urls),
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
