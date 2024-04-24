@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -58,6 +59,8 @@ def search_items(request):
 # TODO: make me login_required
 # any endpoints that take information from the request itself
 class RequestDataApiView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         user = request.user
         org = Org.objects.get(username=user.username)
