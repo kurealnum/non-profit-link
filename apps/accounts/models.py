@@ -29,13 +29,25 @@ class Org(AbstractUser):
 
     @property
     def structured_data(self):
+        selfinfo = OrgInfo.objects.get(org=self.pk)
+        selflocation = OrgLocation.objects.get(org=self.pk)
+        selfcontactinfo = OrgContactInfo.objects.get(org=self.pk)
         data = {
             "@context": "https://schema.org/",
             "@type": "Organization",
-            "organization": self.username,
-            "location": OrgLocation.objects.get(org=self.pk).city,
-            "contactInfo": OrgContactInfo.objects.get(org=self.pk).email,
-            "itemsListed": self.item_set.count(),  # type: ignore (for item_set, doesn't work for some reason)
+            "url": selfinfo.website,
+            "name": self.username,
+            "description": selfinfo.desc,
+            "email": selfcontactinfo.email,
+            "telephone": selfcontactinfo.phone,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": selflocation.street_address,
+                "addressLocality": selflocation.city,
+                "addressCountry": selflocation.country,
+                "addressRegion:": selflocation.region,
+                "postalCode": selflocation.zip,
+            },
         }
         return data
 
