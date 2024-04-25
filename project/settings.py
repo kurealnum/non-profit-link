@@ -191,7 +191,7 @@ LOGOUT_REDIRECT_URL = "/"
 CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False") == "True"
 SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False") == "True"
 SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False") == "True"
-SECURE_HSTS_SECONDS = os.environ.get("SESSION_COOKIE_SECURE")
+SECURE_HSTS_SECONDS = os.environ.get("SECURE_HSTS_SECONDS")
 SECURE_HSTS_INCLUDE_SUBDOMAINS = (
     os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False") == "True"
 )
