@@ -6,6 +6,46 @@
 
 .body-container {
     /*  this is the epitomy of "no touch. it works"    */
-    flex-direction: row;
     align-items: center;
+}
+
+#who-we-are {
+    max-width: 80%;
+    margin-bottom: 100px;
+}
+#who-we-are h1, #how-to-get-started h1 {
+    margin-bottom: 15px;
+}
+
+#how-to-get-started {
+    max-width: 80%;
+    margin-bottom: 40px;
+}
+.circle-icon {
+    font-size: 24px;
+    padding: 4px;
+    border-color: var(--accent);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.number-and-text {
+    margin-bottom: 40px;
+}
+
+.number-and-header {
+    align-items: center;
+    display: flex;
+}
+
+.number-and-header h3 {
+    text-align: left;
+    flex-grow: 1;
+    width: 85%;
+    margin-left: 15px;
 }
