@@ -758,6 +758,12 @@ address {
     .info-body {
         width: 45%;
     }
+    #who-we-are {
+        width: 55%;
+    }
+    #how-to-get-started {
+        width: 55%;
+    }
 }
 
 @media (min-width: 1100px) {
@@ -778,5 +784,11 @@ address {
         overflow: hidden;
         max-height: 80%;
         overflow-y: scroll;
+    }
+    #who-we-are {
+        width: 650px;
+    }
+    #how-to-get-started {
+        width: 650px;
     }
 }
