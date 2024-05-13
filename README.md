@@ -2,7 +2,7 @@
 
 ## Check out the site
 
-_**The site is live! Woo hoo! Check it out [here](https://non-profit-link.xyz/).**_
+_**The site is live! Woo hoo! Check it out [here](https://nonprofitlink.org).**_
 
 If you'd like to make a feature request, please do so! I'd be happy to look into it. 
 
