@@ -18,6 +18,9 @@ Join the [discord!](https://discord.gg/smTmsCt69W)
 
 **_Some extra diagrams (generally unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
 
+<a href="https://www.digitalocean.com/?refcode=ed12512a8ea7&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" /></a>
+This is a referall link. I pay to host Non Profit Link, and signing up with this referall link can help alleviate some of the costs. 
+
 # Contact information
 
 - Discord: **kureal#0464**
