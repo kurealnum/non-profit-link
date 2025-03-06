@@ -4,7 +4,7 @@
 
 _**The site is live! Woo hoo! Check it out [here](https://nonprofitlink.org).**_
 
-If you'd like to make a feature request, please do so! I'd be happy to look into it. 
+If you'd like to make a feature request, please do so! I'd be happy to look into it.
 
 ## Info
 
@@ -19,7 +19,7 @@ Join the [discord!](https://discord.gg/smTmsCt69W)
 **_Some extra diagrams (generally unused):_** [Eraser.io](https://app.eraser.io/invite/CMPmi4yayzi3WI2kI1DS)
 
 <a href="https://www.digitalocean.com/?refcode=ed12512a8ea7&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" /></a>
-This is a referall link. I pay to host Non Profit Link, and signing up with this referall link can help alleviate some of the costs. 
+This is a referral link. I pay to host Non Profit Link, and signing up with this referral link can help alleviate some of the costs.
 
 # Contact information
 
@@ -51,7 +51,8 @@ PostgreSQL (pronounced "post - gree - skew - l")
 See [this](#so-react). Django doesn't play well with frontend JS frameworks. The only framework that works _really_ well is HTMX, or something on the same level of minimalistic as HTMX.
 
 ## How are you hosting this?
-Nginx and Gunicorn through a VPS. 
+
+Nginx and Gunicorn through a VPS.
 
 ## Folders
 
