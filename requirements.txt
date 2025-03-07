@@ -13,7 +13,7 @@ fontawesomefree==6.5.1
 gunicorn==21.2.0
 idna==3.7
 packaging==24.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.10
 python-dotenv==1.0.1
 requests==2.31.0
 sqlparse==0.4.4

@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os, sys, json
+import os
+import json
 from os.path import join, dirname
 from dotenv import load_dotenv
 from pathlib import Path
@@ -19,7 +20,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Loading environment variables
-dotenv_path = join(dirname(__file__), "db_info.env")
+dotenv_path = join(dirname(__file__), "secrets.env")
 load_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
