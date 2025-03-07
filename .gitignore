@@ -10,7 +10,6 @@ flask_session/
 node_modules/
 *.bat
 *.ps1
-*.sh
 htmlcov/
 .coverage
 .coveragerc

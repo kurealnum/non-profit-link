@@ -9,12 +9,20 @@ from apps.accounts.models import Org
 from .models import Item
 from .serializers import ItemSerializer
 
+# Templates
+ITEM_PAGE = "item_page.html"
+
+
+def get_item(request, item_name):
+    item = Item.objects.get(item_name=item_name)
+    return render(request, ITEM_PAGE, context={"item": item})
+
 
 def search_items_results(request):
     search = request.GET.get("search")
     org_or_item = request.GET.get("org")
 
-    # Logic for search.
+    # Logic for search
     is_have = True if request.GET.get("is_want") == "on" else False
     is_need = True if request.GET.get("is_need") == "on" else False
     want = None
@@ -55,10 +63,15 @@ def search_items(request):
     return render(request, "search_items.html", context={"all_items": all_items})
 
 
-# TODO: make me login_required
-# any endpoints that take information from the request itself
+# Any endpoints that take information from the request itself
 class RequestDataApiView(APIView):
     permission_classes = (IsAuthenticated,)
+
+    def get_permissions(self):
+        permissions = super().get_permissions()
+        if self.request.method.lower() != "get":  # type: ignore
+            permissions.append(IsAuthenticated())  # type: ignore
+        return permissions
 
     def post(self, request):
         user = request.user
@@ -132,9 +145,6 @@ class RequestDataApiView(APIView):
 
         return Response(status=status.HTTP_200_OK)
 
-
-# any endpoints that take information from the URL
-class UrlDataApiView(APIView):
     def get(self, request, item_name):
         user = request.user
         org = Org.objects.get(username=user.username)

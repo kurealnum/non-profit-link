@@ -42,7 +42,7 @@ services:
         develop:
             watch:
                 - action: sync
-                  path: ./backend
+                  path: ./
                   target: /django_src
 
 volumes:
