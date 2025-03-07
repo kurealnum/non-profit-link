@@ -1,0 +1,50 @@
+services:
+    postgres:
+        image: postgres:17
+        container_name: npl-postgres
+        environment: 
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        expose:
+            - '5432:5432'
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
+            interval: 1s
+            retries: 3 
+            start_period: 3s
+            timeout: 3s
+
+    django:
+        environment:
+            - DB_NAME=${DB_NAME}
+            - DB_USERNAME=${DB_USERNAME}
+            - DB_PASSWORD=${DB_PASSWORD}
+
+            - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+            - DEBUG=${DEBUG}
+            - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+            - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE}
+            - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE}
+            - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT}
+            - SECURE_HSTS_SECONDS=${SECURE_HSTS_SECONDS}
+            - SECURE_HSTS_INCLUDE_SUBDOMAINS=${SECURE_HSTS_INCLUDE_SUBDOMAINS}
+            - SECURE_HSTS_PRELOAD=${SECURE_HSTS_PRELOAD}
+        container_name: npl-django
+        build: .
+        ports: 
+            - "8000:8000"
+        depends_on:
+            postgres:
+                condition: service_healthy
+        develop:
+            watch:
+                - action: sync
+                  path: ./backend
+                  target: /django_src
+
+volumes:
+    pg_data:
+
