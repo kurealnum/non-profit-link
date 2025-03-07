@@ -14,8 +14,7 @@ def search_items_results(request):
     search = request.GET.get("search")
     org_or_item = request.GET.get("org")
 
-    # yes i am aware that this is awful grammar
-    # this is all just logic for the search. REFACTORME
+    # Logic for search.
     is_have = True if request.GET.get("is_want") == "on" else False
     is_need = True if request.GET.get("is_need") == "on" else False
     want = None
@@ -24,14 +23,14 @@ def search_items_results(request):
     elif not is_have and is_need:
         want = True
 
-    # querysets are lazy so we can do this without querying :0
-    if want == None:
+    # Querysets are lazy so we can do this without querying
+    if want is None:
         all_items = Item.objects.all()
     else:
         all_items = Item.objects.filter(want=want)
 
     if search and org_or_item == "item":
-        if want == None:
+        if want is None:
             all_items = Item.objects.filter(item_name__trigram_similar=search)
         else:
             all_items = Item.objects.filter(
@@ -39,7 +38,7 @@ def search_items_results(request):
             )
     elif search and org_or_item == "org":
         possible_orgs = Org.objects.filter(username__trigram_similar=search)
-        if want == None:
+        if want is None:
             all_items = Item.objects.filter(org__in=possible_orgs)
         else:
             all_items = Item.objects.filter(want=want, org__in=possible_orgs)
