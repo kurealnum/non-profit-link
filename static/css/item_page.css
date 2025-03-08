@@ -1,0 +1,17 @@
+.item-description {
+    border: 1px solid var(--light-text);
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 4px 4px var(--gray-shadow);
+}
+
+.item-info {
+    margin-top: 30px;
+}
+
+.item-info p {
+    background: none;
+    margin: 0 auto;
+    padding: 0px;
+    font-size: 16px;
+}

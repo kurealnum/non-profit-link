@@ -7,6 +7,8 @@
     --darker-secondary: #3db68d;
     --accent: #75dcf0;
     --text: #ececed;
+    --light-text: rgba(236, 236, 237, 0.4);
+    --gray-shadow: rgba(10, 10, 10, 0.8);
 
     color: var(--text);
     background-color: var(--background);

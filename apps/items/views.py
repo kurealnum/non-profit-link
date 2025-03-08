@@ -14,8 +14,18 @@ ITEM_PAGE = "item_page.html"
 
 
 def get_item(request, item_name):
-    item = Item.objects.get(item_name=item_name)
-    return render(request, ITEM_PAGE, context={"item": item})
+    item = Item.objects.select_related("org", "org__orgcontactinfo").get(
+        item_name=item_name
+    )
+    return render(
+        request,
+        ITEM_PAGE,
+        context={
+            "item": item,
+            "org": item.org,
+            "orgcontactinfo": item.org.orgcontactinfo,
+        },
+    )
 
 
 def search_items_results(request):
