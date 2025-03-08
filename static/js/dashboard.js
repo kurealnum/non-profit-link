@@ -38,9 +38,10 @@ class ItemModal extends BaseModal {
         this.headersForItemApi = {
             "Content-Type": "application/json",
             "X-CSRFToken": this.getCookie("csrftoken"),
+            credentials: "same-origin",
             Accept: "application/json",
         };
-        this.apiUrl = "http://127.0.0.1:8000/items/manage-item/";
+        this.apiUrl = "/items/manage-item/";
 
         this.entityMap = {
             "&": "&amp;",

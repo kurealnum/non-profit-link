@@ -33,8 +33,7 @@ SECURE_SSL_REDIRECT=False
 SECURE_HSTS_SECONDS=0
 SECURE_HSTS_INCLUDE_SUBDOMAINS=False
 SECURE_HSTS_PRELOAD=False
+CORS_ALLOWED_ORIGINS='["http://localhost:8000"]'
 ```
-
-- Ensure that you have the `pg_trgm` module/extension installed in your databases
 
 - When you're ready to go, run `docker compose up`. Both PostgreSQL and Django are handled by Docker, so you don't really need to do anything. Once docker finishes building and launching, go to `localhost:8000` to access your project.

@@ -32,6 +32,7 @@ services:
             - SECURE_HSTS_SECONDS=${SECURE_HSTS_SECONDS}
             - SECURE_HSTS_INCLUDE_SUBDOMAINS=${SECURE_HSTS_INCLUDE_SUBDOMAINS}
             - SECURE_HSTS_PRELOAD=${SECURE_HSTS_PRELOAD}
+            - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
         container_name: npl-django
         build: .
         ports: 

@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "corsheaders",
     "apps.accounts",
     "apps.index",
     "apps.org_pages",
@@ -84,6 +85,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -188,7 +190,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGOUT_REDIRECT_URL = "/"
 
-# DO NOT RUN WITH THESE SETTINGS SET TO TRUE IN PRODUCTION!!!
 CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False") == "True"
 SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False") == "True"
 SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False") == "True"
@@ -197,3 +198,5 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = (
     os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False") == "True"
 )
 SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False") == "True"
+
+CORS_ALLOWED_ORIGINS = json.loads(os.environ.get("CORS_ALLOWED_ORIGINS", []))  # type: ignore
