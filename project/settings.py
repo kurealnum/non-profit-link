@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "structured_data",
+    "fontawesomefree",
 ]
 
 SITE_ID = 1
