@@ -5,7 +5,7 @@ from .models import Org, OrgContactInfo, OrgInfo, OrgLocation
 from apps.items.models import Item
 
 
-# basic user change forms
+# Authentication forms
 class LoginRegisterForm(forms.Form):
     username = forms.CharField(label="Enter your organizations name", max_length=100)
     password = forms.CharField(
@@ -28,7 +28,7 @@ class OrgForm(forms.ModelForm):
         fields = ["username"]
 
 
-# org info forms
+# Forms for Org information
 class OrgLocationForm(forms.ModelForm):
     class Meta:
         model = OrgLocation
@@ -50,7 +50,7 @@ class OrgInfoForm(forms.ModelForm):
         widgets = {"org": forms.HiddenInput()}
 
 
-# item form
+# Form for item
 class ItemEditForm(forms.ModelForm):
     class Meta:
         model = Item

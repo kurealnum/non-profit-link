@@ -18,7 +18,6 @@ from .forms import (
     OrgLocationForm,
 )
 
-# constants
 LOGIN_FORM = "login.html"
 REGISTER_FORM = "register.html"
 EDIT_ORG_INFO_MODAL = "edit_info_modal.html"
@@ -27,21 +26,23 @@ SEARCH_NON_PROFITS_TEMPLATE = "search_non_profits.html"
 SEARCH_NON_PROFITS_RESULTS = "search_non_profits_results.html"
 
 
-@login_required  # type: ignore
+@login_required
 def edit_org_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)  # type: ignore
         org = request.user.id
+
+        # Get and put data into forms
         existing_contact_form = OrgContactInfo.objects.get(org=org)
         existing_info_form = OrgInfo.objects.get(org=org)
         existing_location_form = OrgLocation.objects.get(org=org)
-
         contact_form = OrgContactInfoForm(request_put, instance=existing_contact_form)
         info_form = OrgInfoForm(request_put, instance=existing_info_form)
         location_form = OrgLocationForm(request_put, instance=existing_location_form)
 
-        edit_org_forms = [contact_form, info_form, location_form]
+        # If all forms are valid, update data and return 201. If not, return 400.
         status = 400
+        edit_org_forms = [contact_form, info_form, location_form]
         valid_forms = [form.is_valid() for form in edit_org_forms]
 
         if all(valid_forms):
@@ -50,7 +51,6 @@ def edit_org_info(request):
                 new_instance.org = request.user
                 new_instance.save()
 
-            # status defaults to 400, but if everything is valid, then set it to 201
             status = 201
 
         return render(
@@ -63,13 +63,14 @@ def edit_org_info(request):
     return HttpResponse(status=405)
 
 
-@login_required  # type: ignore
+@login_required
 def edit_account_info(request):
     if request.method == "PUT":
         request_put = QueryDict(request.body)  # type: ignore
         org_form = OrgForm(request_put, instance=request.user)
         status = 400
 
+        # If form is valid, manually validate password. If everything is valid, return 201.
         if org_form.is_valid():
             cleaned_org_form = org_form.cleaned_data
             cur_user = org_form.save(commit=False)
@@ -82,7 +83,6 @@ def edit_account_info(request):
                 org_form.add_error("password", is_pass_invalid)
 
             else:
-                # status defaults to 400, but if everything is valid, then set it to 201
                 cur_user.set_password(cleaned_org_form["password"])
                 cur_user.save()
                 status = 201
@@ -94,6 +94,7 @@ def edit_account_info(request):
             status=status,
         )
 
+        # See HTMX docs for more information on this header: https://htmx.org/headers/hx-redirect/
         if status == 201:
             response["HX-Redirect"] = reverse("login")
 
@@ -108,7 +109,7 @@ def login_user(request):
     if request.method == "POST":
         login_register_form = LoginRegisterForm(request.POST)
 
-        # essentially just checking if the form isn't empty
+        # If the form is valid, try and authenticate. If authentication fails, do not redirect to dashboard.
         if login_register_form.is_valid():
             login_register = login_register_form.cleaned_data
 
@@ -135,16 +136,14 @@ def login_user(request):
 
 
 def register_user(request):
+    # If request.POST is none, then the user is GETing the page.
     user_info_form = OrgForm(request.POST or None)
-
-    # init the forms
     input_forms = [
         OrgLocationForm(request.POST or None),
         OrgContactInfoForm(request.POST or None),
         OrgInfoForm(request.POST or None),
     ]
 
-    # if the user submitted the form and the form is valid
     if request.method == "POST" and user_info_form.is_valid():
         validated_forms_count = [form.is_valid() for form in input_forms]
         cleaned_user_info_form = user_info_form.cleaned_data
@@ -158,12 +157,11 @@ def register_user(request):
             user_info_form.add_error("password", is_pass_invalid)
 
         if all(validated_forms_count) and not is_pass_invalid:
-            # inital save on the new user
             new_user = user_info_form.save(commit=False)
             new_user.set_password(cleaned_user_info_form["password"])
             new_user.save()
 
-            # save forms
+            # Save all data if it is valid
             for form in input_forms:
                 newform = form.save(commit=False)
                 newform.org = new_user
@@ -182,11 +180,10 @@ def register_user(request):
 
 
 def search_non_profits(request):
-    orgs = Org.objects.all().select_related("orglocation")
-    return render(request, SEARCH_NON_PROFITS_TEMPLATE, context={"orgs": orgs})
+    if not request.POST:
+        orgs = Org.objects.all().select_related("orglocation")
+        return render(request, SEARCH_NON_PROFITS_TEMPLATE, context={"orgs": orgs})
 
-
-def search_non_profits_results(request):
     is_org = request.POST.get("org")
     search = request.POST.get("search")
     # either country, region, zipcode, city, or street-address
